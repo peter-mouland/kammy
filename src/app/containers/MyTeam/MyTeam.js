@@ -14,7 +14,7 @@ import {
 import './my-team.scss';
 
 const bem = bemHelper({ name: 'my-team' });
-debug('base:myteam');
+debug('ff:myteam');
 
 const Error = ({ error }) => <div>
   <p>Error Loading seasons!</p>

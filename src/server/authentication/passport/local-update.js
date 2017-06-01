@@ -5,7 +5,7 @@ const PassportLocalStrategy = require('passport-local').Strategy;
 
 const { updateUser } = require('../../api/db/user/user.actions');
 
-const log = debug('base:auth/local-update');
+const log = debug('ff:auth/local-update');
 
 /**
  * Return the Passport Local Strategy object.
@@ -16,7 +16,6 @@ module.exports = new PassportLocalStrategy({
   session: false,
   passReqToCallback: true
 }, (req, email, password, done) => {
-  log({ email, password });
   const userData = {
     email: email.trim(),
     password: password.trim()
@@ -25,7 +24,6 @@ module.exports = new PassportLocalStrategy({
   // find a user by email address
   return User.findOne({ email: userData.email }, (err, user) => {
     if (err) { return done(err); }
-    log(user);
     if (!user) {
       const error = new Error('Incorrect email or password');
       error.name = 'IncorrectCredentialsError';

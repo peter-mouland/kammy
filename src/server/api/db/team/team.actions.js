@@ -3,7 +3,7 @@ import debug from 'debug';
 
 const Team = require('mongoose').model('Teams');
 
-const log = debug('base:db/team.actions');
+const log = debug('ff:db/team.actions');
 
 export const saveNewTeam = (teamData) => {
   const newTeam = new Team(teamData);

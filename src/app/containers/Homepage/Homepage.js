@@ -1,7 +1,7 @@
 import React from 'react';
 import debug from 'debug';
 
-debug('base:Homepage.jsx');
+debug('ff:Homepage.jsx');
 
 export default class Homepage extends React.Component {
 
@@ -9,7 +9,7 @@ export default class Homepage extends React.Component {
     return (
       <div id="homepage">
         <banner className="header">
-          <h1>About React SSR Base</h1>
+          <h1>Home page!</h1>
         </banner>
       </div>
     );

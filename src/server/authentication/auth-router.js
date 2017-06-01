@@ -9,7 +9,7 @@ import { login, signUp, logout, updatePassword, authenticate, healthStatus } fro
 import authCheck from './auth-check-middleware';
 import handleError from '../middleware/handle-error';
 
-const log = debug('base: auth');
+const log = debug('ff: auth');
 const parseBody = koaBody();
 const authRouter = router({ prefix: '/auth' });
 

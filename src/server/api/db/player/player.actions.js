@@ -3,7 +3,7 @@ import debug from 'debug';
 
 const Players = require('mongoose').model('Players');
 
-const log = debug('base:db/player.actions');
+const log = debug('ff:db/player.actions');
 
 export const findPlayers = (players = {}) => Players.find(players).exec();
 

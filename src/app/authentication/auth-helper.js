@@ -6,7 +6,7 @@ import {
   validateLoginForm, validateSignUpForm, validateUpdatePassword
 } from './auth-validation';
 
-const log = debug('base:Auth');
+const log = debug('ff:Auth');
 
 function buildErrors(response) {
   const errors = response.errors || {};

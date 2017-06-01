@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import Auth from '../../app/authentication/auth-helper';
 
 const User = mongoose.model('User');
-const log = debug('base:auth-check');
+const log = debug('ff:auth-check');
 
 export const validateUser = (ctx) => new Promise((resolve) => {
   const userFromToken = Auth.validateToken(ctx);

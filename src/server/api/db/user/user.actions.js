@@ -1,7 +1,7 @@
 const debug = require('debug');
 const User = require('mongoose').model('User');
 
-const log = debug('base:db/user.actions');
+const log = debug('ff:db/user.actions');
 
 export const saveNewUser = (userData) => {
   const newUser = new User(userData);

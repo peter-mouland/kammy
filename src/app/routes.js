@@ -17,11 +17,11 @@ import LoginPage from './authentication/containers/LoginPage/LoginPage';
 import LogOut from './authentication/components/LogOut/LogOut';
 import RouteWithAuthCheck from './authentication/components/RouteWithAuthCheck/RouteWithAuthCheck';
 
-debug('base:routes');
+debug('ff:routes');
 
 const baseMetaData = {
-  title: 'React SSR Base',
-  description: 'React-SSR-Base : incrementally add more cool stuff to your react app',
+  title: 'Fantasy Football',
+  description: '',
   meta: {
     charset: 'utf-8',
     name: {
@@ -38,9 +38,9 @@ export function getRoutesConfig() {
       path: '/',
       meta: {
         ...baseMetaData,
-        title: 'About React SSR Base'
+        title: 'Fantasy Football'
       },
-      label: 'About SSR Base',
+      label: 'Homepage',
       component: Homepage
     },
     {
@@ -153,7 +153,7 @@ export function makeRoutes() {
     <MainLayout>
       <Switch>
         {getRoutesConfig().map((route) => <RouteWithAuthCheck {...route} key={ route.name } />)}
-        <Route title={'Page Not Found - React SSR Base'} component={ NotFound }/>
+        <Route title={'Page Not Found - Fantasy Football'} component={ NotFound }/>
       </Switch>
     </MainLayout>
   );

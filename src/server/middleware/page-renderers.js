@@ -4,7 +4,7 @@ import debug from 'debug';
 
 import Error500 from '../templates/Error500';
 
-const log = debug('base:page-renderers');
+const log = debug('ff:page-renderers');
 
 export default function pageRenderers() {
   return async (ctx, next) => {

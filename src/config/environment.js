@@ -8,7 +8,7 @@ const setEnvDefault = (key, val) => {
   config[key] = process.env[key];
 };
 
-setEnvDefault('DEBUG', 'base:*');
+setEnvDefault('DEBUG', 'ff:*');
 setEnvDefault('PORT', 3000);
 setEnvDefault('FIXTURES', 'false');
 setEnvDefault('FIXTURES_PORT', 3001);
@@ -25,7 +25,7 @@ const externalStatsUrl = 'https://fantasyfootball.skysports.com/cache/json_playe
 setEnvDefault('EXTERNAL_STATS_URL', externalStatsUrl);
 
 debug.enable(process.env.DEBUG);
-const log = debug('base: Environment:');
+const log = debug('ff: Environment:');
 
 // explicitly check vars that webpack can help us with
 if (!process.env.GA_KEY) { setEnvDefault('GA_KEY', 'development'); }

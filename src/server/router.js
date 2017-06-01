@@ -8,7 +8,7 @@ import graphQLRouter from './api/api-router';
 import authRouter from './authentication/auth-router';
 import { DIST, ASSETS } from '../config/paths';
 
-const log = debug('base:router');
+const log = debug('ff:router');
 export const router = new Router();
 
 const staticRoute = koaStatic(DIST);

@@ -7,7 +7,7 @@ import ChangePassword from '../authentication/containers/ChangePasswordPage/Chan
 import { NamedLink } from '../routes';
 import './mainLayout.scss';
 
-const log = debug('base:mainLayout');
+const log = debug('ff:mainLayout');
 
 class MyAccount extends React.Component {
 
@@ -71,7 +71,7 @@ export default class MainLayout extends React.Component {
           { Auth.user().mustChangePassword ? <ChangePassword /> : children}
         </main>
         <footer {...bem('footer')}>
-          Hosted at <a href="http://github.com/peter-mouland/react-ssr-base">github.com/peter-mouland/react-srr-base</a>
+          Hosted at <a href="http://github.com/peter-mouland/react-fantasy-football">github.com/peter-mouland/react-fantasy-football</a>
         </footer>
       </div>
     );

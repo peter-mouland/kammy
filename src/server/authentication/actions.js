@@ -12,7 +12,7 @@ import localUdpateStrategy from './passport/local-update';
 import { validateUser } from './auth-check-middleware';
 import Auth from '../../app/authentication/auth-helper';
 
-const log = debug('base:auth/actions');
+const log = debug('ff:auth/actions');
 
 passport.serializeUser((user, done) => done(null, user.id));
 passport.deserializeUser(async (userId, done) => {

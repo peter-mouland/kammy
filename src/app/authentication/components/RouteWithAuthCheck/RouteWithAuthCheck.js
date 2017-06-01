@@ -6,7 +6,7 @@ import DocumentMeta from 'react-document-meta';
 
 import Auth from '../../auth-helper';
 
-const log = debug('base:RouteWithAuthCheck');
+const log = debug('ff:RouteWithAuthCheck');
 
 const RouteWithAuthCheck = ({ component: Component, requiresAuthentication, meta, ...props }) => {
   const redirect = requiresAuthentication && !Auth.validateToken();

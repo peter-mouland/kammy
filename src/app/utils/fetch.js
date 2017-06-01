@@ -5,7 +5,7 @@ import { localUrl } from '../utils';
 import { getVar } from '../../config/environment';
 import Auth from '../authentication/auth-helper';
 
-const log = debug('base:fetch');
+const log = debug('ff:fetch');
 
 export function checkStatus(response) {
   if (response.status < 200 || response.status >= 500) {
