@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import debug from 'debug';
 
 const Players = require('mongoose').model('Player');
@@ -12,7 +11,7 @@ export const findPlayer = (playerDetails) => Players.findOne(playerDetails).exec
 export const updatePlayers = ({ playerUpdates }) => {
   const bulkUpdate = playerUpdates.map((update) => ({
     updateOne: {
-      filter: { _id: update.id }, update
+      filter: { _id: update._id }, update
     },
   }));
   return Players.bulkWrite(bulkUpdate).then(() => (playerUpdates));

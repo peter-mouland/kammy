@@ -1,6 +1,7 @@
 import bodyparser from 'koa-bodyparser';
 import Router from 'koa-router';
 import { graphql } from 'graphql';
+import debug from 'debug';
 import jwt from 'koa-jwt';
 
 import config from '../../config/db';
@@ -10,6 +11,7 @@ import root from './graphql.root';
 import handleError from '../middleware/handle-error';
 import authCheck from '../authentication/auth-check-middleware';
 
+const log = debug('ff:graphql-router');
 const router = Router({ prefix: '/graphql/v1' });
 
 router.use(handleError());

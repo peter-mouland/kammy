@@ -13,6 +13,7 @@ import MyTeam from './containers/MyTeam/MyTeam';
 import PlayerStats from './containers/PlayerStats/PlayerStats';
 import NotFound from './containers/NotFound/NotFound';
 
+import ChangePassword from './authentication/containers/ChangePasswordPage/ChangePasswordPage';
 import LoginPage from './authentication/containers/LoginPage/LoginPage';
 import LogOut from './authentication/components/LogOut/LogOut';
 import RouteWithAuthCheck from './authentication/components/RouteWithAuthCheck/RouteWithAuthCheck';
@@ -56,7 +57,7 @@ export function getRoutesConfig() {
     },
     {
       name: 'myTeam',
-      path: '/MyTeam/:teamId',
+      path: '/MyTeam/',
       label: 'My Team',
       meta: {
         ...baseMetaData,
@@ -116,6 +117,17 @@ export function getRoutesConfig() {
         title: 'Dashboard',
       },
       component: DashboardPage
+    },
+    {
+      name: 'change-password',
+      path: '/change-password/',
+      requiresAuthentication: true,
+      label: 'Change Password',
+      meta: {
+        ...baseMetaData,
+        title: 'Change Password',
+      },
+      component: ChangePassword
     }
   ];
 }
@@ -124,11 +136,11 @@ export function getRoutesConfig() {
 export const findRoute = (to) => getRoutesConfig().find((rt) => rt.name === to);
 
 // test this active link and route matching
-export const NamedLink = ({ className, to, children, teamId, ...props }) => {
+export const NamedLink = ({ className, to, children, ...props }) => {
   const bem = bemHelper({ name: 'link' });
   const route = findRoute(to);
   if (!route) throw new Error(`Route to '${to}' not found`);
-  const path = route.path.replace(':/teamId', teamId);
+  const path = route.path;
   return (
     <Route path={ path } children={({ match }) => (
       <Link to={ path } { ...props } { ...bem(null, { active: match }, className) }>

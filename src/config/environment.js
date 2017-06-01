@@ -12,7 +12,7 @@ setEnvDefault('DEBUG', 'ff:*');
 setEnvDefault('PORT', 3000);
 setEnvDefault('FIXTURES', 'false');
 setEnvDefault('FIXTURES_PORT', 3001);
-setEnvDefault('MONGODB_URI', 'mongodb://localhost/react_app');
+setEnvDefault('MONGODB_URI', 'mongodb://localhost/react_ff');
 setEnvDefault('JWT_SECRET', 'a secret phrase!!');
 
 const graphQlUrl = config.FIXTURES === 'true'

@@ -1,4 +1,4 @@
 {
-  "dbUri": "mongodb://localhost/react_app--test",
+  "dbUri": "mongodb://localhost/react_ff--test",
   "jwtSecret": "a secret phrase for testing!!"
 }

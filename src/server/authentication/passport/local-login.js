@@ -1,12 +1,14 @@
-/* eslint-disable no-underscore-dangle */
 const debug = require('debug');
 const jwt = require('jsonwebtoken');
-const User = require('mongoose').model('User');
-const Team = require('mongoose').model('Team');
+const mongoose = require('mongoose');
 const PassportLocalStrategy = require('passport-local').Strategy;
 const config = require('../../../config/db.js');
 
 const log = debug('ff:local-login');
+
+const ObjectId = mongoose.Types.ObjectId;
+const User = mongoose.model('User');
+const Team = mongoose.model('Team');
 
 /**
  * Return the Passport Local Strategy object.
@@ -44,11 +46,15 @@ module.exports = new PassportLocalStrategy({
         return done(error);
       }
 
-      log({ user });
-
-      return Team.findOne({ user: { id: user._id } })
-        .sort({ dateCreated: -1 }).exec((team) => {
-          log({ team });
+      Team.find().exec((e, teams) => log(e) && log(teams));
+      return Team.findOne({ 'user._id': new ObjectId(user._id) })
+        .sort({ dateCreated: -1 }).exec((e, team) => {
+          if (e || !team) {
+            log(e || { team });
+            const error = new Error('No Team found, should have been inserted automatically');
+            error.name = 'SignUpError';
+            return done(error);
+          }
 
           const payload = {
             sub: user._id,
@@ -66,7 +72,7 @@ module.exports = new PassportLocalStrategy({
           };
 
           return done(null, token, data);
-      });
+        });
     });
   });
 });

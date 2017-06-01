@@ -1,9 +1,8 @@
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 
 import './adminOptions.scss';
 
-class ManagerAdminOptions extends React.Component {
+class UserAdminOptions extends React.Component {
 
   render() {
     const { children, teams, ...props } = this.props;
@@ -11,7 +10,13 @@ class ManagerAdminOptions extends React.Component {
       <div className="admin-options" { ...props }>
         <div className="admin-option">
               <ul className="simple-list">
-                { teams.map((team) => <li key={team._id}>{team.name}<span className="label">{team.user.name}</span> <span className="label--secondary">{team.league.name}</span></li>) }
+                { teams.map((team) => (
+                    <li key={team._id}>
+                      {team.name || <em>unnamed team</em>}
+                      <span className="label">{team.user.name}</span>
+                      <span className="label--secondary">{team.league.name}</span>
+                    </li>)
+                )}
               </ul>
         </div>
         <div className="admin-option admin-option__btn">
@@ -22,4 +27,4 @@ class ManagerAdminOptions extends React.Component {
   }
 }
 
-export default ManagerAdminOptions;
+export default UserAdminOptions;

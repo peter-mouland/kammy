@@ -18,6 +18,10 @@
 //  }
 // }`;
 
+const minPlayerFragment = `
+fragment minPlayerInfo on MinPlayerDetail {
+  _id name club
+}`;
 const playerFragment = `
 fragment playerInfo on Player {
   _id code pos name club
@@ -29,8 +33,16 @@ fragment leagueInfo on League {
 }`;
 
 const teamFragment = `
+${minPlayerFragment}
 fragment teamInfo on Team {
-  _id user { id name } season { id name } league { id name } name
+  _id user { _id name } season { _id name } league { _id name } name 
+  gk { ...minPlayerInfo } 
+  cbleft { ...minPlayerInfo } cbright { ...minPlayerInfo }
+  fbleft { ...minPlayerInfo } fbright { ...minPlayerInfo } 
+  cmleft { ...minPlayerInfo } cmright { ...minPlayerInfo } 
+  wmleft { ...minPlayerInfo } wmright { ...minPlayerInfo } 
+  strleft { ...minPlayerInfo } strright { ...minPlayerInfo } 
+  sub { ...minPlayerInfo }
 }`;
 
 const seasonFragment = `
@@ -60,7 +72,7 @@ export const getSeasonsQuery = `
 
 export const getTeamQuery = `
   ${teamFragment}
-  query ($leagueId: String, $userId: String) { getTeam(leagueId: $leagueId, userId: $userId){ ...teamInfo } } 
+  query ($teamId: String) { getTeam(teamId: $teamId){ ...teamInfo } } 
 `;
 
 export const getTeamsQuery = `
@@ -89,7 +101,7 @@ export const addUserMutation = `
 
 export const updatePlayersMutation = `
   mutation ($playerUpdates: [PlayerUpdates]) { 
-    updatePlayers(playerUpdates: $playerUpdates){ id code pos name club }   
+    updatePlayers(playerUpdates: $playerUpdates){ _id code pos name club }   
   }
 `;
 

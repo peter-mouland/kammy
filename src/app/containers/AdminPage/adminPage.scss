@@ -2,7 +2,12 @@
 
 .admin__panels {
   position: relative;
+}
+
+.admin__panel {
+  position: relative;
   background-color: $lighter;
+  margin-top: 2em;
 }
 
 .admin-btn {
@@ -12,5 +17,5 @@
   font-size: .8rem;
   padding: .25em 1em;
   cursor: pointer;
-  border-radius: 2em;
+  border-radius: 5px;
 }

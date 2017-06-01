@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 const debug = require('debug');
 const User = require('mongoose').model('User');
 const PassportLocalStrategy = require('passport-local').Strategy;

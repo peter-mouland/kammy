@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 const PassportLocalStrategy = require('passport-local').Strategy;
 
 const { addUser } = require('../../api/db/user/user.actions');
@@ -15,5 +14,5 @@ module.exports = new PassportLocalStrategy({
     mustChangePassword: false
   };
 
-  addUser(userData).then(done);
+  addUser(userData).then((user) => done(null, user)).catch(done);
 });

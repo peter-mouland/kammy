@@ -4,7 +4,7 @@ const log = debug('ff:db/season.actions');
 
 const Seasons = require('mongoose').model('Season');
 
-export const findSeasonById = (id) => Seasons.findById(id).exec();
+export const findSeasonById = (_id) => Seasons.findById(_id).exec();
 
 export const getSeasons = (search = {}) => {
   const query = Object.keys(search).length > 0
@@ -20,8 +20,8 @@ export const addSeason = ({ name }) => {
   return newSeason.save();
 };
 
-export const updateSeasonById = (id, seasonUpdate) =>
-  Seasons.findByIdAndUpdate(id, seasonUpdate, { new: true }).exec();
+export const updateSeasonById = (_id, seasonUpdate) =>
+  Seasons.findByIdAndUpdate(_id, seasonUpdate, { new: true }).exec();
 
 export const addLeague = ({ seasonId, name }) => (
   updateSeasonById(seasonId, { $push: { leagues: { name } } })

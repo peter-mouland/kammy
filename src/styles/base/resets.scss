@@ -59,7 +59,7 @@ button {
   font-size: .8rem;
   padding: .25em 1em;
   cursor: pointer;
-  border-radius: 2em;
+  border-radius: 5px;
   transition: color .15s ease-in, background-color .15s ease-in;
 
   &:not(:disabled):hover {

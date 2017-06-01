@@ -2,8 +2,13 @@ import { buildSchema } from 'graphql';
 
 export default buildSchema(`
   type MinDetail {
-    id: String
+    _id: String
     name: String
+  }
+  type MinPlayerDetail {
+    _id: String
+    name: String
+    club: String
   }
   type Team {
     _id: String
@@ -11,6 +16,18 @@ export default buildSchema(`
     user: MinDetail
     season: MinDetail
     league: MinDetail
+    gk: MinPlayerDetail
+    cbleft: MinPlayerDetail
+    cbright: MinPlayerDetail
+    fbleft: MinPlayerDetail
+    fbright: MinPlayerDetail
+    cmleft: MinPlayerDetail
+    cmright: MinPlayerDetail
+    wmleft: MinPlayerDetail
+    wmright: MinPlayerDetail
+    strleft: MinPlayerDetail
+    strright: MinPlayerDetail
+    sub: MinPlayerDetail
   }
   type League {
     _id: String
@@ -32,7 +49,7 @@ export default buildSchema(`
     club: String
   }
   type UpdatedPlayer { 
-    id: String!
+    _id: String!
     code: String
     name: String
     pos: String
@@ -89,19 +106,44 @@ export default buildSchema(`
     defaultLeague: String
     mustChangePassword: Boolean
   }
+  
+  input InputMinDetail {
+    _id: String
+    name: String
+  }
+  input InputMinPlayerDetail {
+    _id: String
+    name: String
+    club: String
+    code: String
+    pos: String
+  }
 
   input TeamUpdate {
-    club: String
+    _id: String
     name: String
-    pos: String
-    id: String
+    user: InputMinDetail
+    season: InputMinDetail
+    league: InputMinDetail
+    gk: InputMinPlayerDetail
+    cbleft: InputMinPlayerDetail
+    cbright: InputMinPlayerDetail
+    fbleft: InputMinPlayerDetail
+    fbright: InputMinPlayerDetail
+    cmleft: InputMinPlayerDetail
+    cmright: InputMinPlayerDetail
+    wmleft: InputMinPlayerDetail
+    wmright: InputMinPlayerDetail
+    strleft: InputMinPlayerDetail
+    strright: InputMinPlayerDetail
+    sub: InputMinPlayerDetail
   }
 
   input PlayerUpdates {
+    _id: String
     club: String
     name: String
     pos: String
-    id: String
   }
   
   type Dashboard {
@@ -109,11 +151,11 @@ export default buildSchema(`
   }
   
   type Query {
-    getTeam(leagueId: String, userId: String): Team
+    getTeam(teamId: String): Team
     getTeams: [Team]
     getSeasons: [Season]
     getPlayers(player: String): [Player]
-    getUser(email: String, id: String): User
+    getUser(email: String, _id: String): User
     getDashboard: Dashboard
   }
   

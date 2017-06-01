@@ -12,6 +12,7 @@ import {
 } from '../../actions';
 
 import './my-team.scss';
+import Auth from '../../authentication/auth-helper';
 
 const bem = bemHelper({ name: 'my-team' });
 debug('ff:myteam');
@@ -55,7 +56,7 @@ class MyTeam extends React.Component {
 
   componentDidMount() {
     if (!this.props.team) {
-      this.props.fetchTeam();
+      this.props.fetchTeam({ teamId: Auth.user().defaultTeamId });
     }
     if (!this.props.players.length) {
       this.props.fetchPlayers();
@@ -84,14 +85,16 @@ class MyTeam extends React.Component {
   };
 
   squadPlayer = (pos, leftOrRight = '') => {
+    const { team = {} } = this.props;
     const { updatedTeam, selectedPosition, selectedLeftOrRight } = this.state;
-    const player = updatedTeam[pos + leftOrRight];
+    const player = team[pos + leftOrRight] || {};
+    const updatePlayer = updatedTeam[pos + leftOrRight] || {};
     const isSelected = selectedPosition === pos && selectedLeftOrRight === leftOrRight;
     return (
       <li { ...bem('position', pos, { 'text--warning': isSelected }) } onClick={ () => this.choosePos(pos, leftOrRight)}>
         <div className="position">
           <div className="position__label">{pos}</div>
-          <div className="position__player">{player && player.name}</div>
+          <div className="position__player">{player.name || updatePlayer.name}</div>
         </div>
       </li>
     );
@@ -144,7 +147,7 @@ class MyTeam extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    team: state.teams.data,
+    team: state.myTeam.data,
     players: state.players.data,
     loading: state.promiseState.loading,
     errors: state.promiseState.errors,

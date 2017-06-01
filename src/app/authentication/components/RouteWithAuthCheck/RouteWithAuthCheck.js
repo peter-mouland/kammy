@@ -10,14 +10,17 @@ const log = debug('ff:RouteWithAuthCheck');
 
 const RouteWithAuthCheck = ({ component: Component, requiresAuthentication, meta, ...props }) => {
   const redirect = requiresAuthentication && !Auth.validateToken();
-  log('redirect', redirect);
+  const redirectTo = redirect && Auth.user().mustChangePassword
+    ? '/change-password/'
+    : '/login';
+  log({ redirectTo });
   return (
     <Route {...props} render={(matchProps) => (
       <span>
         <DocumentMeta { ...meta }/>
         { redirect ?
           (<Redirect to={{
-            pathname: '/login',
+            pathname: redirectTo,
             state: { from: matchProps.location }
           }}/>
           ) : <Component {...matchProps}/>

@@ -4,7 +4,7 @@ const { mongooseSchema } = require('../player/player.schema');
 const PlayerHistorySchema = new mongoose.Schema({
   name: String,
   player: {
-    id: {
+    _id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Player'
     },

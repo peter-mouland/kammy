@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import PropTypes from 'prop-types';
 import bemHelper from 'react-bem-helper';
@@ -24,17 +23,17 @@ const Highlight = ({ player, update, detail, className }) => update[detail]
     ? <em { ...bem(null, null, ['text--warning', className])}>{update[detail]}</em>
     : <span className={ className }>{player[detail]}</span>;
 
-const flattenUpdates = (updates) => (Object.keys(updates)).map((id) => ({
-  ...updates[id],
-  id
+const flattenUpdates = (updates) => (Object.keys(updates)).map((_id) => ({
+  ...updates[_id],
+  _id
 }));
 
 const DraftUpdates = ({ players, updates, saveUpdates }) => <div className="updates">
-    {(Object.keys(updates)).map((id) => {
-      const update = updates[id];
-      const player = players.find((ply) => ply._id === id);
+    {(Object.keys(updates)).map((_id) => {
+      const update = updates[_id];
+      const player = players.find((ply) => ply._id === _id);
       return (
-        <div key={ id }>
+        <div key={ _id }>
           Update {player.name}:
           <ul>
             {(Object.keys(update))

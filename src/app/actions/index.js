@@ -1,5 +1,9 @@
-import { fetch } from '../utils';
+import debug from 'debug';
 
+import { fetch } from '../utils';
+import Auth from '../authentication/auth-helper';
+
+export const FETCH_TEAM = 'FETCH_TEAM';
 export const FETCH_TEAMS = 'FETCH_TEAMS';
 export const FETCH_SEASONS = 'FETCH_SEASONS';
 export const FETCH_PLAYERS = 'FETCH_PLAYERS';
@@ -10,6 +14,8 @@ export const ADD_USER = 'ADD_USER';
 export const UPDATE_PLAYERS = 'UPDATE_PLAYERS';
 export const UPDATE_TEAM = 'UPDATE_TEAM';
 
+const log = debug('ff:actions');
+
 export function fetchPlayers(player) {
   return {
     type: FETCH_PLAYERS,
@@ -17,10 +23,17 @@ export function fetchPlayers(player) {
   };
 }
 
-export function fetchTeam({ leagueId }) {
+export function fetchTeam({ teamId = Auth.user().defaultTeamId } = {}) {
+  return {
+    type: FETCH_TEAM,
+    payload: fetch.graphQL('getTeamQuery', { teamId })
+  };
+}
+
+export function fetchTeams() {
   return {
     type: FETCH_TEAMS,
-    payload: fetch.graphQL('getTeamQuery', { leagueId })
+    payload: fetch.graphQL('getTeamsQuery')
   };
 }
 
@@ -68,9 +81,9 @@ export function updatePlayers(playerUpdates) {
   };
 }
 
-export function updateTeam(team) {
+export function updateTeam(teamUpdate) {
   return {
     type: UPDATE_TEAM,
-    payload: fetch.graphQL('updateTeamMutation', team)
+    payload: fetch.graphQL('updateTeamMutation', { teamUpdate })
   };
 }

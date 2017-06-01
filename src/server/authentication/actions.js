@@ -14,7 +14,7 @@ import Auth from '../../app/authentication/auth-helper';
 
 const log = debug('ff:auth/actions');
 
-passport.serializeUser((user, done) => done(null, user.id));
+passport.serializeUser((user, done) => done(null, user._id));
 passport.deserializeUser(async (userId, done) => {
   await validateUser(userId)
     .then((user) => done(null, user))

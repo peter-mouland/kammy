@@ -3,7 +3,6 @@ import bemHelper from 'react-bem-helper';
 import debug from 'debug';
 
 import Auth from '../authentication/auth-helper';
-import ChangePassword from '../authentication/containers/ChangePasswordPage/ChangePasswordPage';
 import { NamedLink } from '../routes';
 import './mainLayout.scss';
 
@@ -57,18 +56,17 @@ export default class MainLayout extends React.Component {
     const bem = bemHelper({ name: 'layout' });
     const { children } = this.props;
     const { isUserAuthenticated } = this.state;
-
     return (
       <div {...bem(null, 'main')}>
         <nav {...bem('nav')}>
           <span {...bem('nav', 'header')}>FF</span>
-          <NamedLink to="myTeam" {...bem('nav-link')} teamId={ Auth.user().defaultTeamId } />
+          <NamedLink to="myTeam" {...bem('nav-link')} />
           <NamedLink to="dashboard" {...bem('nav-link')} />
           { Auth.isAdmin() ? <NamedLink to="admin" {...bem('nav-link')} /> : null }
           <MyAccount isUserAuthenticated={ isUserAuthenticated } />
         </nav>
         <main {...bem('content')}>
-          { Auth.user().mustChangePassword ? <ChangePassword /> : children}
+          { children}
         </main>
         <footer {...bem('footer')}>
           Hosted at <a href="http://github.com/peter-mouland/react-fantasy-football">github.com/peter-mouland/react-fantasy-football</a>

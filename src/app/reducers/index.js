@@ -10,7 +10,7 @@ const addLeagueToState = (state, seasonId, newLeague) => {
   const newState = {
     ...state
   };
-  const season = newState.data.find((ssn) => ssn.id === seasonId);
+  const season = newState.data.find((ssn) => ssn._id === seasonId);
   season.leagues.push(newLeague);
   return newState;
 };
@@ -32,7 +32,7 @@ const updatePlayersData = (state, action) => {
   updates.forEach((update) => {
     const cleanUpdate = clean(update);
     allPlayers.find((player, i) => { // eslint-disable-line array-callback-return
-      if (player._id === update.id) { // eslint-disable-line no-underscore-dangle
+      if (player._id === update._id) {
         allPlayers[i] = { ...player, ...cleanUpdate };
       }
     });
@@ -140,6 +140,28 @@ export function teams(state = {}, action) {
   }
 }
 
+export function myTeam(state = {}, action) {
+  const updatedTeam = action.payload && action.payload.data && action.payload.data.updateTeam;
+  const team = action.payload && action.payload.data && action.payload.data.getTeam;
+  switch (action.type) {
+    case `${actions.FETCH_TEAM}_FULFILLED`:
+      log({ team });
+      return {
+        ...state,
+        errors: action.payload.errors,
+        data: team,
+      };
+    case `${actions.UPDATE_TEAM}_FULFILLED`:
+      return {
+        ...state,
+        errors: action.payload.errors,
+        data: updatedTeam,
+      };
+    default:
+      return state;
+  }
+}
+
 export function dashboard(state = {}, action) {
   switch (action.type) {
     case `${actions.FETCH_DASHBOARD_DATA}_FULFILLED`:
@@ -156,6 +178,7 @@ export default combineReducers({
   promiseState,
   seasons,
   teams,
+  myTeam,
   players,
   dashboard,
   routing

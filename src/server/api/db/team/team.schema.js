@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const PlayerType = {
-  id: {
+  _id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Player'
   },
@@ -14,21 +14,21 @@ const PlayerType = {
 const TeamSchema = new mongoose.Schema({
   dateCreated: { type: Date, default: Date.now },
   user: {
-    id: {
+    _id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     },
     name: String
   },
   season: {
-    id: {
+    _id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Season'
     },
     name: String
   },
   league: {
-    id: {
+    _id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Season.leagues'
     },
@@ -46,16 +46,16 @@ const TeamSchema = new mongoose.Schema({
     transfersMade: Number
   },
   gk: PlayerType,
-  cb1: PlayerType,
-  cb2: PlayerType,
-  fb1: PlayerType,
-  fb2: PlayerType,
-  cm1: PlayerType,
-  cm2: PlayerType,
-  wm1: PlayerType,
-  wm2: PlayerType,
-  fwd1: PlayerType,
-  fwd2: PlayerType,
+  cbleft: PlayerType,
+  cbright: PlayerType,
+  fbleft: PlayerType,
+  fbright: PlayerType,
+  cmleft: PlayerType,
+  cmright: PlayerType,
+  wmleft: PlayerType,
+  wmright: PlayerType,
+  strleft: PlayerType,
+  strright: PlayerType,
   sub: PlayerType,
 });
 

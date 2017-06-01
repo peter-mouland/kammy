@@ -8,9 +8,9 @@ const { forPlayer: calculatePoints } = require('../src/server/utils/calculatePoi
 
 connect(config.dbUri);
 
-const Player = require('mongoose').model('Players');
+const Player = require('mongoose').model('Player');
 
-Object.keys(players).forEach(key => {
+Object.keys(players).forEach((key) => {
   const player = players[key];
   const stats = {
     apps: player.apps,
@@ -41,5 +41,3 @@ Object.keys(players).forEach(key => {
     if (err) { return console.log(err); }
   });
 });
-
-
