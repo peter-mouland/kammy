@@ -1,0 +1,41 @@
+machine:
+  pre:
+    - sudo curl --output /usr/local/bin/phantomjs https://s3.amazonaws.com/circle-downloads/phantomjs-2.1.1
+  timezone:
+    Europe/London
+  node:
+    version: v6.10
+  java:
+    version: openjdk8
+general:
+  artifacts:
+    - tests/e2e/tests_output
+    - tests/e2e/tests_screenshots
+dependencies:
+  cache_directories:
+    - browserstack
+    - node_modules
+test:
+  override:
+    - npm run test:unit  -- --reporter mocha-junit-reporter
+    - npm run test:func
+    - npm run build:prod
+    - npm run test:e2e
+  post:
+    - git config --global user.name "Peter Mouland"
+    - git config --global user.email "peter.mouland@gmail.com"
+deployment:
+  main:
+    branch: master
+    commands:
+      - wget "https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip"
+      - unzip BrowserStackLocal-linux-x64.zip
+      - ./BrowserStackLocal $BROWSERSTACK_KEY -force:
+          background: true
+      - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
+      - git push git@heroku.com:react-ssr-base-staging.git $CIRCLE_SHA1:refs/heads/master -f --no-verify
+      - npm run test:e2e-staging -- --sha=$CIRCLE_BUILD_NUM --target=http://react-fantasy-football-staging.herokuapp.com --retries 2
+      - git push git@heroku.com:react-ssr-base-preprod.git $CIRCLE_SHA1:refs/heads/master -f --no-verify
+      - npm run test:e2e-production -- --sha=$CIRCLE_BUILD_NUM --target=http://react-fantasy-football-preprod.herokuapp.com --retries 2
+      - git push git@heroku.com:react-ssr-base.git $CIRCLE_SHA1:refs/heads/master -f --no-verify
+      - npm run test:e2e-production -- --sha=$CIRCLE_BUILD_NUM --target=http://react-fantasy-football.herokuapp.com --retries 2

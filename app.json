@@ -1,0 +1,19 @@
+{
+  "name": "react-fantasy-football",
+  "scripts": {
+  },
+  "env": {
+    "NODE_ENV": {
+      "required": true
+    },
+    "NPM_CONFIG_PRODUCTION": false,
+    "MONGODB_URI": {
+      "required": true
+    },
+    "JWT_SECRET": {
+      "required": true
+    }
+  },
+  "addons": [
+  ]
+}

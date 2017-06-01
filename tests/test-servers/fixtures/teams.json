@@ -1,0 +1,13 @@
+{
+    "result_count": 1,
+    "search": "",
+    "teams": [
+        {
+            "_id": "t1",
+            "user_id": "u1",
+            "season_id": "s1",
+            "league_id": "l1",
+            "manager":"Naked",
+        }
+    ]
+}

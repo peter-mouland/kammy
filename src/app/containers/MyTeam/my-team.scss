@@ -1,0 +1,136 @@
+@import '../../../styles/utils/colours';
+
+.my-team {
+
+  &__panels {
+    display: flex;
+  }
+
+  &__formation,
+  &__player-selection {
+    position: relative;
+  }
+
+  &__formation {
+    margin: 0 1em 0 0;
+    width: calc(45% - 1em);
+  }
+
+  &__player-selection {
+    background: $light;
+    padding: .25em;
+    width: calc(55% + 1em);
+  }
+
+  &__squad,
+  &__field {
+    display: block;
+    height: auto;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &__squad {
+    position: absolute;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    font-size: 1.66vw;
+  }
+
+  &__field {
+    position: relative;
+    padding: 152% 0 0;
+  }
+
+  &__position {
+    position: relative;
+    display: inline-block;
+    height: 17vw;
+    font-weight: bold;
+    float: left;
+
+    &--cb,
+    &--cm,
+    &--str {
+      transform: translateY(-7.5vw);
+    }
+
+    &--left {
+      transform: translateX(2.5vw);
+    }
+
+    &--right {
+      transform: translateX(-2.5vw);
+    }
+
+    &--gk {
+      width: 100%;
+    }
+
+    &--cb,
+    &--fb,
+    &--cm,
+    &--wm {
+      width: 25%;
+    }
+
+    &--str,
+    &--str {
+      width: 50%;
+    }
+
+    &--sub {
+      position: absolute;
+      left: 0;
+      top: 36%;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      background: $lighter;
+      width: 5vw;
+      height: 5vw;
+      border-radius: 50%;
+      border: 3px solid $brand--dark;
+      margin: 0 auto;
+    }
+  }
+  button {
+    z-index: 1;
+    position: relative;
+  }
+}
+
+.field-icon {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  &__pitch {
+    fill: $brand;
+  }
+}
+
+.position {
+  &__label {
+    position: absolute;
+    top: calc(2.5em + 2.5vw - .5em); // player-height + circle-height/2 - font-height/2
+    text-align: center;
+    width: 100%;
+    opacity: .9;
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+
+  &__player {
+    min-height: 2.5em;
+    text-shadow: 0 0 4px $light;
+    margin: 0 auto;
+  }
+}

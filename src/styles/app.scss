@@ -1,0 +1,63 @@
+@import 'base/resets';
+@import 'utils/adnimations';
+
+.icon--chevron {
+  height: 12px;
+  width: 12px;
+  stroke: currentColor;
+  transform: rotate(270deg);
+}
+
+.sr-only {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
+.simple-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.label--secondary {
+  color: $text--light;
+  font-size: .8em;
+}
+
+.message {
+  margin: 1em auto;
+  text-align: left;
+  padding: 1em;
+  border-radius: 1em;
+  box-shadow: 0 0 20px #282f32;
+  color: $white;
+
+  &--success {
+    background: $success;
+  }
+
+  &--warning {
+    background: $warning;
+  }
+
+  &--error {
+    background: $error;
+  }
+}
+
+.text {
+  &--success {
+    color: $success;
+  }
+
+  &--warning {
+    color: $warning;
+  }
+
+  &--error {
+    color: $error;
+  }
+}

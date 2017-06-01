@@ -1,0 +1,16 @@
+@import '../../../styles/utils/colours';
+
+.admin__panels {
+  position: relative;
+  background-color: $lighter;
+}
+
+.admin-btn {
+  background-color: $brand--light;
+  border: 1px solid $darken;
+  color: $brand--dark;
+  font-size: .8rem;
+  padding: .25em 1em;
+  cursor: pointer;
+  border-radius: 2em;
+}
