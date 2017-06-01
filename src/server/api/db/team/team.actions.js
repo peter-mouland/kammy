@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import debug from 'debug';
 
-const Team = require('mongoose').model('Teams');
+const Team = require('mongoose').model('Team');
 
 const log = debug('ff:db/team.actions');
 

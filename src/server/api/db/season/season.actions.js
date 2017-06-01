@@ -6,7 +6,14 @@ const Seasons = require('mongoose').model('Season');
 
 export const findSeasonById = (id) => Seasons.findById(id).exec();
 
-export const getSeasons = (search = {}) => Seasons.find(search).exec();
+export const getSeasons = (search = {}) => {
+  const query = Object.keys(search).length > 0
+    ? Seasons.findOne(search)
+    : Seasons.find(search);
+  return query.sort({ dateCreated: -1 }).exec();
+};
+
+export const getLatestSeason = () => Seasons.findOne({}).sort({ dateCreated: -1 }).exec();
 
 export const addSeason = ({ name }) => {
   const newSeason = new Seasons({ name });

@@ -1,9 +1,12 @@
 /* eslint-disable no-underscore-dangle */
+const debug = require('debug');
 const jwt = require('jsonwebtoken');
 const User = require('mongoose').model('User');
+const Team = require('mongoose').model('Team');
 const PassportLocalStrategy = require('passport-local').Strategy;
 const config = require('../../../config/db.js');
 
+const log = debug('ff:local-login');
 
 /**
  * Return the Passport Local Strategy object.
@@ -41,21 +44,29 @@ module.exports = new PassportLocalStrategy({
         return done(error);
       }
 
-      const payload = {
-        sub: user._id,
-        email: user.email,
-        isAdmin: user.email === 'uni_nake@hotmail.com', // hardcode admin
-        mustChangePassword: user.mustChangePassword,
-        name: user.name
-      };
+      log({ user });
 
-      // create a token string
-      const token = jwt.sign(payload, config.jwtSecret);
-      const data = {
-        name: user.name
-      };
+      return Team.findOne({ user: { id: user._id } })
+        .sort({ dateCreated: -1 }).exec((team) => {
+          log({ team });
 
-      return done(null, token, data);
+          const payload = {
+            sub: user._id,
+            email: user.email,
+            defaultTeamId: team._id,
+            isAdmin: user.email === 'uni_nake@hotmail.com', // hardcode admin
+            mustChangePassword: user.mustChangePassword,
+            name: user.name
+          };
+
+          // create a token string
+          const token = jwt.sign(payload, config.jwtSecret);
+          const data = {
+            name: user.name
+          };
+
+          return done(null, token, data);
+      });
     });
   });
 });

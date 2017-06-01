@@ -86,6 +86,7 @@ export default buildSchema(`
     _id: String!
     email: String!
     name: String
+    defaultLeague: String
     mustChangePassword: Boolean
   }
 
