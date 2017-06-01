@@ -108,6 +108,7 @@ export default buildSchema(`
   }
   
   type Query {
+    getTeam(leagueId: String, userId: String): Team
     getTeams: [Team]
     getSeasons: [Season]
     getPlayers(player: String): [Player]

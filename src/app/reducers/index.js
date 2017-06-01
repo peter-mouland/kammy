@@ -15,9 +15,8 @@ const addLeagueToState = (state, seasonId, newLeague) => {
   return newState;
 };
 
-function clean(obj) {
+function clean(obj) { // remove null's
   const newObj = {};
-
   Object.keys(obj).forEach((key) => {
     const val = obj[key];
     if (!val) return;
@@ -113,6 +112,7 @@ export function seasons(state = {}, action) {
 
 export function teams(state = {}, action) {
   const newUser = action.payload && action.payload.data && action.payload.data.addUser;
+  const updatedTeam = action.payload && action.payload.data && action.payload.data.updateTeam;
   switch (action.type) {
     case `${actions.FETCH_TEAMS}_FULFILLED`:
       return {
@@ -128,6 +128,12 @@ export function teams(state = {}, action) {
           ...state.data,
           newUser
         ],
+      };
+    case `${actions.UPDATE_TEAM}_FULFILLED`:
+      return {
+        ...state,
+        errors: action.payload.errors,
+        data: updatedTeam,
       };
     default:
       return state;

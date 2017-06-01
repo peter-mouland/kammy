@@ -1,8 +1,8 @@
 /* eslint-disable no-underscore-dangle, no-confusing-arrow */
 import { findOneUser, saveNewUser } from './db/user/user.actions';
 import { findPlayers, findPlayer, updatePlayers } from './db/player/player.actions';
-import { updateTeam, findTeams, saveNewTeam } from './db/team/team.actions';
-import { findSeasons, saveNewLeague, saveNewSeason, findSeasonById } from './db/season/season.actions';
+import { updateTeam, getTeams, getTeam, saveNewTeam } from './db/team/team.actions';
+import { getSeasons, addLeague, addSeason, findSeasonById } from './db/season/season.actions';
 
 const getUser = ({ email, id }) => findOneUser({ _id: id, email });
 const getPlayers = ({ player }) => player ? findPlayer({ player }) : findPlayers();
@@ -30,11 +30,12 @@ const addUser = ({ seasonId, leagueId, name, email }) => {
 // The root provides the top-level API endpoints
 export default {
   getPlayers,
-  getSeasons: findSeasons,
-  getTeams: findTeams,
+  getSeasons,
+  getTeams,
+  getTeam,
   getUser,
-  addSeason: saveNewSeason,
-  addLeague: saveNewLeague,
+  addSeason,
+  addLeague,
   addUser,
   updatePlayers,
   updateTeam,
