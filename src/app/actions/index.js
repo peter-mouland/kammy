@@ -66,11 +66,10 @@ export function addLeague(seasonId, name) {
   };
 }
 
-export function addUser(seasonId, userDetails) {
+export function addUser(userDetails) {
   return {
     type: ADD_USER,
-    seasonId,
-    payload: fetch.graphQL('addUserMutation', { seasonId, ...userDetails })
+    payload: fetch.graphQL('addUserMutation', userDetails)
   };
 }
 

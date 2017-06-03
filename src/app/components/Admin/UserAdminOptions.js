@@ -12,7 +12,7 @@ class UserAdminOptions extends React.Component {
               <ul className="simple-list">
                 { teams.map((team) => (
                     <li key={team._id}>
-                      {team.name || <em>unnamed team</em>}
+                      {team.name}
                       <span className="label">{team.user.name}</span>
                       <span className="label--secondary">{team.league.name}</span>
                     </li>)

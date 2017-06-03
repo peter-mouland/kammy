@@ -58,8 +58,9 @@ class AdminPage extends React.Component {
     this.props.addLeague(seasonId, name);
   }
 
-  addUser = (seasonId, form) => {
-    this.props.addUser(seasonId, form);
+  addUser = (form) => {
+    console.log({ form })
+    this.props.addUser(form);
   }
 
   updatePlayers = (playerUpdates) => {
@@ -143,7 +144,7 @@ class AdminPage extends React.Component {
               if (!userProps.match) return null;
               return (
                 <UserAdminOptions teams={ teams }>
-                  <AddUser add={(form) => this.updateUser(form)}
+                  <AddUser add={(form) => this.addUser(form)}
                            loading={ addingUser }
                            seasons={ seasons }
                   />

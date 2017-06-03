@@ -1,11 +1,13 @@
 /* eslint-disable no-confusing-arrow */
+
+import debug from 'debug';
+import mongoose from 'mongoose';
+
 import { saveNewTeam } from '../team/team.actions';
 import { findSeasonById, getLatestSeason } from '../season/season.actions';
 
-const debug = require('debug');
-const User = require('mongoose').model('User');
-
 const log = debug('ff:db/user.actions');
+const User = mongoose.model('User');
 
 export const saveNewUser = (userData) => {
   const newUser = new User(userData);
@@ -33,7 +35,7 @@ export const addUser = ({ seasonId, leagueId, name, email, mustChangePassword, p
       // add default in-case user is added before a season is added i.e. admin user
       const season = response || {};
       const leagues = (season && season.leagues && season.leagues) || [];
-      const league = leagues.find((lge) => lge._id === leagueId) || {};
+      const league = leagues.find((lge) => String(lge._id) === String(leagueId)) || {};
       return saveNewTeam({
         user: { _id: user._id, name: user.name || user.email },
         season: { _id: season._id, name: season.name },

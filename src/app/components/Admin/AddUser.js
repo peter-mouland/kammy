@@ -13,6 +13,10 @@ class AddUser extends React.Component {
     loading: PropTypes.bool,
   }
 
+  state = {
+    leagues: []
+  }
+
   inputs = {};
 
   add = (e) => {
@@ -20,12 +24,20 @@ class AddUser extends React.Component {
     this.props.add({
       name: this.inputs.name.value,
       email: this.inputs.email.value,
-      leagueId: this.inputs.league.value
+      leagueId: this.inputs.league.value,
+      seasonId: this.inputs.season.value,
     });
   };
 
+  getLeagues = () => {
+    const seasonId = this.inputs.season.value;
+    const leagues = this.props.seasons.find((season) => season._id === seasonId).leagues;
+    this.setState({ leagues });
+  }
+
   render() {
-    const { loading, leagues = [] } = this.props;
+    const { loading, seasons = [] } = this.props;
+    const { leagues } = this.state;
     return (loading ?
         <div { ...bem('text', 'saving') }><Svg markup={football} /> Saving...</div> :
         <form method="post" onSubmit={ this.add }>
@@ -47,6 +59,18 @@ class AddUser extends React.Component {
                    autoComplete="off"
                    ref={(input) => { this.inputs.email = input; }}
             />
+          </div>
+          <div>
+            <label htmlFor="user-season" required>Season:</label>
+            <select id="user-season"
+                    name="user-season"
+                    ref={(input) => { this.inputs.season = input; }}
+                    onChange= { this.getLeagues }
+            >
+              {seasons.map((season) =>
+                <option key={season._id} value={season._id}>{season.name}</option>
+              )}
+            </select>
           </div>
           <div>
             <label htmlFor="user-league" required>League:</label>
