@@ -104,14 +104,13 @@ export function seasons(state = {}, action) {
         ]
       };
     case `${actions.ADD_LEAGUE}_FULFILLED`:
-      return addLeagueToState(state, action.seasonId, newLeague);
+      return addLeagueToState(state, action.meta.seasonId, newLeague);
     default:
       return state;
   }
 }
 
 export function teams(state = {}, action) {
-  const newUser = action.payload && action.payload.data && action.payload.data.addUser;
   const updatedTeam = action.payload && action.payload.data && action.payload.data.updateTeam;
   switch (action.type) {
     case `${actions.FETCH_TEAMS}_FULFILLED`:
@@ -119,6 +118,27 @@ export function teams(state = {}, action) {
         ...state,
         errors: action.payload.errors,
         data: action.payload.data && action.payload.data.getTeams,
+      };
+    case `${actions.UPDATE_TEAM}_FULFILLED`:
+      return {
+        ...state,
+        errors: action.payload.errors,
+        data: updatedTeam,
+      };
+    default:
+      return state;
+  }
+}
+
+export function users(state = {}, action) {
+  const newUser = action.payload && action.payload.data && action.payload.data.addUser;
+  const updatedTeam = action.payload && action.payload.data && action.payload.data.assignTeamToLeague;
+  switch (action.type) {
+    case `${actions.FETCH_USERS_WITH_TEAMS}_FULFILLED`:
+      return {
+        ...state,
+        errors: action.payload.errors,
+        data: action.payload.data && action.payload.data.getUsersWithTeams,
       };
     case `${actions.ADD_USER}_FULFILLED`:
       return {
@@ -129,11 +149,18 @@ export function teams(state = {}, action) {
           newUser
         ],
       };
-    case `${actions.UPDATE_TEAM}_FULFILLED`:
+    case `${actions.ASSIGN_TEAM_TO_LEAGUE}_FULFILLED`:
+      console.log({ updatedTeam })
+      const updatedUsers = [...state.data];
+      const updatedUserIndex = updatedUsers.findIndex((user) => user._id === updatedTeam.user._id);
+      const user = state.data[updatedUserIndex];
+      const updatedTeamIndex = user.teams.findIndex((team) => team._id === updatedTeam._id);
+      user.teams[updatedTeamIndex] = updatedTeam;
+      updatedUsers[updatedUserIndex] = user;
       return {
         ...state,
         errors: action.payload.errors,
-        data: updatedTeam,
+        data: updatedUsers,
       };
     default:
       return state;
@@ -178,6 +205,7 @@ export default combineReducers({
   promiseState,
   seasons,
   teams,
+  users,
   myTeam,
   players,
   dashboard,

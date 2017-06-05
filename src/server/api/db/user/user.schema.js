@@ -19,7 +19,8 @@ const UserSchema = new mongoose.Schema({
   mustChangePassword: {
     type: Boolean,
     default: true
-  }
+  },
+  teams: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Team' }]
 });
 
 

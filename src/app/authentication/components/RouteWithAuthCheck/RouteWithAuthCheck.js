@@ -10,7 +10,7 @@ const log = debug('ff:RouteWithAuthCheck');
 
 const RouteWithAuthCheck = ({ component: Component, requiresAuthentication, meta, ...props }) => {
   const redirect = requiresAuthentication && !Auth.validateToken();
-  const redirectTo = redirect && Auth.user().mustChangePassword
+  const redirectTo = Auth.user().mustChangePassword
     ? '/change-password/'
     : '/login';
   log({ redirectTo });

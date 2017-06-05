@@ -80,6 +80,12 @@ export const getTeamsQuery = `
   query { getTeams{ ...teamInfo } } 
 `;
 
+
+export const getUsersWithTeamsQuery = `
+  ${teamFragment}
+  query { getUsersWithTeams{ _id name email teams { ...teamInfo } } } 
+`;
+
 export const addSeasonsMutation = `
   ${seasonFragment}
   mutation ($name: String) { addSeason(name: $name){ ...seasonInfo } }
@@ -95,7 +101,14 @@ export const addLeaguesMutation = `
 export const addUserMutation = `
   ${teamFragment}
   mutation ($seasonId: String, $leagueId: String, $name: String, $email: String) { 
-    addUser(seasonId: $seasonId, leagueId: $leagueId, name: $name, email: $email){ ...teamInfo  } 
+    addUser(seasonId: $seasonId, leagueId: $leagueId, name: $name, email: $email){ _id name email teams { ...teamInfo } } 
+  }
+`;
+
+export const assignTeamToLeagueMutation = `
+  ${teamFragment}
+  mutation ($leagueId: String, $leagueName: String, $teamId: String) { 
+    assignTeamToLeague(leagueId: $leagueId, leagueName: $leagueName, teamId: $teamId){ ...teamInfo } 
   }
 `;
 

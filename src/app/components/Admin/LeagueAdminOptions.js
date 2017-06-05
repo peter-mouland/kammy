@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import bemHelper from 'react-bem-helper';
+
+import { SubLink, joinPaths } from '../../../app/routes';
 
 import './adminOptions.scss';
+
+const bem = bemHelper({ name: 'admin-options' });
 
 class LeagueAdminOptions extends React.Component {
 
@@ -9,17 +14,25 @@ class LeagueAdminOptions extends React.Component {
     league: PropTypes.object,
   }
 
+  static contextTypes = {
+    router: PropTypes.object
+  }
+
   render() {
     const { league, teams, children, ...props } = this.props;
+    const { router: { route: { match } } } = this.context;
 
     return (
-      <div className="admin-options admin-options--top" { ...props }>
-        <div className="admin-option">
-          Tier: <span className="admin-option__value">{league.tier}</span>
-        </div>
+      <div {...bem(null, 'top') } { ...props }>
         <div className="admin-option">
           <ul className="simple-list">
-            { teams.map((team) => <li key={team._id}>{team.name}<span className="user">{team.user.name}</span></li>) }
+            { teams.map((team) => (
+              <li key={team._id}>{team.name}
+                <span className="user" >
+                  {team.user.name}
+                </span>
+              </li>
+            )) }
           </ul>
         </div>
         <div className="admin-option admin-option__btn">

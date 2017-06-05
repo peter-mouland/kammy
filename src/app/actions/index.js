@@ -5,6 +5,7 @@ import Auth from '../authentication/auth-helper';
 
 export const FETCH_TEAM = 'FETCH_TEAM';
 export const FETCH_TEAMS = 'FETCH_TEAMS';
+export const FETCH_USERS_WITH_TEAMS = 'FETCH_USERS_WITH_TEAMS';
 export const FETCH_SEASONS = 'FETCH_SEASONS';
 export const FETCH_PLAYERS = 'FETCH_PLAYERS';
 export const FETCH_DASHBOARD_DATA = 'FETCH_DASHBOARD_DATA';
@@ -13,6 +14,7 @@ export const ADD_LEAGUE = 'ADD_LEAGUE';
 export const ADD_USER = 'ADD_USER';
 export const UPDATE_PLAYERS = 'UPDATE_PLAYERS';
 export const UPDATE_TEAM = 'UPDATE_TEAM';
+export const ASSIGN_TEAM_TO_LEAGUE = 'ASSIGN_TEAM_TO_LEAGUE';
 
 const log = debug('ff:actions');
 
@@ -34,6 +36,13 @@ export function fetchTeams() {
   return {
     type: FETCH_TEAMS,
     payload: fetch.graphQL('getTeamsQuery')
+  };
+}
+
+export function fetchUsersWithTeams() {
+  return {
+    type: FETCH_USERS_WITH_TEAMS,
+    payload: fetch.graphQL('getUsersWithTeamsQuery')
   };
 }
 
@@ -61,8 +70,15 @@ export function addSeason(name) {
 export function addLeague(seasonId, name) {
   return {
     type: ADD_LEAGUE,
-    seasonId,
+    meta: { seasonId },
     payload: fetch.graphQL('addLeaguesMutation', { seasonId, name })
+  };
+}
+
+export function assignTeamToLeague({ leagueId, leagueName, teamId }) {
+  return {
+    type: ASSIGN_TEAM_TO_LEAGUE,
+    payload: fetch.graphQL('assignTeamToLeagueMutation', { leagueId, leagueName, teamId })
   };
 }
 

@@ -103,8 +103,14 @@ export default buildSchema(`
     _id: String!
     email: String!
     name: String
-    defaultLeague: String
     mustChangePassword: Boolean
+  }
+
+  type UserTeams {
+    _id: String!
+    email: String!
+    name: String
+    teams: [Team]
   }
   
   input InputMinDetail {
@@ -156,15 +162,17 @@ export default buildSchema(`
     getSeasons: [Season]
     getPlayers(player: String): [Player]
     getUser(email: String, _id: String): User
+    getUsersWithTeams: [UserTeams]
     getDashboard: Dashboard
   }
   
   type Mutation {
     updatePlayers(playerUpdates: [PlayerUpdates]): [UpdatedPlayer]
-    addUser(seasonId: String, leagueId: String, email: String, name: String): Team
+    addUser(seasonId: String, leagueId: String, email: String, name: String): UserTeams
     addLeague(seasonId: String, name: String): League
     addSeason(name: String): Season
     updateTeam(teamUpdate: TeamUpdate): Team
+    assignTeamToLeague(leagueId: String, leagueName: String, teamId: String): Team
   }
 `);
 

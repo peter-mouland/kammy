@@ -15,20 +15,22 @@ class UserAdminOptions extends React.Component {
   }
 
   render() {
-    const { children, users, ...props } = this.props;
+    const { children, teams, ...props } = this.props;
     const { router: { route: { match } } } = this.context;
     return (
       <div className="admin-options" { ...props }>
         <div className="admin-option">
-          <ul className="simple-list">
-            { users.map((user) => (
-                <li key={user._id}>
-                  <SubLink { ...bem('text') } to={joinPaths(match.url, user._id)}>
-                    { user.name || user.email }
-                  </SubLink>
-                </li>)
-            )}
-          </ul>
+              <ul className="simple-list">
+                { teams.map((team) => (
+                    <li key={team._id}>
+                      <SubLink { ...bem('text') } to={joinPaths(match.url, team._id)}>
+                        {team.name}
+                        <span className="label">{team.user.name}</span>
+                        <span className="label--secondary">{team.league.name}</span>
+                      </SubLink>
+                    </li>)
+                )}
+              </ul>
         </div>
         <div className="admin-option admin-option__btn">
           { children }

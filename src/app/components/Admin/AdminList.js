@@ -2,15 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import bemHelper from 'react-bem-helper';
 
-import { SubLink } from '../../../app/routes';
+import { SubLink, joinPaths } from '../../../app/routes';
 
 import './adminList.scss';
 
 const bem = bemHelper({ name: 'admin-list' });
-
-export const join = (prefix, path, id) => (
-  `${prefix}/${path}/${id || ''}/`.replace(/\/\/\//g, '/').replace(/\/\//g, '/')
-);
 
 class AdminList extends React.Component {
 
@@ -32,7 +28,7 @@ class AdminList extends React.Component {
           list
             .map((item, i) => (
               <li { ...bem('item') } key={i}>
-                <SubLink { ...bem('text') } to={join(match.url, path, item._id)}>
+                <SubLink { ...bem('text') } to={joinPaths(match.url, path, item._id)}>
                   {item.name}
                 </SubLink>
               </li>

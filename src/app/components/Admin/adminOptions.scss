@@ -38,7 +38,7 @@
     margin: .25em;
     font-size: 1em;
     font-family: sans-serif;
-    width: 12em;
+    min-width: 12em;
 
     &[type='submit'] {
       height: auto;

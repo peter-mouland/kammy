@@ -55,7 +55,6 @@ module.exports = new PassportLocalStrategy({
             error.name = 'SignUpError';
             return done(error);
           }
-
           const payload = {
             sub: user._id,
             email: user.email,

@@ -14,7 +14,7 @@ class AddUser extends React.Component {
   }
 
   state = {
-    leagues: []
+    leagues: this.props.seasons[0] ? this.props.seasons[0].leagues : []
   }
 
   inputs = {};
@@ -60,6 +60,7 @@ class AddUser extends React.Component {
                    ref={(input) => { this.inputs.email = input; }}
             />
           </div>
+          <p>Assign team to:</p>
           <div>
             <label htmlFor="user-season" required>Season:</label>
             <select id="user-season"

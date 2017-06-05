@@ -4,16 +4,17 @@ import Route from 'react-router-dom/Route';
 
 import AdminList from '../../components/Admin/AdminList';
 import AddUser from '../../components/Admin/AddUser';
-import AdminForm from '../../components/Admin/AdminForm';
+import AdminAddForm from '../../components/Admin/AdminAddForm';
+import AssignUserToLeague from '../../components/Admin/AssignUserToLeague';
 import SeasonAdminOptions from '../../components/Admin/SeasonAdminOptions';
 import LeagueAdminOptions from '../../components/Admin/LeagueAdminOptions';
 import UserAdminOptions from '../../components/Admin/UserAdminOptions';
 import PlayerAdminOptions from '../../components/Admin/PlayerAdminOptions';
 import Auth from '../../authentication/auth-helper';
 import {
-  fetchSeasons, fetchTeams, fetchPlayers,
-  addSeason, addLeague, addUser, updatePlayers,
-  ADD_SEASON, ADD_LEAGUE, ADD_USER, UPDATE_PLAYERS
+  fetchSeasons, fetchPlayers, fetchUsersWithTeams,
+  addSeason, addLeague, addUser, updatePlayers, assignTeamToLeague,
+  ADD_SEASON, ADD_LEAGUE, ADD_USER, UPDATE_PLAYERS, ASSIGN_TEAM_TO_LEAGUE
 } from '../../actions';
 
 import './adminPage.scss';
@@ -36,14 +37,14 @@ export const join = (prefix, postfix) =>
 
 class AdminPage extends React.Component {
 
-  static needs = [fetchSeasons, fetchTeams];
+  static needs = [fetchSeasons, fetchUsersWithTeams];
 
   componentDidMount() {
     if (!this.props.seasons) {
       this.props.fetchSeasons();
     }
-    if (!this.props.teams) {
-      this.props.fetchTeams();
+    if (!this.props.users) {
+      this.props.fetchUsersWithTeams();
     }
     if (!this.props.players) {
       this.props.fetchPlayers();
@@ -59,7 +60,6 @@ class AdminPage extends React.Component {
   }
 
   addUser = (form) => {
-    console.log({ form })
     this.props.addUser(form);
   }
 
@@ -67,14 +67,19 @@ class AdminPage extends React.Component {
     this.props.updatePlayers({ playerUpdates });
   }
 
+  assignUser = (leagueId, form) => {
+    this.props.assignTeamToLeague({ leagueId, leagueName: this.leagueName, ...form });
+  }
+
   render() {
     const {
-      errors = [], teamErrors = [], loading, seasons, players = [], teams = [], match
+      errors = [], userErrors = [], loading, seasons, players = [], users = [], match
     } = this.props;
     const addingSeason = loading === ADD_SEASON;
     const addingLeague = loading === ADD_LEAGUE;
     const addingUser = loading === ADD_USER;
     const updatingPlayer = loading === UPDATE_PLAYERS;
+    const assigningUserToLeague = loading === ASSIGN_TEAM_TO_LEAGUE;
     const seasonPath = join(match.url, 'season/:seasonId/');
     const leaguePath = join(seasonPath, 'league/:leagueId/');
     const usersPath = join(match.url, 'users/');
@@ -82,8 +87,8 @@ class AdminPage extends React.Component {
 
     if (errors.length) {
       return <Errors errors={errors} />;
-    } else if (teamErrors.length) {
-      return <Errors errors={teamErrors} />;
+    } else if (userErrors.length) {
+      return <Errors errors={userErrors} />;
     } else if (!seasons) {
       return <Loading />;
     } else if (!Auth.isAdmin()) {
@@ -100,7 +105,7 @@ class AdminPage extends React.Component {
             <AdminList list={ seasons }
                        path="season"
             >
-              <AdminForm add={ this.addSeason }
+              <AdminAddForm add={ this.addSeason }
                          type="Season"
                          loading={ addingSeason } />
             </AdminList>
@@ -117,17 +122,26 @@ class AdminPage extends React.Component {
                              path="league"
                              secondary
                   >
-                    <AdminForm add={ (name) => this.addLeague(season._id, name) }
+                    <AdminAddForm add={ (name) => this.addLeague(season._id, name) }
                                type="league"
                                loading={ addingLeague } />
                   </AdminList>
                   <Route path={leaguePath} render={(leagueProps) => {
                     const league = selectedItem(leagueProps.match, leagues, 'leagueId');
                     if (!league) return null;
+
+                    this.leagueName = league.name;
+                    const teams = users.reduce((prev, curr) => prev.concat(curr.teams), []);
                     const leagueTeams = teams.filter((team) => team.league._id === league._id);
                     return (
                       <LeagueAdminOptions league={league} teams={ leagueTeams }>
-                        {/* assign user to league */}
+                        <AssignUserToLeague assignUser={(form) => this.assignUser(league._id, form)}
+                                            season={ season }
+                                            league={ league }
+                                            loading={ assigningUserToLeague }
+                                            teams={ teams }
+                                            users={ users }
+                        />
                       </LeagueAdminOptions>
                     );
                   }}/>
@@ -143,7 +157,7 @@ class AdminPage extends React.Component {
             <Route path={usersPath} render={(userProps) => {
               if (!userProps.match) return null;
               return (
-                <UserAdminOptions teams={ teams }>
+                <UserAdminOptions users={ users }>
                   <AddUser add={(form) => this.addUser(form)}
                            loading={ addingUser }
                            seasons={ seasons }
@@ -192,9 +206,9 @@ class AdminPage extends React.Component {
 function mapStateToProps(state) {
   return {
     seasons: state.seasons.data,
-    teams: state.teams.data,
+    users: state.users.data,
     players: state.players.data,
-    teamErrors: state.teams.errors,
+    userErrors: state.users.errors,
     seasonAdded: state.seasons.seasonAdded,
     leagueAdded: state.seasons.leagueAdded,
     loading: state.promiseState.loading,
@@ -204,5 +218,14 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { fetchSeasons, fetchTeams, fetchPlayers, addSeason, addLeague, addUser, updatePlayers }
+  {
+    fetchSeasons,
+    fetchUsersWithTeams,
+    fetchPlayers,
+    addSeason,
+    addLeague,
+    addUser,
+    assignTeamToLeague,
+    updatePlayers
+  }
 )(AdminPage);
