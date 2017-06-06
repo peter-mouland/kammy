@@ -40,6 +40,16 @@ const updatePlayersData = (state, action) => {
   return allPlayers;
 };
 
+const updateUsers = (state, updatedTeam) => {
+  const updatedUsers = [...state.data];
+  const updatedUserIndex = updatedUsers.findIndex((user) => user._id === updatedTeam.user._id);
+  const user = state.data[updatedUserIndex];
+  const updatedTeamIndex = user.teams.findIndex((team) => team._id === updatedTeam._id);
+  user.teams[updatedTeamIndex] = updatedTeam;
+  updatedUsers[updatedUserIndex] = user;
+  return updatedUsers;
+}
+
 export function promiseState(state = {}, action) {
   const splitAction = action.type.split('_');
   const postFix = splitAction.pop();
@@ -150,17 +160,10 @@ export function users(state = {}, action) {
         ],
       };
     case `${actions.ASSIGN_TEAM_TO_LEAGUE}_FULFILLED`:
-      console.log({ updatedTeam })
-      const updatedUsers = [...state.data];
-      const updatedUserIndex = updatedUsers.findIndex((user) => user._id === updatedTeam.user._id);
-      const user = state.data[updatedUserIndex];
-      const updatedTeamIndex = user.teams.findIndex((team) => team._id === updatedTeam._id);
-      user.teams[updatedTeamIndex] = updatedTeam;
-      updatedUsers[updatedUserIndex] = user;
       return {
         ...state,
         errors: action.payload.errors,
-        data: updatedUsers,
+        data: updateUsers(updatedTeam),
       };
     default:
       return state;
