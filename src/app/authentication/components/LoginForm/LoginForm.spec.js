@@ -33,7 +33,8 @@ describe('LoginForm', () => {
     expect(fakeOnChange).to.be.calledWith(fakeEvent);
   });
 
-  it('has an action field with value login that call onChange', () => {
+  // functionality hidden
+  it.skip('has an action field with value login that call onChange', () => {
     const fakeEvent = chance.word();
     const mockProps = Object.assign({}, defaultMockProps, { });
     const fakeLogin = defaultMockProps.actions.login;

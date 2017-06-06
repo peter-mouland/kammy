@@ -37,7 +37,7 @@ describe('fetch', ()=>{
       fetch.url(endpoint).then(() => {
         expect(axiosStubArguments).to.deep.equal({
           headers: {},
-          url: `http://localhost:undefined${endpoint}`
+          url: `http://localhost:3000${endpoint}`
         })
         done()
       }).catch((e) => {
@@ -106,7 +106,7 @@ describe('fetch', ()=>{
 
     it('should return request options with local graphQL endpoint', (done) => {
       fetch.graphQL().then(() => {
-        expect(axiosStubArguments.url).to.equal("http://localhost:undefined/graphql/v1");
+        expect(axiosStubArguments.url).to.equal("http://localhost:3000/graphql/v1");
         done()
       }).catch((e) => {
         done(e)
