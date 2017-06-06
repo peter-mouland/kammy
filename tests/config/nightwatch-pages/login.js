@@ -10,7 +10,6 @@ const commands = {
       .setValue('@passwordInput', password)
       .click('@actionLoginInput')
       .click('@submitButton')
-      // .waitForElementNotPresent('@submitButton', 1000);
   },
   signUp: function(email, password) {
     // this.api.pause(1000);
@@ -19,7 +18,6 @@ const commands = {
       .setValue('@passwordInput', password)
       .click('@actionSignUpInput')
       .click('@submitButton')
-      // .waitForElementNotPresent('@submitButton', 1000);
   },
   thenDisplays: function(element) {
     return this.section.main
@@ -50,7 +48,7 @@ module.exports = {
 
       elements: [{
         error: '.form__error',
-        submitButton: 'button[type=submit]',
+        submitButton: 'input[type=submit]',
         emailInput: 'input[type=email]',
         passwordInput: 'input[type=password]',
         actionInput: 'input[name=action]',

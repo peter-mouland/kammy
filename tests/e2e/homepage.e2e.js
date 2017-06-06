@@ -18,7 +18,7 @@ module.exports = {
   },
 
   ['homepage can navigate to the game page'](browser) {
-    browser.safeClick('[href="/players/"]');
-    browser.expect.element('#players').to.be.present;
+    browser.safeClick('[href="/login/"]');
+    browser.expect.element('#login-page').to.be.present;
   }
 };
