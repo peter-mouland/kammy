@@ -1,5 +1,5 @@
 {
-  "name": "react-fantasy-football",
+  "name": "kammy",
   "version": "0.0.0",
   "description": "",
   "main": "src/server-entry.js",
@@ -33,7 +33,7 @@
   },
   "engines": {
     "node": "7.10.0",
-    "npm": "4.2.10"
+    "npm": "4.2.0"
   },
   "pre-commit": [
     "lint",
@@ -50,6 +50,7 @@
     "autoprefixer": "^7.0.1",
     "autotrack": "^2.0.4",
     "axios": "^0.16.1",
+    "babel-cli": "^6.24.0",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -113,7 +114,6 @@
     "yargs": "^8.0.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.0",
     "babel-eslint": "^7.2.3",
     "chai": "^3.5.0",
     "chai-enzyme": "^0.6.1",

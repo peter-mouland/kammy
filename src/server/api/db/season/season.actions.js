@@ -1,6 +1,6 @@
 import debug from 'debug';
 
-const log = debug('ff:db/season.actions');
+const log = debug('kammy:db/season.actions');
 
 const Seasons = require('mongoose').model('Season');
 

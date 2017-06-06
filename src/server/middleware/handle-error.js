@@ -1,6 +1,6 @@
 import debug from 'debug';
 
-const log = debug('ff:handleError.js');
+const log = debug('kammy:handleError.js');
 
 export default function errorHandler(renderer) {
   return async (ctx, next) => {

@@ -8,7 +8,7 @@ import './playerTable.scss';
 import { availablePositions } from '../../components/Positions/Positions';
 
 const bem = bemHelper({ name: 'player-table' });
-debug('ff:myteam');
+debug('kammy:myteam');
 
 const Selector = ({ onChange, defaultValue, options }) => (
   <select onChange={onChange} defaultValue={defaultValue}>

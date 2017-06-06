@@ -1,4 +1,4 @@
-# React Fantasy Football [![CircleCI](https://circleci.com/gh/peter-mouland/react-fantasy-football.svg?style=svg)](https://circleci.com/gh/peter-mouland/react-fantasy-football)
+# Kammy [![CircleCI](https://circleci.com/gh/peter-mouland/kammy.svg?style=svg)](https://circleci.com/gh/peter-mouland/kammy)
 
 > An app to play a _custom_ kind of fantasy football
 

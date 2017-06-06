@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const PassportLocalStrategy = require('passport-local').Strategy;
 const config = require('../../../config/db.js');
 
-const log = debug('ff:local-login');
+const log = debug('kammy:local-login');
 
 const ObjectId = mongoose.Types.ObjectId;
 const User = mongoose.model('User');

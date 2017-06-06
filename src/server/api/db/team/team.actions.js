@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 const Team = mongoose.model('Team');
 const ObjectId = mongoose.Types.ObjectId;
 
-const log = debug('ff:db/team.actions');
+const log = debug('kammy:db/team.actions');
 
 export const saveNewTeam = (teamData) => {
   const newTeam = new Team(teamData);

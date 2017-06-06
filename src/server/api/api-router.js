@@ -11,7 +11,7 @@ import root from './graphql.root';
 import handleError from '../middleware/handle-error';
 import authCheck from '../authentication/auth-check-middleware';
 
-const log = debug('ff:graphql-router');
+const log = debug('kammy:graphql-router');
 const router = Router({ prefix: '/graphql/v1' });
 
 router.use(handleError());

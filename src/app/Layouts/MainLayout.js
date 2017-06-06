@@ -6,7 +6,7 @@ import Auth from '../authentication/auth-helper';
 import { NamedLink } from '../routes';
 import './mainLayout.scss';
 
-const log = debug('ff:mainLayout');
+const log = debug('kammy:mainLayout');
 
 class MyAccount extends React.Component {
 
@@ -69,7 +69,7 @@ export default class MainLayout extends React.Component {
           { children}
         </main>
         <footer {...bem('footer')}>
-          Hosted at <a href="http://github.com/peter-mouland/react-fantasy-football">github.com/peter-mouland/react-fantasy-football</a>
+          Hosted at <a href="http://github.com/peter-mouland/kammy">github.com/peter-mouland/kammy</a>
         </footer>
       </div>
     );

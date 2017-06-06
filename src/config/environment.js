@@ -8,11 +8,11 @@ const setEnvDefault = (key, val) => {
   config[key] = process.env[key];
 };
 
-setEnvDefault('DEBUG', 'ff:*');
+setEnvDefault('DEBUG', 'kammy:*');
 setEnvDefault('PORT', 3000);
 setEnvDefault('FIXTURES', 'false');
 setEnvDefault('FIXTURES_PORT', 3001);
-setEnvDefault('MONGODB_URI', 'mongodb://localhost/react_ff');
+setEnvDefault('MONGODB_URI', 'mongodb://localhost/kammy');
 setEnvDefault('JWT_SECRET', 'a secret phrase!!');
 
 const graphQlUrl = config.FIXTURES === 'true'
@@ -25,7 +25,7 @@ const externalStatsUrl = 'https://fantasyfootball.skysports.com/cache/json_playe
 setEnvDefault('EXTERNAL_STATS_URL', externalStatsUrl);
 
 debug.enable(process.env.DEBUG);
-const log = debug('ff: Environment:');
+const log = debug('kammy: Environment:');
 
 // explicitly check vars that webpack can help us with
 if (!process.env.GA_KEY) { setEnvDefault('GA_KEY', 'development'); }

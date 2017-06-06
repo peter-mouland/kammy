@@ -4,7 +4,7 @@ const PassportLocalStrategy = require('passport-local').Strategy;
 
 const { updateUser } = require('../../api/db/user/user.actions');
 
-const log = debug('ff:auth/local-update');
+const log = debug('kammy:auth/local-update');
 
 /**
  * Return the Passport Local Strategy object.

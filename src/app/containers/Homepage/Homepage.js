@@ -1,7 +1,7 @@
 import React from 'react';
 import debug from 'debug';
 
-debug('ff:Homepage.jsx');
+debug('kammy:Homepage.jsx');
 
 export default class Homepage extends React.Component {
 

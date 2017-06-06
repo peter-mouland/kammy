@@ -4,7 +4,7 @@ import debug from 'debug';
 
 import * as actions from '../actions';
 
-const log = debug('ff:reducers/index');
+const log = debug('kammy:reducers/index');
 
 const addLeagueToState = (state, seasonId, newLeague) => {
   const newState = {

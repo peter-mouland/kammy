@@ -18,7 +18,7 @@ import LoginPage from './authentication/containers/LoginPage/LoginPage';
 import LogOut from './authentication/components/LogOut/LogOut';
 import RouteWithAuthCheck from './authentication/components/RouteWithAuthCheck/RouteWithAuthCheck';
 
-debug('ff:routes');
+debug('kammy:routes');
 
 const baseMetaData = {
   title: 'Fantasy Football',

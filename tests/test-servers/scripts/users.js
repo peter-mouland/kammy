@@ -1,5 +1,5 @@
 //https://docs.mongodb.com/manual/reference/mongo-shell/
-// use react_ff--test
+// use kammy--test
 // db.users.find()
 
 const mongoose = require('mongoose');

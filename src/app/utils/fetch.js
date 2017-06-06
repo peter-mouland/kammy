@@ -5,7 +5,7 @@ import { localUrl } from '../utils';
 import { getVar } from '../../config/environment';
 import Auth from '../authentication/auth-helper';
 
-const log = debug('ff:fetch');
+const log = debug('kammy:fetch');
 
 export function checkStatus(response) {
   if (response.status < 200 || response.status >= 500) {

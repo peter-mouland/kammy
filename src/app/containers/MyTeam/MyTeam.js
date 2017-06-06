@@ -15,7 +15,7 @@ import './my-team.scss';
 import Auth from '../../authentication/auth-helper';
 
 const bem = bemHelper({ name: 'my-team' });
-debug('ff:myteam');
+debug('kammy:myteam');
 
 const Error = ({ error }) => <div>
   <p>Error Loading seasons!</p>

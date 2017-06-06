@@ -1,6 +1,6 @@
 import debug from 'debug';
 
-const log = debug('ff:server-logger');
+const log = debug('kammy:server-logger');
 
 export default function logger() {
   return async (ctx, next) => {

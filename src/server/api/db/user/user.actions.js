@@ -6,7 +6,7 @@ import mongoose from 'mongoose';
 import { saveNewTeam } from '../team/team.actions';
 import { findSeasonById, getLatestSeason } from '../season/season.actions';
 
-const log = debug('ff:db/user.actions');
+const log = debug('kammy:db/user.actions');
 const User = mongoose.model('User');
 
 export const saveNewUser = (userData) => {

@@ -16,7 +16,7 @@ export const UPDATE_PLAYERS = 'UPDATE_PLAYERS';
 export const UPDATE_TEAM = 'UPDATE_TEAM';
 export const ASSIGN_TEAM_TO_LEAGUE = 'ASSIGN_TEAM_TO_LEAGUE';
 
-const log = debug('ff:actions');
+const log = debug('kammy:actions');
 
 export function fetchPlayers(player) {
   return {

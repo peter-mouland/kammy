@@ -6,7 +6,7 @@ import {
   validateLoginForm, validateSignUpForm, validateUpdatePassword
 } from './auth-validation';
 
-const log = debug('ff:Auth');
+const log = debug('kammy:Auth');
 
 function buildErrors(response) {
   const errors = response.errors || {};
