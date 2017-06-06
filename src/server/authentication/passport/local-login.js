@@ -2,7 +2,8 @@ const debug = require('debug');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const PassportLocalStrategy = require('passport-local').Strategy;
-const config = require('../../../config/db.js');
+const dbConfig = require('../../../config/db.js');
+const config = require('../../../../src/config/environment');
 
 const log = debug('kammy:local-login');
 
@@ -55,17 +56,18 @@ module.exports = new PassportLocalStrategy({
             error.name = 'SignUpError';
             return done(error);
           }
+          const isAdmin = config.adminEmails.includes(user.email);
           const payload = {
             sub: user._id,
             email: user.email,
             defaultTeamId: team._id,
-            isAdmin: user.email === 'uni_nake@hotmail.com', // hardcode admin
+            isAdmin,
             mustChangePassword: user.mustChangePassword,
             name: user.name
           };
 
           // create a token string
-          const token = jwt.sign(payload, config.jwtSecret);
+          const token = jwt.sign(payload, dbConfig.jwtSecret);
           const data = {
             name: user.name
           };

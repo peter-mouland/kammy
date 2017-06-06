@@ -25,8 +25,8 @@
     "test:func": "npm run mocha -- 'tests/**/*.func.js'",
     "test:e2e": "npm run test:e2e-local",
     "test:e2e-local": "npm run nightwatch -- --env local --tag staging",
-    "test:e2e-production": "npm run nightwatch -- --env chrome_win --tag production",
-    "test:e2e-staging": "npm run nightwatch -- --env safari_osx,chrome_osx,firefox_win,firefox_osx,IE11,edge --tag staging",
+    "test:e2e-production": "npm run nightwatch -- --env safari_osx --tag production",
+    "test:e2e-staging": "npm run nightwatch -- --env safari_osx,chrome_osx --tag staging",
     "prenightwatch": "selenium-standalone install --version=3.0.1",
     "nightwatch": "nightwatch -o ./tests/e2e/tests_output -c ./tests/config/nightwatch.conf.js",
     "mocha": "mocha --opts ./tests/config/mocha.opts "

@@ -31,6 +31,8 @@ const log = debug('kammy: Environment:');
 if (!process.env.GA_KEY) { setEnvDefault('GA_KEY', 'development'); }
 if (!process.env.NODE_ENV) { setEnvDefault('NODE_ENV', 'development'); }
 
+config.adminEmails = ['nickwatts1982@hotmail.com', 'uni_nake@hotmail.com', 'oojdee@gmail.com'];
+
 log(config);
 
 module.exports = config;
