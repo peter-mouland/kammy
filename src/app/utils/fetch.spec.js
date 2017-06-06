@@ -116,7 +116,7 @@ describe('fetch', ()=>{
     it('should return request options with data', (done) => {
       const data = chance.sentence();
       fetch.graphQL(data).then(()=>{
-        expect(axiosStubArguments.data).to.equal(data)
+        expect(axiosStubArguments.data).to.equal(JSON.stringify({ query: data, variables: {} }))
         done()
       }).catch((e)=>{
         done(e)
@@ -127,7 +127,7 @@ describe('fetch', ()=>{
       const data = chance.sentence();
       const params = chance.sentence();
       fetch.graphQL(data, params).then(()=>{
-        expect(axiosStubArguments.params).to.equal(params)
+        expect(axiosStubArguments.data).to.equal(JSON.stringify({ query: data, variables: params }))
         done()
       }).catch((e)=>{
         done(e)
