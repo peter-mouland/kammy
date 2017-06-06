@@ -133,7 +133,7 @@ class Auth {
   }
 
   static removeToken(ctx) {
-    if (ctx) {
+    if (ctx && ctx.session) {
       ctx.session.authorization = false;
     }
     cookie.remove('token', { path: '/' });

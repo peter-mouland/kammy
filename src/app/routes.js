@@ -57,7 +57,7 @@ export function getRoutesConfig() {
     },
     {
       name: 'myTeam',
-      path: '/MyTeam/',
+      path: '/my-team/',
       label: 'My Team',
       meta: {
         ...baseMetaData,

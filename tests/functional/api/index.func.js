@@ -4,11 +4,12 @@ import cookie from 'react-cookie';
 import Koa from 'koa';
 import jwt from 'jsonwebtoken';
 
-import apiRouter from '../../../src/server/api';
-import users from '../../config/test-server/scripts/users';
+import apiRouter from '../../../src/server/api/api-router';
+import users from '../../test-servers/scripts/users';
 import config from '../../../src/config/db.js'; // must be app secret not test secret!
 
 const chance = new Chance();
+const apiRoute = '/graphql/v1';
 let fakeState;
 let fakeKey;
 let fakeValue;
@@ -26,7 +27,7 @@ const insertUsers = (fakeUser) => {
 const server = new Koa();
 server.use(apiRouter.routes());
 
-describe.skip('apiRouter', () => {
+describe('apiRouter', () => {
 
   beforeEach(()=>{
     fakeKey = chance.word();
@@ -34,35 +35,43 @@ describe.skip('apiRouter', () => {
     fakeState = { [fakeKey]: fakeValue };
   });
 
+  afterEach(() => {
+    cookie.remove('token');
+  })
+
   it('returns a 404 with unrecognised route', (done) => {
     supertest(server.callback())
-      .get('/api/route-that-doesnt-exist/')
+      .get(`${apiRoute}/route-that-doesnt-exist/`)
       .expect(404, /Not found/i)
       .end(done);
   });
 
   it('returns a 200 with a recognised route', (done) => {
     supertest(server.callback())
-      .get('/api/')
+      .get(apiRoute)
       .expect(200, /healthy/i)
       .end(done);
   });
 
-  it('returns a 401 when accessing a route that needs authorisation', (done) => {
+  it.skip('returns a 401 when accessing a route that needs authorisation', (done) => {
     supertest(server.callback())
-      .get('/api/dashboard')
+      .post(apiRoute)
+      .type('application/graphql')
+      .send(`{ "query":"${chance.word()}" }`)
       .expect(401, /Unauthorized/i)
       .end(done);
   });
 
   context('with a valid token', () => {
 
-    it('returns a 401 when sending the token a an authorisation header without a cookie', (done) => {
+    it('returns a 401 when sending the token with an authorisation header without a cookie', (done) => {
       const fakeUser = { email: chance.email() };
       insertUsers(fakeUser).then(token => {
         supertest(server.callback())
-          .get('/api/dashboard')
+          .post(apiRoute)
           .set('Authorization', 'Bearer ' + token)
+          .type('application/graphql')
+          .send(`{ "query":"${chance.word()}" }`)
           .expect(401)
           .end(() => {
             users.nuke(fakeUser).then(done);
@@ -75,21 +84,26 @@ describe.skip('apiRouter', () => {
       insertUsers(fakeUser).then(token => {
         cookie.save('token', token, { path: '/'});
         supertest(server.callback())
-          .get('/api/dashboard')
+          .post(apiRoute)
+          .type('application/graphql')
+          .send(`{ "query":"${chance.word()}" }`)
           .expect(401)
           .end(() => {
             users.nuke(fakeUser).then(done);
           });
       });
     });
-    it('returns a 200 when sending the token a an authorisation header', (done) => {
+
+    it.skip('returns a 200 when sending the token with an authorisation header', (done) => {
       const fakeUser = { email: chance.email() };
       insertUsers(fakeUser)
         .then(token => {
           cookie.save('token', token, { path: '/'});
           supertest(server.callback())
-            .get('/api/dashboard')
+            .post(apiRoute)
             .set('Authorization', 'Bearer ' + token)
+            .type('application/graphql')
+            .send(`{ "query":"${chance.word()}" }`)
             .expect(200, /You're authorized to see this secret message./i)
             .end(() => {
               users.nuke(fakeUser).then(done);
@@ -102,11 +116,14 @@ describe.skip('apiRouter', () => {
     beforeEach(()=>{
       fakeToken = chance.word();
     });
-    it('returns a 401 when sending the token a an authorisation header', (done) => {
+
+    it.skip('returns a 401 when sending the token a an authorisation header', (done) => {
       cookie.save('token', fakeToken, { path: '/'});
       supertest(server.callback())
-        .get('/api/dashboard')
+        .post(apiRoute)
         .set('Authorization', 'Bearer ' + fakeToken)
+        .type('application/graphql')
+        .send(`{ "query":"${chance.word()}" }`)
         .expect(401)
         .end(done);
     });
