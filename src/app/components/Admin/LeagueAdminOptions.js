@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import bemHelper from 'react-bem-helper';
 
-import { SubLink, joinPaths } from '../../../app/routes';
-
 import './adminOptions.scss';
 
 const bem = bemHelper({ name: 'admin-options' });
@@ -14,13 +12,8 @@ class LeagueAdminOptions extends React.Component {
     league: PropTypes.object,
   }
 
-  static contextTypes = {
-    router: PropTypes.object
-  }
-
   render() {
-    const { league, teams, children, ...props } = this.props;
-    const { router: { route: { match } } } = this.context;
+    const { teams, children, ...props } = this.props;
 
     return (
       <div {...bem(null, 'top') } { ...props }>

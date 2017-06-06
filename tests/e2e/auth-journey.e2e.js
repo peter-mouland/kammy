@@ -12,7 +12,7 @@ let dashboardPage;
 let logoutPage;
 
 module.exports = {
-  '@tags': ['staging'],
+  '@tags': ['staging-skipped'],
   before(browser) {
     fakeEmail = `test-${chance.email()}`;
     fakePassword = `test-${chance.sentence()}`;

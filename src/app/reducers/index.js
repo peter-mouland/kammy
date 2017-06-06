@@ -48,7 +48,7 @@ const updateUsers = (state, updatedTeam) => {
   user.teams[updatedTeamIndex] = updatedTeam;
   updatedUsers[updatedUserIndex] = user;
   return updatedUsers;
-}
+};
 
 export function promiseState(state = {}, action) {
   const splitAction = action.type.split('_');
@@ -142,7 +142,7 @@ export function teams(state = {}, action) {
 
 export function users(state = {}, action) {
   const newUser = action.payload && action.payload.data && action.payload.data.addUser;
-  const updatedTeam = action.payload && action.payload.data && action.payload.data.assignTeamToLeague;
+  const team = action.payload && action.payload.data && action.payload.data.assignTeamToLeague;
   switch (action.type) {
     case `${actions.FETCH_USERS_WITH_TEAMS}_FULFILLED`:
       return {
@@ -163,7 +163,7 @@ export function users(state = {}, action) {
       return {
         ...state,
         errors: action.payload.errors,
-        data: updateUsers(updatedTeam),
+        data: updateUsers(team),
       };
     default:
       return state;

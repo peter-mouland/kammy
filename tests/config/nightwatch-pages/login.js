@@ -1,10 +1,10 @@
 // https://github.com/nightwatchjs/nightwatch/wiki/Page-Object-API
 // http://nightwatchjs.org/guide#using-page-objects
+// this.api.pause(1000);
 const { findRoute } = require('../../../src/app/routes');
 
 const commands = {
   login: function(email, password) {
-    // this.api.pause(1000);
     return this.section.main.waitForElementVisible('@emailInput', 1000)
       .setValue('@emailInput', email)
       .setValue('@passwordInput', password)
@@ -12,7 +12,6 @@ const commands = {
       .click('@submitButton')
   },
   signUp: function(email, password) {
-    // this.api.pause(1000);
     return this.section.main.waitForElementVisible('@emailInput', 1000)
       .setValue('@emailInput', email)
       .setValue('@passwordInput', password)

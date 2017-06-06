@@ -28,7 +28,7 @@ const exit = (done = ()=>{}) => {
 };
 let openServer;
 
-const startLocalServers = (done) => {
+const startLocalServers = (done = () => {}) => {
   db.connect(dbConfig.dbUri);
   const createServer = require('../../src/server/server');
   const testDbRouter = require('./test-db-routes');
@@ -47,7 +47,7 @@ const startLocalServers = (done) => {
   return openServer
 };
 
-const stopLocalServers = (done) => {
+const stopLocalServers = (done = () => {}) => {
   console.log('Closing server...');
   openServer.close(() => {
 
@@ -59,6 +59,10 @@ const stopLocalServers = (done) => {
 
   });
 };
+
+if (!module.parent){
+  startLocalServers()
+}
 
 module.exports = {
   start: startLocalServers,

@@ -31,11 +31,9 @@ class AssignUserToLeague extends React.Component {
   );
 
   render() {
-    const { loading, league, season, users = [], teams = [] } = this.props;
-    const seasonId = season._id;
+    const { loading, league, teams = [] } = this.props;
     const leagueId = league._id;
-    const usersWithoutATeamThisSeason = users.filter((user) => user.teams.find((team) => team.season._id !== seasonId));
-    const teamsNotInThisLeague = teams.filter((team) => team.league._id !== leagueId)
+    const teamsNotInThisLeague = teams.filter((team) => team.league._id !== leagueId);
 
     return (loading ?
         <div { ...bem('text', 'saving') }><Svg markup={football} /> Saving...</div> :
@@ -47,9 +45,9 @@ class AssignUserToLeague extends React.Component {
                     ref={(input) => { this.inputs.teamId = input; }}
             >
               { this.teamOption(teamsNotInThisLeague) }
-              {/*<optgroup label="Users with a league this Season">*/}
-                {/*{ this.teamOption(usersWithoutATeamThisSeason) }*/}
-              {/*</optgroup>*/}
+              {/* <optgroup label="Users with a league this Season">*/}
+                {/* { this.teamOption(usersWithoutATeamThisSeason) }*/}
+              {/* </optgroup>*/}
             </select>
           </div>
           <input className="admin-btn" type="submit" value="Assign User To League"/>
