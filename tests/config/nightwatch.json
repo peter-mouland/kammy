@@ -25,7 +25,7 @@
         "path" : ""
       },
       "desiredCapabilities": {
-        "project": "React SSR Base",
+        "project": "Kammy",
         "build": "build ",
         "browserName": "firefox",
         "javascriptEnabled": true,
