@@ -1,4 +1,4 @@
 {
-  "dbUri": "mongodb://localhost/kammy--test",
+  "dbUri": "mongodb://localhost/kammy_ff--test",
   "jwtSecret": "a secret phrase for testing!!"
 }

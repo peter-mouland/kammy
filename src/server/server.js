@@ -42,6 +42,7 @@ export default (assets) => { // , hmr) => {
   // if (hmr === true) {
   //   hotReload(server);
   // }
+  log('createServer');
   setRoutes(assets);
   server.use(router.routes());
   return server;

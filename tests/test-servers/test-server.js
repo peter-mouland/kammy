@@ -50,13 +50,13 @@ const startLocalServers = (done = () => {}) => {
 const stopLocalServers = (done = () => {}) => {
   console.log('Closing server...');
   openServer.close(() => {
-
-    if (process.env.FIXTURES === 'true') {
-      fixturesServer.stop(() => exit(done));
-    } else {
-      db.connection.close(() => exit(done));
-    }
-
+    db.connection.close(() => {
+      if (process.env.FIXTURES === 'true') {
+        fixturesServer.stop(() => exit(done));
+      } else {
+        exit(done);
+      }
+    });
   });
 };
 
