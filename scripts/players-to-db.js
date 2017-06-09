@@ -34,10 +34,10 @@ Object.keys(players).forEach((key) => {
   };
   player.name = player.player;
   const newPlayer = new Player(player);
-  console.log(newPlayer)
-  console.log('add..')
-  newPlayer.save((err) => {
-    console.log(player)
-    if (err) { return console.log(err); }
+  console.log(newPlayer);
+  console.log('add..');
+  newPlayer.save((err, other) => {
+    console.log(player);
+    console.log(err || other);
   });
 });

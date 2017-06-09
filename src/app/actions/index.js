@@ -12,6 +12,7 @@ export const FETCH_DASHBOARD_DATA = 'FETCH_DASHBOARD_DATA';
 export const ADD_SEASON = 'ADD_SEASON';
 export const ADD_LEAGUE = 'ADD_LEAGUE';
 export const ADD_USER = 'ADD_USER';
+export const IMPORT_PLAYERS = 'IMPORT_PLAYERS';
 export const UPDATE_PLAYERS = 'UPDATE_PLAYERS';
 export const UPDATE_TEAM = 'UPDATE_TEAM';
 export const ASSIGN_TEAM_TO_LEAGUE = 'ASSIGN_TEAM_TO_LEAGUE';
@@ -22,6 +23,12 @@ export function fetchPlayers(player) {
   return {
     type: FETCH_PLAYERS,
     payload: fetch.graphQL('getPlayersQuery', player ? { player } : undefined)
+  };
+}
+export function importPlayers() {
+  return {
+    type: IMPORT_PLAYERS,
+    payload: fetch.graphQL('importPlayersMutation')
   };
 }
 

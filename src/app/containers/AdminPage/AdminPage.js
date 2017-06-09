@@ -13,8 +13,8 @@ import PlayerAdminOptions from '../../components/Admin/PlayerAdminOptions';
 import Auth from '../../authentication/auth-helper';
 import {
   fetchSeasons, fetchPlayers, fetchUsersWithTeams,
-  addSeason, addLeague, addUser, updatePlayers, assignTeamToLeague,
-  ADD_SEASON, ADD_LEAGUE, ADD_USER, UPDATE_PLAYERS, ASSIGN_TEAM_TO_LEAGUE
+  addSeason, addLeague, addUser, updatePlayers, assignTeamToLeague, importPlayers,
+  ADD_SEASON, ADD_LEAGUE, ADD_USER, UPDATE_PLAYERS, ASSIGN_TEAM_TO_LEAGUE, FETCH_PLAYERS
 } from '../../actions';
 
 import './adminPage.scss';
@@ -63,6 +63,10 @@ class AdminPage extends React.Component {
     this.props.addUser(form);
   }
 
+  importPlayers = () => {
+    this.props.importPlayers();
+  }
+
   updatePlayers = (playerUpdates) => {
     this.props.updatePlayers({ playerUpdates });
   }
@@ -79,6 +83,7 @@ class AdminPage extends React.Component {
     const addingLeague = loading === ADD_LEAGUE;
     const addingUser = loading === ADD_USER;
     const updatingPlayer = loading === UPDATE_PLAYERS;
+    const loadingPlayers = loading === FETCH_PLAYERS;
     const assigningUserToLeague = loading === ASSIGN_TEAM_TO_LEAGUE;
     const seasonPath = join(match.url, 'season/:seasonId/');
     const leaguePath = join(seasonPath, 'league/:leagueId/');
@@ -174,7 +179,15 @@ class AdminPage extends React.Component {
             />
             <Route path={playersPath} render={(playersMatcher) => {
               if (!playersMatcher.match) return null;
-              if (!players.length) return <p>Loading</p>;
+              if (loadingPlayers) return <p>Loading</p>;
+              if (!players.length) {
+                return (
+                  <div className="admin-options">
+                    <p>No players found.</p>
+                    <button onClick={ this.importPlayers }>Initialise</button>
+                  </div>
+                );
+              }
               return (
                 <PlayerAdminOptions players={ players }
                                     saving={ updatingPlayer }
@@ -223,6 +236,7 @@ export default connect(
     fetchUsersWithTeams,
     fetchPlayers,
     addSeason,
+    importPlayers,
     addLeague,
     addUser,
     assignTeamToLeague,

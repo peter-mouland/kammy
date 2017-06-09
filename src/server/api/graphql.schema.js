@@ -167,6 +167,7 @@ export default buildSchema(`
   }
   
   type Mutation {
+    importPlayers: [UpdatedPlayer]
     updatePlayers(playerUpdates: [PlayerUpdates]): [UpdatedPlayer]
     addUser(seasonId: String, leagueId: String, email: String, name: String): UserTeams
     addLeague(seasonId: String, name: String): League

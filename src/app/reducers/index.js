@@ -86,6 +86,11 @@ export function players(state = {}, action) {
         ...state,
         data: action.payload.data && action.payload.data.getPlayers,
       };
+    case `${actions.IMPORT_PLAYERS}_FULFILLED`:
+      return {
+        ...state,
+        data: action.payload.data && action.payload.data.importPlayers
+      };
     case `${actions.UPDATE_PLAYERS}_FULFILLED`:
       return {
         ...state,

@@ -118,6 +118,10 @@ export const updatePlayersMutation = `
   }
 `;
 
+export const importPlayersMutation = `
+  mutation { importPlayers { _id code pos name club } }
+`;
+
 export const updateTeamMutation = `
   ${teamFragment}
   mutation ($teamUpdate: TeamUpdate) { 

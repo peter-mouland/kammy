@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "npm run build",
     "//retrieve-players": "babel-node ./scripts/retrieve-players.js",
-    "players-to-db": "babel-node ./scripts/insertStatsFromJson.js",
+    "players-to-db": "babel-node ./scripts/players-to-db.js",
     "mongo": "mongod  --dbpath mongodb",
     "build": "rm -rf compiled && npm run compile:server && npm run compile && node scripts/copyAssets.js",
     "build:prod": "rm -rf compiled && npm run compile:server && npm run compile:prod && node scripts/copyAssets.js",

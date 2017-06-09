@@ -1,6 +1,6 @@
 /* eslint-disable no-confusing-arrow */
 import { findOneUser, addUser, getUsersWithTeams } from './db/user/user.actions';
-import { findPlayers, findPlayer, updatePlayers } from './db/player/player.actions';
+import { findPlayers, findPlayer, updatePlayers, importPlayers } from './db/player/player.actions';
 import { updateTeam, getTeams, getTeam, assignTeamToLeague } from './db/team/team.actions';
 import { getSeasons, addLeague, addSeason } from './db/season/season.actions';
 
@@ -13,16 +13,17 @@ const getDashboard = (args, context) => (context.user)
 // The root provides the top-level API endpoints
 export default {
   getPlayers,
+  importPlayers,
+  updatePlayers,
   getSeasons,
-  getTeams,
-  getTeam,
-  getUser,
-  getUsersWithTeams,
   addSeason,
   addLeague,
-  addUser,
-  updatePlayers,
-  updateTeam,
   assignTeamToLeague,
+  getTeams,
+  getTeam,
+  updateTeam,
+  getUsersWithTeams,
+  getUser,
+  addUser,
   getDashboard,
 };
