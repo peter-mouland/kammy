@@ -4,11 +4,11 @@ import bemHelper from 'react-bem-helper';
 import Route from 'react-router-dom/Route';
 
 import { SubLink, joinPaths } from '../../../app/routes';
+import TeamAdminOptions from '../../components/Admin/TeamAdminOptions';
 
 import './adminOptions.scss';
 
 const bem = bemHelper({ name: 'admin-options' });
-const positions = ['gk', 'cbleft', 'cbright', 'fbleft', 'fbright', 'wmleft', 'wmright', 'cmleft', 'cmright', 'strleft', 'strright', 'sub'];
 
 class LeagueAdminOptions extends React.Component {
 
@@ -21,9 +21,8 @@ class LeagueAdminOptions extends React.Component {
   }
 
   render() {
-    const { teams, children, ...props } = this.props;
+    const { teams, children, saveUpdates, ...props } = this.props;
     const { router: { route: { match } } } = this.context;
-
     return (
       <div {...bem(null, 'top') } { ...props }>
         <div className="admin-option">
@@ -36,13 +35,7 @@ class LeagueAdminOptions extends React.Component {
                     {team.user.name}
                   </SubLink>
                   <Route path={teamPath} render={() => (
-                    <ul>
-                      {positions.map((pos) => (
-                        <li key={pos}>
-                          <strong>{pos}</strong> {team[pos].name || <em>unknown</em>}
-                        </li>
-                      ))}
-                    </ul>
+                    <TeamAdminOptions team={ team } saveUpdates={ saveUpdates } />
                   )} />
                 </li>
               );

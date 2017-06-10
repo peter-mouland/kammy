@@ -138,13 +138,11 @@ class PlayerAdminOptions extends React.Component {
           <table cellPadding={0} cellSpacing={0} { ...bem('data-table') }>
             <thead>
             <tr { ...bem('data-header')}>
-              <th>code</th>
               <th>position</th>
               <th>player</th>
               <th>club</th>
             </tr>
             <tr {...bem('data-filter')}>
-              <th></th>
               <th>
                 <Selector onChange={ this.posFilter }
                           defaultValue={ posFilter }
@@ -178,7 +176,6 @@ class PlayerAdminOptions extends React.Component {
 
                   return (
                     <tr key={player.code} { ...bem('player')}>
-                      <td { ...bem('meta')}>{player.code}</td>
                       <td { ...bem('meta')}
                           onMouseOver={ (e) => this.showUpdater(e, player, 'Pos') }
                           onClick={ (e) => this.showUpdater(e, player, 'Pos') }

@@ -12,7 +12,7 @@ import UserAdminOptions from '../../components/Admin/UserAdminOptions';
 import PlayerAdminOptions from '../../components/Admin/PlayerAdminOptions';
 import Auth from '../../authentication/auth-helper';
 import {
-  fetchSeasons, fetchPlayers, fetchUsersWithTeams,
+  fetchSeasons, fetchPlayers, fetchUsersWithTeams, updateTeam,
   addSeason, addLeague, addUser, updatePlayers, assignTeamToLeague, importPlayers,
   ADD_SEASON, ADD_LEAGUE, ADD_USER, UPDATE_PLAYERS, ASSIGN_TEAM_TO_LEAGUE, FETCH_PLAYERS
 } from '../../actions';
@@ -73,6 +73,10 @@ class AdminPage extends React.Component {
 
   assignUser = (leagueId, form) => {
     this.props.assignTeamToLeague({ leagueId, leagueName: this.leagueName, ...form });
+  }
+
+  updateTeam = (team) => {
+    this.props.updateTeam(team);
   }
 
   render() {
@@ -139,7 +143,9 @@ class AdminPage extends React.Component {
                     const teams = users.reduce((prev, curr) => prev.concat(curr.teams), []);
                     const leagueTeams = teams.filter((team) => team.league._id === league._id);
                     return (
-                      <LeagueAdminOptions league={league} teams={ leagueTeams }>
+                      <LeagueAdminOptions league={league}
+                                          teams={ leagueTeams }
+                                          saveUpdates={ (team) => this.updateTeam(team) }>
                         <AssignUserToLeague assignUser={(form) => this.assignUser(league._id, form)}
                                             season={ season }
                                             league={ league }
@@ -240,6 +246,7 @@ export default connect(
     addLeague,
     addUser,
     assignTeamToLeague,
-    updatePlayers
+    updatePlayers,
+    updateTeam
   }
 )(AdminPage);

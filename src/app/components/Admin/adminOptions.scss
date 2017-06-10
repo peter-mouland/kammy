@@ -45,3 +45,28 @@
     }
   }
 }
+
+.admin-icon {
+  cursor: pointer;
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  top: 3px;
+  width: 2em;
+  margin: 0 1em;
+  background: $light;
+  border-radius: 5px;
+  padding: 0 .5em;
+
+  svg {
+    transition: transform .25s ease-in-out, background .25s ease-in-out;
+  }
+
+  &:hover {
+    background: $white;
+
+    svg {
+      transform: scale(1.5);
+    }
+  }
+}

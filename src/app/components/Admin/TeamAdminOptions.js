@@ -1,41 +1,70 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import bemHelper from 'react-bem-helper';
 
-import { SubLink, joinPaths } from '../../../app/routes';
+import SVG from '../Svg/Svg';
+import PlayerChoice from '../../components/Admin/PlayerChoice.container';
+import changeIcon from '../../../assets/change.svg';
 
-import './adminOptions.scss';
-
-const bem = bemHelper({ name: 'user-list' });
+const positions = {
+  gk: [''],
+  cb: ['left', 'right'],
+  fb: ['left', 'right'],
+  wm: ['left', 'right'],
+  cm: ['left', 'right'],
+  str: ['left', 'right'],
+  sub: [''],
+};
 
 class UserAdminOptions extends React.Component {
 
-  static contextTypes = {
-    router: PropTypes.object
+  state = {
+    showPlayerChoice: false
+  }
+
+  updatePlayer = (e, { pos, leftOrRight, team, player }) => {
+    e.preventDefault();
+    const updatedTeam = {
+      ...team,
+      [pos + leftOrRight]: player
+    };
+    this.setState({ showPlayerChoice: null, leftOrRight: null });
+    this.props.saveUpdates(updatedTeam);
+  }
+
+  showPlayerChoice = ({ pos, leftOrRight }) => {
+    this.setState({ showPlayerChoice: pos, leftOrRight });
   }
 
   render() {
-    const { children, teams, ...props } = this.props;
-    const { router: { route: { match } } } = this.context;
+    const { team } = this.props;
+    const { showPlayerChoice, leftOrRight } = this.state;
     return (
-      <div className="admin-options" { ...props }>
-        <div className="admin-option">
-              <ul className="simple-list">
-                { teams.map((team) => (
-                    <li key={team._id}>
-                      <SubLink { ...bem('text') } to={joinPaths(match.url, team._id)}>
-                        {team.name}
-                        <span className="label">{team.user.name}</span>
-                        <span className="label--secondary">{team.league.name}</span>
-                      </SubLink>
-                    </li>)
-                )}
-              </ul>
-        </div>
-        <div className="admin-option admin-option__btn">
-          { children }
-        </div>
-      </div>
+      <ul>
+        {(Object.keys(positions)).map((key) => {
+          const position = positions[key];
+          return position.map((side) => (
+            <li key={key + side}>
+              <strong>{key} {side}</strong>
+              {team[key + side].name || <em>unknown</em>}
+              <SVG className="admin-icon"
+                   markup={ changeIcon }
+                   onClick={ () => this.showPlayerChoice({ pos: key, leftOrRight: side }) }
+              />
+              {
+                showPlayerChoice && showPlayerChoice === key && leftOrRight === side &&
+                <PlayerChoice pos={ showPlayerChoice }
+                              leftOrRight={ leftOrRight }
+                              defaultValue={ team[showPlayerChoice + leftOrRight] }
+                              onUpdate={
+                                (e, player) =>
+                                  this.updatePlayer(e, { pos: key, leftOrRight: side, team, player }
+                                  )
+                              }
+                />
+              }
+            </li>
+          ));
+        })}
+      </ul>
     );
   }
 }

@@ -3,21 +3,13 @@ import PropTypes from 'prop-types';
 import debug from 'debug';
 import bemHelper from 'react-bem-helper';
 
-import './playerTable.scss';
-
 import { availablePositions } from '../../components/Positions/Positions';
+import Selector from '../../components/Selector/Selector';
+
+import './playerTable.scss';
 
 const bem = bemHelper({ name: 'player-table' });
 debug('kammy:myteam');
-
-const Selector = ({ onChange, defaultValue, options }) => (
-  <select onChange={onChange} defaultValue={defaultValue}>
-    <option value={''}>all</option>
-    {options.map((item) => (
-      <option value={ item } key={ item }>{ item }</option>
-    ))}
-  </select>
-);
 
 export default class PlayerTable extends React.Component {
 
