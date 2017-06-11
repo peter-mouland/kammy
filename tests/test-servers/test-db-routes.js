@@ -41,4 +41,24 @@ apiRouter.get('/nuke/seasons/:season', async (ctx) => {
     });
 });
 
+
+apiRouter.get('/puke/new-season-journey/:email/:password', async (ctx) => {
+  ctx.type = 'json';
+  ctx.response.body = { };
+  await envCheck('puke new-season-journey')
+    .then(() => users.puke({
+      email: ctx.params.email.trim(),
+      password: ctx.params.password.trim(),
+      isAdmin: true,
+      mustChangePassword: false
+    }))
+    .then((puked) => {
+      ctx.response.body = Object.assign(ctx.response.body, { puked });
+      ctx.status = 200;
+    }).catch((err) => {
+      ctx.status = 500;
+      ctx.response.body = { err };
+    });
+});
+
 export default apiRouter;

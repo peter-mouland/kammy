@@ -19,28 +19,30 @@ module.exports = {
   before(browser) {
     fakeSeason = `test-${chance.word()}`;
     fakeLeague = `test-${chance.word()}`;
-    fakeEmail = `uni_nake@hotmail.com`;
-    fakePassword = `test-${chance.sentence()}`;
+    fakeEmail = `test-${chance.email()}`;
+    fakePassword = `test-${chance.sentence({words: 5})}`;
     adminPage = browser.page.admin();
     loginPage = browser.page.login();
     pageLayout = browser.page.layout();
     homePage = browser.page.homepage();
     dashboardPage = browser.page.dashboard();
     logoutPage = browser.page.logout();
+
     browser
+      .pageLoaded(`/api/puke/new-season-journey/${fakeEmail}/${fakePassword}`)
       .pageLoaded(findRoute('homepage').path, { selector : '#homepage' })
       .deleteCookies();
   },
 
   after(browser){
     browser
-      .url(browser.globals.TARGET_PATH + '/api/nuke/users/' + fakeEmail)
-      .url(browser.globals.TARGET_PATH + '/api/nuke/seasons/' + fakeSeason)
+      .pageLoaded('/api/nuke/users/' + fakeEmail)
+      .pageLoaded('/api/nuke/seasons/' + fakeSeason)
   },
 
-  ['should be able to sign-up'](browser) {
+  ['should be able to login'](browser) {
     pageLayout.section.nav.click('@loginLink');
-    loginPage.signUp(fakeEmail, fakePassword);
+    loginPage.login(fakeEmail, fakePassword);
     pageLayout.thenDisplays('nav', '@adminLink');
   },
 

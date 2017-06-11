@@ -3,7 +3,6 @@ const User = require('mongoose').model('User');
 const PassportLocalStrategy = require('passport-local').Strategy;
 
 const { updateUser } = require('../../api/db/user/user.actions');
-const config = require('../../../../src/config/environment');
 
 const log = debug('kammy:auth/local-update');
 
@@ -31,12 +30,10 @@ module.exports = new PassportLocalStrategy({
     }
 
     return user.hashPassword(userData.password, (passwordErr, passwordObj) => {
-      const isAdmin = config.adminEmails.includes(userData.email);
       const payload = {
-        email: userData.email,
+        ...userData,
         password: passwordObj.hash,
         salt: passwordObj.salt,
-        isAdmin,
         mustChangePassword: false
       };
       log(payload);

@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
+const config = require('../../../../config/environment');
+
 // define the User model schema
 const UserSchema = new mongoose.Schema({
   dateCreated: { type: Date, default: Date.now },
@@ -62,6 +64,7 @@ UserSchema.pre('save', function saveHook(next) {
     if (passwordErr) next(passwordErr);
     user.password = password.hash;
     user.salt = password.salt;
+    user.isAdmin = user.isAdmin || config.adminEmails.includes(user.email);
     return next();
   });
 });

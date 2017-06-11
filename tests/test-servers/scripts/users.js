@@ -5,20 +5,14 @@
 const mongoose = require('mongoose');
 const assert = require('assert');
 
+const { addUser } = require('../../../src/server/api/db/user/user.actions');
+
 const User = mongoose.model('User');
 
-module.exports.puke = (user) => new Promise((resolve, reject) => {
-  console.log('inserting test users....');
-  User.collection.insert(user, function (err, r) {
-    assert.equal(null, err);
-    console.log(r);
-    if (err){
-      reject(err);
-    } else {
-      resolve(r.insertedIds);
-    }
-  });
-});
+module.exports.puke = (user) => {
+  console.log('inserting test users....', user);
+  return addUser(user).then((inserted) => console.log({ inserted }));
+};
 
 
 module.exports.nuke = (user) => new Promise((resolve, reject) => {

@@ -19,14 +19,14 @@ export const findOneUser = (userDetails) => User.findOne(userDetails).exec();
 export const updateUser = (_id, userDetails) =>
   User.findByIdAndUpdate(_id, userDetails, { new: true }).populate('teams').exec();
 
-export const addUser = ({ seasonId, leagueId, name, email, mustChangePassword, password = 'password123' }) => {
+export const addUser = ({ seasonId, leagueId, name, email, isAdmin, mustChangePassword, password = 'password123' }) => {
   let user;
   const getSeason = (seasonId)
     ? findSeasonById(seasonId)
     : getLatestSeason();
 
   return Promise.resolve()
-    .then(() => saveNewUser({ name, email, password, mustChangePassword }))
+    .then(() => saveNewUser({ name, email, password, isAdmin, mustChangePassword }))
     .then((userInserted) => {
       user = userInserted;
       return getSeason;

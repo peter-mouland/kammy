@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const PassportLocalStrategy = require('passport-local').Strategy;
 const dbConfig = require('../../../config/db.js');
-const config = require('../../../../src/config/environment');
 
 const log = debug('kammy:local-login');
 
@@ -38,7 +37,7 @@ module.exports = new PassportLocalStrategy({
 
     // check if a hashed user's password is equal to a value saved in the database
     return user.comparePassword(userData.password, (passwordErr, isMatch) => {
-      if (err) { return done(err); }
+      if (passwordErr) { return done(passwordErr); }
 
       if (!isMatch) {
         const error = new Error('Incorrect email or password');
@@ -56,12 +55,11 @@ module.exports = new PassportLocalStrategy({
             error.name = 'SignUpError';
             return done(error);
           }
-          const isAdmin = config.adminEmails.includes(user.email);
           const payload = {
             sub: user._id,
             email: user.email,
             defaultTeamId: team._id,
-            isAdmin,
+            isAdmin: user.isAdmin,
             mustChangePassword: user.mustChangePassword,
             name: user.name
           };
