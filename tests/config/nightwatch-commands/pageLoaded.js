@@ -32,7 +32,6 @@ pageLoaded.prototype.command = function pageLoadedFn(page, opts = {}) {
   }
 
   browser
-    .pause(250)
     .windowMaximize()
     .url(url)
     .setCookie(cookie)

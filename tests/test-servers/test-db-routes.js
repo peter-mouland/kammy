@@ -31,7 +31,7 @@ apiRouter.get('/nuke/seasons/:season', async (ctx) => {
   ctx.type = 'json';
   ctx.response.body = { };
   await envCheck('nuke seasons')
-    .then(() => seasons.nuke({ season: ctx.params.season }))
+    .then(() => seasons.nuke({ name: ctx.params.season }))
     .then((nuked) => {
       ctx.response.body = Object.assign(ctx.response.body, { nuked });
       ctx.status = 200;
