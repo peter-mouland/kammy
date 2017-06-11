@@ -24,7 +24,10 @@ class LeagueAdminOptions extends React.Component {
     const { teams, children, saveUpdates, ...props } = this.props;
     const { router: { route: { match } } } = this.context;
     return (
-      <div {...bem(null, 'top') } { ...props }>
+      <div {...bem(null, 'top') }
+           { ...props }
+           data-test="admin-options--league"
+      >
         <div className="admin-option">
           <ul className="simple-list">
             { teams.map((team) => {

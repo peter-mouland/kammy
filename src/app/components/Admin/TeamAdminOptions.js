@@ -38,7 +38,9 @@ class UserAdminOptions extends React.Component {
     const { team } = this.props;
     const { showPlayerChoice, leftOrRight } = this.state;
     return (
-      <ul>
+      <ul
+        data-test="admin-options--team"
+      >
         {(Object.keys(positions)).map((key) => {
           const position = positions[key];
           return position.map((side) => (

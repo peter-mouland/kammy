@@ -132,7 +132,10 @@ class PlayerAdminOptions extends React.Component {
     const { posFilter, clubFilter, nameFilter, playersToUpdate } = this.state;
     const clubs = this.clubs;
     return (
-      <div className="admin-options" { ...props }>
+      <div className="admin-options"
+           { ...props }
+           data-test="admin-options--season"
+      >
         <div { ...bem(null, 'admin', 'admin-option') }>
 
           <table cellPadding={0} cellSpacing={0} { ...bem('data-table') }>

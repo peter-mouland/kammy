@@ -105,7 +105,7 @@ class AdminPage extends React.Component {
     }
 
     return (
-      <div className="admin">
+      <div className="admin" id="admin-page">
         <h1 >Admin</h1>
         <div className="admin__panels">
           <div className="bg" />
@@ -124,9 +124,7 @@ class AdminPage extends React.Component {
               const leagues = season.leagues;
               return (
                 <div>
-                  <SeasonAdminOptions season={season} >
-                    <p>compare ff players to Sky Sports players</p>
-                  </SeasonAdminOptions>
+                  <SeasonAdminOptions season={season} />
                   <AdminList list={ leagues }
                              path="league"
                              secondary
@@ -203,11 +201,18 @@ class AdminPage extends React.Component {
             }}/>
           </section>
 
-
-          <h3>Todo:</h3>
+          <h3>tech-debt:</h3>
           <ul>
-            <li>admin can view user teams</li>
-            <li>admin can save/edit user teams</li>
+            <li>add e2e tests</li>
+            <li>make season/league names unique</li>
+            <li>refactor links to use names rather than id</li>
+            <li>refactor arrays to objects to make easier to manipulate</li>
+            <li>refactor rename league to division</li>
+            <li>refactor admin to admin/components</li>
+          </ul>
+
+          <h3>todo:</h3>
+          <ul>
             <li>admin can run points against current teams</li>
             <li>admin can Increment Game Week</li>
             <li>admin view all teams for exporting</li>

@@ -15,7 +15,10 @@ class SeasonAdminOptions extends React.Component {
     const { season, children, ...props } = this.props;
 
     return (
-      <div className="admin-options" { ...props }>
+      <div className="admin-options"
+           { ...props }
+           data-test="admin-options--season"
+      >
         <Toggle checked={ season.isLive }
                 id={`season-live--${season._id}`}
                 className="admin-option"

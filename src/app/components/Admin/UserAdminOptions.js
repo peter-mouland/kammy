@@ -18,7 +18,10 @@ class UserAdminOptions extends React.Component {
     const { children, users, ...props } = this.props;
     const { router: { route: { match } } } = this.context;
     return (
-      <div className="admin-options" { ...props }>
+      <div className="admin-options"
+           { ...props }
+           data-test="admin-options--user"
+      >
         <div className="admin-option">
           <ul className="simple-list">
             { users.map((user) => (

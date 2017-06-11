@@ -12,7 +12,7 @@ let dashboardPage;
 let logoutPage;
 
 module.exports = {
-  '@tags': ['staging-skipped'],
+  '@tags': ['staging'],
   before(browser) {
     fakeEmail = `test-${chance.email()}`;
     fakePassword = `test-${chance.sentence()}`;
@@ -28,7 +28,7 @@ module.exports = {
 
   after(browser){
     browser
-      .url(browser.globals.TARGET_PATH + '/api/nuke/' + fakeEmail)
+      .url(browser.globals.TARGET_PATH + '/api/nuke/users/' + fakeEmail)
   },
 
   ['should not be able to see a the dashboard without logging in'](browser) {

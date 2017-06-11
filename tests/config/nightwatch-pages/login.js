@@ -8,14 +8,14 @@ const commands = {
     return this.section.main.waitForElementVisible('@emailInput', 1000)
       .setValue('@emailInput', email)
       .setValue('@passwordInput', password)
-      .click('@actionLoginInput')
+      .click('@chooseLoginInput')
       .click('@submitButton')
   },
   signUp: function(email, password) {
     return this.section.main.waitForElementVisible('@emailInput', 1000)
       .setValue('@emailInput', email)
       .setValue('@passwordInput', password)
-      .click('@actionSignUpInput')
+      .click('@chooseSignUpInput')
       .click('@submitButton')
   },
   thenDisplays: function(element) {
@@ -50,9 +50,8 @@ module.exports = {
         submitButton: 'input[type=submit]',
         emailInput: 'input[type=email]',
         passwordInput: 'input[type=password]',
-        actionInput: 'input[name=action]',
-        actionLoginInput: 'input[value=login]',
-        actionSignUpInput: 'input[value=signUp]',
+        chooseLoginInput: 'input[value=login]',
+        chooseSignUpInput: 'input[value=signUp]',
       }]
     }
   }

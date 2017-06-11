@@ -5,11 +5,11 @@
 const mongoose = require('mongoose');
 const assert = require('assert');
 
-const User = mongoose.model('User');
+const Season = mongoose.model('Season');
 
 module.exports.puke = (user) => new Promise((resolve, reject) => {
-  console.log('inserting test users....');
-  User.collection.insert(user, function (err, r) {
+  console.log('inserting test seasons....');
+  Season.collection.insert(user, function (err, r) {
     assert.equal(null, err);
     console.log(r);
     if (err){
@@ -21,9 +21,9 @@ module.exports.puke = (user) => new Promise((resolve, reject) => {
 });
 
 
-module.exports.nuke = (user) => new Promise((resolve, reject) => {
-  console.log(`removing`, user,` from ${User.db.name}....`);
-  User.remove(user, (err, r)=>{
+module.exports.nuke = (season) => new Promise((resolve, reject) => {
+  console.log(`removing`, season, ` from ${Season.db.name}....`);
+  Season.remove(season, (err, r)=>{
       assert.equal(null, err);
       // assert.equal(1, r.nRemoved);
       if (err){

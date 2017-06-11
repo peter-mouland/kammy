@@ -23,7 +23,10 @@ class AdminList extends React.Component {
     const { list, path, children, secondary = false, ...props } = this.props;
     const { router: { route: { match } } } = this.context;
     return (
-      <ul { ...bem(null, { secondary }) } { ...props } >
+      <ul { ...bem(null, { secondary, [path]: path }) }
+          { ...props }
+          data-test={`admin-list--${path}`}
+      >
         {
           list
             .map((item, i) => (
