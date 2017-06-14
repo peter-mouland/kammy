@@ -1,4 +1,5 @@
 /* eslint-disable */
+var chromedriver = require('chromedriver');
 const argv = require('yargs')
   .usage('Usage: $0 --target=[string] --sha=[string]')
   .argv;
@@ -21,9 +22,15 @@ module.exports = (function(settings) {
   }
 
   settings.test_settings.default.globals = {
-    TARGET_PATH : TARGET_PATH,
-    before:  needLocalServer ? testServer.start : noop,
-    after: needLocalServer ? testServer.stop : noop,
+    TARGET_PATH: TARGET_PATH,
+    before: (done) => {
+      chromedriver.start();
+      return needLocalServer ? testServer.start(done) : noop(done)
+    },
+    after: (done) => {
+      chromedriver.stop();
+      return needLocalServer ? testServer.stop(done) : noop(done)
+    },
     afterEach: function (client, done) {
       var weHaveFailures = client.currentTest.results.errors > 0 || client.currentTest.results.failed > 0;
       if (weHaveFailures && !client.sessionId) {

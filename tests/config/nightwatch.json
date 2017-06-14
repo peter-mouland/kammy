@@ -5,7 +5,7 @@
     "workers": "auto"
   },
   "selenium" : {
-    "start_process" : true,
+    "start_process" : false,
     "server_path" : "node_modules/selenium-standalone/.selenium/selenium-server/3.4.0-server.jar",
     "cli_args" : {
       "webdriver.chrome.driver" : "node_modules/selenium-standalone/.selenium/chromedriver/2.30-x64-chromedriver"
@@ -37,8 +37,9 @@
     },
     "local": {
       "launch_url" : "http://localhost",
-      "selenium_port"  : 4444,
-      "selenium_host"  : "127.0.0.1",
+      "selenium_port"  : 9515,
+      "selenium_host"  : "localhost",
+      "default_path_prefix" : "",
       "screenshots" : {
         "enabled" : true,
         "on_failure" : true,
@@ -48,7 +49,15 @@
       "desiredCapabilities": {
         "build": "build local",
         "browserName": "chrome",
-        "browserstack.local" : false
+        "browserstack.local" : false,
+        "chromeOptions" : {
+          "args" : [
+            "headless",
+            "disable-gpu",
+            "--disable-gpu",
+            "--no-sandbox"
+          ]
+        }
       }
     },
     "chrome_win" : {
