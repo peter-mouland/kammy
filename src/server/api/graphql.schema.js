@@ -1,6 +1,9 @@
-import { buildSchema } from 'graphql';
+import { makeExecutableSchema } from 'graphql-tools';
+import GraphQLJSON from 'graphql-type-json';
 
-export default buildSchema(`
+const schemaString = `
+  scalar JSON
+
   type MinDetail {
     _id: String
     name: String
@@ -156,9 +159,14 @@ export default buildSchema(`
     message: String!
   }
   
+  type Stats {
+    stats: JSON
+  }
+  
   type Query {
     getTeam(teamId: String): Team
     getTeams: [Team]
+    getStats(source: String): Stats
     getSeasons: [Season]
     getPlayers(player: String): [Player]
     getUser(email: String, _id: String): User
@@ -176,5 +184,13 @@ export default buildSchema(`
     assignTeamToLeague(leagueId: String, leagueName: String, teamId: String): Team
     updateSeason(seasonId: String, isLive: Boolean): Season
   }
-`);
+`;
+
+const resolveFunctions = {
+  JSON: GraphQLJSON
+};
+
+const jsSchema = makeExecutableSchema({ typeDefs: schemaString, resolvers: resolveFunctions });
+
+export default jsSchema;
 

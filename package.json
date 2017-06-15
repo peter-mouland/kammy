@@ -71,6 +71,8 @@
     "es6-promise": "^4.0.5",
     "extract-text-webpack-plugin": "^2.0.0",
     "graphql": "^0.9.6",
+    "graphql-tools": "^1.0.0",
+    "graphql-type-json": "^0.1.4",
     "jsonwebtoken": "^7.4.0",
     "jwt-decode": "^2.2.0",
     "koa": "^2.2.0",

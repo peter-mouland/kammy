@@ -3,6 +3,7 @@ import debug from 'debug';
 import { fetch } from '../utils';
 import Auth from '../authentication/auth-helper';
 
+export const FETCH_STATS = 'FETCH_STATS';
 export const FETCH_TEAM = 'FETCH_TEAM';
 export const FETCH_TEAMS = 'FETCH_TEAMS';
 export const FETCH_USERS_WITH_TEAMS = 'FETCH_USERS_WITH_TEAMS';
@@ -20,12 +21,20 @@ export const ASSIGN_TEAM_TO_LEAGUE = 'ASSIGN_TEAM_TO_LEAGUE';
 
 const log = debug('kammy:actions');
 
+export function fetchStats(source) {
+  return {
+    type: FETCH_STATS,
+    payload: fetch.graphQL('getStatsQuery', { source })
+  };
+}
+
 export function fetchPlayers(player) {
   return {
     type: FETCH_PLAYERS,
     payload: fetch.graphQL('getPlayersQuery', player ? { player } : undefined)
   };
 }
+
 export function importPlayers() {
   return {
     type: IMPORT_PLAYERS,

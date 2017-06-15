@@ -3,7 +3,7 @@ const bodyparser = require('koa-bodyparser');
 
 const server = new Koa();
 
-const config = require('../../src/config/environment');
+const config = require('../../src/config/config');
 let openServer;
 
 const getData = (location) => new Promise((resolve, reject) => {

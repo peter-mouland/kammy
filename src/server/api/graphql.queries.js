@@ -22,6 +22,7 @@ const minPlayerFragment = `
 fragment minPlayerInfo on MinPlayerDetail {
   _id name club
 }`;
+
 const playerFragment = `
 fragment playerInfo on Player {
   _id code pos name club
@@ -61,6 +62,9 @@ query ($player: String) {
 } 
 `;
 
+export const getStatsQuery = `
+  query ($source: String) { getStats(source: $source){ stats } } 
+`;
 export const getDashboardQuery = `
   query { getDashboard{ message } } 
 `;
@@ -79,7 +83,6 @@ export const getTeamsQuery = `
   ${teamFragment}
   query { getTeams{ ...teamInfo } } 
 `;
-
 
 export const getUsersWithTeamsQuery = `
   ${teamFragment}

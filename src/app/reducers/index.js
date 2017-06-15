@@ -101,6 +101,18 @@ export function players(state = {}, action) {
   }
 }
 
+export function stats(state = {}, action) {
+  switch (action.type) {
+    case `${actions.FETCH_STATS}_FULFILLED`:
+      return {
+        ...state,
+        data: action.payload.data && action.payload.data.getStats.stats,
+      };
+    default:
+      return state;
+  }
+}
+
 export function seasons(state = {}, action) {
   const newSeason = action.payload && action.payload.data && action.payload.data.addSeason;
   const newLeague = action.payload && action.payload.data && action.payload.data.addLeague;
@@ -214,6 +226,7 @@ export default combineReducers({
   seasons,
   teams,
   users,
+  stats,
   myTeam,
   players,
   dashboard,

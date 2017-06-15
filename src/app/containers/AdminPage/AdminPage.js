@@ -2,6 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Route from 'react-router-dom/Route';
 
+import join from '../../utils/joinPath';
+import selectedItem from '../../utils/selectedItem';
+import Errors from '../../components/Errors/Errors';
+import Loading from '../../components/Loading/Loading';
 import AdminList from '../../components/Admin/AdminList';
 import AddUser from '../../components/Admin/AddUser';
 import AdminAddForm from '../../components/Admin/AdminAddForm';
@@ -12,28 +16,12 @@ import UserAdminOptions from '../../components/Admin/UserAdminOptions';
 import PlayerAdminOptions from '../../components/Admin/PlayerAdminOptions';
 import Auth from '../../authentication/auth-helper';
 import {
-  fetchSeasons, fetchPlayers, fetchUsersWithTeams, updateTeam, updateSeason,
+  fetchSeasons, fetchPlayers, fetchUsersWithTeams, updateTeam, updateSeason, fetchStats,
   addSeason, addLeague, addUser, updatePlayers, assignTeamToLeague, importPlayers,
   ADD_SEASON, ADD_LEAGUE, ADD_USER, UPDATE_PLAYERS, ASSIGN_TEAM_TO_LEAGUE, FETCH_PLAYERS
 } from '../../actions';
 
 import './adminPage.scss';
-
-const Error = ({ error }) => <div>
-  <p>Error Loading seasons!</p>
-  <p>{ error.message }</p>
-</div>;
-
-const Errors = ({ errors }) => <div>
-  {errors.map((error, i) => <Error error={error} key={i} />)}
-</div>;
-
-const Loading = () => <p>Loading seasons....</p>;
-
-const selectedItem = (match, items, key) => items.find((item) => item._id === match.params[key]);
-
-export const join = (prefix, postfix) =>
-  `${prefix}/${postfix}`.replace(/\/\/\//g, '/').replace(/\/\//g, '/');
 
 class AdminPage extends React.Component {
 
@@ -49,6 +37,10 @@ class AdminPage extends React.Component {
     if (!this.props.players) {
       this.props.fetchPlayers();
     }
+  }
+
+  fetchStats = (source) => {
+    this.props.fetchStats(source);
   }
 
   addSeason = (name) => {
@@ -79,14 +71,13 @@ class AdminPage extends React.Component {
     this.props.updateTeam(team);
   }
 
-  toggleSeasonLive = (e, season) => {
-    const isLive = e.currentTarget.checked;
+  toggleSeasonLive = (isLive, season) => {
     this.props.updateSeason({ seasonId: season._id, isLive });
   }
 
   render() {
     const {
-      errors = [], userErrors = [], loading, seasons, players = [], users = [], match
+      errors = [], userErrors = [], loading, seasons, players = [], users = [], match, stats
     } = this.props;
     const addingSeason = loading === ADD_SEASON;
     const addingLeague = loading === ADD_LEAGUE;
@@ -108,7 +99,6 @@ class AdminPage extends React.Component {
     } else if (!Auth.isAdmin()) {
       return <p>You're not admin!</p>;
     }
-
     return (
       <div className="admin" id="admin-page">
         <h1 >Admin</h1>
@@ -129,9 +119,11 @@ class AdminPage extends React.Component {
               const leagues = season.leagues;
               return (
                 <div>
-                  <SeasonAdminOptions season={season} onChange={
-                    (e) => this.toggleSeasonLive(e, season)
-                  } />
+                  <SeasonAdminOptions season={season}
+                                      onChange={ (isLive) => this.toggleSeasonLive(isLive, season) }
+                                      fetchStats={ this.fetchStats }
+                                      stats={ stats }
+                  />
                   <AdminList list={ leagues }
                              path="league"
                              secondary
@@ -240,6 +232,7 @@ function mapStateToProps(state) {
     users: state.users.data,
     players: state.players.data,
     userErrors: state.users.errors,
+    stats: state.stats.data,
     seasonAdded: state.seasons.seasonAdded,
     leagueAdded: state.seasons.leagueAdded,
     loading: state.promiseState.loading,
@@ -253,6 +246,7 @@ export default connect(
     fetchSeasons,
     fetchUsersWithTeams,
     fetchPlayers,
+    fetchStats,
     addSeason,
     importPlayers,
     addLeague,

@@ -6,7 +6,7 @@ require("babel-polyfill");
 const SvgLoader = require('svg-inline-loader');
 const hook = require('node-hook').hook;
 
-require('../../src/config/environment');
+require('../../src/config/config');
 
 const webpackAssets = require('../../compiled/webpack-assets.json');
 const mapWebpackAssets = require('../../src/server/utils/mapWebpackAssets');

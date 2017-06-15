@@ -11,27 +11,56 @@ class SeasonAdminOptions extends React.Component {
     season: PropTypes.object,
   }
 
+  onChange = (e) => {
+    const isLive = e.target.checked;
+    this.props.onChange(isLive);
+  }
+
+  fetchStats = (e) => {
+    e.preventDefault();
+    this.props.fetchStats(this.sourceEl.value);
+  }
+
   render() {
-    const { season, children, onChange, ...props } = this.props;
+    const {
+      season, incrementGameWeek, onChange, stats, ...props // eslint-disable-line no-unused-vars
+    } = this.props;
 
     return (
-      <div className="admin-options"
-           { ...props }
-           data-test="admin-options--season"
-      >
-        <Toggle checked={ season.isLive }
-                id={`season-live--${season._id}`}
-                className="admin-option"
-                onChange={ onChange }
-        >
-          Season is Live?
-        </Toggle>
-        <div className="admin-option">
-          Game Week: <span className="admin-option__value">{season.currentGW}</span>
+      <div { ...props } data-test="admin-options--season">
+        <div className="admin-options" >
+          <Toggle checked={ season.isLive }
+                  id={`season-live--${season._id}`}
+                  className="admin-option"
+                  onChange={ this.onChange }
+          >
+            Season is Live?
+          </Toggle>
+          <div className="admin-option">
+            Current GW:
+            <span className="admin-option__value">{season.currentGW}</span>
+            <button className="admin-option__value" onClick={ incrementGameWeek }>+1</button>
+          </div>
+          <div className="admin-option admin-option__btn">
+            <form onSubmit={ this.fetchStats }>
+              <select name="stats-source" ref={(node) => { this.sourceEl = node; } }>
+                <option value="external">Sky Sports</option>
+                <option value="internal">Test Data</option>
+              </select>
+              <input type="submit" value="Fetch Stats" />
+            </form>
+          </div>
         </div>
-        <div className="admin-option admin-option__btn">
-          {children}
-        </div>
+        { stats ?
+          <div className="admin-options" >
+            <ul >
+              {(Object.keys(stats)).map((key) => (
+                <li key={ key }>{stats[key].player} {stats[key].gw1}</li>
+              ))}
+            </ul>
+          </div>
+          : null
+        }
       </div>
     );
   }
