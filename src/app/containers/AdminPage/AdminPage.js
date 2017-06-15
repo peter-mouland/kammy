@@ -12,7 +12,7 @@ import UserAdminOptions from '../../components/Admin/UserAdminOptions';
 import PlayerAdminOptions from '../../components/Admin/PlayerAdminOptions';
 import Auth from '../../authentication/auth-helper';
 import {
-  fetchSeasons, fetchPlayers, fetchUsersWithTeams, updateTeam,
+  fetchSeasons, fetchPlayers, fetchUsersWithTeams, updateTeam, updateSeason,
   addSeason, addLeague, addUser, updatePlayers, assignTeamToLeague, importPlayers,
   ADD_SEASON, ADD_LEAGUE, ADD_USER, UPDATE_PLAYERS, ASSIGN_TEAM_TO_LEAGUE, FETCH_PLAYERS
 } from '../../actions';
@@ -79,6 +79,11 @@ class AdminPage extends React.Component {
     this.props.updateTeam(team);
   }
 
+  toggleSeasonLive = (e, season) => {
+    const isLive = e.currentTarget.checked;
+    this.props.updateSeason({ seasonId: season._id, isLive });
+  }
+
   render() {
     const {
       errors = [], userErrors = [], loading, seasons, players = [], users = [], match
@@ -124,7 +129,9 @@ class AdminPage extends React.Component {
               const leagues = season.leagues;
               return (
                 <div>
-                  <SeasonAdminOptions season={season} />
+                  <SeasonAdminOptions season={season} onChange={
+                    (e) => this.toggleSeasonLive(e, season)
+                  } />
                   <AdminList list={ leagues }
                              path="league"
                              secondary
@@ -252,6 +259,7 @@ export default connect(
     addUser,
     assignTeamToLeague,
     updatePlayers,
-    updateTeam
+    updateTeam,
+    updateSeason
   }
 )(AdminPage);

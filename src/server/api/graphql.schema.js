@@ -174,6 +174,7 @@ export default buildSchema(`
     addSeason(name: String): Season
     updateTeam(teamUpdate: TeamUpdate): Team
     assignTeamToLeague(leagueId: String, leagueName: String, teamId: String): Team
+    updateSeason(seasonId: String, isLive: Boolean): Season
   }
 `);
 

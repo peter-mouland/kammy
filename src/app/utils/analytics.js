@@ -1,6 +1,6 @@
 /* eslint-disable */
 /* global ga */
-import config from '../../config/environment';
+import config from '../../config/config';
 
 // Import the individual autotrack plugins you want to use.
 import 'autotrack/lib/plugins/clean-url-tracker';

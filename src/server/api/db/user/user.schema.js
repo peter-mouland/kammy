@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const config = require('../../../../config/environment');
+const config = require('../../../../config/config');
 
 // define the User model schema
 const UserSchema = new mongoose.Schema({

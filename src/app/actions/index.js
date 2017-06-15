@@ -15,6 +15,7 @@ export const ADD_USER = 'ADD_USER';
 export const IMPORT_PLAYERS = 'IMPORT_PLAYERS';
 export const UPDATE_PLAYERS = 'UPDATE_PLAYERS';
 export const UPDATE_TEAM = 'UPDATE_TEAM';
+export const UPDATE_SEASON = 'UPDATE_SEASON';
 export const ASSIGN_TEAM_TO_LEAGUE = 'ASSIGN_TEAM_TO_LEAGUE';
 
 const log = debug('kammy:actions');
@@ -79,6 +80,13 @@ export function addLeague(seasonId, name) {
     type: ADD_LEAGUE,
     meta: { seasonId },
     payload: fetch.graphQL('addLeaguesMutation', { seasonId, name })
+  };
+}
+
+export function updateSeason({ seasonId, isLive }) {
+  return {
+    type: UPDATE_SEASON,
+    payload: fetch.graphQL('updateSeasonMutation', { seasonId, isLive })
   };
 }
 

@@ -2,7 +2,7 @@
 import { findOneUser, addUser, getUsersWithTeams } from './db/user/user.actions';
 import { findPlayers, findPlayer, updatePlayers, importPlayers } from './db/player/player.actions';
 import { updateTeam, getTeams, getTeam, assignTeamToLeague } from './db/team/team.actions';
-import { getSeasons, addLeague, addSeason } from './db/season/season.actions';
+import { getSeasons, addLeague, addSeason, updateSeason } from './db/season/season.actions';
 
 const getUser = ({ email, _id }) => findOneUser({ _id, email });
 const getPlayers = ({ player }) => player ? findPlayer({ player }) : findPlayers();
@@ -17,6 +17,7 @@ export default {
   updatePlayers,
   getSeasons,
   addSeason,
+  updateSeason,
   addLeague,
   assignTeamToLeague,
   getTeams,

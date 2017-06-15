@@ -10,7 +10,7 @@ import './styles/app.scss';
 debug.enable(process.env.DEBUG);
 
 const log = debug('kammy:client-entry');
-log('Client environment', process.env);
+log('Client config', process.env);
 
 const rootEl = document.getElementById('html');
 const App = (

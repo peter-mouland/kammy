@@ -1,4 +1,4 @@
-const env = require('./environment');
+const env = require('./config');
 
 module.exports = {
   dbUri: env.MONGODB_URI,

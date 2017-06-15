@@ -128,3 +128,10 @@ export const updateTeamMutation = `
     updateTeam(teamUpdate: $teamUpdate){ ...teamInfo }   
   }
 `;
+
+export const updateSeasonMutation = `
+  ${seasonFragment}
+  mutation ($seasonId: String, $isLive: Boolean) { 
+    updateSeason(seasonId: $seasonId, isLive: $isLive){ ...seasonInfo }   
+  }
+`;

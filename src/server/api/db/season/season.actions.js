@@ -28,3 +28,7 @@ export const addLeague = ({ seasonId, name }) => (
     .then((season) => season.leagues.find((league) => league.name === name))
 );
 
+export const updateSeason = ({ seasonId, isLive }) => (
+  updateSeasonById(seasonId, { $set: { isLive } })
+);
+

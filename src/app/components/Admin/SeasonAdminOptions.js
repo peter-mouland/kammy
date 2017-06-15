@@ -12,7 +12,7 @@ class SeasonAdminOptions extends React.Component {
   }
 
   render() {
-    const { season, children, ...props } = this.props;
+    const { season, children, onChange, ...props } = this.props;
 
     return (
       <div className="admin-options"
@@ -22,6 +22,7 @@ class SeasonAdminOptions extends React.Component {
         <Toggle checked={ season.isLive }
                 id={`season-live--${season._id}`}
                 className="admin-option"
+                onChange={ onChange }
         >
           Season is Live?
         </Toggle>

@@ -2,7 +2,7 @@ import axios from 'axios';
 import debug from 'debug';
 
 import { localUrl } from '../utils';
-import { getVar } from '../../config/environment';
+import { getVar } from '../../config/config';
 import Auth from '../authentication/auth-helper';
 
 const log = debug('kammy:fetch');

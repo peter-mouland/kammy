@@ -24,8 +24,11 @@ setEnvDefault('GRAPHQL_URL', graphQlUrl);
 const externalStatsUrl = 'https://fantasyfootball.skysports.com/cache/json_players.json';
 setEnvDefault('EXTERNAL_STATS_URL', externalStatsUrl);
 
+const internalStatsUrl = `http://localhost:${config.PORT}/2016-2017`;
+setEnvDefault('INTERNAL_STATS_URL', internalStatsUrl);
+
 debug.enable(process.env.DEBUG);
-const log = debug('kammy: Environment:');
+const log = debug('kammy: config:');
 
 // explicitly check vars that webpack can help us with
 if (!process.env.GA_KEY) { setEnvDefault('GA_KEY', 'development'); }

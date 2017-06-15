@@ -6,7 +6,7 @@ const connect = require('./server/api/db').connect;
 const config = require('./config/db.js');
 const webpackAssets = require('../compiled/webpack-assets.json'); // eslint-disable-line import/no-unresolved
 const mapWebpackAssets = require('./server/utils/mapWebpackAssets');
-require('./config/environment');
+require('./config/config');
 
 hook('.scss', () => '');
 hook('.svg', (source) => {
