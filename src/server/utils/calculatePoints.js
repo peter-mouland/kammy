@@ -1,13 +1,15 @@
-const STARTING_XI = 'apps';
-const SUBS = 'subs';
-const GOALS = 'gls';
-const ASSISTS = 'asts';
-const YELLOW_CARDS = 'ycard';
-const RED_CARDS = 'rcard';
-const MAN_OF_MATCH = 'mom';
-const CLEAN_SHEETS = 'cs';
-const CONCEDED = 'con';
-const SAVED_PENALTIES = 'pensv';
+export const mapper = (internal) => ({
+  STARTING_XI : internal ? 'apps' : 0,
+  SUBS : internal ? 'subs' : 2,
+  GOALS : internal ? 'gls' : 3,
+  ASSISTS : internal ? 'asts' : 4,
+  YELLOW_CARDS : internal ? 'ycard' : 5,
+  RED_CARDS : internal ? 'rcard' : 6,
+  MAN_OF_MATCH : internal ? 'mom' : 1,
+  CLEAN_SHEETS : internal ? 'cs' : 7,
+  CONCEDED : internal ? 'con' : 8,
+  SAVED_PENALTIES : internal ? 'pensv' : 11
+})
 
 export function forStarting(starts) { // starting a match 3 point
   return starts * 3;
@@ -70,17 +72,18 @@ function forMOM() {
   return 0;
 }
 
-export function forPlayer(stats, pos) {
-  const apps = forStarting(stats[STARTING_XI], pos);
-  const subs = forSub(stats[SUBS], pos);
-  const gls = forGoals(stats[GOALS], pos);
-  const asts = forAssists(stats[ASSISTS], pos);
-  const mom = forMOM(stats[MAN_OF_MATCH], pos);
-  const cs = forCleanSheet(stats[CLEAN_SHEETS], pos);
-  const con = forConceded(stats[CONCEDED], pos);
-  const pensv = forPenaltiesSaved(stats[SAVED_PENALTIES], pos);
-  const ycard = forYellowCards(stats[YELLOW_CARDS], pos);
-  const rcard = forRedCards(stats[RED_CARDS], pos);
+export function calculatePoints(stats, pos) {
+  const map = mapper(true);
+  const apps = forStarting(stats[map.STARTING_XI], pos);
+  const subs = forSub(stats[map.SUBS], pos);
+  const gls = forGoals(stats[map.GOALS], pos);
+  const asts = forAssists(stats[map.ASSISTS], pos);
+  const mom = forMOM(stats[map.MAN_OF_MATCH], pos);
+  const cs = forCleanSheet(stats[map.CLEAN_SHEETS], pos);
+  const con = forConceded(stats[map.CONCEDED], pos);
+  const pensv = forPenaltiesSaved(stats[map.SAVED_PENALTIES], pos);
+  const ycard = forYellowCards(stats[map.YELLOW_CARDS], pos);
+  const rcard = forRedCards(stats[map.RED_CARDS], pos);
   const total = mom + gls + ycard + rcard + apps + subs + asts + cs + con + pensv;
   return {
     apps,

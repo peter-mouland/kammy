@@ -39,8 +39,8 @@ class AdminPage extends React.Component {
     }
   }
 
-  fetchStats = (source) => {
-    this.props.fetchStats(source);
+  fetchStats = (season, source) => {
+    this.props.fetchStats({ currentGW: season.currentGW, source });
   }
 
   addSeason = (name) => {
@@ -121,7 +121,7 @@ class AdminPage extends React.Component {
                 <div>
                   <SeasonAdminOptions season={season}
                                       updateSeason={ (update) => this.updateSeason(season, update) }
-                                      fetchStats={ this.fetchStats }
+                                      fetchStats={ (source) => this.fetchStats(season, source) }
                                       stats={ stats }
                   />
                   <AdminList list={ leagues }

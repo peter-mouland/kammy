@@ -63,7 +63,7 @@ query ($player: String) {
 `;
 
 export const getStatsQuery = `
-  query ($source: String) { getStats(source: $source){ stats } } 
+  query ($currentGW: Int, $source: String) { getStats(currentGW: $currentGW, source: $source){ stats } } 
 `;
 export const getDashboardQuery = `
   query { getDashboard{ message } } 

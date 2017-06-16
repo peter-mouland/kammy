@@ -166,7 +166,7 @@ const schemaString = `
   type Query {
     getTeam(teamId: String): Team
     getTeams: [Team]
-    getStats(source: String): Stats
+    getStats(currentGW: Int, source: String): Stats
     getSeasons: [Season]
     getPlayers(player: String): [Player]
     getUser(email: String, _id: String): User

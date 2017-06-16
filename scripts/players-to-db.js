@@ -4,7 +4,7 @@ require('../src/config/config');
 const connect = require('../src/server/api/db').connect;
 const config = require('../src/config/db.js');
 const players = require('./2016-2017/stats-GW25.json');
-const { forPlayer: calculatePoints } = require('../src/server/utils/calculatePoints');
+const { calculatePoints } = require('../src/server/utils/calculatePoints');
 
 connect(config.dbUri);
 

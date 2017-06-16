@@ -31,7 +31,7 @@ class SeasonAdminOptions extends React.Component {
 
   render() {
     const {
-      season, updateSeason, stats, ...props // eslint-disable-line no-unused-vars
+      season, updateSeason, fetchStats, stats, ...props // eslint-disable-line no-unused-vars
     } = this.props;
 
     return (
@@ -64,7 +64,10 @@ class SeasonAdminOptions extends React.Component {
             <button className="admin-option__value" onClick={ this.saveStats }>Save Stats</button>
             <ul >
               {(Object.keys(stats)).map((key) => (
-                <li key={ key }>{stats[key].player} {stats[key].gw1}</li>
+                <li key={ key }>
+                  {stats[key].name}
+                  {stats[key].total.points.total}
+                </li>
               ))}
             </ul>
           </div>

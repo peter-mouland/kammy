@@ -21,10 +21,10 @@ export const ASSIGN_TEAM_TO_LEAGUE = 'ASSIGN_TEAM_TO_LEAGUE';
 
 const log = debug('kammy:actions');
 
-export function fetchStats(source) {
+export function fetchStats({ currentGW, source }) {
   return {
     type: FETCH_STATS,
-    payload: fetch.graphQL('getStatsQuery', { source })
+    payload: fetch.graphQL('getStatsQuery', { currentGW, source })
   };
 }
 

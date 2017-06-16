@@ -1,6 +1,6 @@
 import debug from 'debug';
 
-const { forPlayer: calculatePoints } = require('../../../utils/calculatePoints');
+const { calculatePoints, mapper } = require('../../../utils/calculatePoints');
 const playersJson = require('../../../../../scripts/2016-2017/stats-GW25.json');
 
 const Player = require('mongoose').model('Player');
@@ -20,30 +20,38 @@ export const updatePlayers = ({ playerUpdates }) => {
   return Player.bulkWrite(bulkUpdate).then(() => (playerUpdates));
 };
 
+export const importToStats = (player, internal) => {
+  const map = mapper(internal)
+  const season = internal ? player : player.stats.season;
+
+  const stats = {
+    apps: season[map.STARTING_XI],
+    subs: season[map.SUBS],
+    gls: season[map.GOALS],
+    asts: season[map.ASSISTS],
+    mom: season[map.YELLOW_CARDS],
+    cs: season[map.CLEAN_SHEETS],
+    con: season[map.CONCEDED],
+    pensv: season[map.SAVED_PENALTIES],
+    ycard: season[map.YELLOW_CARDS],
+    rcard: season[map.RED_CARDS],
+  };
+  player.gameWeek = {
+    stats,
+    points: calculatePoints(stats, player.pos)
+  };
+  player.total = {
+    stats,
+    points: calculatePoints(stats, player.pos)
+  };
+  player.name = player.player || `${player.sName}, ${player.fName}`;
+  player.club = player.club || player.tName;
+  return player;
+};
+
 export const importPlayers = () => (
   Object.keys(playersJson).map((key) => {
-    const player = playersJson[key];
-    const stats = {
-      apps: player.apps,
-      subs: player.subs,
-      gls: player.gls,
-      asts: player.asts,
-      mom: player.mom,
-      cs: player.cs,
-      con: player.con,
-      pensv: player.pensv,
-      ycard: player.ycard,
-      rcard: player.rcard,
-    };
-    player.gameWeek = {
-      stats,
-      points: calculatePoints(stats, player.pos)
-    };
-    player.total = {
-      stats,
-      points: calculatePoints(stats, player.pos)
-    };
-    player.name = player.player;
+    const player = importToStats(playersJson[key]);
     const newPlayer = new Player(player);
     return newPlayer.save();
   })
