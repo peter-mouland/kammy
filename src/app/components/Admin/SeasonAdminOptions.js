@@ -11,9 +11,9 @@ class SeasonAdminOptions extends React.Component {
     season: PropTypes.object,
   }
 
-  onChange = (e) => {
+  toggleLive = (e) => {
     const isLive = e.target.checked;
-    this.props.onChange(isLive);
+    this.props.updateSeason({ isLive });
   }
 
   fetchStats = (e) => {
@@ -21,9 +21,17 @@ class SeasonAdminOptions extends React.Component {
     this.props.fetchStats(this.sourceEl.value);
   }
 
+  saveStats = (e) => {
+    console.log(e); // eslint-disable-line no-console
+  }
+
+  incrementGameWeek = () => {
+    this.props.updateSeason({ currentGW: this.props.season.currentGW + 1 });
+  }
+
   render() {
     const {
-      season, incrementGameWeek, onChange, stats, ...props // eslint-disable-line no-unused-vars
+      season, updateSeason, stats, ...props // eslint-disable-line no-unused-vars
     } = this.props;
 
     return (
@@ -32,14 +40,14 @@ class SeasonAdminOptions extends React.Component {
           <Toggle checked={ season.isLive }
                   id={`season-live--${season._id}`}
                   className="admin-option"
-                  onChange={ this.onChange }
+                  onChange={ this.toggleLive }
           >
             Season is Live?
           </Toggle>
           <div className="admin-option">
             Current GW:
             <span className="admin-option__value">{season.currentGW}</span>
-            <button className="admin-option__value" onClick={ incrementGameWeek }>+1</button>
+            <button className="admin-option__value" onClick={ this.incrementGameWeek }>+1</button>
           </div>
           <div className="admin-option admin-option__btn">
             <form onSubmit={ this.fetchStats }>
@@ -53,6 +61,7 @@ class SeasonAdminOptions extends React.Component {
         </div>
         { stats ?
           <div className="admin-options" >
+            <button className="admin-option__value" onClick={ this.saveStats }>Save Stats</button>
             <ul >
               {(Object.keys(stats)).map((key) => (
                 <li key={ key }>{stats[key].player} {stats[key].gw1}</li>

@@ -134,7 +134,7 @@ export const updateTeamMutation = `
 
 export const updateSeasonMutation = `
   ${seasonFragment}
-  mutation ($seasonId: String, $isLive: Boolean) { 
-    updateSeason(seasonId: $seasonId, isLive: $isLive){ ...seasonInfo }   
+  mutation ($seasonId: String, $isLive: Boolean, $currentGW: Int) { 
+    updateSeason(seasonId: $seasonId, isLive: $isLive, currentGW: $currentGW){ ...seasonInfo }   
   }
 `;

@@ -113,9 +113,18 @@ export function stats(state = {}, action) {
   }
 }
 
+function updatedSeasonState(state, updatedSeason) {
+  const idx = state.findIndex((season) => season._id === updatedSeason._id);
+  const newData = [...state];
+  newData[idx] = updatedSeason;
+  return newData;
+}
+
 export function seasons(state = {}, action) {
-  const newSeason = action.payload && action.payload.data && action.payload.data.addSeason;
-  const newLeague = action.payload && action.payload.data && action.payload.data.addLeague;
+  const data = action.payload && action.payload.data;
+  const newSeason = data && data.addSeason;
+  const updatedSeason = data && data.updateSeason;
+  const newLeague = data && data.addLeague;
   switch (action.type) {
     case `${actions.FETCH_SEASONS}_FULFILLED`:
       return {
@@ -129,6 +138,11 @@ export function seasons(state = {}, action) {
           ...state.data,
           newSeason
         ]
+      };
+    case `${actions.UPDATE_SEASON}_FULFILLED`:
+      return {
+        ...state,
+        data: updatedSeasonState(state.data, updatedSeason)
       };
     case `${actions.ADD_LEAGUE}_FULFILLED`:
       return addLeagueToState(state, action.meta.seasonId, newLeague);

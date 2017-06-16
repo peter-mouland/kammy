@@ -92,10 +92,10 @@ export function addLeague(seasonId, name) {
   };
 }
 
-export function updateSeason({ seasonId, isLive }) {
+export function updateSeason({ seasonId, ...update }) {
   return {
     type: UPDATE_SEASON,
-    payload: fetch.graphQL('updateSeasonMutation', { seasonId, isLive })
+    payload: fetch.graphQL('updateSeasonMutation', { seasonId, ...update })
   };
 }
 

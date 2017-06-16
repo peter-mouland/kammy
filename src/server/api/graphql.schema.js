@@ -182,7 +182,7 @@ const schemaString = `
     addSeason(name: String): Season
     updateTeam(teamUpdate: TeamUpdate): Team
     assignTeamToLeague(leagueId: String, leagueName: String, teamId: String): Team
-    updateSeason(seasonId: String, isLive: Boolean): Season
+    updateSeason(seasonId: String, isLive: Boolean, currentGW: Int): Season
   }
 `;
 

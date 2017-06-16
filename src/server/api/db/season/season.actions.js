@@ -28,7 +28,12 @@ export const addLeague = ({ seasonId, name }) => (
     .then((season) => season.leagues.find((league) => league.name === name))
 );
 
-export const updateSeason = ({ seasonId, isLive }) => (
-  updateSeasonById(seasonId, { $set: { isLive } })
-);
+export const updateSeason = ({ seasonId, isLive, currentGW }) => {
+  const update = { };
+  if (isLive) update.isLive = isLive;
+  if (currentGW) update.currentGW = currentGW;
+  return (
+    updateSeasonById(seasonId, { $set: update })
+  );
+};
 

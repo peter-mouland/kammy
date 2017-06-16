@@ -71,8 +71,8 @@ class AdminPage extends React.Component {
     this.props.updateTeam(team);
   }
 
-  toggleSeasonLive = (isLive, season) => {
-    this.props.updateSeason({ seasonId: season._id, isLive });
+  updateSeason = (season, update) => {
+    this.props.updateSeason({ seasonId: season._id, ...update });
   }
 
   render() {
@@ -120,7 +120,7 @@ class AdminPage extends React.Component {
               return (
                 <div>
                   <SeasonAdminOptions season={season}
-                                      onChange={ (isLive) => this.toggleSeasonLive(isLive, season) }
+                                      updateSeason={ (update) => this.updateSeason(season, update) }
                                       fetchStats={ this.fetchStats }
                                       stats={ stats }
                   />
