@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
 const cssnano = require('cssnano');
-const Visualizer = require('webpack-visualizer-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 const { SRC, DIST } = require('./paths');
@@ -33,17 +32,14 @@ module.exports = {
   context: SRC,
   output: {
     path: DIST,
-    filename: '[name]-[hash].js',
+    filename: '[name].js',
     publicPath: '/'
   },
   plugins: [
     new ProgressBarPlugin(),
     new webpack.HashedModuleIdsPlugin(),
-    new Visualizer({
-      filename: '../webpack-stats.html'
-    }),
     new webpack.optimize.CommonsChunkPlugin({ names: ['vendor'], minChunks: Infinity }),
-    new ExtractTextPlugin('[name]-[hash].css'),
+    new ExtractTextPlugin('[name].css'),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.PORT': JSON.stringify(process.env.PORT),

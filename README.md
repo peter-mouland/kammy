@@ -13,6 +13,11 @@ Authentication is handled locally with MongoDB as well as Passport integration.
   * `brew instal mongodb`
   * `npm i`
 
+## Running The App
+
+ * Locally (_with hot-reloading_): `npm start`
+ * In Production: `npm run build && npm run start:prod`
+
 ## Testing
 
 We use BrowserStack to enable us to check the site against multiple browsers and environments.

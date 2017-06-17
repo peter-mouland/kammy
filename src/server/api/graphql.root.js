@@ -28,7 +28,7 @@ const getStats = async ({ currentGW, source }) => {
       const dbPlayer = dbPlayers.find((dbPlyr) => dbPlyr.code === player.id);
       if (!dbPlayer) {
         // todo: show admin user error
-        console.log('not found ' + player.id + ' ' + player.sName + ', ' + player.fName);
+        console.log(`not found ${player.id} ${player.sName}, ${player.fName}`); // eslint-disable-line
       } else {
         player.pos = dbPlayer.pos;
         stats[dbPlayer.name] = importToStats(player);

@@ -21,7 +21,7 @@ export const updatePlayers = ({ playerUpdates }) => {
 };
 
 export const importToStats = (player, internal) => {
-  const map = mapper(internal)
+  const map = mapper(internal);
   const season = internal ? player : player.stats.season;
 
   const stats = {

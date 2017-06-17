@@ -8,16 +8,12 @@
     "//retrieve-players": "babel-node ./scripts/retrieve-players.js",
     "players-to-db": "babel-node ./scripts/players-to-db.js",
     "mongo": "mongod  --dbpath mongodb",
-    "build": "rm -rf compiled && npm run compile:server && npm run compile && node scripts/copyAssets.js",
-    "build:prod": "rm -rf compiled && npm run compile:server && npm run compile:prod && node scripts/copyAssets.js",
-    "compile": "webpack --config src/config/webpack.config.prod.js -p --json > compiled/stats.json",
-    "compile:prod": "NODE_ENV=production npm run compile",
-    "compile:dev": "webpack --config src/config/webpack.config.dev.js",
+    "build": "rm -rf compiled && npm run compile:server && npm run compile:app && node scripts/copyAssets.js",
+    "compile:app": "NODE_ENV=production webpack --config src/config/webpack.config.prod.js -p --json > compiled/stats.json",
     "compile:server": "NODE_ENV=production babel src -d compiled",
-    "start": "node compiled/server-entry.js",
-    "start:prod": "NODE_ENV=production npm run start",
-    "start:dev": "nodemon src/server-entry.js",
-    "start:withFixtures": "FIXTURES=true nodemon src/server-entry.js",
+    "start": "webpack-dev-server --config src/config/webpack.config.dev-server.js",
+    "start:prod": "NODE_ENV=production node compiled/server-entry.js",
+    "start:withFixtures": "FIXTURES=true npm run start",
     "fixtures": "node tests/test-servers/fixtures-server.js",
     "lint": "sass-lint -v -q -c ./sass-lint.yml && eslint 'src/**/*.js'",
     "test": "npm run test:unit && npm run test:func",
@@ -32,15 +28,15 @@
     "mocha": "mocha --opts ./tests/config/mocha.opts "
   },
   "engines": {
-    "node": "7.10.0",
-    "npm": "4.2.0"
+    "node": "8.1.0",
+    "npm": "5.0.3"
   },
   "pre-commit": [
     "lint",
     "test"
   ],
   "pre-push": [
-    "build:prod",
+    "build",
     "test:e2e"
   ],
   "author": "Peter Mouland",
@@ -150,6 +146,8 @@
     "selenium-standalone": "^6.4.1",
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "webpack-dev-server": "^2.4.5",
+    "webpack-merge": "^4.1.0"
   }
 }

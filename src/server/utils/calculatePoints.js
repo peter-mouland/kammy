@@ -1,15 +1,15 @@
 export const mapper = (internal) => ({
-  STARTING_XI : internal ? 'apps' : 0,
-  SUBS : internal ? 'subs' : 2,
-  GOALS : internal ? 'gls' : 3,
-  ASSISTS : internal ? 'asts' : 4,
-  YELLOW_CARDS : internal ? 'ycard' : 5,
-  RED_CARDS : internal ? 'rcard' : 6,
-  MAN_OF_MATCH : internal ? 'mom' : 1,
-  CLEAN_SHEETS : internal ? 'cs' : 7,
-  CONCEDED : internal ? 'con' : 8,
-  SAVED_PENALTIES : internal ? 'pensv' : 11
-})
+  STARTING_XI: internal ? 'apps' : 0,
+  SUBS: internal ? 'subs' : 2,
+  GOALS: internal ? 'gls' : 3,
+  ASSISTS: internal ? 'asts' : 4,
+  YELLOW_CARDS: internal ? 'ycard' : 5,
+  RED_CARDS: internal ? 'rcard' : 6,
+  MAN_OF_MATCH: internal ? 'mom' : 1,
+  CLEAN_SHEETS: internal ? 'cs' : 7,
+  CONCEDED: internal ? 'con' : 8,
+  SAVED_PENALTIES: internal ? 'pensv' : 11
+});
 
 export function forStarting(starts) { // starting a match 3 point
   return starts * 3;

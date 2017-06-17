@@ -4,7 +4,7 @@ machine:
   timezone:
     Europe/London
   node:
-    version: v7.10
+    version: v8.1
   java:
     version: openjdk8
 general:
@@ -19,7 +19,7 @@ test:
   override:
     - npm run test:unit  -- --reporter mocha-junit-reporter
     - npm run test:func
-    - npm run build:prod
+    - npm run build
 #    - npm run test:e2e
   post:
     - git config --global user.name "Peter Mouland"

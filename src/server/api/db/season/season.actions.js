@@ -30,7 +30,7 @@ export const addLeague = ({ seasonId, name }) => (
 
 export const updateSeason = ({ seasonId, isLive, currentGW }) => {
   const update = { };
-  if (isLive) update.isLive = isLive;
+  if (typeof isLive === 'boolean') update.isLive = isLive;
   if (currentGW) update.currentGW = currentGW;
   return (
     updateSeasonById(seasonId, { $set: update })
