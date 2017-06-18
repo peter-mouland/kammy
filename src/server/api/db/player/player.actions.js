@@ -1,7 +1,7 @@
 import debug from 'debug';
 import mongoose from 'mongoose';
 
-const playersJson = require('../../../../../scripts/2016-2017/stats-GW25.json');
+const playersJson = require('../../../../assets/2016-2017/stats-GW25.json');
 const { calculatePoints, calculateGameWeek } = require('../../../utils/calculatePoints');
 
 const log = debug('kammy:db/player.actions');
@@ -32,6 +32,26 @@ export const updatePlayers = ({ playerUpdates }) => {
   return Player.bulkWrite(bulkUpdate).then(() => (playerUpdates));
 };
 
+export const mapImportToSkyFormat = (player) => {
+  player.id = player.code;
+  player.stats = {
+    season: [
+      player.apps,
+      player.mom,
+      player.subs,
+      player.gls,
+      player.asts,
+      player.ycard,
+      player.rcard,
+      player.cs,
+      player.con,
+      null,
+      null,
+      player.pensv
+    ] };
+  return player;
+};
+
 export const importToStats = (player, previousStats) => {
   const map = mapper();
   const season = player.stats && player.stats.season;
@@ -48,12 +68,12 @@ export const importToStats = (player, previousStats) => {
     ycard: season[map.YELLOW_CARDS],
     rcard: season[map.RED_CARDS],
   };
-  const totalPoints = calculatePoints(stats, player.pos);
-  player.gameWeek = calculateGameWeek(stats, player.pos, previousStats);
-  player.total = {
-    stats,
-    points: totalPoints
+  const total = {
+    points: calculatePoints(stats, player.pos),
+    stats
   };
+  player.gameWeek = previousStats ? calculateGameWeek(stats, player.pos, previousStats) : total;
+  player.total = total;
   player.name = player.player || `${player.sName}, ${player.fName}`;
   player.club = player.club || player.tName;
   return player;
@@ -61,7 +81,9 @@ export const importToStats = (player, previousStats) => {
 
 export const importPlayers = () => (
   Object.keys(playersJson).map((key) => {
-    const player = importToStats(playersJson[key]);
+    const playerWithStats = mapImportToSkyFormat(playersJson[key]);
+    playerWithStats.stats.season = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    const player = importToStats(playerWithStats);
     const newPlayer = new Player(player);
     return newPlayer.save();
   })

@@ -1,7 +1,7 @@
 /* eslint-disable no-confusing-arrow */
 import { findOneUser, addUser, getUsersWithTeams } from './db/user/user.actions';
 import {
-  findPlayers, findPlayer, updatePlayers, importPlayers, importToStats
+  findPlayers, findPlayer, updatePlayers, importPlayers, importToStats, mapImportToSkyFormat
 } from './db/player/player.actions';
 import { updateTeam, getTeams, getTeam, assignTeamToLeague } from './db/team/team.actions';
 import { getSeasons, addLeague, addSeason, updateSeason } from './db/season/season.actions';
@@ -29,26 +29,6 @@ const calculateImport = async (players) => {
     }
   });
   return { stats, errors };
-};
-
-const mapImportToSkyFormat = (player) => {
-  player.id = player.code;
-  player.stats = {
-    season: [
-      player.apps,
-      player.mom,
-      player.subs,
-      player.gls,
-      player.asts,
-      player.ycard,
-      player.rcard,
-      player.cs,
-      player.con,
-      null,
-      null,
-      player.pensv
-    ] };
-  return player;
 };
 
 const getStats = async ({ currentGW, source }) => {
