@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import bemHelper from 'react-bem-helper';
 
 import { availablePositions } from '../../components/Positions/Positions';
+import Interstitial from '../../components/Interstitial/Interstitial';
 
 import './adminOptions.scss';
 import '../PlayerTable/playerTable.scss';
@@ -226,7 +227,7 @@ class PlayerAdminOptions extends React.Component {
         </div>
         <div className="admin-option">
           <h2>Updates</h2>
-          { saving ? <p>Saving</p> : null }
+          { saving ? <Interstitial small>Saving</Interstitial> : null }
           { !saving && players && (Object.keys(playersToUpdate)).length > 0
               ? <DraftUpdates updates={ playersToUpdate }
                               players={ players }

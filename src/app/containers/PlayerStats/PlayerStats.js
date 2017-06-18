@@ -5,6 +5,8 @@ import bemHelper from 'react-bem-helper';
 import debug from 'debug';
 
 import { availablePositions } from '../../components/Positions/Positions';
+import Errors from '../../components/Errors/Errors';
+import Interstitial from '../../components/Interstitial/Interstitial';
 import { fetchPlayers } from '../../actions';
 import './playerStats.scss';
 
@@ -12,18 +14,6 @@ const log = debug('footy:Homepage.js'); //eslint-disable-line
 const bem = bemHelper({ name: 'player-stats' });
 const MAX_GW = 35;
 const GAME_WEEKS = Array(...Array(MAX_GW)).map(Number.prototype.valueOf, 0);
-
-
-const Error = ({ error }) => <div>
-  <p>Error Loading players!</p>
-  <p>{ error.message }</p>
-</div>;
-
-const Errors = ({ errors }) => <div>
-  {errors.map((error, i) => <Error error={error} key={i} />)}
-</div>;
-
-const Loading = () => <p>Loading players....</p>;
 
 class PlayerStats extends React.Component {
 
@@ -77,7 +67,7 @@ class PlayerStats extends React.Component {
     if (errors.length) {
       return <Errors errors={errors} />;
     } else if (loading || !players.length) {
-      return <Loading />;
+      return <Interstitial />;
     }
 
     return (

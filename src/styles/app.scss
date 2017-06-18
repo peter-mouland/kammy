@@ -1,5 +1,6 @@
 @import 'base/resets';
-@import 'utils/adnimations';
+@import 'utils/animations';
+@import 'utils/mixins';
 
 .icon--chevron {
   height: 12px;
@@ -28,12 +29,24 @@
 }
 
 .message {
+  @include clearfix;
   margin: 1em auto;
   text-align: left;
   padding: 1em;
   border-radius: 1em;
   box-shadow: 0 0 20px #282f32;
   color: $white;
+
+  &--small {
+    border-radius: 5px;
+    padding: 0.25em;
+    p {
+      display: inline;
+      float: left;
+      padding-right: 1em;
+      margin: 0.25em;
+    }
+  }
 
   &--success {
     background: $success;

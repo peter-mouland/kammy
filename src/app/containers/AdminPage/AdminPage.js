@@ -4,8 +4,7 @@ import Route from 'react-router-dom/Route';
 
 import join from '../../utils/joinPath';
 import selectedItem from '../../utils/selectedItem';
-import Errors from '../../components/Errors/Errors';
-import Loading from '../../components/Loading/Loading';
+import Interstitial from '../../components/Interstitial/Interstitial';
 import AdminList from '../../components/Admin/AdminList';
 import AddUser from '../../components/Admin/AddUser';
 import AdminAddForm from '../../components/Admin/AdminAddForm';
@@ -18,7 +17,8 @@ import Auth from '../../authentication/auth-helper';
 import {
   fetchSeasons, fetchPlayers, fetchUsersWithTeams, updateTeam, updateSeason, fetchStats,
   addSeason, addLeague, addUser, updatePlayers, assignTeamToLeague, importPlayers,
-  ADD_SEASON, ADD_LEAGUE, ADD_USER, UPDATE_PLAYERS, ASSIGN_TEAM_TO_LEAGUE, FETCH_PLAYERS
+  ADD_SEASON, ADD_LEAGUE, ADD_USER, UPDATE_PLAYERS, ASSIGN_TEAM_TO_LEAGUE,
+  FETCH_PLAYERS, FETCH_STATS
 } from '../../actions';
 
 import './adminPage.scss';
@@ -77,25 +77,25 @@ class AdminPage extends React.Component {
 
   render() {
     const {
-      errors = [], userErrors = [], loading, seasons, players = [], users = [], match, stats
+      statsErrors = [], loading,
+      seasons, players = [], users = [], userErrors = [], match, stats
     } = this.props;
+
     const addingSeason = loading === ADD_SEASON;
     const addingLeague = loading === ADD_LEAGUE;
     const addingUser = loading === ADD_USER;
     const updatingPlayer = loading === UPDATE_PLAYERS;
     const loadingPlayers = loading === FETCH_PLAYERS;
     const assigningUserToLeague = loading === ASSIGN_TEAM_TO_LEAGUE;
+    const statsLoading = loading === FETCH_STATS;
+
     const seasonPath = join(match.url, 'season/:seasonId/');
     const leaguePath = join(seasonPath, 'league/:leagueId/');
     const usersPath = join(match.url, 'users/');
     const playersPath = join(match.url, 'players/');
 
-    if (errors.length) {
-      return <Errors errors={errors} />;
-    } else if (userErrors.length) {
-      return <Errors errors={userErrors} />;
-    } else if (!seasons) {
-      return <Loading />;
+    if (!seasons) {
+      return <Interstitial />;
     } else if (!Auth.isAdmin()) {
       return <p>You're not admin!</p>;
     }
@@ -122,6 +122,8 @@ class AdminPage extends React.Component {
                   <SeasonAdminOptions season={season}
                                       updateSeason={ (update) => this.updateSeason(season, update) }
                                       fetchStats={ (source) => this.fetchStats(season, source) }
+                                      statsLoading={ statsLoading }
+                                      statsErrors={ statsErrors }
                                       stats={ stats }
                   />
                   <AdminList list={ leagues }
@@ -168,6 +170,7 @@ class AdminPage extends React.Component {
                 <UserAdminOptions users={ users }>
                   <AddUser add={(form) => this.addUser(form)}
                            loading={ addingUser }
+                           errors={ userErrors }
                            seasons={ seasons }
                   />
                 </UserAdminOptions>
@@ -230,9 +233,10 @@ function mapStateToProps(state) {
   return {
     seasons: state.seasons.data,
     users: state.users.data,
-    players: state.players.data,
     userErrors: state.users.errors,
+    players: state.players.data,
     stats: state.stats.data,
+    statsErrors: state.stats.errors,
     seasonAdded: state.seasons.seasonAdded,
     leagueAdded: state.seasons.leagueAdded,
     loading: state.promiseState.loading,

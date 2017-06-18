@@ -26,6 +26,13 @@ function clean(obj) { // remove null's
   return newObj;
 }
 
+function updatedSeasonState(state, updatedSeason) {
+  const idx = state.findIndex((season) => season._id === updatedSeason._id);
+  const newData = [...state];
+  newData[idx] = updatedSeason;
+  return newData;
+}
+
 const updatePlayersData = (state, action) => {
   const allPlayers = [...state.data];
   const updates = action.payload.data && action.payload.data.updatePlayers;
@@ -80,16 +87,17 @@ export function promiseState(state = {}, action) {
 }
 
 export function players(state = {}, action) {
+  const data = action.payload && action.payload.data;
   switch (action.type) {
     case `${actions.FETCH_PLAYERS}_FULFILLED`:
       return {
         ...state,
-        data: action.payload.data && action.payload.data.getPlayers,
+        data: data && data.getPlayers,
       };
     case `${actions.IMPORT_PLAYERS}_FULFILLED`:
       return {
         ...state,
-        data: action.payload.data && action.payload.data.importPlayers
+        data: data && data.importPlayers
       };
     case `${actions.UPDATE_PLAYERS}_FULFILLED`:
       return {
@@ -102,22 +110,23 @@ export function players(state = {}, action) {
 }
 
 export function stats(state = {}, action) {
+  const data = action.payload && action.payload.data;
   switch (action.type) {
+    case `${actions.FETCH_STATS}_PENDING`:
+      return {
+        ...state,
+        loading: true,
+        errors: [],
+      };
     case `${actions.FETCH_STATS}_FULFILLED`:
       return {
         ...state,
-        data: action.payload.data && action.payload.data.getStats.stats,
+        errors: action.payload.errors,
+        data: data.getStats && data.getStats.stats,
       };
     default:
       return state;
   }
-}
-
-function updatedSeasonState(state, updatedSeason) {
-  const idx = state.findIndex((season) => season._id === updatedSeason._id);
-  const newData = [...state];
-  newData[idx] = updatedSeason;
-  return newData;
 }
 
 export function seasons(state = {}, action) {
@@ -152,19 +161,19 @@ export function seasons(state = {}, action) {
 }
 
 export function teams(state = {}, action) {
-  const updatedTeam = action.payload && action.payload.data && action.payload.data.updateTeam;
+  const data = action.payload && action.payload.data;
   switch (action.type) {
     case `${actions.FETCH_TEAMS}_FULFILLED`:
       return {
         ...state,
         errors: action.payload.errors,
-        data: action.payload.data && action.payload.data.getTeams,
+        data: data && data.getTeams,
       };
     case `${actions.UPDATE_TEAM}_FULFILLED`:
       return {
         ...state,
         errors: action.payload.errors,
-        data: updatedTeam,
+        data: data && data.updatedTeam,
       };
     default:
       return state;
@@ -172,14 +181,20 @@ export function teams(state = {}, action) {
 }
 
 export function users(state = {}, action) {
-  const newUser = action.payload && action.payload.data && action.payload.data.addUser;
-  const team = action.payload && action.payload.data && action.payload.data.assignTeamToLeague;
+  const data = action.payload && action.payload.data;
   switch (action.type) {
+    case `${actions.FETCH_USERS_WITH_TEAMS}_PENDING`:
+    case `${actions.ADD_USER}_PENDING`:
+      return {
+        ...state,
+        loading: true,
+        errors: [],
+      };
     case `${actions.FETCH_USERS_WITH_TEAMS}_FULFILLED`:
       return {
         ...state,
         errors: action.payload.errors,
-        data: action.payload.data && action.payload.data.getUsersWithTeams,
+        data: data && data.getUsersWithTeams,
       };
     case `${actions.ADD_USER}_FULFILLED`:
       return {
@@ -187,14 +202,14 @@ export function users(state = {}, action) {
         errors: action.payload.errors,
         data: [
           ...state.data,
-          newUser
+          data && data.addUser
         ],
       };
     case `${actions.ASSIGN_TEAM_TO_LEAGUE}_FULFILLED`:
       return {
         ...state,
         errors: action.payload.errors,
-        data: updateUsers(team),
+        data: updateUsers(data && data.assignTeamToLeague),
       };
     default:
       return state;
@@ -202,21 +217,19 @@ export function users(state = {}, action) {
 }
 
 export function myTeam(state = {}, action) {
-  const updatedTeam = action.payload && action.payload.data && action.payload.data.updateTeam;
-  const team = action.payload && action.payload.data && action.payload.data.getTeam;
+  const data = action.payload && action.payload.data;
   switch (action.type) {
     case `${actions.FETCH_TEAM}_FULFILLED`:
-      log({ team });
       return {
         ...state,
         errors: action.payload.errors,
-        data: team,
+        data: data && data.getTeam,
       };
     case `${actions.UPDATE_TEAM}_FULFILLED`:
       return {
         ...state,
         errors: action.payload.errors,
-        data: updatedTeam,
+        data: data && data.updateTeam,
       };
     default:
       return state;
@@ -224,11 +237,12 @@ export function myTeam(state = {}, action) {
 }
 
 export function dashboard(state = {}, action) {
+  const data = action.payload && action.payload.data;
   switch (action.type) {
     case `${actions.FETCH_DASHBOARD_DATA}_FULFILLED`:
       return {
         ...state,
-        data: action.payload.data && action.payload.data.getDashboard.message,
+        data: data && data.getDashboard.message,
       };
     default:
       return state;

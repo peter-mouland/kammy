@@ -13,20 +13,11 @@ import {
 
 import './my-team.scss';
 import Auth from '../../authentication/auth-helper';
+import Errors from '../../components/Errors/Errors';
+import Interstitial from '../../components/Interstitial/Interstitial';
 
 const bem = bemHelper({ name: 'my-team' });
 debug('kammy:myteam');
-
-const Error = ({ error }) => <div>
-  <p>Error Loading seasons!</p>
-  <p>{ error.message }</p>
-</div>;
-
-const Errors = ({ errors }) => <div>
-  {errors.map((error, i) => <Error error={error} key={i} />)}
-</div>;
-
-const Loading = () => <p>Loading seasons....</p>;
 
 class MyTeam extends React.Component {
 
@@ -107,7 +98,7 @@ class MyTeam extends React.Component {
     if (errors.length) {
       return <Errors errors={errors} />;
     } else if (loading) {
-      return <Loading />;
+      return <Interstitial />;
     }
 
     return (

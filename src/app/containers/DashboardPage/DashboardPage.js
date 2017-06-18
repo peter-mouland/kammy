@@ -1,20 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import Errors from '../../components/Errors/Errors';
+import Interstitial from '../../components/Interstitial/Interstitial';
 import Dashboard from '../../components/Dashboard/Dashboard';
 import { fetchDashboardData, fetchSeasons } from '../../actions';
-
-const Error = ({ error }) => <div>
-  <p>Error Loading seasons!</p>
-  <p>{ error.message }</p>
-</div>;
-
-const Errors = ({ errors }) => <div>
-  {errors.map((error, i) => <Error error={error} key={i} />)}
-</div>;
-
-const Loading = () => <p>Loading seasons....</p>;
-
 
 class DashboardPage extends React.Component {
 
@@ -31,7 +21,7 @@ class DashboardPage extends React.Component {
     if (errors.length) {
       return <Errors errors={errors} />;
     } else if (loading || !seasons) {
-      return <Loading />;
+      return <Interstitial />;
     }
 
 

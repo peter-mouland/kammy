@@ -24,7 +24,7 @@ class UserAdminOptions extends React.Component {
       >
         <div className="admin-option">
           <ul className="simple-list">
-            { users.map((user) => (
+            { users.map((user) => user && (
                 <li key={user._id}>
                   <SubLink { ...bem('text') } to={joinPaths(match.url, user._id)}>
                     { user.name || user.email }

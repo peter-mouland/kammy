@@ -1,10 +1,12 @@
 import React from 'react';
+import bemHelper from 'react-bem-helper';
 
-const Error = ({ error }) => <div>
-  <p>Error Loading seasons!</p>
-  <p>{ error.message }</p>
-</div>;
+const bem = bemHelper({ name: 'message' });
+const Error = ({ error }) => <p>{ error.message }</p>;
 
-export default ({ errors }) => <div>
-  {errors.map((error, i) => <Error error={error} key={i} />)}
-</div>;
+export default ({ errors, small = false }) => (
+  <div { ...bem(null, { error: true, small }) }>
+    <p>Error!</p>
+    {errors.map((error, i) => <Error error={error} key={i} />)}
+  </div>
+);

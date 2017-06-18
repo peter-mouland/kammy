@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Toggle from '../Toggle/Toggle';
+import Interstitial from '../Interstitial/Interstitial';
+import Errors from '../../components/Errors/Errors';
 
 import './adminOptions.scss';
 
@@ -25,13 +27,17 @@ class SeasonAdminOptions extends React.Component {
     console.log(e); // eslint-disable-line no-console
   }
 
+  decrementGameWeek = () => {
+    this.props.updateSeason({ currentGW: this.props.season.currentGW - 1 });
+  }
+
   incrementGameWeek = () => {
     this.props.updateSeason({ currentGW: this.props.season.currentGW + 1 });
   }
 
   render() {
     const {
-      season, updateSeason, fetchStats, stats, ...props // eslint-disable-line no-unused-vars
+      season, statsErrors, statsLoading, updateSeason, fetchStats, stats, ...props // eslint-disable-line
     } = this.props;
 
     return (
@@ -47,7 +53,10 @@ class SeasonAdminOptions extends React.Component {
           <div className="admin-option">
             Current GW:
             <span className="admin-option__value">{season.currentGW}</span>
-            <button className="admin-option__value" onClick={ this.incrementGameWeek }>+1</button>
+            <div>
+              <button className="admin-option__value" onClick={ this.decrementGameWeek }>-1</button>
+              <button className="admin-option__value" onClick={ this.incrementGameWeek }>+1</button>
+            </div>
           </div>
           <div className="admin-option admin-option__btn">
             <form onSubmit={ this.fetchStats }>
@@ -56,6 +65,8 @@ class SeasonAdminOptions extends React.Component {
                 <option value="internal">Test Data</option>
               </select>
               <input type="submit" value="Fetch Stats" />
+              { statsLoading ? <Interstitial small message="Loading stats"/> : null }
+              { statsErrors.length ? <Errors errors={statsErrors} small/> : null }
             </form>
           </div>
         </div>
