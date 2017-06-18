@@ -56,6 +56,14 @@ export default class PlayerTable extends React.Component {
     this.setState({ nameFilter: e.target.value.toLowerCase().trim() });
   }
 
+  statsOrPoints = (e) => {
+    this.setState({ statsOrPoints: e.target.value.trim() });
+  }
+
+  weeklyOrSeason = (e) => {
+    this.setState({ weeklyOrSeason: e.target.value.trim() });
+  }
+
   setClubs = (props) => {
     this.clubs = (props.players.length) ? this.getClubs(props.players) : [];
   }
@@ -67,8 +75,8 @@ export default class PlayerTable extends React.Component {
   }
 
   render() {
-    const { players, type, className, selectPlayer, selectedPosition } = this.props;
-    const { posFilter, clubFilter, nameFilter } = this.state;
+    const { players, type, className, selectPlayer, selectedPosition, showStats } = this.props;
+    const { posFilter, clubFilter, nameFilter, statsOrPoints = 'stats', weeklyOrSeason = 'gameWeek' } = this.state;
     const clubs = this.clubs;
 
     return (
@@ -78,7 +86,16 @@ export default class PlayerTable extends React.Component {
           <th>position</th>
           <th>player</th>
           <th>club</th>
-          <th>point</th>
+          { selectPlayer && <th></th> }
+          { showStats && <td> apps </td> }
+          { showStats && <td> subs </td> }
+          { showStats && <td> gls </td> }
+          { showStats && <td> asts </td> }
+          { showStats && <td> cs </td> }
+          { showStats && <td> con </td> }
+          { showStats && <td> pensv </td> }
+          { showStats && <td> ycard </td> }
+          { showStats && <td> rcard </td> }
         </tr>
         <tr {...bem('data-filter')}>
           <th>
@@ -94,7 +111,23 @@ export default class PlayerTable extends React.Component {
                       options={ clubs }
             />
           </th>
-        </tr>
+          { showStats && (
+            <th>
+              <Selector onChange={ this.weeklyOrSeason }
+                        defaultValue={ weeklyOrSeason }
+                        options={ ['gameWeek', 'total'] }
+              />
+            </th>
+          )}
+          { showStats && (
+            <th>
+              <Selector onChange={ this.statsOrPoints }
+                        defaultValue={ statsOrPoints }
+                        options={ ['stats', 'points'] }
+              />
+            </th>
+          )}
+          </tr>
         </thead>
         <tbody>
         {
@@ -111,11 +144,24 @@ export default class PlayerTable extends React.Component {
                   <td { ...bem('meta')} >{ player.pos }</td>
                   <td { ...bem('meta')} >{ player.name }</td>
                   <td { ...bem('meta')} >{ player.club }</td>
-                  <td { ...bem('meta')} >
-                    <button onClick={ () => selectPlayer(player) } disabled={ !selectedPosition }>
-                      Select
-                    </button>
-                  </td>
+                  { selectPlayer &&
+                      <td { ...bem('meta')} >
+                        <button onClick={ () => selectPlayer(player) }
+                                disabled={ !selectedPosition }
+                        >
+                          Select
+                        </button>
+                      </td>
+                  }
+                  { showStats && <td> {player[weeklyOrSeason][statsOrPoints].apps} </td> }
+                  { showStats && <td> {player[weeklyOrSeason][statsOrPoints].subs} </td> }
+                  { showStats && <td> {player[weeklyOrSeason][statsOrPoints].gls} </td> }
+                  { showStats && <td> {player[weeklyOrSeason][statsOrPoints].asts} </td> }
+                  { showStats && <td> {player[weeklyOrSeason][statsOrPoints].cs} </td> }
+                  { showStats && <td> {player[weeklyOrSeason][statsOrPoints].con} </td> }
+                  { showStats && <td> {player[weeklyOrSeason][statsOrPoints].pensv} </td> }
+                  { showStats && <td> {player[weeklyOrSeason][statsOrPoints].ycard} </td> }
+                  { showStats && <td> {player[weeklyOrSeason][statsOrPoints].rcard} </td> }
                 </tr>
               ))
         }

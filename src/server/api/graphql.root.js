@@ -14,28 +14,51 @@ const getDashboard = (args, context) => (context.user)
     ? ({ message: "You're authorized to see this secret message." })
     : ({ message: 'default message' });
 
-const getStats = async ({ currentGW, source }) => {
+const calculateImport = async (players) => {
+  const dbPlayers = await getPlayers();
   const stats = {};
-  if (source === 'internal') {
-    const players = await json.get(`${config.INTERNAL_STATS_URL}/stats-GW${currentGW}.json`); // eslint-disable-line
-    Object.keys(players).forEach((key) => {
-      stats[key] = importToStats(players[key], true);
-    });
-  } else {
-    const data = await json.get(config.EXTERNAL_STATS_URL); // eslint-disable-line
-    const dbPlayers = await getPlayers();
-    data.players.forEach((player) => {
-      const dbPlayer = dbPlayers.find((dbPlyr) => dbPlyr.code === player.id);
-      if (!dbPlayer) {
-        // todo: show admin user error
-        console.log(`not found ${player.id} ${player.sName}, ${player.fName}`); // eslint-disable-line
-      } else {
-        player.pos = dbPlayer.pos;
-        stats[dbPlayer.name] = importToStats(player);
-      }
-    });
-  }
-  return { stats };
+  const errors = [];
+  players.forEach((player) => {
+    const dbPlayer = dbPlayers.find((dbPlyr) => dbPlyr.code === (player.id || player.code));
+    if (!dbPlayer) {
+      errors.push({ message: `not found ${player.id} ${player.sName}, ${player.fName}`, player });
+    } else {
+      player.pos = dbPlayer.pos;
+      stats[dbPlayer.name] = importToStats(player, dbPlayer.total.stats);
+      delete stats[dbPlayer.name].stats;
+    }
+  });
+  return { stats, errors };
+};
+
+const mapImportToSkyFormat = (player) => {
+  player.id = player.code;
+  player.stats = {
+    season: [
+      player.apps,
+      player.mom,
+      player.subs,
+      player.gls,
+      player.asts,
+      player.ycard,
+      player.rcard,
+      player.cs,
+      player.con,
+      null,
+      null,
+      player.pensv
+    ] };
+  return player;
+};
+
+const getStats = async ({ currentGW, source }) => {
+  const data = (source === 'internal')
+    ? (await json.get(`${config.INTERNAL_STATS_URL}/stats-GW${currentGW}.json`)) // eslint-disable-line
+    : (await json.get(config.EXTERNAL_STATS_URL)).players;
+  const players = (Array.isArray(data))
+    ? data
+    : (Object.keys(data)).map((key) => mapImportToSkyFormat(data[key]));
+  return calculateImport(players, currentGW);
 };
 
 

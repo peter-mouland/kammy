@@ -6,6 +6,7 @@ import Interstitial from '../Interstitial/Interstitial';
 import Errors from '../../components/Errors/Errors';
 
 import './adminOptions.scss';
+import PlayerTable from '../PlayerTable/PlayerTable';
 
 class SeasonAdminOptions extends React.Component {
 
@@ -71,16 +72,20 @@ class SeasonAdminOptions extends React.Component {
           </div>
         </div>
         { stats ?
-          <div className="admin-options" >
+          <div className="admin-options">
             <button className="admin-option__value" onClick={ this.saveStats }>Save Stats</button>
-            <ul >
-              {(Object.keys(stats)).map((key) => (
-                <li key={ key }>
-                  {stats[key].name}
-                  {stats[key].total.points.total}
-                </li>
-              ))}
-            </ul>
+          </div> : null
+        }
+        { stats ?
+          <div className="admin-options" >
+            <section >
+              <PlayerTable players={ (Object.keys(stats)).map((key) => stats[key]) }
+                           type="my-team"
+                           showStats
+                           // selectedPosition={ selectedPosition }
+                           // selectPlayer={ this.selectPlayer }
+              />
+            </section>
           </div>
           : null
         }

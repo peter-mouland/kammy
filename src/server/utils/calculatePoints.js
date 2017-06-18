@@ -1,16 +1,3 @@
-export const mapper = (internal) => ({
-  STARTING_XI: internal ? 'apps' : 0,
-  SUBS: internal ? 'subs' : 2,
-  GOALS: internal ? 'gls' : 3,
-  ASSISTS: internal ? 'asts' : 4,
-  YELLOW_CARDS: internal ? 'ycard' : 5,
-  RED_CARDS: internal ? 'rcard' : 6,
-  MAN_OF_MATCH: internal ? 'mom' : 1,
-  CLEAN_SHEETS: internal ? 'cs' : 7,
-  CONCEDED: internal ? 'con' : 8,
-  SAVED_PENALTIES: internal ? 'pensv' : 11
-});
-
 export function forStarting(starts) { // starting a match 3 point
   return starts * 3;
 }
@@ -73,17 +60,16 @@ function forMOM() {
 }
 
 export function calculatePoints(stats, pos) {
-  const map = mapper(true);
-  const apps = forStarting(stats[map.STARTING_XI], pos);
-  const subs = forSub(stats[map.SUBS], pos);
-  const gls = forGoals(stats[map.GOALS], pos);
-  const asts = forAssists(stats[map.ASSISTS], pos);
-  const mom = forMOM(stats[map.MAN_OF_MATCH], pos);
-  const cs = forCleanSheet(stats[map.CLEAN_SHEETS], pos);
-  const con = forConceded(stats[map.CONCEDED], pos);
-  const pensv = forPenaltiesSaved(stats[map.SAVED_PENALTIES], pos);
-  const ycard = forYellowCards(stats[map.YELLOW_CARDS], pos);
-  const rcard = forRedCards(stats[map.RED_CARDS], pos);
+  const apps = forStarting(stats.apps, pos);
+  const subs = forSub(stats.subs, pos);
+  const mom = forMOM(stats.mom, pos);
+  const gls = forGoals(stats.gls, pos);
+  const asts = forAssists(stats.asts, pos);
+  const cs = forCleanSheet(stats.cs, pos);
+  const con = forConceded(stats.con, pos);
+  const pensv = forPenaltiesSaved(stats.pensv, pos);
+  const ycard = forYellowCards(stats.ycard, pos);
+  const rcard = forRedCards(stats.rcard, pos);
   const total = mom + gls + ycard + rcard + apps + subs + asts + cs + con + pensv;
   return {
     apps,
@@ -97,5 +83,39 @@ export function calculatePoints(stats, pos) {
     ycard,
     rcard,
     total
+  };
+}
+
+export function calculateGameWeek(totalStats, pos, previousStats) {
+  const points = {
+    apps: forStarting(totalStats.apps, pos) - forStarting(previousStats.apps, pos),
+    subs: forSub(totalStats.subs, pos) - forSub(previousStats.subs, pos),
+    mom: forMOM(totalStats.mom, pos) - forMOM(previousStats.mom, pos),
+    gls: forGoals(totalStats.gls, pos) - forGoals(previousStats.gls, pos),
+    asts: forAssists(totalStats.asts, pos) - forAssists(previousStats.asts, pos),
+    cs: forCleanSheet(totalStats.cs, pos) - forCleanSheet(previousStats.cs, pos),
+    con: forConceded(totalStats.con, pos) - forConceded(previousStats.con, pos),
+    pensv: forPenaltiesSaved(totalStats.pensv, pos) - forPenaltiesSaved(previousStats.pensv, pos),
+    ycard: forYellowCards(totalStats.ycard, pos) - forYellowCards(previousStats.ycard, pos),
+    rcard: forRedCards(totalStats.rcard, pos) - forRedCards(previousStats.rcard, pos),
+  };
+  return {
+    points: {
+      ...points,
+      total: points.apps + points.subs + points.mom + points.gls + points.asts + points.cs
+              + points.con + points.ycard + points.rcard + points.pensv
+    },
+    stats: {
+      apps: totalStats.apps - previousStats.apps,
+      subs: totalStats.subs - previousStats.subs,
+      mom: totalStats.mom - previousStats.mom,
+      gls: totalStats.gls - previousStats.gls,
+      asts: totalStats.asts - previousStats.asts,
+      cs: totalStats.cs - previousStats.cs,
+      con: totalStats.con - previousStats.con,
+      pensv: totalStats.pensv - previousStats.pensv,
+      ycard: totalStats.ycard - previousStats.ycard,
+      rcard: totalStats.rcard - previousStats.rcard
+    }
   };
 }
