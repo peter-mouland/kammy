@@ -10,7 +10,6 @@ import Homepage from './containers/Homepage/Homepage';
 import DashboardPage from './containers/DashboardPage/DashboardPage';
 import AdminPage from './containers/AdminPage/AdminPage';
 import MyTeam from './containers/MyTeam/MyTeam';
-import PlayerStats from './containers/PlayerStats/PlayerStats';
 import NotFound from './containers/NotFound/NotFound';
 
 import ChangePassword from './authentication/containers/ChangePasswordPage/ChangePasswordPage';
@@ -65,16 +64,6 @@ export function getRoutesConfig() {
       },
       component: MyTeam,
       requiresAuthentication: true,
-    },
-    {
-      name: 'playerStats',
-      path: '/player-stats/',
-      label: 'Player Stats',
-      meta: {
-        ...baseMetaData,
-        title: 'Player Stats',
-      },
-      component: PlayerStats
     },
     {
       name: 'logout',

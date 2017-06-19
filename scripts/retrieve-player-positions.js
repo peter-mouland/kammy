@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 import debug from 'debug';
 
-import GoogleSpreadsheet from '../src/server/lib/google-sheets';
-import creds from '../src/server/lib/google-sheets/google-generated-creds.json';
-import json from '../src/server/lib/json';
+import GoogleSpreadsheet from './lib/google-sheets';
+import creds from './lib/google-sheets/google-generated-creds.json';
+import json from './lib/json';
 
 const log = debug('footy:retrieve-player-positions');
 

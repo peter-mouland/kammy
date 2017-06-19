@@ -14,7 +14,16 @@ const stats = {
 };
 
 const points = {
-  ...stats,
+  apps: Number,
+  subs: Number,
+  gls: Number,
+  asts: Number,
+  mom: Number,
+  cs: Number,
+  con: Number,
+  pensv: Number,
+  ycard: Number,
+  rcard: Number,
   total: Number
 };
 

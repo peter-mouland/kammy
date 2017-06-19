@@ -59,7 +59,7 @@ function forMOM() {
   return 0;
 }
 
-export function calculatePoints(stats, pos) {
+export function calculateTotalPoints(stats, pos) {
   const apps = forStarting(stats.apps, pos);
   const subs = forSub(stats.subs, pos);
   const mom = forMOM(stats.mom, pos);
@@ -119,3 +119,12 @@ export function calculateGameWeek(totalStats, pos, previousStats) {
     }
   };
 }
+
+// side-effecty :S
+export const calculatePoints = (player, previousStats) => {
+  player.total.points = calculateTotalPoints(player.total.stats, player.pos);
+  player.gameWeek = previousStats
+    ? calculateGameWeek(player.total.stats, player.pos, previousStats)
+    : player.total.stats;
+  return player;
+};

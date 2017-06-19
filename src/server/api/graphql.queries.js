@@ -20,7 +20,7 @@
 
 const minPlayerFragment = `
 fragment minPlayerInfo on MinPlayerDetail {
-  _id name club
+  _id name club code
 }`;
 
 const playerFragment = `
@@ -139,8 +139,8 @@ export const updateSeasonMutation = `
   }
 `;
 
-export const updateStatsMutation = `
+export const saveGameWeekStatsMutation = `
   mutation ($seasonId: String, $update: JSON) { 
-    updateStats(seasonId: $seasonId, update: $update){ stats }   
+    saveGameWeekStats(seasonId: $seasonId, update: $update){ stats }   
   }
 `;

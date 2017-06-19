@@ -12,6 +12,7 @@ const schemaString = `
     _id: String
     name: String
     club: String
+    code: Int
   }
   type Team {
     _id: String
@@ -187,7 +188,7 @@ const schemaString = `
     updateTeam(teamUpdate: TeamUpdate): Team
     assignTeamToLeague(leagueId: String, leagueName: String, teamId: String): Team
     updateSeason(seasonId: String, isLive: Boolean, currentGW: Int): Season
-    updateStats(seasonId: String, update: JSON): Stats
+    saveGameWeekStats(seasonId: String, update: JSON): Stats
   }
 `;
 

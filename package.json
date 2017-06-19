@@ -6,7 +6,6 @@
   "scripts": {
     "postinstall": "npm run build",
     "//retrieve-players": "babel-node ./scripts/retrieve-players.js",
-    "players-to-db": "babel-node ./scripts/players-to-db.js",
     "mongo": "mongod  --dbpath mongodb",
     "build": "rm -rf compiled && npm run compile:server && npm run compile:app && node scripts/copyAssets.js",
     "compile:app": "NODE_ENV=production webpack --config src/config/webpack.config.prod.js -p --json > compiled/stats.json",

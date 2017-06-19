@@ -16,7 +16,8 @@ import PlayerAdminOptions from '../../components/Admin/PlayerAdminOptions';
 import Auth from '../../authentication/auth-helper';
 import {
   fetchSeasons, fetchPlayers, fetchUsersWithTeams, updateTeam, updateSeason, fetchStats,
-  addSeason, addLeague, addUser, updatePlayers, assignTeamToLeague, importPlayers, updateStats,
+  addSeason, addLeague, addUser, updatePlayers, assignTeamToLeague, importPlayers,
+  saveGameWeekStats,
   ADD_SEASON, ADD_LEAGUE, ADD_USER, UPDATE_PLAYERS, ASSIGN_TEAM_TO_LEAGUE,
   FETCH_PLAYERS, FETCH_STATS
 } from '../../actions';
@@ -75,8 +76,8 @@ class AdminPage extends React.Component {
     this.props.updateSeason({ seasonId: season._id, ...update });
   }
 
-  updateStats = (season, update) => {
-    this.props.updateStats({ seasonId: season._id, update });
+  saveGameWeekStats = (season, update) => {
+    this.props.saveGameWeekStats({ seasonId: season._id, update });
   }
 
   render() {
@@ -126,7 +127,9 @@ class AdminPage extends React.Component {
                   <SeasonAdminOptions season={season}
                                       updateSeason={ (update) => this.updateSeason(season, update) }
                                       fetchStats={ (source) => this.fetchStats(season, source) }
-                                      updateStats={ (update) => this.updateStats(season, update) }
+                                      saveGameWeekStats={
+                                        (update) => this.saveGameWeekStats(season, update)
+                                      }
                                       statsLoading={ statsLoading }
                                       statsErrors={ statsErrors }
                                       stats={ stats }
@@ -264,6 +267,6 @@ export default connect(
     updatePlayers,
     updateTeam,
     updateSeason,
-    updateStats,
+    saveGameWeekStats,
   }
 )(AdminPage);

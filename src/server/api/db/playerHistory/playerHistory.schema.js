@@ -8,7 +8,7 @@ const PlayerHistorySchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Player'
     },
-    gw: [mongooseSchema],
+    gameWeek: [mongooseSchema],
   }
 });
 

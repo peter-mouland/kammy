@@ -92,10 +92,12 @@ class MyTeam extends React.Component {
   }
 
   render() {
-    const { players, loading, errors } = this.props;
+    const { players, loading, errors, team } = this.props;
     const { selectedPosition } = this.state;
 
-    if (errors.length) {
+    if (team === null) {
+      return <Errors errors={[{ message: 'no team found, do you need to log in again?' }]} />;
+    } else if (errors.length) {
       return <Errors errors={errors} />;
     } else if (loading) {
       return <Interstitial />;

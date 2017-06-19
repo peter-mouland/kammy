@@ -16,7 +16,7 @@ class SeasonAdminOptions extends React.Component {
 
   toggleLive = (e) => {
     const isLive = e.target.checked;
-    this.props.updateSeason({ isLive });
+    this.props.updateSeason({ isLive, currentGW: 1 });
   }
 
   fetchStats = (e) => {
@@ -24,8 +24,8 @@ class SeasonAdminOptions extends React.Component {
     this.props.fetchStats(this.sourceEl.value);
   }
 
-  updateStats = (stats) => {
-    this.props.updateStats(stats);
+  saveGameWeekStats = (stats) => {
+    this.props.saveGameWeekStats(stats);
   }
 
   decrementGameWeek = () => {
@@ -38,7 +38,7 @@ class SeasonAdminOptions extends React.Component {
 
   render() {
     const {
-      season, statsErrors, statsLoading, updateSeason, fetchStats, updateStats, stats, ...props // eslint-disable-line
+      season, statsErrors, statsLoading, updateSeason, fetchStats, saveGameWeekStats, stats, ...props // eslint-disable-line
     } = this.props;
 
     return (
@@ -54,29 +54,27 @@ class SeasonAdminOptions extends React.Component {
           <div className="admin-option">
             Current GW:
             <span className="admin-option__value">{season.currentGW}</span>
-            <div>
-              <button className="admin-option__value" onClick={ this.decrementGameWeek }>-1</button>
-              <button className="admin-option__value" onClick={ this.incrementGameWeek }>+1</button>
-            </div>
-          </div>
-          <div className="admin-option admin-option__btn">
-            <form onSubmit={ this.fetchStats }>
-              <select name="stats-source" ref={(node) => { this.sourceEl = node; } }>
-                <option value="external">Sky Sports</option>
-                <option value="internal">Test Data</option>
-              </select>
-              <input type="submit" value="Fetch Stats" />
-              { statsLoading ? <Interstitial small message="Loading stats"/> : null }
-              { statsErrors.length ? <Errors errors={statsErrors} small/> : null }
-            </form>
           </div>
         </div>
-        { stats ?
-          <div className="admin-options">
-            <p>Saving stats will calculate points for each team.</p>
-            <button className="admin-option__value" onClick={ () => this.updateStats(stats) }>Save Stats</button>
-          </div> : null
-        }
+        <div className="admin-options">
+          <p>Game Week Actions:</p>
+          <form className="admin-option__value" onSubmit={ this.fetchStats }>
+            <select name="stats-source" ref={(node) => { this.sourceEl = node; } }>
+              <option value="external">Sky Sports</option>
+              <option value="internal">Test Data</option>
+            </select>
+            <input type="submit" value="1. Fetch Stats" />
+            { statsLoading ? <Interstitial small message="Loading stats"/> : null }
+            { statsErrors.length ? <Errors errors={statsErrors} small/> : null }
+          </form>
+          <button className="admin-option__value"
+                  disabled={!stats}
+                  onClick={ () => this.saveGameWeekStats(stats) }
+          >2. Save Game Week Stats</button>
+
+          <button className="admin-option__value" onClick={ this.incrementGameWeek }>3. Increment Game Week + Update Season Stats</button>
+          <button className="admin-option__value" onClick={ this.decrementGameWeek }>-1 (test admin only)</button>
+        </div>
         { stats ?
           <div className="admin-options" >
             <section >
