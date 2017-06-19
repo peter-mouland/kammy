@@ -138,3 +138,9 @@ export const updateSeasonMutation = `
     updateSeason(seasonId: $seasonId, isLive: $isLive, currentGW: $currentGW){ ...seasonInfo }   
   }
 `;
+
+export const updateStatsMutation = `
+  mutation ($seasonId: String, $update: JSON) { 
+    updateStats(seasonId: $seasonId, update: $update){ stats }   
+  }
+`;

@@ -24,8 +24,8 @@ class SeasonAdminOptions extends React.Component {
     this.props.fetchStats(this.sourceEl.value);
   }
 
-  saveStats = (e) => {
-    console.log(e); // eslint-disable-line no-console
+  updateStats = (stats) => {
+    this.props.updateStats(stats);
   }
 
   decrementGameWeek = () => {
@@ -38,7 +38,7 @@ class SeasonAdminOptions extends React.Component {
 
   render() {
     const {
-      season, statsErrors, statsLoading, updateSeason, fetchStats, stats, ...props // eslint-disable-line
+      season, statsErrors, statsLoading, updateSeason, fetchStats, updateStats, stats, ...props // eslint-disable-line
     } = this.props;
 
     return (
@@ -73,7 +73,8 @@ class SeasonAdminOptions extends React.Component {
         </div>
         { stats ?
           <div className="admin-options">
-            <button className="admin-option__value" onClick={ this.saveStats }>Save Stats</button>
+            <p>Saving stats will calculate points for each team.</p>
+            <button className="admin-option__value" onClick={ () => this.updateStats(stats) }>Save Stats</button>
           </div> : null
         }
         { stats ?

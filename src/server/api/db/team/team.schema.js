@@ -6,9 +6,8 @@ const PlayerType = {
     ref: 'Player'
   },
   name: String,
+  code: Number,
   club: String,
-  gwPoints: Number,
-  totalPoints: Number
 };
 
 const TeamSchema = new mongoose.Schema({
@@ -35,15 +34,39 @@ const TeamSchema = new mongoose.Schema({
     name: String
   },
   name: String,
-  gw: {
-    points: Number,
-    transfersRequested: Number,
-    transfersMade: Number
+  gameWeek: {
+    points: { type: Number, default: 0 },
+    transfersRequested: { type: Number, default: 0 },
+    transfersMade: { type: Number, default: 0 },
+    gk: { type: Number, default: 0 },
+    cbleft: { type: Number, default: 0 },
+    cbright: { type: Number, default: 0 },
+    fbleft: { type: Number, default: 0 },
+    fbright: { type: Number, default: 0 },
+    cmleft: { type: Number, default: 0 },
+    cmright: { type: Number, default: 0 },
+    wmleft: { type: Number, default: 0 },
+    wmright: { type: Number, default: 0 },
+    strleft: { type: Number, default: 0 },
+    strright: { type: Number, default: 0 },
+    sub: { type: Number, default: 0 },
   },
   total: {
-    points: Number,
-    transfersRequested: Number,
-    transfersMade: Number
+    points: { type: Number, default: 0 },
+    transfersRequested: { type: Number, default: 0 },
+    transfersMade: { type: Number, default: 0 },
+    gk: { type: Number, default: 0 },
+    cbleft: { type: Number, default: 0 },
+    cbright: { type: Number, default: 0 },
+    fbleft: { type: Number, default: 0 },
+    fbright: { type: Number, default: 0 },
+    cmleft: { type: Number, default: 0 },
+    cmright: { type: Number, default: 0 },
+    wmleft: { type: Number, default: 0 },
+    wmright: { type: Number, default: 0 },
+    strleft: { type: Number, default: 0 },
+    strright: { type: Number, default: 0 },
+    sub: { type: Number, default: 0 },
   },
   gk: PlayerType,
   cbleft: PlayerType,

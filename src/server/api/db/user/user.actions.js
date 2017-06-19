@@ -1,5 +1,3 @@
-/* eslint-disable no-confusing-arrow */
-
 import debug from 'debug';
 import mongoose from 'mongoose';
 
@@ -48,3 +46,5 @@ export const addUser = ({ seasonId, leagueId, name, email, isAdmin, mustChangePa
 export const getUsersWithTeams = () => (
   User.find().populate('teams').exec()
 );
+
+export const getUser = ({ email, _id }) => findOneUser({ _id, email });

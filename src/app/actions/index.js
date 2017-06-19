@@ -17,6 +17,7 @@ export const IMPORT_PLAYERS = 'IMPORT_PLAYERS';
 export const UPDATE_PLAYERS = 'UPDATE_PLAYERS';
 export const UPDATE_TEAM = 'UPDATE_TEAM';
 export const UPDATE_SEASON = 'UPDATE_SEASON';
+export const UPDATE_STATS = 'UPDATE_STATS';
 export const ASSIGN_TEAM_TO_LEAGUE = 'ASSIGN_TEAM_TO_LEAGUE';
 
 const log = debug('kammy:actions');
@@ -124,5 +125,12 @@ export function updateTeam(teamUpdate) {
   return {
     type: UPDATE_TEAM,
     payload: fetch.graphQL('updateTeamMutation', { teamUpdate })
+  };
+}
+
+export function updateStats({ seasonId, update }) {
+  return {
+    type: UPDATE_STATS,
+    payload: fetch.graphQL('updateStatsMutation', { seasonId, update })
   };
 }

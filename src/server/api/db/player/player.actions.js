@@ -1,3 +1,4 @@
+/* eslint-disable no-confusing-arrow */
 import debug from 'debug';
 import mongoose from 'mongoose';
 
@@ -88,3 +89,5 @@ export const importPlayers = () => (
     return newPlayer.save();
   })
 );
+
+export const getPlayers = ({ player } = {}) => player ? findPlayer({ player }) : findPlayers();

@@ -46,14 +46,14 @@ const schemaString = `
   }
   type Player {
     _id: String!
-    code: String
+    code: Int
     name: String
     pos: String
     club: String
   }
   type UpdatedPlayer { 
     _id: String!
-    code: String
+    code: Int
     name: String
     pos: String
     club: String
@@ -108,12 +108,24 @@ const schemaString = `
     name: String
     mustChangePassword: Boolean
   }
+  
+  type Dashboard {
+    message: String!
+  }
 
   type UserTeams {
     _id: String!
     email: String!
     name: String
     teams: [Team]
+  }
+  
+  type Stats {
+    stats: JSON
+  }
+  
+  input InputStats {
+    stats: JSON
   }
   
   input InputMinDetail {
@@ -124,7 +136,7 @@ const schemaString = `
     _id: String
     name: String
     club: String
-    code: String
+    code: Int
     pos: String
   }
 
@@ -155,14 +167,6 @@ const schemaString = `
     pos: String
   }
   
-  type Dashboard {
-    message: String!
-  }
-  
-  type Stats {
-    stats: JSON
-  }
-  
   type Query {
     getTeam(teamId: String): Team
     getTeams: [Team]
@@ -183,6 +187,7 @@ const schemaString = `
     updateTeam(teamUpdate: TeamUpdate): Team
     assignTeamToLeague(leagueId: String, leagueName: String, teamId: String): Team
     updateSeason(seasonId: String, isLive: Boolean, currentGW: Int): Season
+    updateStats(seasonId: String, update: JSON): Stats
   }
 `;
 

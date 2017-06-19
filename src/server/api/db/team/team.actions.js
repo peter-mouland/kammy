@@ -24,19 +24,8 @@ export const getTeam = ({ teamId }, context) => {
 export const updateTeamById = (_id, teamUpdate) =>
   Team.findByIdAndUpdate(_id, teamUpdate, { new: true }).exec();
 
-function clean(obj) { // remove null's
-  const newObj = {};
-  Object.keys(obj).forEach((key) => {
-    const val = obj[key];
-    if (!val) return;
-    newObj[key] = val;
-  });
-
-  return newObj;
-}
-
 export const updateTeam = ({ teamUpdate }) => {
-  const update = clean({
+  const update = {
     gk: teamUpdate.gk,
     cbleft: teamUpdate.cbleft,
     cbright: teamUpdate.cbright,
@@ -49,7 +38,7 @@ export const updateTeam = ({ teamUpdate }) => {
     strleft: teamUpdate.strleft,
     strright: teamUpdate.strright,
     sub: teamUpdate.sub,
-  });
+  };
   return updateTeamById(teamUpdate._id, { $set: update });
 };
 

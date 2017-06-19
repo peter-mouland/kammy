@@ -124,6 +124,11 @@ export function stats(state = {}, action) {
         errors: action.payload.errors,
         data: data.getStats && data.getStats.stats,
       };
+    case `${actions.UPDATE_STATS}_FULFILLED`:
+      return {
+        ...state,
+        errors: action.payload.errors,
+      };
     default:
       return state;
   }
