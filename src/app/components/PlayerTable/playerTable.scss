@@ -74,3 +74,8 @@ $row-bg--hover: #CACACA;
     }
   }
 }
+
+.player-table__output--highlight {
+  background: $error;
+  color: $white;
+}

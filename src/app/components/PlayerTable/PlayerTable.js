@@ -11,6 +11,8 @@ import './playerTable.scss';
 const bem = bemHelper({ name: 'player-table' });
 debug('kammy:myteam');
 
+const extremeStat = (int) => int < -10 || int > 10;
+
 export default class PlayerTable extends React.Component {
 
   static propTypes = {
@@ -78,6 +80,7 @@ export default class PlayerTable extends React.Component {
     const { players, type, className, selectPlayer, selectedPosition, showStats } = this.props;
     const { posFilter, clubFilter, nameFilter, statsOrPoints = 'stats', weeklyOrSeason = 'gameWeek' } = this.state;
     const clubs = this.clubs;
+    const highlight = weeklyOrSeason === 'gameWeek';
 
     return (
       <table cellPadding={0} cellSpacing={0} { ...bem(null, type, className) }>
@@ -139,31 +142,34 @@ export default class PlayerTable extends React.Component {
                 (!!clubFilter && clubFilter.toUpperCase() !== player.club.toUpperCase());
               return !isFiltered;
             })
-            .map((player) => (
+            .map((player) => {
+              const output = player[weeklyOrSeason][statsOrPoints];
+              return (
                 <tr key={player.code} { ...bem('player')}>
                   <td { ...bem('meta')} >{ player.pos }</td>
                   <td { ...bem('meta')} >{ player.name }</td>
                   <td { ...bem('meta')} >{ player.club }</td>
                   { selectPlayer &&
-                      <td { ...bem('meta')} >
-                        <button onClick={ () => selectPlayer(player) }
-                                disabled={ !selectedPosition }
-                        >
-                          Select
-                        </button>
-                      </td>
+                  <td { ...bem('meta')} >
+                    <button onClick={ () => selectPlayer(player) }
+                            disabled={ !selectedPosition }
+                    >
+                      Select
+                    </button>
+                  </td>
                   }
-                  { showStats && <td> {player[weeklyOrSeason][statsOrPoints].apps} </td> }
-                  { showStats && <td> {player[weeklyOrSeason][statsOrPoints].subs} </td> }
-                  { showStats && <td> {player[weeklyOrSeason][statsOrPoints].gls} </td> }
-                  { showStats && <td> {player[weeklyOrSeason][statsOrPoints].asts} </td> }
-                  { showStats && <td> {player[weeklyOrSeason][statsOrPoints].cs} </td> }
-                  { showStats && <td> {player[weeklyOrSeason][statsOrPoints].con} </td> }
-                  { showStats && <td> {player[weeklyOrSeason][statsOrPoints].pensv} </td> }
-                  { showStats && <td> {player[weeklyOrSeason][statsOrPoints].ycard} </td> }
-                  { showStats && <td> {player[weeklyOrSeason][statsOrPoints].rcard} </td> }
+                  { showStats && <td {...bem('output', { highlight: highlight && extremeStat(output.apps) })}> {output.apps} </td> }
+                  { showStats && <td {...bem('output', { highlight: highlight && extremeStat(output.subs) })}> {output.subs} </td> }
+                  { showStats && <td {...bem('output', { highlight: highlight && extremeStat(output.gls) })}> {output.gls} </td> }
+                  { showStats && <td {...bem('output', { highlight: highlight && extremeStat(output.asts) })}> {output.asts} </td> }
+                  { showStats && <td {...bem('output', { highlight: highlight && extremeStat(output.cs) })}> {output.cs} </td> }
+                  { showStats && <td {...bem('output', { highlight: highlight && extremeStat(output.con) })}> {output.con} </td> }
+                  { showStats && <td {...bem('output', { highlight: highlight && extremeStat(output.pensv) })}> {output.pensv} </td> }
+                  { showStats && <td {...bem('output', { highlight: highlight && extremeStat(output.ycard) })}> {output.ycard} </td> }
+                  { showStats && <td {...bem('output', { highlight: highlight && extremeStat(output.rcard) })}> {output.rcard} </td> }
                 </tr>
-              ))
+              );
+            })
         }
         </tbody>
       </table>
