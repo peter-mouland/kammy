@@ -72,8 +72,12 @@ class SeasonAdminOptions extends React.Component {
                   onClick={ () => this.saveGameWeekStats(stats) }
           >2. Save Game Week Stats</button>
 
-          <button className="admin-option__value" onClick={ this.incrementGameWeek }>3. Increment Game Week + Update Season Stats</button>
-          <button className="admin-option__value" onClick={ this.decrementGameWeek }>-1 (test admin only)</button>
+          <button className="admin-option__value" onClick={ this.incrementGameWeek } disabled>
+            3. Increment Game Week + Update Season Stats
+          </button>
+          <button className="admin-option__value" onClick={ this.decrementGameWeek } disabled>
+            -1 (test admin only)
+          </button>
         </div>
         { stats ?
           <div className="admin-options" >
