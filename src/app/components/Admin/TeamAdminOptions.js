@@ -38,35 +38,48 @@ class UserAdminOptions extends React.Component {
     const { team } = this.props;
     const { showPlayerChoice, leftOrRight } = this.state;
     return (
-      <ul
+      <table
         data-test="admin-options--team"
       >
+        <thead>
+          <tr>
+            <th>code</th>
+            <th>Position</th>
+            <th>Player</th>
+            <th>Team</th>
+            <th>Transfer</th>
+          </tr>
+        </thead>
+        <tbody>
+
         {(Object.keys(positions)).map((key) => {
           const position = positions[key];
           return position.map((side) => (
-            <li key={key + side}>
-              <strong>{key} {side}</strong>
-              {team[key + side].name || <em>unknown</em>}
-              <SVG className="admin-icon"
-                   markup={ changeIcon }
-                   onClick={ () => this.showPlayerChoice({ pos: key, leftOrRight: side }) }
-              />
-              {
-                showPlayerChoice && showPlayerChoice === key && leftOrRight === side &&
-                <PlayerChoice pos={ showPlayerChoice }
-                              leftOrRight={ leftOrRight }
-                              defaultValue={ team[showPlayerChoice + leftOrRight] }
-                              onUpdate={
-                                (e, player) =>
+            <tr key={key + side}>
+              <td>{team[key + side].code}</td>
+              <td>{key}</td>
+              <td>{team[key + side].name || <em>unknown</em>}</td>
+              <td>{team[key + side].club}</td>
+              <td>{
+              showPlayerChoice && showPlayerChoice === key && leftOrRight === side
+                ? <PlayerChoice pos={ showPlayerChoice }
+                                leftOrRight={ leftOrRight }
+                                defaultValue={ team[showPlayerChoice + leftOrRight] }
+                                onUpdate={ (e, player) =>
                                   this.updatePlayer(e, { pos: key, leftOrRight: side, team, player }
-                                  )
-                              }
-                />
-              }
-            </li>
+                                )}
+                  />
+                : <SVG className="admin-icon"
+                       markup={ changeIcon }
+                       onClick={ () => this.showPlayerChoice({ pos: key, leftOrRight: side }) }
+                  />
+                }
+              </td>
+            </tr>
           ));
         })}
-      </ul>
+        </tbody>
+      </table>
     );
   }
 }

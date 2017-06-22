@@ -86,9 +86,10 @@ export default class PlayerTable extends React.Component {
       <table cellPadding={0} cellSpacing={0} { ...bem(null, type, className) }>
         <thead>
         <tr { ...bem('data-header')}>
-          <th>position</th>
-          <th>player</th>
-          <th>club</th>
+          <th>Code</th>
+          <th>Position</th>
+          <th>Player</th>
+          <th>Club</th>
           { selectPlayer && <th></th> }
           { showStats && <td> apps </td> }
           { showStats && <td> subs </td> }
@@ -146,6 +147,7 @@ export default class PlayerTable extends React.Component {
               const output = player[weeklyOrSeason][statsOrPoints];
               return (
                 <tr key={player.code} { ...bem('player')}>
+                  <td { ...bem('meta')} >{ player.code }</td>
                   <td { ...bem('meta')} >{ player.pos }</td>
                   <td { ...bem('meta')} >{ player.name }</td>
                   <td { ...bem('meta')} >{ player.club }</td>
