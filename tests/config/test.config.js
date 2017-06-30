@@ -1,4 +1,4 @@
-require('babel-core/register')({
+require('babel-register')({
   only: [/src/, /tests/, /config/]
 });
 require("babel-polyfill");

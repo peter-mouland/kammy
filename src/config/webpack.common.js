@@ -36,7 +36,6 @@ module.exports = {
     publicPath: '/'
   },
   plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin(),
     new ProgressBarPlugin(),
     new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({ names: ['vendor'], minChunks: Infinity }),

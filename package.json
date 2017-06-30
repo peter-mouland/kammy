@@ -106,12 +106,13 @@
     "style-loader": "^0.17.0",
     "svg-inline-loader": "^0.7.1",
     "validator": "^7.0.0",
-    "webpack": "^3.0.0",
+    "webpack": "^2.5.1",
     "webpack-visualizer-plugin": "^0.1.11",
     "yargs": "^8.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
+    "babel-register": "^6.24.1",
     "chai": "^3.5.0",
     "chai-enzyme": "^0.6.1",
     "chance": "^1.0.8",
