@@ -1,22 +1,22 @@
-// const playerStatsFragment = `
-// fragment playerStatsInfo on Player {
-//  gameWeek {
-//    stats {
-//      apps subs gls asts mom cs con pensv ycard rcard
-//    }
-//    points {
-//      apps subs gls asts mom cs con pensv ycard rcard total
-//    }
-//  }
-//  total {
-//    stats {
-//      apps subs gls asts mom cs con pensv ycard rcard
-//    }
-//    points {
-//      apps subs gls asts mom cs con pensv ycard rcard total
-//    }
-//  }
-// }`;
+const playerStatsFragment = `
+fragment playerStatsInfo on Player {
+ gameWeek {
+   stats {
+     apps subs gls asts mom cs con pensv ycard rcard
+   }
+   points {
+     apps subs gls asts mom cs con pensv ycard rcard total
+   }
+ }
+ total {
+   stats {
+     apps subs gls asts mom cs con pensv ycard rcard
+   }
+   points {
+     apps subs gls asts mom cs con pensv ycard rcard total
+   }
+ }
+}`;
 
 const minPlayerFragment = `
 fragment minPlayerInfo on MinPlayerDetail {
@@ -25,7 +25,7 @@ fragment minPlayerInfo on MinPlayerDetail {
 
 const playerFragment = `
 fragment playerInfo on Player {
-  _id code pos name club
+  _id code pos name club 
 }`;
 
 const leagueFragment = `
@@ -55,9 +55,10 @@ fragment seasonInfo on Season {
 
 export const getPlayersQuery = `
 ${playerFragment}
+${playerStatsFragment}
 query ($player: String) { 
   getPlayers(player: $player){ 
-    ...playerInfo
+    ...playerInfo ...playerStatsInfo
  }
 } 
 `;

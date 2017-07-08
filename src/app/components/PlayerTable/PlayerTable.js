@@ -102,6 +102,7 @@ export default class PlayerTable extends React.Component {
           { showStats && <td> rcard </td> }
         </tr>
         <tr {...bem('data-filter')}>
+          <th></th>
           <th>
             <Selector onChange={ this.posFilter }
                       defaultValue={ posFilter }

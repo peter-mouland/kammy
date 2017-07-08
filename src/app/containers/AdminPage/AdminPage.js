@@ -150,8 +150,7 @@ class AdminPage extends React.Component {
                     const teams = users.reduce((prev, curr) => prev.concat(curr.teams), []);
                     const leagueTeams = teams.filter((team) => team.league._id === league._id);
                     return (
-                      <LeagueAdminOptions league={league}
-                                          teams={ leagueTeams }
+                      <LeagueAdminOptions teams={ leagueTeams }
                                           saveUpdates={ (team) => this.updateTeam(team) }>
                         <AssignUserToLeague assignUser={(form) => this.assignUser(league._id, form)}
                                             season={ season }

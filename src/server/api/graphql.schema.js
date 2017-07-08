@@ -59,7 +59,7 @@ const schemaString = `
     pos: String
     club: String
   }
-  type Stats {
+  type PlayerStats {
     apps: Int
     subs: Int
     gls: Int
@@ -87,7 +87,7 @@ const schemaString = `
   }
 
   type GameWeek {
-    stats: Stats
+    stats: PlayerStats
     points: Points
   }
 

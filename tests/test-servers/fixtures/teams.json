@@ -1,13 +1,118 @@
 {
-    "result_count": 1,
-    "search": "",
-    "teams": [
-        {
-            "_id": "t1",
-            "user_id": "u1",
-            "season_id": "s1",
-            "league_id": "l1",
-            "manager":"Naked",
-        }
-    ]
+  "result_count": 1,
+  "search": "",
+  "teams": [
+    {
+      "_id": "59483232c2f6f429b2b97499",
+      "total": {
+        "sub": 0,
+        "strright": 0,
+        "strleft": 0,
+        "wmright": 0,
+        "wmleft": 0,
+        "cmright": 0,
+        "cmleft": 0,
+        "fbright": 0,
+        "fbleft": 0,
+        "cbright": 0,
+        "cbleft": 0,
+        "gk": 0,
+        "transfersMade": 0,
+        "transfersRequested": 0,
+        "points": 0
+      },
+      "gameWeek": {
+        "sub": 0,
+        "strright": 0,
+        "strleft": 0,
+        "wmright": 0,
+        "wmleft": 0,
+        "cmright": 0,
+        "cmleft": 0,
+        "fbright": 0,
+        "fbleft": 0,
+        "cbright": 0,
+        "cbleft": 0,
+        "gk": -1,
+        "transfersMade": 0,
+        "transfersRequested": 0,
+        "points": -1
+      },
+      "league": {
+        "_id": "5948246a5d4e4a2902c33372",
+        "name": "prem"
+      },
+      "season": {
+        "_id": "594824575d4e4a2902c33371",
+        "name": "2017"
+      },
+      "user": {
+        "_id": "59483232c2f6f429b2b97498",
+        "name": "pete"
+      },
+      "dateCreated": "2017-06-19T20:21:06.272Z",
+      "__v": 0,
+      "sub": {
+        "club": null,
+        "name": null,
+        "_id": null
+      },
+      "strright": {
+        "club": null,
+        "name": null,
+        "_id": null
+      },
+      "strleft": {
+        "club": null,
+        "name": null,
+        "_id": null
+      },
+      "wmright": {
+        "club": null,
+        "name": null,
+        "_id": null
+      },
+      "wmleft": {
+        "club": null,
+        "name": null,
+        "_id": null
+      },
+      "cmright": {
+        "club": null,
+        "name": null,
+        "_id": null
+      },
+      "cmleft": {
+        "club": null,
+        "name": null,
+        "_id": null
+      },
+      "fbright": {
+        "club": null,
+        "name": null,
+        "_id": null
+      },
+      "fbleft": {
+        "club": null,
+        "name": null,
+        "_id": null
+      },
+      "cbright": {
+        "club": null,
+        "name": null,
+        "_id": null
+      },
+      "cbleft": {
+        "club": null,
+        "name": null,
+        "_id": null
+      },
+      "gk": {
+        "code": 1003,
+        "club": "Arsenal",
+        "name": "Cech, Petr",
+        "_id": "594834e5b194ce2a03595fbc"
+      }
+    }
+  ]
 }

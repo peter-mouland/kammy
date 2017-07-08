@@ -1,10 +1,8 @@
 const webpack = require('webpack');
 const nodemon = require('nodemon');
-const nodemonConfig = require('../../nodemon.json');
 const merge = require('webpack-merge');
-require('babel-register')({
-  only: [/src/, /tests/, /config/]
-});
+
+const nodemonConfig = require('../../nodemon.json');
 const baseConfig = require('./webpack.common');
 const { SRC } = require('./paths');
 require('./config');
