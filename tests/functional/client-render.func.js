@@ -5,10 +5,10 @@ import Redirect from 'react-router-dom/Redirect';
 
 import { React, mount, expect, shallow } from '../config/test.helper';
 import Root, { Router } from '../../src/app/Root';
-import Homepage from '../../src/app/containers/Homepage/Homepage';
-import NotFound from '../../src/app/containers/NotFound/NotFound';
-import LoginPage from '../../src/app/authentication/containers/LoginPage/LoginPage';
-import MyTeam from '../../src/app/containers/MyTeam/MyTeam';
+import HomePage from '../../src/app/components/HomePage/HomePage';
+import NotFound from '../../src/app/components/NotFound/NotFound';
+import LoginPage from '../../src/app/authentication/components/LoginPage/LoginPage';
+import MyTeam from '../../src/app/components/MyTeamPage/MyTeamPage';
 import users from '../test-servers/scripts/users';
 import config from '../../src/config/db.js'; // must be app secret not test secret!
 
@@ -32,7 +32,8 @@ describe('Client Render', function () {
 
   it('Should render the Homepage', () => {
     this.wrapper = mount(<Root location="/"/>);
-    expect(this.wrapper.find(Homepage).length).to.equal(1);
+    console.log(this.wrapper.html())
+    expect(this.wrapper.find(HomePage).length).to.equal(1);
   });
 
   describe('404', () => {
@@ -62,7 +63,7 @@ describe('Client Render', function () {
           expect(this.wrapper.find(NotFound).length).to.equal(0);
           expect(this.wrapper.find(Redirect).length).to.equal(0);
           expect(this.wrapper.find(MyTeam).length).to.equal(1);
-          expect(this.wrapper.find('#my-team').length).to.equal(1);
+          expect(this.wrapper.find('#my-team-page').length).to.equal(1);
         }).then(() =>{
           return users.nuke(fakeUser);
         }).catch((e) => {

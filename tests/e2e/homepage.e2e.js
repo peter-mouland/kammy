@@ -7,7 +7,7 @@ module.exports = {
   before(browser) {
     homePage = browser.page.homepage();
     pageLayout = browser.page.layout();
-    browser.pageLoaded(findRoute('homepage').path, { selector : '#homepage' });
+    browser.pageLoaded(findRoute('homepage').path, { selector : '#home-page' });
   },
 
   ['homepage layout should include nav, footer and content blocks'](browser) {

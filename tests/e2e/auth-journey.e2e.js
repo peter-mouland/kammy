@@ -24,7 +24,7 @@ module.exports = {
     myTeamPage = browser.page.myteam();
     logoutPage = browser.page.logout();
     browser
-      .pageLoaded(findRoute('homepage').path, { selector : '#homepage' })
+      .pageLoaded(findRoute('homepage').path, { selector : '#home-page' })
       .deleteCookies();
   },
 
@@ -84,7 +84,7 @@ module.exports = {
         secure: false,
         httpOnly: false
       })
-      .pageLoaded(findRoute('homepage').path, { selector : '#homepage' })
+      .pageLoaded(findRoute('homepage').path, { selector : '#home-page' })
       .perform(()=>{
         pageLayout.section.nav.click('@myTeamLink');
       }).perform(()=>{

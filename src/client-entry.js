@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import debug from 'debug';
 
-import HmrContainer from './app/containers/HmrContainer/HmrContainer';
+import HmrContainer from './app/components/HmrContainer/HmrContainer';
 import Root from './app/Root';
 import './app/utils/perfTools';
 import './styles/app.scss';

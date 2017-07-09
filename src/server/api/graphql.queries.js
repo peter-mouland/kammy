@@ -91,8 +91,8 @@ export const getUsersWithTeamsQuery = `
 `;
 
 export const getDivisionsQuery = `
-  ${seasonFragment}
-  query { getDivisions{ ...seasonInfo } }
+  ${teamFragment}
+  query { getDivisions{ ...teamInfo } }
 `;
 
 export const addSeasonsMutation = `

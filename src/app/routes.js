@@ -6,14 +6,14 @@ import bemHelper from 'react-bem-helper';
 import debug from 'debug';
 
 import MainLayout from './Layouts/MainLayout';
-import Homepage from './containers/Homepage/Homepage';
-import DivisionsPage from './containers/DivisionsPage/DivisionsPage';
-import AdminPage from './containers/AdminPage/AdminPage';
-import MyTeam from './containers/MyTeam/MyTeam';
-import NotFound from './containers/NotFound/NotFound';
+import Homepage from './components/HomePage/HomePage';
+import DivisionsPage from './components/DivisionsPage/DivisionsPage';
+import AdminPage from './components/AdminPage/AdminPage';
+import MyTeam from './components/MyTeamPage/MyTeamPage';
+import NotFound from './components/NotFound/NotFound';
 
-import ChangePassword from './authentication/containers/ChangePasswordPage/ChangePasswordPage';
-import LoginPage from './authentication/containers/LoginPage/LoginPage';
+import ChangePassword from './authentication/components/ChangePasswordPage/ChangePasswordPage';
+import LoginPage from './authentication/components/LoginPage/LoginPage';
 import LogOut from './authentication/components/LogOut/LogOut';
 import RouteWithAuthCheck from './authentication/components/RouteWithAuthCheck/RouteWithAuthCheck';
 

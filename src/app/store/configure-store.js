@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import promiseMiddleware from 'redux-promise-middleware';
 
-import reducers from '../reducers';
+import reducers from '../components/reducers';
 
 const inBrowser = typeof window === 'object';
 const middleware = [
@@ -14,7 +14,6 @@ const middleware = [
     collapsed: true
   })
 ];
-
 
 /* eslint-disable no-underscore-dangle */
 const composeEnhancers = (inBrowser && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
@@ -30,8 +29,8 @@ export default function configureStore(initialState) {
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
-    module.hot.accept('../reducers', () => {
-      const nextRootReducer = require('../reducers'); // eslint-disable-line global-require
+    module.hot.accept('../components/reducers', () => {
+      const nextRootReducer = require('../components/reducers'); // eslint-disable-line global-require
 
       store.replaceReducer(nextRootReducer);
     });

@@ -14,7 +14,7 @@ describe('Homepage Route', function () {
 
   describe(`should contain  markup`, () => {
     it(`should contain the Homepage container`, () => {
-      expect(this.wrapper.find('#homepage')).to.be.present();
+      expect(this.wrapper.find('#home-page')).to.be.present();
     });
 
     it(`should contain the 'main' layout`, () => {

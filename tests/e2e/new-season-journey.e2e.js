@@ -32,7 +32,7 @@ module.exports = {
 
     browser
       .pageLoaded(`/api/puke/new-season-journey/${fakeEmail}/${fakePassword}`)
-      .pageLoaded(findRoute('homepage').path, { selector : '#homepage' })
+      .pageLoaded(findRoute('homepage').path, { selector : '#home-page' })
       .deleteCookies();
   },
 

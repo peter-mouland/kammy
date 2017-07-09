@@ -19,14 +19,14 @@ module.exports = {
   commands: [commands],
 
   elements: [{
-    main: "#homepage"
+    main: "#home-page"
   }],
 
   sections: {
 
     main: {
 
-      selector: '#homepage',
+      selector: '#home-page',
       locateStrategy: 'css selector'
 
     }
