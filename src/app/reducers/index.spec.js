@@ -43,20 +43,6 @@ describe('reducers/index', () => {
     });
   });
 
-  context('players reducer', () => {
-    it('will always return given state by default', () => {
-      expect(reducers.players(fakeState, {})).to.equal(fakeState, 'State should always be returned');
-    });
-
-    it('will return update state and payload if action is fulfilled', () => {
-      const type = `${actions.FETCH_PLAYERS}_FULFILLED`;
-      const status = chance.integer();
-      const payload = { data: { getDashboard: { message: chance.sentence() } } };
-      const result = reducers.players(fakeState, { type, status, payload });
-      expect(result[fakeKey]).to.deep.equal(fakeValue, 'State should be loading');
-    });
-  });
-
   context('dashboard reducer', () => {
     it('will always return given state by default', () => {
       expect(reducers.dashboard(fakeState, {})).to.equal(fakeState, 'State should always be returned');

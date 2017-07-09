@@ -2,7 +2,11 @@ import debug from 'debug';
 
 const log = debug('kammy:db/season.actions');
 
-const Seasons = require('mongoose').model('Season');
+const mongoose = require('mongoose');
+
+const Seasons = mongoose.model('Season');
+const Teams = mongoose.model('Team');
+const ObjectId = mongoose.Types.ObjectId;
 
 export const findSeasonById = (_id) => Seasons.findById(_id).exec();
 
@@ -15,7 +19,13 @@ export const getSeasons = (search = {}) => {
 
 export const getDivisions = (args, context) => {
   const team = context.user.teams; // eslint-disable-line
-  return Seasons.findOne({}).sort({ dateCreated: -1 }).exec();
+  return Seasons
+    .findOne({ isLive: true })
+    .sort({ dateCreated: -1 })
+    .exec()
+    .then((season) => season.divisions.map((division) => new ObjectId(division._id)))
+    .then((divisions) => Teams.find({ 'division._id': { $in: divisions } }));
+  // .then(teams => teams.sort.reduce);
 };
 
 export const getLatestSeason = () => Seasons.findOne({}).sort({ dateCreated: -1 }).exec();

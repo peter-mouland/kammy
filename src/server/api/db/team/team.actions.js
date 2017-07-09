@@ -15,7 +15,6 @@ export const getTeams = (search = {}) => Team.find(search).exec();
 
 export const getTeam = ({ teamId }, context) => {
   if (!teamId) {
-    log({ _id: new ObjectId(context.user._id) });
     return Team.findOne({ 'user._id': new ObjectId(context.user._id) }).exec();
   }
   return Team.findById(teamId).exec();
