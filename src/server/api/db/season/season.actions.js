@@ -13,6 +13,11 @@ export const getSeasons = (search = {}) => {
   return query.sort({ dateCreated: -1 }).exec();
 };
 
+export const getDivisions = (args, context) => {
+  const team = context.user.teams; // eslint-disable-line
+  return Seasons.findOne({}).sort({ dateCreated: -1 }).exec();
+};
+
 export const getLatestSeason = () => Seasons.findOne({}).sort({ dateCreated: -1 }).exec();
 
 export const addSeason = ({ name }) => {
@@ -23,9 +28,9 @@ export const addSeason = ({ name }) => {
 export const updateSeasonById = (_id, seasonUpdate) =>
   Seasons.findByIdAndUpdate(_id, seasonUpdate, { new: true }).exec();
 
-export const addLeague = ({ seasonId, name }) => (
-  updateSeasonById(seasonId, { $push: { leagues: { name } } })
-    .then((season) => season.leagues.find((league) => league.name === name))
+export const addDivision = ({ seasonId, name }) => (
+  updateSeasonById(seasonId, { $push: { divisions: { name } } })
+    .then((season) => season.divisions.find((division) => division.name === name))
 );
 
 export const updateSeason = ({ seasonId, isLive, currentGW }) => {

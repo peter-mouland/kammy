@@ -7,7 +7,7 @@ import debug from 'debug';
 
 import MainLayout from './Layouts/MainLayout';
 import Homepage from './containers/Homepage/Homepage';
-import DashboardPage from './containers/DashboardPage/DashboardPage';
+import DivisionsPage from './containers/DivisionsPage/DivisionsPage';
 import AdminPage from './containers/AdminPage/AdminPage';
 import MyTeam from './containers/MyTeam/MyTeam';
 import NotFound from './containers/NotFound/NotFound';
@@ -97,15 +97,14 @@ export function getRoutesConfig() {
       component: LoginPage
     },
     {
-      name: 'dashboard',
-      path: '/dashboard/',
-      requiresAuthentication: true,
-      label: 'Dashboard',
+      name: 'divisions',
+      path: '/divisions/',
+      label: 'Divisions',
       meta: {
         ...baseMetaData,
-        title: 'Dashboard',
+        title: 'Divisions',
       },
-      component: DashboardPage
+      component: DivisionsPage
     },
     {
       name: 'change-password',

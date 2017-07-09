@@ -18,7 +18,7 @@ const SeasonSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
-  leagues: [{
+  divisions: [{
     _id: {
       type: mongoose.Schema.Types.ObjectId,
       index: true,

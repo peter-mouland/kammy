@@ -1,8 +1,8 @@
 /* eslint-disable no-confusing-arrow */
 import { getUser, addUser, getUsersWithTeams } from './db/user/user.actions';
 import { getPlayers, updatePlayers, importPlayers } from './db/player/player.actions';
-import { updateTeam, getTeams, getTeam, assignTeamToLeague } from './db/team/team.actions';
-import { getSeasons, addLeague, addSeason, updateSeason } from './db/season/season.actions';
+import { updateTeam, getTeams, getTeam, assignTeamToDivision } from './db/team/team.actions';
+import { getSeasons, getDivisions, addDivision, addSeason, updateSeason } from './db/season/season.actions';
 import { getStats, saveGameWeekStats } from './db/stats/stats.actions';
 
 const getDashboard = (args, context) => (context.user)
@@ -17,10 +17,11 @@ export default {
   importPlayers,
   updatePlayers,
   getSeasons,
+  getDivisions,
   addSeason,
   updateSeason,
-  addLeague,
-  assignTeamToLeague,
+  addDivision,
+  assignTeamToDivision,
   getTeams,
   getTeam,
   updateTeam,

@@ -24,7 +24,7 @@ module.exports = {
       elements: {
         myTeamLink: 'a[href="/my-team/"]',
         adminLink: 'a[href="/admin/"]',
-        dashboardLink: 'a[href="/dashboard/"]',
+        divisionsLink: 'a[href="/divisions/"]',
         loginLink: 'a[href="/login/"]',
         logoutLink: 'a[href="/logout/"]',
       },

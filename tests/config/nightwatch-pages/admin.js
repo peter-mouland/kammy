@@ -8,10 +8,10 @@ const commands = {
       .setValue('@seasonInput', season)
       .click('@seasonSubmitButton')
   },
-  addLeague: function(season) {
-    return this.section.seasons.waitForElementVisible('@leagueInput', 1000)
-      .setValue('@leagueInput', season)
-      .click('@leagueSubmitButton')
+  addDivision: function(season) {
+    return this.section.seasons.waitForElementVisible('@divisionInput', 1000)
+      .setValue('@divisionInput', season)
+      .click('@divisionSubmitButton')
   },
   thenDisplays: function(element) {
     return this.section.main
@@ -49,11 +49,11 @@ module.exports = {
         seasonLink: "[data-test=admin-list--season] :first-child a",
         seasonSubmitButton: "[data-test=admin-list--season] input[type=submit]",
         seasonAdminOptions: "[data-test=admin-options--season]",
-        leagueList: "[data-test=admin-list--league]",
-        leagueInput: "[data-test=admin-list--league] input[type=text]",
-        leagueLink: "[data-test=admin-list--league] :first-child a",
-        leagueSubmitButton: "[data-test=admin-list--league] input[type=submit]",
-        leagueAdminOptions: "[data-test=admin-options--league]",
+        divisionList: "[data-test=admin-list--division]",
+        divisionInput: "[data-test=admin-list--division] input[type=text]",
+        divisionLink: "[data-test=admin-list--division] :first-child a",
+        divisionSubmitButton: "[data-test=admin-list--division] input[type=submit]",
+        divisionAdminOptions: "[data-test=admin-options--division]",
       }],
     },
 

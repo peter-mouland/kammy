@@ -10,14 +10,14 @@ import './adminOptions.scss';
 
 const bem = bemHelper({ name: 'admin-options' });
 
-class LeagueAdminOptions extends React.Component {
+class DivisionAdminOptions extends React.Component {
 
   static contextTypes = {
     router: PropTypes.object
   }
 
   static propTypes = {
-    league: PropTypes.object,
+    division: PropTypes.object,
   }
 
   render() {
@@ -26,7 +26,7 @@ class LeagueAdminOptions extends React.Component {
     return (
       <div {...bem(null, 'top') }
            { ...props }
-           data-test="admin-options--league"
+           data-test="admin-options--division"
       >
         <div className="admin-option">
           <ul className="simple-list">
@@ -53,4 +53,4 @@ class LeagueAdminOptions extends React.Component {
   }
 }
 
-export default LeagueAdminOptions;
+export default DivisionAdminOptions;

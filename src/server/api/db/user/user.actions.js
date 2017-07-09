@@ -17,7 +17,7 @@ export const findOneUser = (userDetails) => User.findOne(userDetails).exec();
 export const updateUser = (_id, userDetails) =>
   User.findByIdAndUpdate(_id, userDetails, { new: true }).populate('teams').exec();
 
-export const addUser = ({ seasonId, leagueId, name, email, isAdmin, mustChangePassword, password = 'password123' }) => {
+export const addUser = ({ seasonId, divisionId, name, email, isAdmin, mustChangePassword, password = 'password123' }) => {
   let user;
   const getSeason = (seasonId)
     ? findSeasonById(seasonId)
@@ -32,12 +32,12 @@ export const addUser = ({ seasonId, leagueId, name, email, isAdmin, mustChangePa
     .then((response) => {
       // add default in-case user is added before a season is added i.e. admin user
       const season = response || {};
-      const leagues = (season && season.leagues && season.leagues) || [];
-      const league = leagues.find((lge) => String(lge._id) === String(leagueId)) || {};
+      const divisions = (season && season.divisions && season.divisions) || [];
+      const division = divisions.find((lge) => String(lge._id) === String(divisionId)) || {};
       return saveNewTeam({
         user: { _id: user._id, name: user.name || user.email },
         season: { _id: season._id, name: season.name },
-        league: { _id: league._id, name: league.name },
+        division: { _id: division._id, name: division.name },
       });
     })
     .then((team) => updateUser(user._id, { $push: { teams: team._id } }));

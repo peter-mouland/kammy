@@ -19,7 +19,7 @@ const schemaString = `
     name: String
     user: MinDetail
     season: MinDetail
-    league: MinDetail
+    division: MinDetail
     gk: MinPlayerDetail
     cbleft: MinPlayerDetail
     cbright: MinPlayerDetail
@@ -33,7 +33,7 @@ const schemaString = `
     strright: MinPlayerDetail
     sub: MinPlayerDetail
   }
-  type League {
+  type Division {
     _id: String
     name: String
     tier: Int
@@ -43,7 +43,7 @@ const schemaString = `
     name: String
     isLive: Boolean
     currentGW: Int
-    leagues: [League]
+    divisions: [Division]
   }
   type Player {
     _id: String!
@@ -146,7 +146,7 @@ const schemaString = `
     name: String
     user: InputMinDetail
     season: InputMinDetail
-    league: InputMinDetail
+    division: InputMinDetail
     gk: InputMinPlayerDetail
     cbleft: InputMinPlayerDetail
     cbright: InputMinPlayerDetail
@@ -173,6 +173,7 @@ const schemaString = `
     getTeams: [Team]
     getStats(currentGW: Int, source: String): Stats
     getSeasons: [Season]
+    getDivisions: Season
     getPlayers(player: String): [Player]
     getUser(email: String, _id: String): User
     getUsersWithTeams: [UserTeams]
@@ -182,11 +183,11 @@ const schemaString = `
   type Mutation {
     importPlayers: [UpdatedPlayer]
     updatePlayers(playerUpdates: [PlayerUpdates]): [UpdatedPlayer]
-    addUser(seasonId: String, leagueId: String, email: String, name: String): UserTeams
-    addLeague(seasonId: String, name: String): League
+    addUser(seasonId: String, divisionId: String, email: String, name: String): UserTeams
+    addDivision(seasonId: String, name: String): Division
     addSeason(name: String): Season
     updateTeam(teamUpdate: TeamUpdate): Team
-    assignTeamToLeague(leagueId: String, leagueName: String, teamId: String): Team
+    assignTeamToDivision(divisionId: String, divisionName: String, teamId: String): Team
     updateSeason(seasonId: String, isLive: Boolean, currentGW: Int): Season
     saveGameWeekStats(seasonId: String, update: JSON): Stats
   }

@@ -7,7 +7,7 @@
             "isLive": true,
             "name":"2016/2017",
             "currentGW":26,
-            "leagues": [
+            "divisions": [
               {
                 "_id": "l1",
                 "tier": 1,

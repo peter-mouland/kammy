@@ -11,7 +11,7 @@ class AddUser extends React.Component {
   }
 
   state = {
-    leagues: this.props.seasons[0] ? this.props.seasons[0].leagues : []
+    divisions: this.props.seasons[0] ? this.props.seasons[0].divisions : []
   }
 
   inputs = {};
@@ -21,20 +21,20 @@ class AddUser extends React.Component {
     this.props.add({
       name: this.inputs.name.value,
       email: this.inputs.email.value,
-      leagueId: this.inputs.league.value,
+      divisionId: this.inputs.division.value,
       seasonId: this.inputs.season.value,
     });
   };
 
-  getLeagues = () => {
+  getDivisions = () => {
     const seasonId = this.inputs.season.value;
-    const leagues = this.props.seasons.find((season) => season._id === seasonId).leagues;
-    this.setState({ leagues });
+    const divisions = this.props.seasons.find((season) => season._id === seasonId).divisions;
+    this.setState({ divisions });
   }
 
   render() {
     const { loading, errors, seasons = [] } = this.props;
-    const { leagues } = this.state;
+    const { divisions } = this.state;
     return (
       <div>
         { errors.length > 0 ? <Errors errors={ errors } small /> : null }
@@ -74,7 +74,7 @@ class AddUser extends React.Component {
                           ref={(input) => {
                             this.inputs.season = input;
                           }}
-                          onChange={ this.getLeagues }
+                          onChange={ this.getDivisions }
                   >
                     {seasons.map((season) =>
                       <option key={season._id} value={season._id}>{season.name}</option>
@@ -82,15 +82,15 @@ class AddUser extends React.Component {
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="user-league" required>League:</label>
-                  <select id="user-league"
-                          name="user-league"
+                  <label htmlFor="user-division" required>Division:</label>
+                  <select id="user-division"
+                          name="user-division"
                           ref={(input) => {
-                            this.inputs.league = input;
+                            this.inputs.division = input;
                           }}
                   >
-                    {leagues.map((league) =>
-                      <option key={league._id} value={league._id}>{league.name}</option>
+                    {divisions.map((division) =>
+                      <option key={division._id} value={division._id}>{division.name}</option>
                     )}
                   </select>
                 </div>

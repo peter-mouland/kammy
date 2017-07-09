@@ -4,28 +4,30 @@ import { findRoute } from '../../src/app/routes';
 
 const chance = new Chance();
 let fakeSeason;
-let fakeLeague;
+let fakeDivision;
 let fakeEmail;
 let fakePassword;
 let adminPage;
 let loginPage;
 let pageLayout;
 let homePage;
-let dashboardPage;
+let myTeamPage;
+let divisionsPage;
 let logoutPage;
 
 module.exports = {
   '@tags': ['staging'],
   before(browser) {
     fakeSeason = `test-${chance.word()}`;
-    fakeLeague = `test-${chance.word()}`;
+    fakeDivision = `test-${chance.word()}`;
     fakeEmail = `test-${chance.email()}`;
     fakePassword = `test-${chance.sentence({words: 5})}`;
     adminPage = browser.page.admin();
     loginPage = browser.page.login();
     pageLayout = browser.page.layout();
     homePage = browser.page.homepage();
-    dashboardPage = browser.page.dashboard();
+    myTeamPage = browser.page.myteam();
+    divisionsPage = browser.page.divisions();
     logoutPage = browser.page.logout();
 
     browser
@@ -66,23 +68,23 @@ module.exports = {
   ['should be able to view season details'](browser) {
     adminPage.section.seasons.click('@seasonLink');
     adminPage.section.seasons.waitForElementPresent('@seasonAdminOptions', 1000);
-    adminPage.section.seasons.expect.element('@leagueList').to.be.visible
+    adminPage.section.seasons.expect.element('@divisionList').to.be.visible
   },
 
-  ['should be able to add a league to the season'](browser) {
-    adminPage.addLeague(fakeLeague);
-    adminPage.section.seasons.waitForElementPresent('@leagueLink', 1000);
-    adminPage.section.seasons.expect.element('@leagueLink').to.be.visible;
+  ['should be able to add a division to the season'](browser) {
+    adminPage.addDivision(fakeDivision);
+    adminPage.section.seasons.waitForElementPresent('@divisionLink', 1000);
+    adminPage.section.seasons.expect.element('@divisionLink').to.be.visible;
   },
 
-  ['should not be able to add a new league with the same name'](browser) {
+  ['should not be able to add a new division with the same name'](browser) {
   //  todo: fix + test this
   },
 
-  ['should be able to view league details'](browser) {
-    adminPage.section.seasons.click('@leagueLink');
-    adminPage.section.seasons.waitForElementPresent('@leagueAdminOptions', 1000);
-    adminPage.section.seasons.expect.element('@leagueAdminOptions').to.be.visible
+  ['should be able to view division details'](browser) {
+    adminPage.section.seasons.click('@divisionLink');
+    adminPage.section.seasons.waitForElementPresent('@divisionAdminOptions', 1000);
+    adminPage.section.seasons.expect.element('@divisionAdminOptions').to.be.visible
   },
 
 };

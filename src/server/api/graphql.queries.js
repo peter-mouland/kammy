@@ -28,15 +28,15 @@ fragment playerInfo on Player {
   _id code pos name club 
 }`;
 
-const leagueFragment = `
-fragment leagueInfo on League {
+const divisionFragment = `
+fragment divisionInfo on Division {
   _id name tier
 }`;
 
 const teamFragment = `
 ${minPlayerFragment}
 fragment teamInfo on Team {
-  _id user { _id name } season { _id name } league { _id name } name 
+  _id user { _id name } season { _id name } division { _id name } name 
   gk { ...minPlayerInfo } 
   cbleft { ...minPlayerInfo } cbright { ...minPlayerInfo }
   fbleft { ...minPlayerInfo } fbright { ...minPlayerInfo } 
@@ -47,9 +47,9 @@ fragment teamInfo on Team {
 }`;
 
 const seasonFragment = `
-${leagueFragment}
+${divisionFragment}
 fragment seasonInfo on Season {
-  _id name currentGW isLive leagues { ...leagueInfo }
+  _id name currentGW isLive divisions { ...divisionInfo }
 }
 `;
 
@@ -90,29 +90,34 @@ export const getUsersWithTeamsQuery = `
   query { getUsersWithTeams{ _id name email teams { ...teamInfo } } } 
 `;
 
+export const getDivisionsQuery = `
+  ${seasonFragment}
+  query { getDivisions{ ...seasonInfo } }
+`;
+
 export const addSeasonsMutation = `
   ${seasonFragment}
   mutation ($name: String) { addSeason(name: $name){ ...seasonInfo } }
 `;
 
-export const addLeaguesMutation = `
-  ${leagueFragment}
+export const addDivisionsMutation = `
+  ${divisionFragment}
   mutation ($seasonId: String, $name: String) { 
-    addLeague(seasonId: $seasonId, name: $name){ ...leagueInfo } 
+    addDivision(seasonId: $seasonId, name: $name){ ...divisionInfo } 
   }
 `;
 
 export const addUserMutation = `
   ${teamFragment}
-  mutation ($seasonId: String, $leagueId: String, $name: String, $email: String) { 
-    addUser(seasonId: $seasonId, leagueId: $leagueId, name: $name, email: $email){ _id name email teams { ...teamInfo } } 
+  mutation ($seasonId: String, $divisionId: String, $name: String, $email: String) { 
+    addUser(seasonId: $seasonId, divisionId: $divisionId, name: $name, email: $email){ _id name email teams { ...teamInfo } } 
   }
 `;
 
-export const assignTeamToLeagueMutation = `
+export const assignTeamToDivisionMutation = `
   ${teamFragment}
-  mutation ($leagueId: String, $leagueName: String, $teamId: String) { 
-    assignTeamToLeague(leagueId: $leagueId, leagueName: $leagueName, teamId: $teamId){ ...teamInfo } 
+  mutation ($divisionId: String, $divisionName: String, $teamId: String) { 
+    assignTeamToDivision(divisionId: $divisionId, divisionName: $divisionName, teamId: $teamId){ ...teamInfo } 
   }
 `;
 

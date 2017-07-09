@@ -26,10 +26,10 @@ const TeamSchema = new mongoose.Schema({
     },
     name: String
   },
-  league: {
+  division: {
     _id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Season.leagues'
+      ref: 'Season.divisions'
     },
     name: String
   },

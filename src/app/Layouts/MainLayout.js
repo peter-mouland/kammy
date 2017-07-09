@@ -61,7 +61,7 @@ export default class MainLayout extends React.Component {
         <nav {...bem('nav')}>
           <span {...bem('nav', 'header')}>FF</span>
           <NamedLink to="myTeam" {...bem('nav-link')} />
-          <NamedLink to="dashboard" {...bem('nav-link')} />
+          <NamedLink to="divisions" {...bem('nav-link')} />
           { Auth.isAdmin() ? <NamedLink to="admin" {...bem('nav-link')} /> : null }
           <MyAccount isUserAuthenticated={ isUserAuthenticated } />
         </nav>

@@ -104,7 +104,7 @@ class MyTeam extends React.Component {
     }
 
     return (
-      <div { ...bem() } id="my-team">
+      <div { ...bem() } id="my-team-page">
         <h1>My Team</h1>
         <div { ...bem('panels') } >
           <section { ...bem('formation') }>

@@ -8,7 +8,8 @@ let fakePassword;
 let loginPage;
 let pageLayout;
 let homePage;
-let dashboardPage;
+let divisionsPage;
+let myTeamPage;
 let logoutPage;
 
 module.exports = {
@@ -19,7 +20,8 @@ module.exports = {
     loginPage = browser.page.login();
     pageLayout = browser.page.layout();
     homePage = browser.page.homepage();
-    dashboardPage = browser.page.dashboard();
+    divisionsPage = browser.page.divisions();
+    myTeamPage = browser.page.myteam();
     logoutPage = browser.page.logout();
     browser
       .pageLoaded(findRoute('homepage').path, { selector : '#homepage' })
@@ -31,48 +33,48 @@ module.exports = {
       .url(browser.globals.TARGET_PATH + '/api/nuke/users/' + fakeEmail)
   },
 
-  ['should not be able to see a the dashboard without logging in'](browser) {
+  ['should not be able to see a the my-team without logging in'](browser) {
     const nav = pageLayout.section.nav;
     loginPage.expect.section('@main').not.to.be.present;
-    nav.assert.visible('@dashboardLink');
-    nav.click('@dashboardLink');
+    nav.assert.visible('@myTeamLink');
+    nav.click('@myTeamLink');
     loginPage.expect.section('@main').to.be.visible;
   },
 
   ['should not be able to log in with an unknown user'](browser) {
     const nav = pageLayout.section.nav;
-    nav.click('@dashboardLink');
+    nav.click('@myTeamLink');
     loginPage.login(fakeEmail, fakePassword);
     loginPage.expect.section('@main').to.be.visible;
     loginPage.thenDisplays('@error');
   },
 
-  ['should be able to sign-up, which would then go straight to the dashboard page'](browser) {
-    pageLayout.section.nav.click('@dashboardLink');
+  ['should be able to sign-up, which would then go straight to the my-team page'](browser) {
+    pageLayout.section.nav.click('@myTeamLink');
     loginPage.signUp(fakeEmail, fakePassword);
-    dashboardPage.waitForElementPresent('@main', 1000);
-    dashboardPage.expect.section('@main').to.be.visible;
+    myTeamPage.waitForElementPresent('@main', 1000);
+    myTeamPage.expect.section('@main').to.be.visible;
   },
   ['should  be able to log out'](browser) {
     pageLayout.section.nav.click('@logoutLink');
     logoutPage.expect.section('@main').to.be.visible;
   },
-  ['once logged out, going to the dashboard page asks for log in again'](browser) {
-    pageLayout.section.nav.click('@dashboardLink');
+  ['once logged out, going to the my-team page asks for log in again'](browser) {
+    pageLayout.section.nav.click('@myTeamLink');
     loginPage.expect.section('@main').to.be.visible;
   },
 
   ['should not be able to sign-up with same details twice'](browser) {
-    pageLayout.section.nav.click('@dashboardLink');
+    pageLayout.section.nav.click('@myTeamLink');
     loginPage.signUp(fakeEmail, fakePassword);
     loginPage.expect.section('@main').to.be.visible;
     loginPage.thenDisplays('@error');
   },
   ['can now log in as the previously signed up user'](browser) {
-    pageLayout.section.nav.click('@dashboardLink');
+    pageLayout.section.nav.click('@myTeamLink');
     loginPage.login(fakeEmail, fakePassword);
-    dashboardPage.waitForElementPresent('@main', 1000);
-    dashboardPage.expect.section('@main').to.be.visible;
+    myTeamPage.waitForElementPresent('@main', 1000);
+    myTeamPage.expect.section('@main').to.be.visible;
   },
   ['the system isnt fooled by a fake token cookie'](browser){
     return browser.setCookie({
@@ -84,7 +86,7 @@ module.exports = {
       })
       .pageLoaded(findRoute('homepage').path, { selector : '#homepage' })
       .perform(()=>{
-        pageLayout.section.nav.click('@dashboardLink');
+        pageLayout.section.nav.click('@myTeamLink');
       }).perform(()=>{
         loginPage.waitForElementPresent('@main', 1000);
       }).perform(()=>{

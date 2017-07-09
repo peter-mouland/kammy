@@ -6,12 +6,12 @@ import * as actions from '../actions';
 
 const log = debug('kammy:reducers/index');
 
-const addLeagueToState = (state, seasonId, newLeague) => {
+const addDivisionToState = (state, seasonId, newDivision) => {
   const newState = {
     ...state
   };
   const season = newState.data.find((ssn) => ssn._id === seasonId);
-  season.leagues.push(newLeague);
+  season.divisions.push(newDivision);
   return newState;
 };
 
@@ -138,7 +138,7 @@ export function seasons(state = {}, action) {
   const data = action.payload && action.payload.data;
   const newSeason = data && data.addSeason;
   const updatedSeason = data && data.updateSeason;
-  const newLeague = data && data.addLeague;
+  const newDivision = data && data.addDivision;
   switch (action.type) {
     case `${actions.FETCH_SEASONS}_FULFILLED`:
       return {
@@ -153,13 +153,21 @@ export function seasons(state = {}, action) {
           newSeason
         ]
       };
+    case `${actions.FETCH_DIVISIONS}_FULFILLED`:
+      return {
+        ...state,
+        data: [
+          ...state.data,
+          newSeason
+        ]
+      };
     case `${actions.UPDATE_SEASON}_FULFILLED`:
       return {
         ...state,
         data: updatedSeasonState(state.data, updatedSeason)
       };
-    case `${actions.ADD_LEAGUE}_FULFILLED`:
-      return addLeagueToState(state, action.meta.seasonId, newLeague);
+    case `${actions.ADD_DIVISION}_FULFILLED`:
+      return addDivisionToState(state, action.meta.seasonId, newDivision);
     default:
       return state;
   }
@@ -210,11 +218,11 @@ export function users(state = {}, action) {
           data && data.addUser
         ],
       };
-    case `${actions.ASSIGN_TEAM_TO_LEAGUE}_FULFILLED`:
+    case `${actions.ASSIGN_TEAM_TO_DIVISION}_FULFILLED`:
       return {
         ...state,
         errors: action.payload.errors,
-        data: updateUsers(data && data.assignTeamToLeague),
+        data: updateUsers(data && data.assignTeamToDivision),
       };
     default:
       return state;

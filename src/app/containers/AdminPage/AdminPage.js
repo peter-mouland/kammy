@@ -8,17 +8,17 @@ import Interstitial from '../../components/Interstitial/Interstitial';
 import AdminList from '../../components/Admin/AdminList';
 import AddUser from '../../components/Admin/AddUser';
 import AdminAddForm from '../../components/Admin/AdminAddForm';
-import AssignUserToLeague from '../../components/Admin/AssignUserToLeague';
+import AssignUserToDivision from '../../components/Admin/AssignUserToDivision';
 import SeasonAdminOptions from '../../components/Admin/SeasonAdminOptions';
-import LeagueAdminOptions from '../../components/Admin/LeagueAdminOptions';
+import DivisionAdminOptions from '../../components/Admin/DivisionAdminOptions';
 import UserAdminOptions from '../../components/Admin/UserAdminOptions';
 import PlayerAdminOptions from '../../components/Admin/PlayerAdminOptions';
 import Auth from '../../authentication/auth-helper';
 import {
   fetchSeasons, fetchPlayers, fetchUsersWithTeams, updateTeam, updateSeason, fetchStats,
-  addSeason, addLeague, addUser, updatePlayers, assignTeamToLeague, importPlayers,
+  addSeason, addDivision, addUser, updatePlayers, assignTeamToDivision, importPlayers,
   saveGameWeekStats,
-  ADD_SEASON, ADD_LEAGUE, ADD_USER, UPDATE_PLAYERS, ASSIGN_TEAM_TO_LEAGUE,
+  ADD_SEASON, ADD_DIVISION, ADD_USER, UPDATE_PLAYERS, ASSIGN_TEAM_TO_DIVISION,
   FETCH_PLAYERS, FETCH_STATS
 } from '../../actions';
 
@@ -48,8 +48,8 @@ class AdminPage extends React.Component {
     this.props.addSeason(name);
   }
 
-  addLeague = (seasonId, name) => {
-    this.props.addLeague(seasonId, name);
+  addDivision = (seasonId, name) => {
+    this.props.addDivision(seasonId, name);
   }
 
   addUser = (form) => {
@@ -64,8 +64,8 @@ class AdminPage extends React.Component {
     this.props.updatePlayers({ playerUpdates });
   }
 
-  assignUser = (leagueId, form) => {
-    this.props.assignTeamToLeague({ leagueId, leagueName: this.leagueName, ...form });
+  assignUser = (divisionId, form) => {
+    this.props.assignTeamToDivision({ divisionId, divisionName: this.divisionName, ...form });
   }
 
   updateTeam = (team) => {
@@ -87,15 +87,15 @@ class AdminPage extends React.Component {
     } = this.props;
 
     const addingSeason = loading === ADD_SEASON;
-    const addingLeague = loading === ADD_LEAGUE;
+    const addingDivision = loading === ADD_DIVISION;
     const addingUser = loading === ADD_USER;
     const updatingPlayer = loading === UPDATE_PLAYERS;
     const loadingPlayers = loading === FETCH_PLAYERS;
-    const assigningUserToLeague = loading === ASSIGN_TEAM_TO_LEAGUE;
+    const assigningUserToDivision = loading === ASSIGN_TEAM_TO_DIVISION;
     const statsLoading = loading === FETCH_STATS;
 
     const seasonPath = join(match.url, 'season/:seasonId/');
-    const leaguePath = join(seasonPath, 'league/:leagueId/');
+    const divisionPath = join(seasonPath, 'division/:divisionId/');
     const usersPath = join(match.url, 'users/');
     const playersPath = join(match.url, 'players/');
 
@@ -121,7 +121,7 @@ class AdminPage extends React.Component {
             <Route path={seasonPath} render={(seasonProps) => {
               const season = selectedItem(seasonProps.match, seasons, 'seasonId');
               if (!season) return null;
-              const leagues = season.leagues;
+              const divisions = season.divisions;
               return (
                 <div>
                   <SeasonAdminOptions season={season}
@@ -134,32 +134,36 @@ class AdminPage extends React.Component {
                                       statsErrors={ statsErrors }
                                       stats={ stats }
                   />
-                  <AdminList list={ leagues }
-                             path="league"
+                  <AdminList list={ divisions }
+                             path="division"
                              secondary
                   >
-                    <AdminAddForm add={ (name) => this.addLeague(season._id, name) }
-                               type="league"
-                               loading={ addingLeague } />
+                    <AdminAddForm add={ (name) => this.addDivision(season._id, name) }
+                               type="division"
+                               loading={ addingDivision } />
                   </AdminList>
-                  <Route path={leaguePath} render={(leagueProps) => {
-                    const league = selectedItem(leagueProps.match, leagues, 'leagueId');
-                    if (!league) return null;
+                  <Route path={divisionPath} render={(divisionProps) => {
+                    const division = selectedItem(divisionProps.match, divisions, 'divisionId');
+                    if (!division) return null;
 
-                    this.leagueName = league.name;
+                    this.divisionName = division.name;
                     const teams = users.reduce((prev, curr) => prev.concat(curr.teams), []);
-                    const leagueTeams = teams.filter((team) => team.league._id === league._id);
+                    const divisionTeams = teams.filter(
+                      (team) => team.division._id === division._id
+                    );
                     return (
-                      <LeagueAdminOptions teams={ leagueTeams }
+                      <DivisionAdminOptions teams={ divisionTeams }
                                           saveUpdates={ (team) => this.updateTeam(team) }>
-                        <AssignUserToLeague assignUser={(form) => this.assignUser(league._id, form)}
+                        <AssignUserToDivision assignUser={
+                          (form) => this.assignUser(division._id, form)
+                        }
                                             season={ season }
-                                            league={ league }
-                                            loading={ assigningUserToLeague }
+                                            division={ division }
+                                            loading={ assigningUserToDivision }
                                             teams={ teams }
                                             users={ users }
                         />
-                      </LeagueAdminOptions>
+                      </DivisionAdminOptions>
                     );
                   }}/>
                 </div>
@@ -212,23 +216,11 @@ class AdminPage extends React.Component {
 
           <h3>tech-debt:</h3>
           <ul>
-            <li>add e2e tests</li>
-            <li>make season/league names unique</li>
+            <li>add <em>more</em> e2e tests</li>
+            <li>make season/division names unique</li>
             <li>refactor links to use names rather than id</li>
             <li>refactor arrays to objects to make easier to manipulate</li>
-            <li>refactor rename league to division</li>
             <li>refactor admin to admin/components</li>
-          </ul>
-
-          <h3>todo:</h3>
-          <ul>
-            <li>admin can run points against current teams</li>
-            <li>admin can Increment Game Week</li>
-            <li>admin view all teams for exporting</li>
-            <li>admin view all players with stats + points for exporting</li>
-            <li>users save team without breaking rules</li>
-            <li>users can add players to transfer list</li>
-            <li>admin can Authorise Transfers</li>
           </ul>
         </div>
       </div>
@@ -245,7 +237,7 @@ function mapStateToProps(state) {
     stats: state.stats.data,
     statsErrors: state.stats.errors,
     seasonAdded: state.seasons.seasonAdded,
-    leagueAdded: state.seasons.leagueAdded,
+    divisionAdded: state.seasons.divisionAdded,
     loading: state.promiseState.loading,
     errors: state.promiseState.errors,
   };
@@ -260,9 +252,9 @@ export default connect(
     fetchStats,
     addSeason,
     importPlayers,
-    addLeague,
+    addDivision,
     addUser,
-    assignTeamToLeague,
+    assignTeamToDivision,
     updatePlayers,
     updateTeam,
     updateSeason,

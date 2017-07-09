@@ -42,7 +42,7 @@ export const updateTeam = ({ teamUpdate }) => {
   return updateTeamById(teamUpdate._id, { $set: update });
 };
 
-export const assignTeamToLeague = ({ leagueId, leagueName, teamId }) => {
-  const update = { league: { _id: leagueId, name: leagueName } };
+export const assignTeamToDivision = ({ divisionId, divisionName, teamId }) => {
+  const update = { division: { _id: divisionId, name: divisionName } };
   return updateTeamById(teamId, { $set: update });
 };
