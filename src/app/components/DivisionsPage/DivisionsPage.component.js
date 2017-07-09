@@ -11,15 +11,18 @@ export default class DivisionsPage extends React.Component {
 
   render() {
     const { errors = [], loading, divisions } = this.props;
-
+    const divisionsSet = new Set();
     if (errors.length) {
       return <Errors errors={errors} />;
     } else if (loading || !divisions) {
       return <Interstitial />;
     }
 
+    const divisionsArr = Array.from(divisionsSet);
     return (
-      <div id="divisions-page">hi</div>
+      <div id="divisions-page">
+        {divisionsArr.map((division) => <p>{division.name}</p>)}
+      </div>
     );
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import SVG from '../../Svg/Svg';
-import PlayerChoice from './PlayerChoice.container';
+import PlayerChoice from '../Seasons/PlayerChoice.container';
 import changeIcon from '../../../../assets/change.svg';
 
 const positions = {
@@ -23,7 +23,13 @@ class UserAdminOptions extends React.Component {
     e.preventDefault();
     const updatedTeam = {
       ...team,
-      [pos + leftOrRight]: player
+      [pos + leftOrRight]: {
+        club: player.club,
+        code: player.code,
+        name: player.name,
+        pos: player.pos,
+        _id: player._id,
+      }
     };
     this.setState({ showPlayerChoice: null, leftOrRight: null });
     this.props.saveUpdates(updatedTeam);

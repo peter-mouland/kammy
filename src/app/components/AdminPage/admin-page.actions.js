@@ -5,26 +5,13 @@ import { fetch } from '../../utils/index';
 export const FETCH_STATS = 'FETCH_STATS';
 export const FETCH_TEAMS = 'FETCH_TEAMS';
 export const FETCH_USERS_WITH_TEAMS = 'FETCH_USERS_WITH_TEAMS';
-export const FETCH_SEASONS = 'FETCH_SEASONS';
 export const FETCH_PLAYERS = 'FETCH_PLAYERS';
-export const ADD_SEASON = 'ADD_SEASON';
-export const ADD_DIVISION = 'ADD_DIVISION';
 export const ADD_USER = 'ADD_USER';
 export const IMPORT_PLAYERS = 'IMPORT_PLAYERS';
 export const UPDATE_PLAYERS = 'UPDATE_PLAYERS';
 export const UPDATE_TEAM = 'UPDATE_TEAM';
-export const UPDATE_SEASON = 'UPDATE_SEASON';
-export const SAVE_GAME_WEEK_STATS = 'UPDATE_GAME_WEEK_STATS';
-export const ASSIGN_TEAM_TO_DIVISION = 'ASSIGN_TEAM_TO_DIVISION';
 
 const log = debug('kammy:actions');
-
-export function fetchStats({ currentGW, source }) {
-  return {
-    type: FETCH_STATS,
-    payload: fetch.graphQL('getStatsQuery', { currentGW, source })
-  };
-}
 
 export function fetchPlayers(player) {
   return {
@@ -54,42 +41,6 @@ export function fetchUsersWithTeams() {
   };
 }
 
-export function fetchSeasons() {
-  return {
-    type: FETCH_SEASONS,
-    payload: fetch.graphQL('getSeasonsQuery')
-  };
-}
-
-export function addSeason(name) {
-  return {
-    type: ADD_SEASON,
-    payload: fetch.graphQL('addSeasonsMutation', { name })
-  };
-}
-
-export function addDivision(seasonId, name) {
-  return {
-    type: ADD_DIVISION,
-    meta: { seasonId },
-    payload: fetch.graphQL('addDivisionsMutation', { seasonId, name })
-  };
-}
-
-export function updateSeason({ seasonId, ...update }) {
-  return {
-    type: UPDATE_SEASON,
-    payload: fetch.graphQL('updateSeasonMutation', { seasonId, ...update })
-  };
-}
-
-export function assignTeamToDivision({ divisionId, divisionName, teamId }) {
-  return {
-    type: ASSIGN_TEAM_TO_DIVISION,
-    payload: fetch.graphQL('assignTeamToDivisionMutation', { divisionId, divisionName, teamId })
-  };
-}
-
 export function addUser(userDetails) {
   return {
     type: ADD_USER,
@@ -111,9 +62,3 @@ export function updateTeam(teamUpdate) {
   };
 }
 
-export function saveGameWeekStats({ seasonId, update }) {
-  return {
-    type: SAVE_GAME_WEEK_STATS,
-    payload: fetch.graphQL('saveGameWeekStatsMutation', { seasonId, update })
-  };
-}

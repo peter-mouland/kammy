@@ -1,6 +1,6 @@
 import debug from 'debug';
 
-import * as actions from './admin-page.actions';
+import * as actions from '../admin-page.actions';
 
 const log = debug('kammy:reducers/stats');
 

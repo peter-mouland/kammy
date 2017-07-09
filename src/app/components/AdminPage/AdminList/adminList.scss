@@ -62,14 +62,17 @@
 
 
 input.admin-list__text {
-  background: transparent;
-  border: 0;
   font-style: italic;
   opacity: .5;
   font-size: .75rem;
   line-height: 2em;
-  text-align: right;
   margin-right: 1em;
+  border: 1px solid  #163;
+  background: white;
+  color: #163;
+  padding: 0 1em;
+  border-radius: 3px;
+  text-align: left;
 
   &:focus {
     opacity: 1;

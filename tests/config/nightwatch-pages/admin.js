@@ -30,7 +30,11 @@ module.exports = {
   commands: [commands],
 
   elements: [{
-    main: "#admin-page"
+    main: "#admin-page",
+    adminNav: "[data-test=admin-list--main-nav]",
+    seasonsLink: "a.admin-list__text--seasons",
+    usersLink: "a.admin-list__text--users",
+    playersLink: "a.admin-list__text--players"
   }],
 
   sections: {

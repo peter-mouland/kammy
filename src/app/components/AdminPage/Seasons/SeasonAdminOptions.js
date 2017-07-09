@@ -5,7 +5,6 @@ import Toggle from '../../Toggle/Toggle';
 import Interstitial from '../../Interstitial/Interstitial';
 import Errors from '../../Errors/Errors';
 
-import './adminOptions.scss';
 import Players from '../../Players/Players';
 
 class SeasonAdminOptions extends React.Component {
@@ -18,9 +17,9 @@ class SeasonAdminOptions extends React.Component {
     this.props.updateSeason({ isLive, currentGW: 1 });
   }
 
-  fetchStats = (e) => {
+  fetchExternalStats = (e) => {
     e.preventDefault();
-    this.props.fetchStats(this.sourceEl.value);
+    this.props.fetchExternalStats(this.sourceEl.value);
   }
 
   saveGameWeekStats = (stats) => {
@@ -37,7 +36,7 @@ class SeasonAdminOptions extends React.Component {
 
   render() {
     const {
-      season, statsErrors, statsLoading, updateSeason, fetchStats, saveGameWeekStats, stats, ...props // eslint-disable-line
+      season, statsErrors, statsLoading, updateSeason, fetchExternalStats, saveGameWeekStats, stats, ...props // eslint-disable-line
     } = this.props;
 
     return (
@@ -58,7 +57,7 @@ class SeasonAdminOptions extends React.Component {
         </div>
         <div className="admin-options">
           <p>Game Week Actions:</p>
-          <form className="admin-option__value" onSubmit={ this.fetchStats }>
+          <form className="admin-option__value" onSubmit={ this.fetchExternalStats }>
             <select name="stats-source" ref={(node) => { this.sourceEl = node; } }>
               <option value="external">Sky Sports</option>
               <option value="internal">Test Data</option>

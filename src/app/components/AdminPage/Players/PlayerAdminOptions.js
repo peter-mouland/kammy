@@ -5,7 +5,6 @@ import bemHelper from 'react-bem-helper';
 import { availablePositions } from '../../Positions/Positions';
 import Interstitial from '../../Interstitial/Interstitial';
 
-import './adminOptions.scss';
 import '../../Players/players.scss';
 
 const bem = bemHelper({ name: 'player-admin' });

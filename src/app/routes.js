@@ -120,10 +120,6 @@ export function getRoutesConfig() {
   ];
 }
 
-export const joinPaths = (prefix, path, id) => (
-  `${prefix}/${path}/${id || ''}/`.replace(/\/\/\//g, '/').replace(/\/\//g, '/')
-);
-
 // test this. no failing test if getRoutesConfig instead of getRoutesConfig()
 export const findRoute = (to) => getRoutesConfig().find((rt) => rt.name === to);
 

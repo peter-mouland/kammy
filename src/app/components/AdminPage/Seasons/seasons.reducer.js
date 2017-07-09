@@ -1,6 +1,6 @@
 import debug from 'debug';
 
-import * as actions from './admin-page.actions';
+import * as actions from './seasons.actions';
 
 const log = debug('kammy:reducers/seasons');
 
@@ -21,12 +21,13 @@ function updatedSeasonState(state, updatedSeason) {
   return newData;
 }
 
-
 export default function seasons(state = {}, action) {
   const data = action.payload && action.payload.data;
   const newSeason = data && data.addSeason;
   const updatedSeason = data && data.updateSeason;
   const newDivision = data && data.addDivision;
+  const seasonUsers = data && data.getUsersWithTeams;
+
   switch (action.type) {
     case `${actions.FETCH_SEASONS}_FULFILLED`:
       return {
@@ -48,6 +49,13 @@ export default function seasons(state = {}, action) {
       };
     case `${actions.ADD_DIVISION}_FULFILLED`:
       return addDivisionToState(state, action.meta.seasonId, newDivision);
+    // todo: this should be 'fetch_divisionTeams'
+    case `${actions.FETCH_USERS_WITH_TEAMS}_FULFILLED`:
+      return {
+        ...state,
+        errors: action.payload.errors,
+        seasonUsers,
+      };
     default:
       return state;
   }

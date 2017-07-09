@@ -4,8 +4,6 @@ import bemHelper from 'react-bem-helper';
 
 import Interstitial from '../../Interstitial/Interstitial';
 
-import './adminList.scss';
-
 const bem = bemHelper({ name: 'admin-list' });
 
 class AdminList extends React.Component {

@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import bemHelper from 'react-bem-helper';
 
-import { SubLink, joinPaths } from '../../../../app/routes';
+import { SubLink } from '../../../../app/routes';
+import joinPaths from '../../../utils/joinPath';
 
 import './adminList.scss';
 
@@ -19,19 +20,22 @@ class AdminList extends React.Component {
   }
 
   render() {
-    const { list, path, children, secondary = false, ...props } = this.props;
+    const { className, list, type, path, children, secondary = false, ...props } = this.props;
     const { router: { route: { match } } } = this.context;
     return (
       <ul
-        { ...bem(null, { secondary, [path]: path }) }
+        { ...bem(null, { secondary, [path]: path }, className) }
         { ...props }
-        data-test={`admin-list--${path}`}
+        data-test={`admin-list--${type || path}`}
       >
         {
           list
             .map((item, i) => (
               <li { ...bem('item') } key={i}>
-                <SubLink { ...bem('text') } to={joinPaths(match.url, path, item._id)}>
+                <SubLink
+                  { ...bem('text', { [item.path || path]: item.path || path }) }
+                  to={joinPaths(match.url, item.path || path, item._id)}
+                >
                   {item.name}
                 </SubLink>
               </li>

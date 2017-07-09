@@ -52,6 +52,11 @@ module.exports = {
     pageLayout.section.nav.click('@adminLink');
     adminPage.waitForElementPresent('@main', 1000);
     adminPage.expect.section('@main').to.be.visible;
+    adminPage.waitForElementPresent('@adminNav', 1000);
+  },
+
+  ['should be able to go to the seasons panel'](browser) {
+    adminPage.click('@seasonsLink');
     adminPage.section.seasons.waitForElementPresent('@seasonList', 1000);
   },
 

@@ -2,9 +2,9 @@ import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 import debug from 'debug';
 
-import seasons from './AdminPage/seasons.reducer';
-import stats from './AdminPage/stats.reducer';
-import users from './AdminPage/users.reducer';
+import seasons from './AdminPage/Seasons/seasons.reducer';
+import stats from './AdminPage/Seasons/stats.reducer';
+import users from './AdminPage/Users/users.reducer';
 import teams from './AdminPage/teams.reducer';
 import myTeam from './MyTeamPage/my-team.reducer';
 import dashboard from './DashboardPage/dashboard.reducer';
