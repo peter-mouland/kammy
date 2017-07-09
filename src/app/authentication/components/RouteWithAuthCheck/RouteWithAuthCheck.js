@@ -15,18 +15,20 @@ const RouteWithAuthCheck = ({ component: Component, requiresAuthentication, meta
     : '/login';
   log({ redirectTo });
   return (
-    <Route {...props} render={(matchProps) => (
-      <span>
-        <DocumentMeta { ...meta }/>
-        { redirect ?
-          (<Redirect to={{
-            pathname: redirectTo,
-            state: { from: matchProps.location }
-          }}/>
-          ) : <Component {...matchProps}/>
-        }
-      </span>
-    )}/>
+    <Route
+      {...props} render={(matchProps) => (
+        <span>
+          <DocumentMeta { ...meta }/>
+          { redirect ?
+            (<Redirect
+              to={{
+                pathname: redirectTo,
+                state: { from: matchProps.location }
+              }}/>
+            ) : <Component {...matchProps}/>
+          }
+        </span>
+      )}/>
   );
 };
 

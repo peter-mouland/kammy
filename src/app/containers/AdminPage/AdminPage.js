@@ -25,7 +25,6 @@ import {
 import './adminPage.scss';
 
 class AdminPage extends React.Component {
-
   static needs = [fetchSeasons, fetchUsersWithTeams];
 
   componentDidMount() {
@@ -111,107 +110,122 @@ class AdminPage extends React.Component {
           <div className="bg" />
 
           <section className="admin__panel admin__panel--seasons">
-            <AdminList list={ seasons }
-                       path="season"
+            <AdminList
+              list={ seasons }
+              path="season"
             >
-              <AdminAddForm add={ this.addSeason }
-                         type="Season"
-                         loading={ addingSeason } />
+              <AdminAddForm
+                add={ this.addSeason }
+                type="Season"
+                loading={ addingSeason } />
             </AdminList>
-            <Route path={seasonPath} render={(seasonProps) => {
-              const season = selectedItem(seasonProps.match, seasons, 'seasonId');
-              if (!season) return null;
-              const divisions = season.divisions;
-              return (
-                <div>
-                  <SeasonAdminOptions season={season}
-                                      updateSeason={ (update) => this.updateSeason(season, update) }
-                                      fetchStats={ (source) => this.fetchStats(season, source) }
-                                      saveGameWeekStats={
-                                        (update) => this.saveGameWeekStats(season, update)
-                                      }
-                                      statsLoading={ statsLoading }
-                                      statsErrors={ statsErrors }
-                                      stats={ stats }
-                  />
-                  <AdminList list={ divisions }
-                             path="division"
-                             secondary
-                  >
-                    <AdminAddForm add={ (name) => this.addDivision(season._id, name) }
-                               type="division"
-                               loading={ addingDivision } />
-                  </AdminList>
-                  <Route path={divisionPath} render={(divisionProps) => {
-                    const division = selectedItem(divisionProps.match, divisions, 'divisionId');
-                    if (!division) return null;
+            <Route
+              path={seasonPath} render={(seasonProps) => {
+                const season = selectedItem(seasonProps.match, seasons, 'seasonId');
+                if (!season) return null;
+                const divisions = season.divisions;
+                return (
+                  <div>
+                    <SeasonAdminOptions
+                      season={season}
+                      updateSeason={ (update) => this.updateSeason(season, update) }
+                      fetchStats={ (source) => this.fetchStats(season, source) }
+                      saveGameWeekStats={
+                        (update) => this.saveGameWeekStats(season, update)
+                      }
+                      statsLoading={ statsLoading }
+                      statsErrors={ statsErrors }
+                      stats={ stats }
+                    />
+                    <AdminList
+                      list={ divisions }
+                      path="division"
+                      secondary
+                    >
+                      <AdminAddForm
+                        add={ (name) => this.addDivision(season._id, name) }
+                        type="division"
+                        loading={ addingDivision } />
+                    </AdminList>
+                    <Route
+                      path={divisionPath} render={(divisionProps) => {
+                        const division = selectedItem(divisionProps.match, divisions, 'divisionId');
+                        if (!division) return null;
 
-                    this.divisionName = division.name;
-                    const teams = users.reduce((prev, curr) => prev.concat(curr.teams), []);
-                    const divisionTeams = teams.filter(
-                      (team) => team.division._id === division._id
-                    );
-                    return (
-                      <DivisionAdminOptions teams={ divisionTeams }
-                                          saveUpdates={ (team) => this.updateTeam(team) }>
-                        <AssignUserToDivision assignUser={
-                          (form) => this.assignUser(division._id, form)
-                        }
-                                            season={ season }
-                                            division={ division }
-                                            loading={ assigningUserToDivision }
-                                            teams={ teams }
-                                            users={ users }
-                        />
-                      </DivisionAdminOptions>
-                    );
-                  }}/>
-                </div>
-              );
-            }}/>
+                        this.divisionName = division.name;
+                        const teams = users.reduce((prev, curr) => prev.concat(curr.teams), []);
+                        const divisionTeams = teams.filter(
+                          (team) => team.division._id === division._id
+                        );
+                        return (
+                          <DivisionAdminOptions
+                            teams={ divisionTeams }
+                            saveUpdates={ (team) => this.updateTeam(team) }>
+                            <AssignUserToDivision
+                              assignUser={
+                                (form) => this.assignUser(division._id, form)
+                              }
+                              season={ season }
+                              division={ division }
+                              loading={ assigningUserToDivision }
+                              teams={ teams }
+                              users={ users }
+                            />
+                          </DivisionAdminOptions>
+                        );
+                      }}/>
+                  </div>
+                );
+              }}/>
           </section>
 
           <section className="admin__panel admin__panel--users">
-            <AdminList list={ [{ name: 'Users' }] }
-                       path="users"
+            <AdminList
+              list={ [{ name: 'Users' }] }
+              path="users"
             />
-            <Route path={usersPath} render={(userProps) => {
-              if (!userProps.match) return null;
-              return (
-                <UserAdminOptions users={ users }>
-                  <AddUser add={(form) => this.addUser(form)}
-                           loading={ addingUser }
-                           errors={ userErrors }
-                           seasons={ seasons }
-                  />
-                </UserAdminOptions>
-              );
-            }}/>
+            <Route
+              path={usersPath} render={(userProps) => {
+                if (!userProps.match) return null;
+                return (
+                  <UserAdminOptions users={ users }>
+                    <AddUser
+                      add={(form) => this.addUser(form)}
+                      loading={ addingUser }
+                      errors={ userErrors }
+                      seasons={ seasons }
+                    />
+                  </UserAdminOptions>
+                );
+              }}/>
           </section>
 
 
           <section className="admin__panel admin__panel--players">
-            <AdminList list={ [{ name: 'Players' }] }
-                       path="players"
+            <AdminList
+              list={ [{ name: 'Players' }] }
+              path="players"
             />
-            <Route path={playersPath} render={(playersMatcher) => {
-              if (!playersMatcher.match) return null;
-              if (loadingPlayers) return <p>Loading</p>;
-              if (!players.length) {
+            <Route
+              path={playersPath} render={(playersMatcher) => {
+                if (!playersMatcher.match) return null;
+                if (loadingPlayers) return <p>Loading</p>;
+                if (!players.length) {
+                  return (
+                    <div className="admin-options">
+                      <p>No players found.</p>
+                      <button onClick={ this.importPlayers }>Initialise</button>
+                    </div>
+                  );
+                }
                 return (
-                  <div className="admin-options">
-                    <p>No players found.</p>
-                    <button onClick={ this.importPlayers }>Initialise</button>
-                  </div>
+                  <PlayerAdminOptions
+                    players={ players }
+                    saving={ updatingPlayer }
+                    saveUpdates={ this.updatePlayers }
+                  />
                 );
-              }
-              return (
-                <PlayerAdminOptions players={ players }
-                                    saving={ updatingPlayer }
-                                    saveUpdates={ this.updatePlayers }
-                />
-              );
-            }}/>
+              }}/>
           </section>
 
           <h3>tech-debt:</h3>

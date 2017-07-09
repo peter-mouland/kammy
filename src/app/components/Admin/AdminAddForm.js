@@ -9,7 +9,6 @@ import './adminList.scss';
 const bem = bemHelper({ name: 'admin-list' });
 
 class AdminList extends React.Component {
-
   static propTypes = {
     loading: PropTypes.bool,
   }
@@ -46,19 +45,21 @@ class AdminList extends React.Component {
       loading
         ? <Interstitial>Saving</Interstitial>
         : <form method="POST" onSubmit={ this.add }>
-          <input { ...bem('text') }
-                 type="text"
-                 name="add"
-                 autoComplete="off"
-                 ref={(input) => { this.input = input; } }
-                 defaultValue={ this.getDefaultValue() }
-                 onFocus={ this.clearDefaultValue }
-                 onBlur={ this.setDefaultValue }
-                 onChange={ this.updateValue }
+          <input
+            { ...bem('text') }
+            type="text"
+            name="add"
+            autoComplete="off"
+            ref={(input) => { this.input = input; } }
+            defaultValue={ this.getDefaultValue() }
+            onFocus={ this.clearDefaultValue }
+            onBlur={ this.setDefaultValue }
+            onChange={ this.updateValue }
           />
-          <input className="admin-btn"
-                 type="submit"
-                 value="Add"
+          <input
+            className="admin-btn"
+            type="submit"
+            value="Add"
           />
         </form>
     );

@@ -6,8 +6,8 @@ import { getSeasons, getDivisions, addDivision, addSeason, updateSeason } from '
 import { getStats, saveGameWeekStats } from './db/stats/stats.actions';
 
 const getDashboard = (args, context) => (context.user)
-    ? ({ message: "You're authorized to see this secret message." })
-    : ({ message: 'default message' });
+  ? ({ message: "You're authorized to see this secret message." })
+  : ({ message: 'default message' });
 
 // The root provides the top-level API endpoints
 export default {

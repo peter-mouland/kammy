@@ -26,7 +26,6 @@ const getAndRemoveMessage = (key) => {
 };
 
 class LoginPage extends React.Component {
-
   static propTypes = {
     location: PropTypes.object
   };

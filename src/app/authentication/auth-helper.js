@@ -74,7 +74,6 @@ function requestSignUp(user, cb) {
 
 
 class Auth {
-
   static responseCallback(res, cb) {
     if (res.authenticated && res.token) { // prevent undefined getting saved
       this.saveToken(res.token);

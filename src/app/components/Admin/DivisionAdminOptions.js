@@ -11,7 +11,6 @@ import './adminOptions.scss';
 const bem = bemHelper({ name: 'admin-options' });
 
 class DivisionAdminOptions extends React.Component {
-
   static contextTypes = {
     router: PropTypes.object
   }
@@ -24,9 +23,10 @@ class DivisionAdminOptions extends React.Component {
     const { teams, children, saveUpdates, ...props } = this.props;
     const { router: { route: { match } } } = this.context;
     return (
-      <div {...bem(null, 'top') }
-           { ...props }
-           data-test="admin-options--division"
+      <div
+        {...bem(null, 'top') }
+        { ...props }
+        data-test="admin-options--division"
       >
         <div className="admin-option">
           <ul className="simple-list">
@@ -37,9 +37,10 @@ class DivisionAdminOptions extends React.Component {
                   <SubLink { ...bem('text') } to={teamPath}>
                     {team.user.name}
                   </SubLink>
-                  <Route path={teamPath} render={() => (
-                    <TeamAdminOptions team={ team } saveUpdates={ saveUpdates } />
-                  )} />
+                  <Route
+                    path={teamPath} render={() => (
+                      <TeamAdminOptions team={ team } saveUpdates={ saveUpdates } />
+                    )} />
                 </li>
               );
             })}

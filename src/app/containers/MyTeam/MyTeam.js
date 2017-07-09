@@ -20,7 +20,6 @@ const bem = bemHelper({ name: 'my-team' });
 debug('kammy:myteam');
 
 class MyTeam extends React.Component {
-
   static needs = [fetchTeam, fetchPlayers];
 
   static propTypes = {
@@ -126,10 +125,11 @@ class MyTeam extends React.Component {
             <button onClick={ this.saveTeam }>Save Team</button>
           </section>
           <section { ...bem('player-selection') }>
-            <PlayerTable players={ players }
-                         type="my-team"
-                         selectedPosition={ selectedPosition }
-                         selectPlayer={ this.selectPlayer }
+            <PlayerTable
+              players={ players }
+              type="my-team"
+              selectedPosition={ selectedPosition }
+              selectPlayer={ this.selectPlayer }
             />
           </section>
         </div>

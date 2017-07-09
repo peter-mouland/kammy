@@ -5,7 +5,6 @@ import Auth from '../../auth-helper';
 import '../../loginForm.scss';
 
 class ChangePasswordPage extends React.Component {
-
   constructor(props, context) {
     super(props, context);
     this.state = {

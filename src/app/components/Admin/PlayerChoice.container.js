@@ -6,7 +6,6 @@ import { fetchPlayers } from '../../actions';
 import Selector from '../../components/Selector/Selector';
 
 class PlayerChoice extends React.Component {
-
   clubs = [];
 
   static propTypes = {
@@ -72,21 +71,24 @@ class PlayerChoice extends React.Component {
       .sort((playerA, playerB) => (playerA.name > playerB.name ? 1 : -1));
 
     return (
-        <form>
-          <Selector onChange={ this.clubFilter }
-                    defaultValue={ clubFilter }
-                    options={ clubs }
-          />
-          <Selector onChange={ this.selectPlayer }
-                    defaultValue={ defaultValue._id }
-                    options={ filteredPlayers }
-          />
-          <input type="submit"
-                 onClick={ (e) => onUpdate(e, this.state.player) }
-                 disabled={ !this.state.playerId || this.state.playerId === defaultValue._id }
-                 value="Update"
-          />
-        </form>
+      <form>
+        <Selector
+          onChange={ this.clubFilter }
+          defaultValue={ clubFilter }
+          options={ clubs }
+        />
+        <Selector
+          onChange={ this.selectPlayer }
+          defaultValue={ defaultValue._id }
+          options={ filteredPlayers }
+        />
+        <input
+          type="submit"
+          onClick={ (e) => onUpdate(e, this.state.player) }
+          disabled={ !this.state.playerId || this.state.playerId === defaultValue._id }
+          value="Update"
+        />
+      </form>
     );
   }
 }

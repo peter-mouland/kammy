@@ -9,7 +9,6 @@ import './adminList.scss';
 const bem = bemHelper({ name: 'admin-list' });
 
 class AdminList extends React.Component {
-
   static propTypes = {
     list: PropTypes.array,
     secondary: PropTypes.bool,
@@ -23,9 +22,10 @@ class AdminList extends React.Component {
     const { list, path, children, secondary = false, ...props } = this.props;
     const { router: { route: { match } } } = this.context;
     return (
-      <ul { ...bem(null, { secondary, [path]: path }) }
-          { ...props }
-          data-test={`admin-list--${path}`}
+      <ul
+        { ...bem(null, { secondary, [path]: path }) }
+        { ...props }
+        data-test={`admin-list--${path}`}
       >
         {
           list

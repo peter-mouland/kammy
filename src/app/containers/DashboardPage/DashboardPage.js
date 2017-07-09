@@ -7,7 +7,6 @@ import Dashboard from '../../components/Dashboard/Dashboard';
 import { fetchDashboardData, fetchSeasons } from '../../actions';
 
 class DashboardPage extends React.Component {
-
   static needs = [fetchSeasons];
 
   componentDidMount() {

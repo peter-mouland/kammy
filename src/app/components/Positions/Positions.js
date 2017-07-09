@@ -27,8 +27,9 @@ export const PositionButtons = ({ selectedPos, onClick, className, ...props }) =
   const positionButton = (pos) => {
     const selected = selectedPos === pos;
     return (
-      <button { ...bem('button', { selected }) }
-              key={pos} onClick={(e) => onClick(e, pos)}
+      <button
+        { ...bem('button', { selected }) }
+        key={pos} onClick={(e) => onClick(e, pos)}
       >
         {pos}
       </button>

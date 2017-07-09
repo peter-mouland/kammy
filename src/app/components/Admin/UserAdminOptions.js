@@ -9,7 +9,6 @@ import './adminOptions.scss';
 const bem = bemHelper({ name: 'user-list' });
 
 class UserAdminOptions extends React.Component {
-
   static contextTypes = {
     router: PropTypes.object
   }
@@ -18,18 +17,19 @@ class UserAdminOptions extends React.Component {
     const { children, users, ...props } = this.props;
     const { router: { route: { match } } } = this.context;
     return (
-      <div className="admin-options"
-           { ...props }
-           data-test="admin-options--user"
+      <div
+        className="admin-options"
+        { ...props }
+        data-test="admin-options--user"
       >
         <div className="admin-option">
           <ul className="simple-list">
             { users.map((user) => user && (
-                <li key={user._id}>
-                  <SubLink { ...bem('text') } to={joinPaths(match.url, user._id)}>
-                    { user.name || user.email }
-                  </SubLink>
-                </li>)
+              <li key={user._id}>
+                <SubLink { ...bem('text') } to={joinPaths(match.url, user._id)}>
+                  { user.name || user.email }
+                </SubLink>
+              </li>)
             )}
           </ul>
         </div>

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Interstitial from '../Interstitial/Interstitial';
 
 class AssignUserToDivision extends React.Component {
-
   static propTypes = {
     loading: PropTypes.bool,
   }
@@ -35,20 +34,21 @@ class AssignUserToDivision extends React.Component {
       loading
         ? <Interstitial>Saving</Interstitial>
         : <form method="post" onSubmit={ this.assignUser }>
-            <div>
-              <label htmlFor="user-teamId" required>User:</label>
-              <select id="user-teamId"
-                      name="user-teamId"
-                      ref={(input) => { this.inputs.teamId = input; }}
-              >
-                { this.teamOption(teamsNotInThisDivision) }
-                {/* <optgroup label="Users with a division this Season">*/}
-                  {/* { this.teamOption(usersWithoutATeamThisSeason) }*/}
-                {/* </optgroup>*/}
-              </select>
-            </div>
-            <input className="admin-btn" type="submit" value="Assign User To Division"/>
-          </form>
+          <div>
+            <label htmlFor="user-teamId" required>User:</label>
+            <select
+              id="user-teamId"
+              name="user-teamId"
+              ref={(input) => { this.inputs.teamId = input; }}
+            >
+              { this.teamOption(teamsNotInThisDivision) }
+              {/* <optgroup label="Users with a division this Season">*/}
+              {/* { this.teamOption(usersWithoutATeamThisSeason) }*/}
+              {/* </optgroup>*/}
+            </select>
+          </div>
+          <input className="admin-btn" type="submit" value="Assign User To Division"/>
+        </form>
 
     );
   }

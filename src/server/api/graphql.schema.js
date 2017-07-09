@@ -45,13 +45,6 @@ const schemaString = `
     currentGW: Int
     divisions: [Division]
   }
-  type Player {
-    _id: String!
-    code: Int
-    name: String
-    pos: String
-    club: String
-  }
   type UpdatedPlayer { 
     _id: String!
     code: Int

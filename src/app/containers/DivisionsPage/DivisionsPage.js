@@ -6,7 +6,6 @@ import Interstitial from '../../components/Interstitial/Interstitial';
 import { fetchDivisions } from '../../actions';
 
 class DivisionsPage extends React.Component {
-
   static needs = [fetchDivisions];
 
   componentDidMount() {

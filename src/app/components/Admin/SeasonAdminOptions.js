@@ -9,7 +9,6 @@ import './adminOptions.scss';
 import PlayerTable from '../PlayerTable/PlayerTable';
 
 class SeasonAdminOptions extends React.Component {
-
   static propTypes = {
     season: PropTypes.object,
   }
@@ -44,10 +43,11 @@ class SeasonAdminOptions extends React.Component {
     return (
       <div { ...props } data-test="admin-options--season">
         <div className="admin-options" >
-          <Toggle checked={ season.isLive }
-                  id={`season-live--${season._id}`}
-                  className="admin-option"
-                  onChange={ this.toggleLive }
+          <Toggle
+            checked={ season.isLive }
+            id={`season-live--${season._id}`}
+            className="admin-option"
+            onChange={ this.toggleLive }
           >
             Season is Live?
           </Toggle>
@@ -67,9 +67,10 @@ class SeasonAdminOptions extends React.Component {
             { statsLoading ? <Interstitial small message="Loading stats"/> : null }
             { statsErrors.length ? <Errors errors={statsErrors} small/> : null }
           </form>
-          <button className="admin-option__value"
-                  disabled={!stats}
-                  onClick={ () => this.saveGameWeekStats(stats) }
+          <button
+            className="admin-option__value"
+            disabled={!stats}
+            onClick={ () => this.saveGameWeekStats(stats) }
           >2. Save Game Week Stats</button>
 
           <button className="admin-option__value" onClick={ this.incrementGameWeek } disabled>
@@ -82,11 +83,12 @@ class SeasonAdminOptions extends React.Component {
         { stats ?
           <div className="admin-options" >
             <section >
-              <PlayerTable players={ (Object.keys(stats)).map((key) => stats[key]) }
-                           type="my-team"
-                           showStats
-                           // selectedPosition={ selectedPosition }
-                           // selectPlayer={ this.selectPlayer }
+              <PlayerTable
+                players={ (Object.keys(stats)).map((key) => stats[key]) }
+                type="my-team"
+                showStats
+                // selectedPosition={ selectedPosition }
+                // selectPlayer={ this.selectPlayer }
               />
             </section>
           </div>
