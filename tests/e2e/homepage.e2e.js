@@ -1,4 +1,10 @@
+/*
+ * Test: homepage.e2e.js
+ * Purpose:
+ *   Quick test to ensure the site is up
+ */
 import { findRoute } from '../../src/app/routes';
+
 let homePage;
 let pageLayout;
 

@@ -1,3 +1,9 @@
+/*
+ * Test: new-season-journey.e2e.js
+ * Purpose:
+ *   To test the start of a new season
+ *   i.e. an existing user can login and add a season and add a division then assign himself to that division
+ */
 import Chance from 'chance';
 
 import { findRoute } from '../../src/app/routes';
@@ -90,6 +96,10 @@ module.exports = {
     adminPage.section.seasons.click('@divisionLink');
     adminPage.section.seasons.waitForElementPresent('@divisionAdminOptions', 1000);
     adminPage.section.seasons.expect.element('@divisionAdminOptions').to.be.visible
+  },
+
+  ['should be able to assign a user to this division'](browser) {
+    // todo: assign user to division
   },
 
 };

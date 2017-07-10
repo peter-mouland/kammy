@@ -1,0 +1,11 @@
+{
+  "result_count": 1,
+  "search": "",
+  "users": [
+    {
+      "_id": "596404259434343ab91c8b5f",
+      "name": "Pete",
+      "email": "pete@email.com",
+    }
+  ]
+}

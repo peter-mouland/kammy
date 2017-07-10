@@ -1,31 +1,25 @@
 {
     "result_count": 1,
-    "search": "2",
+    "search": "",
     "seasons": [
         {
-            "_id": "s1",
+            "_id": "596403790e1d3f3aa10e953d",
             "isLive": true,
-            "name":"2016/2017",
-            "currentGW":26,
+            "name":"2017/2018",
+            "currentGW": 0,
             "divisions": [
               {
-                "_id": "l1",
+                "_id": "596403790e1d3f3aa10e9540",
                 "tier": 1,
-                "name": "premiership",
-                "managers": [
-                  {
-                    "_id": "m1",
-                    "team_id": "t1"
-                  }
-                ]
+                "name": "Premiership"
               },
               {
-                "_id": "l2",
+                "_id": "596403790e1d3f3aa10e953f",
                 "tier": 2,
-                "name": "championship"
+                "name": "Championship"
               },
               {
-                "_id": "l3",
+                "_id": "596403790e1d3f3aa10e953e",
                 "tier": 3,
                 "name": "bottom feeders"
               }

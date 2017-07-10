@@ -1,3 +1,9 @@
+/*
+ * Test: auth-journey.e2e.js
+ * Purpose:
+ *   Test login / sign up works
+ *   i.e. a new user can register and login. plus, a new user can not register with a pre-registered email.
+ */
 import Chance from 'chance';
 
 import { findRoute } from '../../src/app/routes';

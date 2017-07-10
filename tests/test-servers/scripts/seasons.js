@@ -7,19 +7,11 @@ const assert = require('assert');
 
 const Season = mongoose.model('Season');
 
-module.exports.puke = (user) => new Promise((resolve, reject) => {
+module.exports.puke = (season) => {
   console.log('inserting test seasons....');
-  Season.collection.insert(user, function (err, r) {
-    assert.equal(null, err);
-    console.log(r);
-    if (err){
-      reject(err);
-    } else {
-      resolve(r.insertedIds);
-    }
-  });
-});
-
+  const newSeason = new Season(season);
+  return newSeason.save();
+};
 
 module.exports.nuke = (season) => new Promise((resolve, reject) => {
   console.log(`removing`, season, ` from ${Season.db.name}....`);

@@ -1,0 +1,738 @@
+{
+  "result_count": 1,
+  "search": "",
+  "players": [
+    {
+      "_id": "596404259434343ab91c8b60",
+      "code": 1,
+      "pos": "STR",
+      "name": "surname1, fname",
+      "club": "Bournemouth",
+      "total" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      },
+      "gameweek" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      }
+    },
+    {
+      "_id": "596404259434343ab91c8b61",
+      "code": 2,
+      "pos": "STR",
+      "name": "surname2, fname",
+      "club": "Bournemouth",
+      "total" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      },
+      "gameweek" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      }
+    },
+    {
+      "_id": "596404269434343ab91c8b62",
+      "code": 3,
+      "pos": "STR",
+      "name": "surname3, fname",
+      "club": "Bournemouth",
+      "total" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      },
+      "gameweek" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      }
+    },
+    {
+      "_id": "596404269434343ab91c8b63",
+      "code": 4,
+      "pos": "WM",
+      "name": "surname4, fname",
+      "club": "Bournemouth",
+      "total" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      },
+      "gameweek" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      }
+    },
+    {
+      "_id": "596404269434343ab91c8b64",
+      "code": 5,
+      "pos": "WM",
+      "name": "surname5, fname",
+      "club": "Bournemouth",
+      "total" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      },
+      "gameweek" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      }
+    },
+    {
+      "_id": "596404269434343ab91c8b65",
+      "code": 6,
+      "pos": "CM",
+      "name": "surname6, fname",
+      "club": "Bournemouth",
+      "total" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      },
+      "gameweek" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      }
+    },
+    {
+      "_id": "596404269434343ab91c8b66",
+      "code": 7,
+      "pos": "CM",
+      "name": "surname7, fname",
+      "club": "Bournemouth",
+      "total" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      },
+      "gameweek" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      }
+    },
+    {
+      "_id": "596404269434343ab91c8b67",
+      "code": 8,
+      "pos": "FB",
+      "name": "surname8, fname",
+      "club": "Bournemouth",
+      "total" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      },
+      "gameweek" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      }
+    },
+    {
+      "_id": "596404269434343ab91c8b68",
+      "code": 9,
+      "pos": "FB",
+      "name": "surname9, fname",
+      "club": "Bournemouth",
+      "total" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      },
+      "gameweek" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      }
+    },
+    {
+      "_id": "596404269434343ab91c8b69",
+      "code": 10,
+      "pos": "CB",
+      "name": "surname10, fname",
+      "club": "Bournemouth",
+      "total" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      },
+      "gameweek" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      }
+    },
+    {
+      "_id": "596404269434343ab91c8b6a",
+      "code": 11,
+      "pos": "CB",
+      "name": "surname11, fname",
+      "club": "Bournemouth",
+      "total" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      },
+      "gameweek" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      }
+    },
+    {
+      "_id": "596404269434343ab91c8b6b",
+      "code": 12,
+      "pos": "GK",
+      "name": "surname12, fname",
+      "club": "Bournemouth",
+      "total" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      },
+      "gameweek" : {
+        "points": {
+          "total": 0,
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        },
+        "stats": {
+          "apps": 0,
+          "subs": 0,
+          "gls": 0,
+          "asts": 0,
+          "mom": 0,
+          "cs": 0,
+          "con": 0,
+          "pensv": 0,
+          "ycard": 0,
+          "rcard": 0
+        }
+      }
+    }
+  ]
+}

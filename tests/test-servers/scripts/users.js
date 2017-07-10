@@ -5,15 +5,19 @@
 const mongoose = require('mongoose');
 const assert = require('assert');
 
-const { addUser } = require('../../../src/server/api/db/user/user.actions');
+const { addUser, saveNewUser } = require('../../../src/server/api/db/user/user.actions');
 
 const User = mongoose.model('User');
 
-module.exports.puke = (user) => {
-  console.log('inserting test users....', user);
-  return addUser(user).then((inserted) => console.log({ inserted }));
+module.exports.generateUser = (user) => {
+  console.log('generating test users....', user);
+  return addUser(user);
 };
 
+module.exports.puke = (user) => {
+  console.log('inserting test users....', user);
+  return saveNewUser(user);
+};
 
 module.exports.nuke = (user) => new Promise((resolve, reject) => {
   console.log(`removing`, user,` from ${User.db.name}....`);

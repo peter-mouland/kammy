@@ -3,7 +3,7 @@
   "search": "",
   "teams": [
     {
-      "_id": "59483232c2f6f429b2b97499",
+      "_id": "596403790e1d3f3aa10e9541",
       "total": {
         "sub": 0,
         "strright": 0,
@@ -33,85 +33,96 @@
         "fbleft": 0,
         "cbright": 0,
         "cbleft": 0,
-        "gk": -1,
+        "gk": 0,
         "transfersMade": 0,
         "transfersRequested": 0,
-        "points": -1
+        "points": 0
       },
       "division": {
-        "_id": "5948246a5d4e4a2902c33372",
-        "name": "prem"
+        "_id": "596403790e1d3f3aa10e9540",
+        "name": "premiership"
       },
       "season": {
-        "_id": "594824575d4e4a2902c33371",
-        "name": "2017"
+        "_id": "596403790e1d3f3aa10e953d",
+        "name": "2017/2018"
       },
       "user": {
-        "_id": "59483232c2f6f429b2b97498",
+        "_id": "596404259434343ab91c8b5f",
         "name": "pete"
       },
       "dateCreated": "2017-06-19T20:21:06.272Z",
       "__v": 0,
       "sub": {
-        "club": null,
-        "name": null,
-        "_id": null
+        "code": 1,
+        "club": "Bournemouth",
+        "name": "surname1, fname",
+        "_id": "596404259434343ab91c8b60"
       },
       "strright": {
-        "club": null,
-        "name": null,
-        "_id": null
+        "code": 2,
+        "club": "Bournemouth",
+        "name": "surname2, fname",
+        "_id": "596404259434343ab91c8b61"
       },
       "strleft": {
-        "club": null,
-        "name": null,
-        "_id": null
+        "code": 3,
+        "club": "Bournemouth",
+        "name": "surname3, fname",
+        "_id": "596404259434343ab91c8b62"
       },
       "wmright": {
-        "club": null,
-        "name": null,
-        "_id": null
+        "code": 4,
+        "club": "Bournemouth",
+        "name": "surname4, fname",
+        "_id": "596404259434343ab91c8b63"
       },
       "wmleft": {
-        "club": null,
-        "name": null,
-        "_id": null
+        "code": 5,
+        "club": "Bournemouth",
+        "name": "surname5, fname",
+        "_id": "596404259434343ab91c8b64"
       },
       "cmright": {
-        "club": null,
-        "name": null,
-        "_id": null
+        "code": 6,
+        "club": "Bournemouth",
+        "name": "surname6, fname",
+        "_id": "596404259434343ab91c8b65"
       },
       "cmleft": {
-        "club": null,
-        "name": null,
-        "_id": null
+        "code": 7,
+        "club": "Bournemouth",
+        "name": "surname7, fname",
+        "_id": "596404259434343ab91c8b66"
       },
       "fbright": {
-        "club": null,
-        "name": null,
-        "_id": null
+        "code": 8,
+        "club": "Bournemouth",
+        "name": "surname8, fname",
+        "_id": "596404259434343ab91c8b67"
       },
       "fbleft": {
-        "club": null,
-        "name": null,
-        "_id": null
+        "code": 9,
+        "club": "Bournemouth",
+        "name": "surname9, fname",
+        "_id": "596404259434343ab91c8b68"
       },
       "cbright": {
-        "club": null,
-        "name": null,
-        "_id": null
+        "code": 10,
+        "club": "Bournemouth",
+        "name": "surname10, fname",
+        "_id": "596404259434343ab91c8b69"
       },
       "cbleft": {
-        "club": null,
-        "name": null,
-        "_id": null
+        "code": 11,
+        "club": "Bournemouth",
+        "name": "surname11, fname",
+        "_id": "596404259434343ab91c8b6a"
       },
       "gk": {
-        "code": 1003,
-        "club": "Arsenal",
-        "name": "Cech, Petr",
-        "_id": "594834e5b194ce2a03595fbc"
+        "code": 12,
+        "club": "Bournemouth",
+        "name": "surname12, fname",
+        "_id": "596404259434343ab91c8b6b"
       }
     }
   ]

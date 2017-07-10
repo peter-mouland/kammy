@@ -13,6 +13,7 @@
     "start": "webpack-dev-server --config src/config/webpack.config.dev-server.js",
     "start:prod": "NODE_ENV=production node compiled/server-entry.js",
     "start:withFixtures": "FIXTURES=true npm run start",
+    "start:testServer": "node tests/test-servers/test-server.js",
     "fixtures": "node tests/test-servers/fixtures-server.js",
     "lint": "sass-lint -v -q -c ./sass-lint.yml && eslint 'src/**/*.js'",
     "test": "npm run test:unit && npm run test:func",
