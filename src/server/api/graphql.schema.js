@@ -113,6 +113,13 @@ const schemaString = `
     name: String
     teams: [Team]
   }
+  
+  type Divisions {
+    _id: String!
+    tier: Int
+    name: String
+    teams: [Team]
+  }
 
   # Object of players and their stats.
   # ie.
@@ -171,7 +178,7 @@ const schemaString = `
     getTeams: [Team]
     getStats(currentGW: Int, source: String): Stats
     getSeasons: [Season]
-    getDivisions: [Team]
+    getDivisions: [Divisions]
     getPlayers(player: String): [Player]
     getUser(email: String, _id: String): User
     getUsersWithTeams: [UserTeams]

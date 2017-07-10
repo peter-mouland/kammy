@@ -92,7 +92,7 @@ export const getUsersWithTeamsQuery = `
 
 export const getDivisionsQuery = `
   ${teamFragment}
-  query { getDivisions{ ...teamInfo } }
+  query { getDivisions{ _id name tier teams { ...teamInfo } } }
 `;
 
 export const addSeasonsMutation = `

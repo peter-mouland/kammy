@@ -60,16 +60,15 @@
   }
 }
 
-
 input.admin-list__text {
   font-style: italic;
   opacity: .5;
   font-size: .75rem;
   line-height: 2em;
   margin-right: 1em;
-  border: 1px solid  #163;
-  background: white;
-  color: #163;
+  border: 1px solid  currentcolor;
+  background: $white;
+  color: $brand--dark;
   padding: 0 1em;
   border-radius: 3px;
   text-align: left;

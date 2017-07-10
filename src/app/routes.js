@@ -10,6 +10,7 @@ import Homepage from './components/HomePage/HomePage';
 import DivisionsPage from './components/DivisionsPage/DivisionsPage';
 import AdminPage from './components/AdminPage/AdminPage';
 import MyTeam from './components/MyTeamPage/MyTeamPage';
+import ProfilePage from './components/ProfilePage/ProfilePage';
 import NotFound from './components/NotFound/NotFound';
 
 import ChangePassword from './authentication/components/ChangePasswordPage/ChangePasswordPage';
@@ -84,7 +85,7 @@ export function getRoutesConfig() {
         title: 'profile',
       },
       requiresAuthentication: true,
-      component: <p>Hey profile!</p>
+      component: ProfilePage
     },
     {
       name: 'login',

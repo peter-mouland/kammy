@@ -11,7 +11,7 @@ export default ({ id, checked, children, className, ...props }) => (
       { ...bem(null, 'ios') }
       id={ id }
       type="checkbox"
-      defaultChecked={ checked }
+      checked={ checked }
       { ...props }
     />
     <label { ...bem('label') } htmlFor={ id } >

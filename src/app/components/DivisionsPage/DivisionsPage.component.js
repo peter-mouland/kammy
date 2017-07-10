@@ -11,17 +11,54 @@ export default class DivisionsPage extends React.Component {
 
   render() {
     const { errors = [], loading, divisions } = this.props;
-    const divisionsSet = new Set();
     if (errors.length) {
       return <Errors errors={errors} />;
     } else if (loading || !divisions) {
       return <Interstitial />;
     }
-
-    const divisionsArr = Array.from(divisionsSet);
+    if (!divisions.length) {
+      return (
+        <div id="divisions-page">
+          <p>
+            There seem to be no divisions, Please speak to your administrator to set some up.
+          </p>
+        </div>
+      );
+    }
     return (
       <div id="divisions-page">
-        {divisionsArr.map((division) => <p>{division.name}</p>)}
+        {divisions.map((division) => (
+          <section>
+            <h2 key={division.name}>{division.name}</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Team</th>
+                  <th>GK/S</th>
+                  <th>CB</th>
+                  <th>FB</th>
+                  <th>CM</th>
+                  <th>WM</th>
+                  <th>FWD</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {division.teams.map((team) => (
+                  <tr>
+                    <td>{team.name} {team.user.name}</td>
+                    <td>{team.gk.points || 0}</td>
+                    <td>{team.cbright.points || 0}</td>
+                    <td>{team.fbright.points || 0}</td>
+                    <td>{team.cmright.points || 0}</td>
+                    <td>{team.wmright.points || 0}</td>
+                    <td>{team.strright.points || 0}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+        ))}
       </div>
     );
   }

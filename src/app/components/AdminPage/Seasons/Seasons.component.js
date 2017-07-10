@@ -58,7 +58,7 @@ export default class AdminPage extends React.Component {
 
     return (
       <section { ...bem(null, null, className)} >
-        <AdminList list={ seasons } type="season">
+        <AdminList list={ seasons } type="season" secondary >
           <AddSeason
             add={ this.addSeason }
             type="Season"
