@@ -16,6 +16,7 @@ class Users extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    seasons: state.seasons.data,
     users: state.users.data,
     userErrors: state.users.errors,
     loading: state.promiseState.loading,

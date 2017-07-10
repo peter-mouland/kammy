@@ -14,7 +14,7 @@ const positions = {
   sub: [''],
 };
 
-class UserAdminOptions extends React.Component {
+class TeamAdminOptions extends React.Component {
   state = {
     showPlayerChoice: false
   }
@@ -91,4 +91,4 @@ class UserAdminOptions extends React.Component {
   }
 }
 
-export default UserAdminOptions;
+export default TeamAdminOptions;

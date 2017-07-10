@@ -68,7 +68,7 @@ export default class Divisions extends React.Component {
             season={ season }
             division={ division }
             loading={ assigningUserToDivision }
-            teams={ divisionTeams }
+            teams={ teams }
             users={ seasonUsers }
           />
         </div>
