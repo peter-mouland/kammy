@@ -49,14 +49,14 @@ export default class DivisionsPage extends React.Component {
               </thead>
               <tbody>
                 {division.teams.map((team) => (
-                  <tr>
+                  <tr key={`${team.name}-${team.user.name}`}>
                     <td>{team.name} {team.user.name}</td>
-                    <td>{team.gk.points || 0}</td>
-                    <td>{team.cbright.points || 0}</td>
-                    <td>{team.fbright.points || 0}</td>
-                    <td>{team.cmright.points || 0}</td>
-                    <td>{team.wmright.points || 0}</td>
-                    <td>{team.strright.points || 0}</td>
+                    <td>{team.gameWeek.gk}</td>
+                    <td>{team.gameWeek.cbright}</td>
+                    <td>{team.gameWeek.fbright}</td>
+                    <td>{team.gameWeek.cmright}</td>
+                    <td>{team.gameWeek.wmright}</td>
+                    <td>{team.gameWeek.strright}</td>
                   </tr>
                 ))}
               </tbody>
