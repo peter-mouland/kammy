@@ -10,7 +10,7 @@
     "build": "rm -rf compiled && npm run compile:server && npm run compile:app && node scripts/copyAssets.js",
     "compile:app": "NODE_ENV=production webpack --config src/config/webpack.config.prod.js -p --json > compiled/stats.json",
     "compile:server": "NODE_ENV=production babel src -d compiled",
-    "start": "webpack-dev-server --config src/config/webpack.config.dev-server.js",
+    "start": "DEBUG=kammy,kammy:* webpack-dev-server --config src/config/webpack.config.dev-server.js",
     "start:prod": "NODE_ENV=production node compiled/server-entry.js",
     "start:withFixtures": "FIXTURES=true npm run start",
     "start:testServer": "node tests/test-servers/test-server.js",

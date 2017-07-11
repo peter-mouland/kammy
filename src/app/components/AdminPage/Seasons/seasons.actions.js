@@ -49,6 +49,7 @@ export function fetchExternalStats({ currentGW, source }) {
 }
 
 export function saveGameWeekStats({ seasonId, update }) {
+  log({ seasonId, update });
   return {
     type: SAVE_GAME_WEEK_STATS,
     payload: fetch.graphQL('saveGameWeekStatsMutation', { seasonId, update })

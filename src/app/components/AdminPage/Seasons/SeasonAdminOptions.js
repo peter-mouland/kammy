@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import debug from 'debug';
 
 import Toggle from '../../Toggle/Toggle';
 import Interstitial from '../../Interstitial/Interstitial';
 import Errors from '../../Errors/Errors';
-
 import Players from '../../Players/Players';
+
+const log = debug('kammy:SeasonAdminOptions');
 
 class SeasonAdminOptions extends React.Component {
   static propTypes = {
@@ -23,6 +25,7 @@ class SeasonAdminOptions extends React.Component {
   }
 
   saveGameWeekStats = (stats) => {
+    log({ stats });
     this.props.saveGameWeekStats(stats);
   }
 
@@ -36,11 +39,11 @@ class SeasonAdminOptions extends React.Component {
 
   render() {
     const {
-      season, statsErrors, statsLoading, updateSeason, fetchExternalStats, saveGameWeekStats, stats, ...props // eslint-disable-line
+      season, statsErrors, statsLoading, stats,
     } = this.props;
 
     return (
-      <div { ...props } data-test="admin-options--season">
+      <div data-test="admin-options--season">
         <div className="admin-options" >
           <Toggle
             checked={ season.isLive }

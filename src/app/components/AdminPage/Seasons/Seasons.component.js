@@ -1,6 +1,7 @@
 import React from 'react';
 import Route from 'react-router-dom/Route';
 import bemHelper from 'react-bem-helper';
+import debug from 'debug';
 
 import join from '../../../utils/joinPath';
 import selectedItem from '../../../utils/selectedItem';
@@ -9,10 +10,10 @@ import AdminList from '../AdminList/AdminList';
 import AddSeason from './AddSeason';
 import SeasonAdminOptions from './SeasonAdminOptions';
 import Divisions from '../Divisions/Divisions';
-
 import { ADD_SEASON, ADD_DIVISION, FETCH_EXTERNAL_STATS } from './seasons.actions';
 
 const bem = bemHelper({ name: 'seasons' });
+const log = debug('kammy:Seasons.component');
 
 export default class AdminPage extends React.Component {
   componentDidMount() {
@@ -38,6 +39,7 @@ export default class AdminPage extends React.Component {
   }
 
   saveGameWeekStats = (season, update) => {
+    log(season, update);
     this.props.saveGameWeekStats({ seasonId: season._id, update });
   }
 

@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import debug from 'debug';
 
 import { getPlayers } from '../player/player.actions';
 import config from '../../../../config/config';
@@ -9,6 +10,7 @@ import { calculatePoints } from '../../../utils/calculatePoints';
 const Player = mongoose.model('Player');
 const Team = mongoose.model('Team');
 const ObjectId = mongoose.Types.ObjectId;
+const log = debug('kammy:stats.action');
 
 export const getExternalStats = async ({ currentGW, source }) => {
   const dbPlayers = await getPlayers();
@@ -34,37 +36,27 @@ export const getExternalStats = async ({ currentGW, source }) => {
 };
 
 export const saveGameWeekStats = ({ seasonId, update }) => {
-  const allUpdates = (Object.keys(update)).map((key) => {
+  const allUpdates = [];
+  (Object.keys(update)).forEach((key) => {
     const player = update[key];
     const pos = player.pos.toLowerCase();
-    return Promise.resolve()
-      .then(() => Player.findOneAndUpdate(
-        {
-          code: player.code
-        },
-        {
-          $set: {
-            'gameWeek.points': player.gameWeek.points,
-            'gameWeek.stats': player.gameWeek.stats,
-          }
-        }
-      ))
-      .then(() => Team.update(
-        {
-          'season._id': new ObjectId(seasonId),
-          [`${pos}.code`]: player.code
-        },
-        {
-          $set: {
-            // 'gameWeek.points': player.gameWeek.points.total,
-            [`gameWeek.${pos}`]: player.gameWeek.points.total
-          },
-          // $inc: {
-          //   'total.points': player.gameWeek.points.total,
-          //   [`total.${pos}`]: player.gameWeek.points.total
-          // },
-        }
-      ));
+    const queryTeam = (position) => ({
+      'season._id': new ObjectId(seasonId),
+      [`${position}.code`]: player.code
+    });
+    const setTeam = (position) => ({
+      [`gameWeek.${position}`]: player.gameWeek.points.total
+    });
+
+    allUpdates.push(Player.findOneAndUpdate(
+      { code: player.code },
+      { $set: {
+        'gameWeek.points': player.gameWeek.points,
+        'gameWeek.stats': player.gameWeek.stats,
+      } }
+    ));
+    allUpdates.push(Team.update(queryTeam(`${pos}left`), { $set: setTeam(`${pos}left`) }));
+    allUpdates.push(Team.update(queryTeam(`${pos}right`), { $set: setTeam(`${pos}right`) }));
   });
   return Promise.all(allUpdates).then(() => update);
 };
