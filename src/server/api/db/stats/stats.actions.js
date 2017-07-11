@@ -10,7 +10,7 @@ const Player = mongoose.model('Player');
 const Team = mongoose.model('Team');
 const ObjectId = mongoose.Types.ObjectId;
 
-export const getStats = async ({ currentGW, source }) => {
+export const getExternalStats = async ({ currentGW, source }) => {
   const dbPlayers = await getPlayers();
   const stats = {};
   const errors = [];

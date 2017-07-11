@@ -2,7 +2,7 @@ import debug from 'debug';
 
 import { fetch } from '../../utils/index';
 
-export const FETCH_STATS = 'FETCH_STATS';
+export const FETCH_EXTERNAL_STATS = 'FETCH_EXTERNAL_STATS';
 export const FETCH_TEAMS = 'FETCH_TEAMS';
 export const FETCH_USERS_WITH_TEAMS = 'FETCH_USERS_WITH_TEAMS';
 export const FETCH_PLAYERS = 'FETCH_PLAYERS';
