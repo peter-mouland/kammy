@@ -4,6 +4,41 @@ import GraphQLJSON from 'graphql-type-json';
 const schemaString = `
   scalar JSON
 
+  type PlayerStats {
+    total: Int
+    apps: Int
+    subs: Int
+    gls: Int
+    asts: Int
+    mom: Int
+    cs: Int
+    con: Int
+    pensv: Int
+    ycard: Int
+    rcard: Int
+  }
+
+  type Points {
+    gk: Int
+    cbleft: Int
+    cbright: Int
+    fbleft: Int
+    fbright: Int
+    cmleft: Int
+    cmright: Int
+    wmleft: Int
+    wmright: Int
+    strleft: Int
+    strright: Int
+    sub: Int
+    points: Int
+  }
+  
+  type GameWeek {
+    stats: PlayerStats
+    points: PlayerStats
+  }
+
   type MinDetail {
     _id: String
     name: String
@@ -32,6 +67,8 @@ const schemaString = `
     strleft: MinPlayerDetail
     strright: MinPlayerDetail
     sub: MinPlayerDetail
+    gameWeek: Points
+    total: Points
   }
   type Division {
     _id: String
@@ -51,37 +88,6 @@ const schemaString = `
     name: String
     pos: String
     club: String
-  }
-  type PlayerStats {
-    apps: Int
-    subs: Int
-    gls: Int
-    asts: Int
-    mom: Int
-    cs: Int
-    con: Int
-    pensv: Int
-    ycard: Int
-    rcard: Int
-  }
-
-  type Points {
-    apps: Int
-    subs: Int
-    gls: Int
-    asts: Int
-    mom: Int
-    cs: Int
-    con: Int
-    pensv: Int
-    ycard: Int
-    rcard: Int
-    total: Int
-  }
-
-  type GameWeek {
-    stats: PlayerStats
-    points: Points
   }
 
   type Player {

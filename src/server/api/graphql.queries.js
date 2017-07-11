@@ -18,6 +18,28 @@ fragment playerStatsInfo on Player {
  }
 }`;
 
+const teamPointsFragment = `
+fragment teamPointsInfo on Team {
+ gameWeek {
+    points
+    gk  
+    cbleft  cbright 
+    fbleft  fbright  
+    cmleft  cmright  
+    wmleft  wmright  
+    strleft  strright
+ }
+ total {
+    points
+    gk  
+    cbleft  cbright 
+    fbleft  fbright  
+    cmleft  cmright  
+    wmleft  wmright  
+    strleft  strright  
+ }
+}`;
+
 const minPlayerFragment = `
 fragment minPlayerInfo on MinPlayerDetail {
   _id name club code
@@ -92,7 +114,8 @@ export const getUsersWithTeamsQuery = `
 
 export const getDivisionsQuery = `
   ${teamFragment}
-  query { getDivisions{ _id name tier teams { ...teamInfo } } }
+  ${teamPointsFragment}
+  query { getDivisions{ _id name tier teams { ...teamInfo ...teamPointsInfo } } }
 `;
 
 export const addSeasonsMutation = `

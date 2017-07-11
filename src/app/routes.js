@@ -11,6 +11,7 @@ import DivisionsPage from './components/DivisionsPage/DivisionsPage';
 import AdminPage from './components/AdminPage/AdminPage';
 import MyTeam from './components/MyTeamPage/MyTeamPage';
 import ProfilePage from './components/ProfilePage/ProfilePage';
+import RulesPage from './components/RulesPage/RulesPage';
 import NotFound from './components/NotFound/NotFound';
 
 import ChangePassword from './authentication/components/ChangePasswordPage/ChangePasswordPage';
@@ -96,6 +97,16 @@ export function getRoutesConfig() {
         title: 'Login',
       },
       component: LoginPage
+    },
+    {
+      name: 'rules',
+      path: '/rules/',
+      label: 'Rules',
+      meta: {
+        ...baseMetaData,
+        title: 'Rules',
+      },
+      component: RulesPage
     },
     {
       name: 'divisions',
