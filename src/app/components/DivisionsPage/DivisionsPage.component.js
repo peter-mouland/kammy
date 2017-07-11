@@ -1,7 +1,10 @@
 import React from 'react';
+import bemHelper from 'react-bem-helper';
 
 import Errors from '../Errors/Errors';
 import Interstitial from '../Interstitial/Interstitial';
+
+const bem = bemHelper({ name: 'divisions' });
 
 export default class DivisionsPage extends React.Component {
   componentDidMount() {
@@ -26,7 +29,8 @@ export default class DivisionsPage extends React.Component {
       );
     }
     return (
-      <div id="divisions-page">
+      <div {...bem()} id="divisions-page">
+        <h1>Divisions</h1>
         {divisions.map((division) => (
           <section>
             <h2 key={division.name}>{division.name}</h2>

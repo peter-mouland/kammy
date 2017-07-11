@@ -168,6 +168,7 @@ const schemaString = `
 
   input PlayerUpdates {
     _id: String
+    code: Int
     club: String
     name: String
     pos: String

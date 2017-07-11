@@ -16,6 +16,12 @@ debug('kammy:myteam');
 
 const extremeStat = (int) => int < -10 || int > 10;
 
+// eslint-disable-next-line no-confusing-arrow
+const Highlight = ({ player, update = {}, attribute, className }) =>
+  update[attribute] && player[attribute] !== update[attribute]
+    ? <em { ...bem(null, null, ['text--warning', className])}>{update[attribute]}</em>
+    : <span className={ className }>{player[attribute]}</span>;
+
 export default class PlayerTable extends React.Component {
   static propTypes = {
     players: PropTypes.array,
@@ -27,10 +33,15 @@ export default class PlayerTable extends React.Component {
     players: [],
     selectedPosition: '',
     loading: false,
-    errors: []
+    errors: [],
+    originalPlayers: {},
+    playerUpdates: {}
   };
 
-  clubs = [];
+  options = {
+    club: [],
+    pos: availablePositions
+  }
 
   constructor(props) {
     super(props);
@@ -39,7 +50,7 @@ export default class PlayerTable extends React.Component {
       isSaving: false,
       nameFilter: '',
       posFilter: props.selectedPosition,
-      clubFilter: '',
+      clubFilter: this.options.club[0],
     };
   }
 
@@ -54,6 +65,57 @@ export default class PlayerTable extends React.Component {
     if (nextProps.selectedPosition !== this.state.selectedPosition) {
       this.setState({ posFilter: nextProps.selectedPosition });
     }
+  }
+
+  onEdit(e, player, attribute, originalPlayerData) {
+    const existingPlayerUpdate = this.props.playerUpdates[player._id];
+    const playerUpdates = {
+      ...this.props.playerUpdates,
+      [player._id]: {
+        ...player,
+        ...existingPlayerUpdate,
+        [attribute]: e.currentTarget.value
+      }
+    };
+    const originalPlayers = {
+      ...this.props.originalPlayers,
+      [player._id]: originalPlayerData
+    };
+    this.props.onChange({ playerUpdates, originalPlayers });
+  }
+
+  CellEditor = ({ player, originalPlayerData, editable = false, attribute, type }) => {
+    const onChange = (e) => this.onEdit(e, player, attribute, originalPlayerData);
+    const Editor = type === 'text'
+      ? <input
+        type="text"
+        onChange={ onChange }
+        defaultValue={ player[attribute] }
+      />
+      : <Selector
+        onChange={ onChange }
+        defaultValue={ player[attribute] }
+        options={ this.options[attribute] }
+      />;
+    return editable ? (
+      <td
+        { ...bem('meta')}
+        onMouseOver={ (e) => this.showUpdater(e, player, attribute) }
+        onClick={ (e) => this.showUpdater(e, player, attribute) }
+      >
+        {
+          this.state[`show${attribute}Updater`] === player._id
+            ? <span>{Editor}</span>
+            :
+            <Highlight
+              update={ this.props.playerUpdates[player._id] }
+              player={ originalPlayerData }
+              attribute={attribute}
+              { ...bem('editable', type) }
+            />
+        }
+      </td>
+    ) : <td { ...bem('meta')} >{ player[attribute] }</td>;
   }
 
   posFilter = (e) => {
@@ -77,7 +139,7 @@ export default class PlayerTable extends React.Component {
   }
 
   setClubs = (props) => {
-    this.clubs = (props.players.length) ? this.getClubs(props.players) : [];
+    this.options.club = (props.players.length) ? this.getClubs(props.players) : [];
   }
 
   getClubs = (players) => {
@@ -86,14 +148,29 @@ export default class PlayerTable extends React.Component {
     return [...clubs.keys()].sort();
   }
 
+  showUpdater(e, player, detail) {
+    const reset = {
+      showposUpdater: null,
+      shownameUpdater: null,
+      showclubUpdater: null
+    };
+    this.setState({
+      ...reset,
+      [`show${detail}Updater`]: player._id
+    });
+  }
+
+  // from container: players, errors, loading
   render() {
     const {
-      players, errors, loading, type, className, selectPlayer, selectedPosition, showStats
+      players, errors, loading, type, className, selectPlayer, selectedPosition, showStats,
+      editable = false, playerUpdates = {},
     } = this.props;
     const {
-      posFilter, clubFilter, nameFilter, statsOrPoints = 'stats', weeklyOrSeason = 'gameWeek'
+      posFilter, clubFilter, nameFilter,
+      statsOrPoints = 'stats', weeklyOrSeason = 'gameWeek'
     } = this.state;
-    const clubs = this.clubs;
+    const clubs = this.options.club;
     const highlight = weeklyOrSeason === 'gameWeek';
 
     if (players === null) {
@@ -170,14 +247,15 @@ export default class PlayerTable extends React.Component {
                 (!!clubFilter && clubFilter.toUpperCase() !== player.club.toUpperCase());
                 return !isFiltered;
               })
-              .map((player) => {
+              .map((originalPlayerData) => {
+                const player = playerUpdates[originalPlayerData._id] || originalPlayerData;
                 const output = player[weeklyOrSeason][statsOrPoints];
                 return (
                   <tr key={player.code} { ...bem('player')}>
-                    <td { ...bem('meta')} >{ player.code }</td>
-                    <td { ...bem('meta')} >{ player.pos }</td>
-                    <td { ...bem('meta')} >{ player.name }</td>
-                    <td { ...bem('meta')} >{ player.club }</td>
+                    {this.CellEditor({ player, originalPlayerData, attribute: 'code', editable, type: 'text' })}
+                    {this.CellEditor({ player, originalPlayerData, attribute: 'pos', editable, type: 'select' })}
+                    {this.CellEditor({ player, originalPlayerData, attribute: 'name', editable, type: 'text' })}
+                    {this.CellEditor({ player, originalPlayerData, attribute: 'club', editable, type: 'select' })}
                     { selectPlayer &&
                   <td { ...bem('meta')} >
                     <button
