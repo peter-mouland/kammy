@@ -4,7 +4,13 @@ import bemHelper from 'react-bem-helper';
 import Errors from '../Errors/Errors';
 import Interstitial from '../Interstitial/Interstitial';
 
+import './divisions-page.scss';
+
 const bem = bemHelper({ name: 'divisions' });
+
+const additionalPoints = (points) => (
+  points > -1 ? `+${points}` : points
+);
 
 export default class DivisionsPage extends React.Component {
   componentDidMount() {
@@ -34,7 +40,7 @@ export default class DivisionsPage extends React.Component {
         {divisions.map((division) => (
           <section className="page-content" key={division.name}>
             <h2>{division.name}</h2>
-            <table>
+            <table { ...bem('table')} cellPadding={0} cellSpacing={0} >
               <thead>
                 <tr>
                   <th>Team</th>
@@ -51,12 +57,13 @@ export default class DivisionsPage extends React.Component {
                 {division.teams.map((team) => (
                   <tr key={`${team.name}-${team.user.name}`}>
                     <td>{team.name} {team.user.name}</td>
-                    <td>{team.gameWeek.gk}</td>
-                    <td>{team.gameWeek.cbright}</td>
-                    <td>{team.gameWeek.fbright}</td>
-                    <td>{team.gameWeek.cmright}</td>
-                    <td>{team.gameWeek.wmright}</td>
-                    <td>{team.gameWeek.strright}</td>
+                    <td><span { ...bem('point')}>{team.total.gk} <span { ...bem('additional-point')}>{additionalPoints(team.gameWeek.gk)}</span></span></td>
+                    <td><span { ...bem('point')}>{team.total.cb} <span { ...bem('additional-point')}>{additionalPoints(team.gameWeek.cb)}</span></span></td>
+                    <td><span { ...bem('point')}>{team.total.fb} <span { ...bem('additional-point')}>{additionalPoints(team.gameWeek.fb)}</span></span></td>
+                    <td><span { ...bem('point')}>{team.total.cm} <span { ...bem('additional-point')}>{additionalPoints(team.gameWeek.cm)}</span></span></td>
+                    <td><span { ...bem('point')}>{team.total.wm} <span { ...bem('additional-point')}>{additionalPoints(team.gameWeek.wm)}</span></span></td>
+                    <td><span { ...bem('point')}>{team.total.str} <span { ...bem('additional-point')}>{additionalPoints(team.gameWeek.str)}</span></span></td>
+                    <td><span { ...bem('point')}>{team.total.points} <span { ...bem('additional-point')}>{additionalPoints(team.gameWeek.points)}</span></span></td>
                   </tr>
                 ))}
               </tbody>

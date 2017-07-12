@@ -1,0 +1,51 @@
+@import '../../../styles/base/colours';
+
+.divisions {
+
+  &__table {
+    width: 100%;
+    border-bottom: 1px solid $dark-grey;
+    border-right: 1px solid $dark-grey;
+    background: $white;
+
+    thead {
+      background-color: $brand;
+      color: $white;
+
+    }
+
+    tr {
+      &:nth-child(even) {
+        background: $grey;
+      }
+    }
+
+    td,
+    th {
+      font-weight: normal;
+      padding: 1em .5em;
+      text-align: center;
+
+      &:first-child {
+        text-align: left;
+      }
+    }
+
+    td {
+      border-top: 1px solid $dark-grey;
+      border-left: 1px solid $dark-grey;
+    }
+  }
+
+  &__point {
+    position: relative;
+  }
+
+  &__additional-point {
+    position: absolute;
+    font-size: .8em;
+    left: 100%;
+    color: $darker;
+  }
+}
+

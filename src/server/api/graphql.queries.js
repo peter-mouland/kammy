@@ -22,7 +22,7 @@ const teamPointsFragment = `
 fragment teamPointsInfo on Team {
  gameWeek {
     points
-    gk  
+    gk cb fb cm wm str
     cbleft  cbright 
     fbleft  fbright  
     cmleft  cmright  
@@ -31,7 +31,7 @@ fragment teamPointsInfo on Team {
  }
  total {
     points
-    gk  
+    gk cb fb cm wm str
     cbleft  cbright 
     fbleft  fbright  
     cmleft  cmright  

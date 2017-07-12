@@ -21,7 +21,21 @@ export const getDivisions = async () => {
   const season = await Seasons.findOne({ isLive: true }).sort({ dateCreated: -1 }).exec();
   const divisions = season.divisions;
   const $in = divisions.map((division) => new ObjectId(division._id));
-  const teams = await Teams.find({ 'division._id': { $in } }).exec();
+  const $addFields = {
+    'total.cb': { $add: ['$total.cbleft', '$total.cbright'] },
+    'total.fb': { $add: ['$total.fbleft', '$total.fbright'] },
+    'total.cm': { $add: ['$total.cmleft', '$total.cmright'] },
+    'total.wm': { $add: ['$total.wmleft', '$total.wmright'] },
+    'total.str': { $add: ['$total.strleft', '$total.strright'] },
+    'total.points': { $add: ['$total.cbleft', '$total.cbright', '$total.fbleft', '$total.fbright', '$total.cmleft', '$total.cmright', '$total.wmleft', '$total.wmright', '$total.strleft', '$total.strright'] },
+    'gameWeek.cb': { $add: ['$gameWeek.cbleft', '$gameWeek.cbright'] },
+    'gameWeek.fb': { $add: ['$gameWeek.fbleft', '$gameWeek.fbright'] },
+    'gameWeek.cm': { $add: ['$gameWeek.cmleft', '$gameWeek.cmright'] },
+    'gameWeek.wm': { $add: ['$gameWeek.wmleft', '$gameWeek.wmright'] },
+    'gameWeek.str': { $add: ['$gameWeek.strleft', '$gameWeek.strright'] },
+    'gameWeek.points': { $add: ['$gameWeek.cbleft', '$gameWeek.cbright', '$gameWeek.fbleft', '$gameWeek.fbright', '$gameWeek.cmleft', '$gameWeek.cmright', '$gameWeek.wmleft', '$gameWeek.wmright', '$gameWeek.strleft', '$gameWeek.strright'] },
+  };
+  const teams = await Teams.aggregate({ $match: { 'division._id': { $in } } }, { $addFields }).exec();
   log(teams);
   return divisions.map((division) => ({
     tier: division.tier,

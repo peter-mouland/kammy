@@ -30,6 +30,11 @@ const schemaString = `
     wmright: Int
     strleft: Int
     strright: Int
+    cb: Int 
+    fb: Int 
+    cm: Int 
+    wm: Int 
+    str: Int
     sub: Int
     points: Int
   }
