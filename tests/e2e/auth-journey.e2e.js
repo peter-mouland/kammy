@@ -61,7 +61,8 @@ module.exports = {
     myTeamPage.waitForElementPresent('@main', 1000);
     myTeamPage.expect.section('@main').to.be.visible;
   },
-  ['should  be able to log out'](browser) {
+  ['should be able to log out'](browser) {
+    pageLayout.section.nav.waitForElementPresent('@logoutLink', 1000);
     pageLayout.section.nav.click('@logoutLink');
     logoutPage.expect.section('@main').to.be.visible;
   },

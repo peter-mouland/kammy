@@ -1,18 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import debug from 'debug';
 
-import { fetchPlayers } from './players.actions';
-import PlayersComponent from './Players.component';
+import { fetchPlayers } from '../admin-page.actions';
+import PlayerChoiceComponent from './PlayerChoice.component';
 
-debug('kammy:Players');
-
-class Players extends React.Component {
-  static needs = [fetchPlayers];
-
+class PlayerChoice extends React.Component {
   static propTypes = {
-    players: PropTypes.array,
+    players: PropTypes.array
   };
 
   static defaultProps = {
@@ -26,7 +21,7 @@ class Players extends React.Component {
   }
 
   render() {
-    return <PlayersComponent { ...this.props } />;
+    return (<PlayerChoiceComponent { ...this.props} />);
   }
 }
 
@@ -41,4 +36,4 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   { fetchPlayers }
-)(Players);
+)(PlayerChoice);

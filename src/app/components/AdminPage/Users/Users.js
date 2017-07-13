@@ -9,6 +9,15 @@ import { fetchSeasons } from '../Seasons/seasons.actions';
 class Users extends React.Component {
   static needs = [fetchUsersWithTeams, fetchSeasons];
 
+  componentDidMount() {
+    if (!this.props.users) {
+      this.props.fetchUsersWithTeams();
+    }
+    if (!this.props.seasons) {
+      this.props.fetchSeasons();
+    }
+  }
+
   render() {
     return (<UsersComponent { ...this.props } />);
   }

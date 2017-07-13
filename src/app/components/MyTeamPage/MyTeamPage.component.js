@@ -6,7 +6,6 @@ import bemHelper from 'react-bem-helper';
 import Players from '../Players/Players';
 import Svg from '../Svg/Svg';
 import field from '../../../assets/field.svg';
-import Auth from '../../authentication/auth-helper';
 import Errors from '../../components/Errors/Errors';
 import Interstitial from '../../components/Interstitial/Interstitial';
 import { FETCH_TEAM } from './my-team.actions';
@@ -35,12 +34,6 @@ export default class MyTeam extends React.Component {
       selectedLeftOrRight: '',
       updatedTeam: {},
     };
-  }
-
-  componentDidMount() {
-    if (!this.props.team) {
-      this.props.fetchTeam({ teamId: Auth.user().defaultTeamId });
-    }
   }
 
   selectPlayer = (player) => {

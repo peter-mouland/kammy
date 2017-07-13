@@ -7,6 +7,11 @@ import { fetchDivisions } from './divisions.actions';
 class DivisionsPage extends React.Component {
   static needs = [fetchDivisions];
 
+  componentDidMount() {
+    if (this.props.divisions) return;
+    this.props.fetchDivisions();
+  }
+
   render() {
     return (
       <Divisions { ...this.props } />

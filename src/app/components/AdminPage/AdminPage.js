@@ -11,6 +11,12 @@ import {
 class AdminPage extends React.Component {
   static needs = [fetchUsersWithTeams];
 
+  componentDidMount() {
+    if (!this.props.players) {
+      this.props.fetchPlayers();
+    }
+  }
+
   render() {
     return (<AdminPageComponent { ...this.props } />);
   }

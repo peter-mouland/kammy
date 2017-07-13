@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
-import { fetchPlayers } from '../admin-page.actions';
 import Selector from '../../Selector/Selector';
 
-class PlayerChoice extends React.Component {
+export default class PlayerChoice extends React.Component {
   clubs = [];
 
   static propTypes = {
@@ -22,12 +20,6 @@ class PlayerChoice extends React.Component {
     this.state = {
       clubFilter: props.defaultValue.club || 'Arsenal',
     };
-  }
-
-  componentDidMount() {
-    if (!this.props.players.length) {
-      this.props.fetchPlayers();
-    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -92,16 +84,3 @@ class PlayerChoice extends React.Component {
     );
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    players: state.players.data,
-    loading: state.promiseState.loading,
-    errors: state.promiseState.errors,
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  { fetchPlayers }
-)(PlayerChoice);

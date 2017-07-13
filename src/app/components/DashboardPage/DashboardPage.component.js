@@ -4,11 +4,6 @@ import Errors from '../Errors/Errors';
 import Interstitial from '../Interstitial/Interstitial';
 
 export default class DashboardPage extends React.Component {
-  componentDidMount() {
-    if (this.props.seasons) return;
-    this.props.fetchSeasons();
-  }
-
   render() {
     const { errors = [], loading, seasons } = this.props;
 

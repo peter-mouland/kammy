@@ -10,15 +10,6 @@ import { ADD_USER } from './users.actions';
 const bem = bemHelper({ name: 'user-list' });
 
 export default class Users extends React.Component {
-  componentDidMount() {
-    if (!this.props.users) {
-      this.props.fetchUsersWithTeams();
-    }
-    if (!this.props.seasons) {
-      this.props.fetchSeasons();
-    }
-  }
-
   addUser = (form) => {
     this.props.addUser(form);
   }

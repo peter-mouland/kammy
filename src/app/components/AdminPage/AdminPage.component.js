@@ -11,12 +11,6 @@ import Players from './Players/Players';
 import './admin-page.scss';
 
 export default class AdminPage extends React.Component {
-  componentDidMount() {
-    if (!this.props.players) {
-      this.props.fetchPlayers();
-    }
-  }
-
   render() {
     if (!Auth.isAdmin()) {
       return <p>You're not admin!</p>;

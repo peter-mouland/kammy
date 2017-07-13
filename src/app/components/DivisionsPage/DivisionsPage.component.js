@@ -13,11 +13,6 @@ const additionalPoints = (points) => (
 );
 
 export default class DivisionsPage extends React.Component {
-  componentDidMount() {
-    if (this.props.divisions) return;
-    this.props.fetchDivisions();
-  }
-
   render() {
     const { errors = [], loading, divisions } = this.props;
     if (errors.length) {

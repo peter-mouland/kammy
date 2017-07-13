@@ -14,12 +14,6 @@ const bem = bemHelper({ name: 'divisions' });
 const bem2 = bemHelper({ name: 'admin-options' });
 
 export default class Divisions extends React.Component {
-  componentDidMount() {
-    if (!this.props.users) {
-      this.props.fetchUsersWithTeams();
-    }
-  }
-
   updateTeam = (team) => {
     this.props.updateTeam(team);
   }

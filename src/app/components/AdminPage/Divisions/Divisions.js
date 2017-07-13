@@ -9,6 +9,12 @@ import { fetchUsersWithTeams } from '../Users/users.actions';
 class Divisions extends React.Component {
   static needs = [fetchUsersWithTeams];
 
+  componentDidMount() {
+    if (!this.props.users) {
+      this.props.fetchUsersWithTeams();
+    }
+  }
+
   static contextTypes = {
     router: PropTypes.object
   }

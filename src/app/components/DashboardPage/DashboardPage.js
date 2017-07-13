@@ -7,6 +7,11 @@ import { fetchDashboardData } from './dashboard.actions';
 class DashboardPage extends React.Component {
   static needs = [fetchDashboardData];
 
+  componentDidMount() {
+    if (this.props.seasons) return;
+    this.props.fetchSeasons();
+  }
+
   render() {
     return (
       <Dashboard { ...this.props } />

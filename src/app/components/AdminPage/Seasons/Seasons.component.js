@@ -16,12 +16,6 @@ const bem = bemHelper({ name: 'seasons' });
 const log = debug('kammy:Seasons.component');
 
 export default class AdminPage extends React.Component {
-  componentDidMount() {
-    if (!this.props.seasons) {
-      this.props.fetchSeasons();
-    }
-  }
-
   fetchExternalStats = (season, source) => {
     this.props.fetchExternalStats({ currentGW: season.currentGW, source });
   }

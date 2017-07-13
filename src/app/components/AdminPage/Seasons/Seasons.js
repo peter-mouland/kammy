@@ -11,6 +11,12 @@ import {
 class AdminPage extends React.Component {
   static needs = [fetchSeasons];
 
+  componentDidMount() {
+    if (!this.props.seasons) {
+      this.props.fetchSeasons();
+    }
+  }
+
   static contextTypes = {
     router: PropTypes.object
   }

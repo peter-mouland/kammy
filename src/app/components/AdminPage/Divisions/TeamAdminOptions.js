@@ -1,7 +1,7 @@
 import React from 'react';
 
 import SVG from '../../Svg/Svg';
-import PlayerChoice from '../Seasons/PlayerChoice.container';
+import PlayerChoice from '../Seasons/PlayerChoice';
 import changeIcon from '../../../../assets/change.svg';
 
 const positions = {

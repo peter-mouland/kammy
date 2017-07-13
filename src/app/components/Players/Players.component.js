@@ -54,12 +54,6 @@ export default class PlayerTable extends React.Component {
     };
   }
 
-  componentDidMount() {
-    if (!this.props.players.length) {
-      this.props.fetchPlayers();
-    }
-  }
-
   componentWillReceiveProps(nextProps) {
     this.setClubs(nextProps);
     if (nextProps.selectedPosition !== this.state.selectedPosition) {
