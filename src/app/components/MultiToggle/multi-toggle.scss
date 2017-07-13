@@ -1,0 +1,63 @@
+@import '../../../styles/base/colours';
+
+.multi-toggle {
+  display: flex;
+  align-items: center;
+
+  &__label {
+    padding: 0 1em 0 0;
+  }
+
+  &__group {
+    display: flex;
+    position: relative;
+    border: 2px solid currentcolor;
+    color: $brand--dark;
+    min-width: 200px;
+    border-radius: .8em;
+    background: $sdarken;
+  }
+
+  &__option {
+    position: relative;
+    display: block;
+    height: 100%;
+    line-height: 1.5em;
+    flex: 1 1 auto;
+    padding: 2px;
+
+    input[type='radio'] {
+      position: absolute;
+      appearance: none;
+      width: 0;
+      height: 0;
+      opacity: 0;
+
+      &:focus {
+        outline: 0;
+        outline-offset: 0;
+      }
+
+      &:checked ~ label {
+        background-color: $brand--dark;
+        color: $white;
+      }
+
+      &:active ~ label {
+        transform: scale(1.1);
+      }
+    }
+
+    label {
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      font-style: italic;
+      text-align: center;
+      transition: transform .3s  cubic-bezier(.175, .885, .32, 1.275), color .3s, background-color .3s;
+      border-radius: .6em;
+      padding: 0 2px;
+    }
+  }
+}

@@ -3,18 +3,33 @@ import bemHelper from 'react-bem-helper';
 
 import Errors from '../Errors/Errors';
 import Interstitial from '../Interstitial/Interstitial';
+import MultiToggle from '../MultiToggle/MultiToggle';
 
 import './divisions-page.scss';
 
 const bem = bemHelper({ name: 'divisions' });
 
 const additionalPoints = (points) => (
-  points > -1 ? `+${points}` : points
+  points > -1
+    ? <span className="text--success">+{points}</span>
+    : <span className="text--error">{points}</span>
 );
 
 export default class DivisionsPage extends React.Component {
+  state = {
+    pointsOrPositions: 'Points'
+  }
+
+  togglePointsOrStats = (e) => {
+    this.setState({
+      pointsOrPositions: e.target.value
+    });
+  }
+
   render() {
     const { errors = [], loading, divisions } = this.props;
+    const { pointsOrPositions } = this.state;
+
     if (errors.length) {
       return <Errors errors={errors} />;
     } else if (loading || !divisions) {
@@ -29,9 +44,20 @@ export default class DivisionsPage extends React.Component {
         </div>
       );
     }
+
     return (
       <div {...bem()} id="divisions-page">
         <h1>Divisions</h1>
+        <section {...bem('config', null, 'page-content')}>
+          <MultiToggle
+            label="Options:"
+            {...bem('points-or-positions')}
+            checked={ pointsOrPositions }
+            id={'points-or-stats'}
+            onChange={ this.togglePointsOrStats }
+            options={['Points', 'Positions']}
+          />
+        </section>
         {divisions.map((division) => (
           <section className="page-content" key={division.name}>
             <h2>{division.name}</h2>
