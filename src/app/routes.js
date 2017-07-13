@@ -8,7 +8,6 @@ import debug from 'debug';
 import MainLayout from './Layouts/MainLayout';
 import Homepage from './components/HomePage/HomePage';
 import DivisionsPage from './components/DivisionsPage/DivisionsPage';
-import AdminPage from './components/AdminPage/AdminPage';
 import MyTeam from './components/MyTeamPage/MyTeamPage';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import RulesPage from './components/RulesPage/RulesPage';
@@ -32,6 +31,35 @@ const baseMetaData = {
   }
 };
 
+// getComponent is a function that returns a promise for a component
+// It will not be called until the first mount
+function asyncComponent(getComponent) {
+  return class AsyncComponent extends React.Component {
+    static Component = null;
+    state = { Component: AsyncComponent.Component };
+
+    componentWillMount() {
+      if (!this.state.Component) {
+        getComponent().then((Component) => {
+          AsyncComponent.Component = Component.default
+          this.setState({ Component })
+        })
+      }
+    }
+    render() {
+      const { Component } = this.state
+      if (Component) {
+        return <Component {...this.props} />
+      }
+      return null;
+    }
+  };
+}
+
+const codeSplitAdminPage = asyncComponent(() =>
+  import('./components/AdminPage/AdminPage')
+);
+
 export function getRoutesConfig() {
   return [
     {
@@ -54,7 +82,7 @@ export function getRoutesConfig() {
       },
       label: 'Admin',
       requiresAuthentication: true,
-      component: AdminPage,
+      component: codeSplitAdminPage,
     },
     {
       name: 'myTeam',
