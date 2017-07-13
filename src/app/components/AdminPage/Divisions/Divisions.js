@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 
 import DivisionsComponent from './Divisions.component';
 import { assignTeamToDivision, updateTeam } from './division.actions';
+import { fetchUsersWithTeams } from '../Users/users.actions';
 
 class Divisions extends React.Component {
-  // static needs = [fetchSeasons];
+  static needs = [fetchUsersWithTeams];
 
   static contextTypes = {
     router: PropTypes.object
@@ -34,6 +35,7 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   {
+    fetchUsersWithTeams,
     assignTeamToDivision,
     updateTeam
   }
