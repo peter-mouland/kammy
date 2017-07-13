@@ -21,7 +21,7 @@ export const getDivisions = async () => {
   const season = await Seasons.findOne({ isLive: true }).sort({ dateCreated: -1 }).exec();
   const divisions = season.divisions;
   const $in = divisions.map((division) => new ObjectId(division._id));
-  const $addFields = {
+  const aggFields = {
     'total.cb': { $add: ['$total.cbleft', '$total.cbright'] },
     'total.fb': { $add: ['$total.fbleft', '$total.fbright'] },
     'total.cm': { $add: ['$total.cmleft', '$total.cmright'] },
@@ -35,7 +35,23 @@ export const getDivisions = async () => {
     'gameWeek.str': { $add: ['$gameWeek.strleft', '$gameWeek.strright'] },
     'gameWeek.points': { $add: ['$gameWeek.cbleft', '$gameWeek.cbright', '$gameWeek.fbleft', '$gameWeek.fbright', '$gameWeek.cmleft', '$gameWeek.cmright', '$gameWeek.wmleft', '$gameWeek.wmright', '$gameWeek.strleft', '$gameWeek.strright'] },
   };
-  const teams = await Teams.aggregate({ $match: { 'division._id': { $in } } }, { $addFields }).exec();
+  // only works in mongo 3.4
+  // const teams = await Teams.aggregate(
+  //   { $match: { 'division._id': { $in } } }, { $addFields: aggFields }
+  // ).exec();
+  // for mongo 3.2
+  // helped: https://stackoverflow.com/questions/42394902/mongoose-how-to-use-aggregate-and-find-together/42395156
+  aggFields.season = 1; // show season in agg query response.
+  aggFields.user = 1;
+  aggFields['total.gk'] = 1;
+  aggFields['total.sub'] = 1;
+  aggFields['gameWeek.gk'] = 1;
+  aggFields['gameWeek.sub'] = 1;
+  aggFields.division = 1;
+  // end workaround
+  const teams = await Teams.aggregate(
+    { $match: { 'division._id': { $in } } }, { $project: aggFields }
+  ).exec();
   log(teams);
   return divisions.map((division) => ({
     tier: division.tier,
