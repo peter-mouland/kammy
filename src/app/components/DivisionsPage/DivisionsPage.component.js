@@ -9,11 +9,20 @@ import './divisions-page.scss';
 
 const bem = bemHelper({ name: 'divisions' });
 
-const additionalPoints = (points) => (
-  points > -1
-    ? <span className="text--success">+{points}</span>
-    : <span className="text--error">{points}</span>
-);
+function AdditionalPoints({ children: points }) {
+  if (points === 0) {
+    return null;
+  }
+  return (
+    <span { ...bem('additional-point')}>
+      {
+        points > -1
+          ? <span className="text--success">+{points}</span>
+          : <span className="text--error">{points}</span>
+      }
+    </span>
+  );
+}
 
 export default class DivisionsPage extends React.Component {
   state = {
@@ -31,6 +40,7 @@ export default class DivisionsPage extends React.Component {
     const { pointsOrRank } = this.state;
     const totals = pointsOrRank === 'Rank' ? 'seasonRank' : 'total';
     const gameweek = pointsOrRank === 'Rank' ? 'gameWeekRank' : 'gameWeek';
+    const positions = ['gk', 'fb', 'cb', 'wm', 'cm', 'str'];
 
     if (errors.length) {
       return <Errors errors={errors} />;
@@ -68,10 +78,10 @@ export default class DivisionsPage extends React.Component {
                 <tr>
                   <th>Team</th>
                   <th>GK/S</th>
-                  <th>CB</th>
                   <th>FB</th>
-                  <th>CM</th>
+                  <th>CB</th>
                   <th>WM</th>
+                  <th>CM</th>
                   <th>FWD</th>
                   <th>Total</th>
                 </tr>
@@ -80,26 +90,20 @@ export default class DivisionsPage extends React.Component {
                 {division.teams.map((team) => (
                   <tr key={`${team.name}-${team.user.name}`}>
                     <td>{team.name} {team.user.name}</td>
-                    <td><span { ...bem('point')}>
-                      {team[totals].gk}
-                      <span { ...bem('additional-point')}>{additionalPoints(team[gameweek].gk)}</span></span></td>
-                    <td><span { ...bem('point')}>
-                      {team[totals].cb}
-                      <span { ...bem('additional-point')}>{additionalPoints(team[gameweek].cb)}</span></span></td>
-                    <td><span { ...bem('point')}>
-                      {team[totals].fb}
-                      <span { ...bem('additional-point')}>{additionalPoints(team[gameweek].fb)}</span></span></td>
-                    <td><span { ...bem('point')}>
-                      {team[totals].cm}
-                      <span { ...bem('additional-point')}>{additionalPoints(team[gameweek].cm)}</span></span></td>
-                    <td><span { ...bem('point')}>
-                      {team[totals].wm}
-                      <span { ...bem('additional-point')}>{additionalPoints(team[gameweek].wm)}</span></span></td>
-                    <td><span { ...bem('point')}>
-                      {team[totals].str}
-                      <span { ...bem('additional-point')}>{additionalPoints(team[gameweek].str)}</span></span></td>
-                    <td><span { ...bem('point')}>
-                      {team[totals].points} <span { ...bem('additional-point')}>{additionalPoints(team.gameWeek.points)}</span></span></td>
+                    {positions.map((pos) => (
+                      <td key={pos}>
+                        <span { ...bem('point')}>
+                          {team[totals][pos]}
+                          <AdditionalPoints>{team[gameweek][pos]}</AdditionalPoints>
+                        </span>
+                      </td>
+                    ))}
+                    <td>
+                      <span { ...bem('point')}>
+                        {team[totals].points}
+                        <AdditionalPoints>{team[gameweek].points}</AdditionalPoints>
+                      </span>
+                    </td>
                   </tr>
                 ))}
               </tbody>

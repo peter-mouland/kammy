@@ -52,7 +52,7 @@ export const getDivisions = async () => {
   const teams = await Teams.aggregate(
     { $match: { 'division._id': { $in } } }, { $project: aggFields }
   ).exec();
-  const sortingFactory = (pos, data) => (itemA, itemB) => itemB[data][pos] - itemA[data][pos];
+  const sortingFactory = (pos, data) => (itemA, itemB) => itemA[data][pos] - itemB[data][pos];
   function rank(arr, sorter) {
     const sorted = arr.slice().sort(sorter);
     return arr.map((item) => sorted.findIndex((i) => sorter(item, i) === 0) + 1);
@@ -71,21 +71,37 @@ export const getDivisions = async () => {
   const sCM = rank(teams, sortingFactory('cm', 'total'));
   const sSTR = rank(teams, sortingFactory('str', 'total'));
   const sGK = rank(teams, sortingFactory('gk', 'total'));
-  const teamsWithRank = teams.map((team, i) => ({
-    ...team,
-    gameWeekRank: {
-      sub: gwSUB[i] - sSUB[i],
-      cb: gwCB[i] - sCB[i],
-      fb: gwFB[i] - sFB[i],
-      wm: gwWM[i] - sWM[i],
-      cm: gwCM[i] - sCM[i],
-      str: gwSTR[i] - sSTR[i],
-      gk: gwGK[i] - sGK[i]
-    },
-    seasonRank: {
-      sub: sSUB[i], cb: sCB[i], fb: sFB[i], wm: sWM[i], cm: sCM[i], str: sSTR[i], gk: sGK[i]
-    }
-  }));
+  const teamsWithRank = teams.map((team, i) => {
+    const seasonRank = {
+      sub: sSUB[i],
+      cb: sCB[i],
+      fb: sFB[i],
+      wm: sWM[i],
+      cm: sCM[i],
+      str: sSTR[i],
+      gk: sGK[i],
+      points: sSUB[i] + sCB[i] + sFB[i] + sWM[i] + sCM[i] + sSTR[i] + sGK[i]
+    };
+    const gameWeekRank = {
+      sub: (gwSUB[i] - sSUB[i] - sSUB[i]),
+      cb: (gwCB[i] - sCB[i] - sCB[i]),
+      fb: (gwFB[i] - sFB[i] - sFB[i]),
+      wm: (gwWM[i] - sWM[i] - sWM[i]),
+      cm: (gwCM[i] - sCM[i] - sCB[i]),
+      str: (gwSTR[i] - sSTR[i] - sSTR[i]),
+      gk: (gwGK[i] - sGK[i] - sGK[i]),
+    };
+    return {
+      ...team,
+      gameWeekRank: {
+        ...gameWeekRank,
+        points:
+          gameWeekRank.cb + gameWeekRank.fb +
+          gameWeekRank.wm + gameWeekRank.cm + gameWeekRank.str + gameWeekRank.gk
+      },
+      seasonRank
+    };
+  });
   const divisionPointsTable = divisions.map((division) => ({
     tier: division.tier,
     _id: division._id,
