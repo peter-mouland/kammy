@@ -252,7 +252,7 @@ export default class PlayerTable extends React.Component {
                 const output = player[weeklyOrSeason][statsOrPoints];
                 return (
                   <tr key={player.code} { ...bem('player')}>
-                    {this.CellEditor({ player, originalPlayerData, attribute: 'code', editable, type: 'text' })}
+                    { player.code }
                     {this.CellEditor({ player, originalPlayerData, attribute: 'pos', editable, type: 'select' })}
                     {this.CellEditor({ player, originalPlayerData, attribute: 'name', editable, type: 'text' })}
                     {this.CellEditor({ player, originalPlayerData, attribute: 'club', editable, type: 'select' })}
