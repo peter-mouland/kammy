@@ -17,18 +17,20 @@ const additionalPoints = (points) => (
 
 export default class DivisionsPage extends React.Component {
   state = {
-    pointsOrPositions: 'Points'
+    pointsOrRank: 'Points'
   }
 
   togglePointsOrStats = (e) => {
     this.setState({
-      pointsOrPositions: e.target.value
+      pointsOrRank: e.target.value
     });
   }
 
   render() {
     const { errors = [], loading, divisions } = this.props;
-    const { pointsOrPositions } = this.state;
+    const { pointsOrRank } = this.state;
+    const totals = pointsOrRank === 'Rank' ? 'seasonRank' : 'total';
+    const gameweek = pointsOrRank === 'Rank' ? 'gameWeekRank' : 'gameWeek';
 
     if (errors.length) {
       return <Errors errors={errors} />;
@@ -51,11 +53,11 @@ export default class DivisionsPage extends React.Component {
         <section {...bem('config', null, 'page-content')}>
           <MultiToggle
             label="Options:"
-            {...bem('points-or-positions')}
-            checked={ pointsOrPositions }
+            {...bem('points-or-rank')}
+            checked={ pointsOrRank }
             id={'points-or-stats'}
             onChange={ this.togglePointsOrStats }
-            options={['Points', 'Positions']}
+            options={['Points', 'Rank']}
           />
         </section>
         {divisions.map((division) => (
@@ -78,13 +80,26 @@ export default class DivisionsPage extends React.Component {
                 {division.teams.map((team) => (
                   <tr key={`${team.name}-${team.user.name}`}>
                     <td>{team.name} {team.user.name}</td>
-                    <td><span { ...bem('point')}>{team.total.gk} <span { ...bem('additional-point')}>{additionalPoints(team.gameWeek.gk)}</span></span></td>
-                    <td><span { ...bem('point')}>{team.total.cb} <span { ...bem('additional-point')}>{additionalPoints(team.gameWeek.cb)}</span></span></td>
-                    <td><span { ...bem('point')}>{team.total.fb} <span { ...bem('additional-point')}>{additionalPoints(team.gameWeek.fb)}</span></span></td>
-                    <td><span { ...bem('point')}>{team.total.cm} <span { ...bem('additional-point')}>{additionalPoints(team.gameWeek.cm)}</span></span></td>
-                    <td><span { ...bem('point')}>{team.total.wm} <span { ...bem('additional-point')}>{additionalPoints(team.gameWeek.wm)}</span></span></td>
-                    <td><span { ...bem('point')}>{team.total.str} <span { ...bem('additional-point')}>{additionalPoints(team.gameWeek.str)}</span></span></td>
-                    <td><span { ...bem('point')}>{team.total.points} <span { ...bem('additional-point')}>{additionalPoints(team.gameWeek.points)}</span></span></td>
+                    <td><span { ...bem('point')}>
+                      {team[totals].gk}
+                      <span { ...bem('additional-point')}>{additionalPoints(team[gameweek].gk)}</span></span></td>
+                    <td><span { ...bem('point')}>
+                      {team[totals].cb}
+                      <span { ...bem('additional-point')}>{additionalPoints(team[gameweek].cb)}</span></span></td>
+                    <td><span { ...bem('point')}>
+                      {team[totals].fb}
+                      <span { ...bem('additional-point')}>{additionalPoints(team[gameweek].fb)}</span></span></td>
+                    <td><span { ...bem('point')}>
+                      {team[totals].cm}
+                      <span { ...bem('additional-point')}>{additionalPoints(team[gameweek].cm)}</span></span></td>
+                    <td><span { ...bem('point')}>
+                      {team[totals].wm}
+                      <span { ...bem('additional-point')}>{additionalPoints(team[gameweek].wm)}</span></span></td>
+                    <td><span { ...bem('point')}>
+                      {team[totals].str}
+                      <span { ...bem('additional-point')}>{additionalPoints(team[gameweek].str)}</span></span></td>
+                    <td><span { ...bem('point')}>
+                      {team[totals].points} <span { ...bem('additional-point')}>{additionalPoints(team.gameWeek.points)}</span></span></td>
                   </tr>
                 ))}
               </tbody>

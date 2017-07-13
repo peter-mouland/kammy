@@ -74,6 +74,8 @@ const schemaString = `
     sub: MinPlayerDetail
     gameWeek: Points
     total: Points
+    gameWeekRank: Points
+    seasonRank: Points
   }
   type Division {
     _id: String

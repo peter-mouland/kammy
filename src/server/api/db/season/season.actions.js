@@ -52,13 +52,48 @@ export const getDivisions = async () => {
   const teams = await Teams.aggregate(
     { $match: { 'division._id': { $in } } }, { $project: aggFields }
   ).exec();
-  log(teams);
-  return divisions.map((division) => ({
+  const sortingFactory = (pos, data) => (itemA, itemB) => itemB[data][pos] - itemA[data][pos];
+  function rank(arr, sorter) {
+    const sorted = arr.slice().sort(sorter);
+    return arr.map((item) => sorted.findIndex((i) => sorter(item, i) === 0) + 1);
+  }
+  const gwSUB = rank(teams, sortingFactory('sub', 'gameWeek'));
+  const gwCB = rank(teams, sortingFactory('cb', 'gameWeek'));
+  const gwFB = rank(teams, sortingFactory('fb', 'gameWeek'));
+  const gwWM = rank(teams, sortingFactory('wm', 'gameWeek'));
+  const gwCM = rank(teams, sortingFactory('cm', 'gameWeek'));
+  const gwSTR = rank(teams, sortingFactory('str', 'gameWeek'));
+  const gwGK = rank(teams, sortingFactory('gk', 'gameWeek'));
+  const sSUB = rank(teams, sortingFactory('sub', 'total'));
+  const sCB = rank(teams, sortingFactory('cb', 'total'));
+  const sFB = rank(teams, sortingFactory('fb', 'total'));
+  const sWM = rank(teams, sortingFactory('wm', 'total'));
+  const sCM = rank(teams, sortingFactory('cm', 'total'));
+  const sSTR = rank(teams, sortingFactory('str', 'total'));
+  const sGK = rank(teams, sortingFactory('gk', 'total'));
+  const teamsWithRank = teams.map((team, i) => ({
+    ...team,
+    gameWeekRank: {
+      sub: gwSUB[i] - sSUB[i],
+      cb: gwCB[i] - sCB[i],
+      fb: gwFB[i] - sFB[i],
+      wm: gwWM[i] - sWM[i],
+      cm: gwCM[i] - sCM[i],
+      str: gwSTR[i] - sSTR[i],
+      gk: gwGK[i] - sGK[i]
+    },
+    seasonRank: {
+      sub: sSUB[i], cb: sCB[i], fb: sFB[i], wm: sWM[i], cm: sCM[i], str: sSTR[i], gk: sGK[i]
+    }
+  }));
+  const divisionPointsTable = divisions.map((division) => ({
     tier: division.tier,
     _id: division._id,
     name: division.name,
-    teams: teams.filter((team) => team.division._id !== division._id)
+    teams: teamsWithRank.filter((team) => team.division._id !== division._id)
   }));
+  log(divisionPointsTable[0].teams);
+  return divisionPointsTable;
 };
 
 export const getLatestSeason = () => Seasons.findOne({}).sort({ dateCreated: -1 }).exec();
