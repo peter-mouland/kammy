@@ -58,6 +58,10 @@
       transition: transform .3s  cubic-bezier(.175, .885, .32, 1.275), color .3s, background-color .3s;
       border-radius: .6em;
       padding: 0 2px;
+
+      &:hover {
+        background: $sdarken;
+      }
     }
   }
 }

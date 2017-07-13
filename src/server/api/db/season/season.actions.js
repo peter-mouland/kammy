@@ -52,10 +52,10 @@ export const getDivisions = async () => {
   const teams = await Teams.aggregate(
     { $match: { 'division._id': { $in } } }, { $project: aggFields }
   ).exec();
-  const sortingFactory = (pos, data) => (itemA, itemB) => itemB[data][pos] - itemA[data][pos];
+  const sortingFactory = (pos, data) => (itemA, itemB) => itemA[data][pos] - itemB[data][pos];
   function rank(arr, sorter) {
     const sorted = arr.slice().sort(sorter);
-    return arr.map((item) => sorted.findIndex((i) => sorter(item, i) === 0) + 1);
+    return arr.map((item) => sorted.findIndex((i) => sorter(item, i) === 0) + 1 + 1);
   }
   const gwSUB = rank(teams, sortingFactory('sub', 'gameWeek'));
   const gwCB = rank(teams, sortingFactory('cb', 'gameWeek'));
@@ -74,13 +74,13 @@ export const getDivisions = async () => {
   const teamsWithRank = teams.map((team, i) => ({
     ...team,
     gameWeekRank: {
-      sub: gwSUB[i] - sSUB[i],
-      cb: gwCB[i] - sCB[i],
-      fb: gwFB[i] - sFB[i],
-      wm: gwWM[i] - sWM[i],
-      cm: gwCM[i] - sCM[i],
-      str: gwSTR[i] - sSTR[i],
-      gk: gwGK[i] - sGK[i]
+      sub: 1 + (gwSUB[i] - sSUB[i] - sSUB[i]),
+      cb: 1 + (gwCB[i] - sCB[i] - sCB[i]),
+      fb: 1 + (gwFB[i] - sFB[i] - sFB[i]),
+      wm: 1 + (gwWM[i] - sWM[i] - sWM[i]),
+      cm: 1 + (gwCM[i] - sCM[i] - sCB[i]),
+      str: 1 + (gwSTR[i] - sSTR[i] - sSTR[i]),
+      gk: 1 + (gwGK[i] - sGK[i] - sGK[i]),
     },
     seasonRank: {
       sub: sSUB[i], cb: sCB[i], fb: sFB[i], wm: sWM[i], cm: sCM[i], str: sSTR[i], gk: sGK[i]
