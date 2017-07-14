@@ -57,28 +57,28 @@ class TeamAdminOptions extends React.Component {
         </thead>
         <tbody>
 
-          {(Object.keys(positions)).map((key) => {
-            const position = positions[key];
+          {(Object.keys(positions)).map((pos) => {
+            const position = positions[pos];
             return position.map((side) => (
-              <tr key={key + side}>
-                <td>{team[key + side].code}</td>
-                <td>{key}</td>
-                <td>{team[key + side].name || <em>unknown</em>}</td>
-                <td>{team[key + side].club}</td>
+              <tr key={pos + side}>
+                <td>{team[pos + side].code}</td>
+                <td>{pos}</td>
+                <td>{team[pos + side].name || <em>unknown</em>}</td>
+                <td>{team[pos + side].club}</td>
                 <td>{
-                  showPlayerChoice && showPlayerChoice === key && leftOrRight === side
+                  showPlayerChoice && showPlayerChoice === pos && leftOrRight === side
                     ? <PlayerChoice
                       pos={ showPlayerChoice }
                       leftOrRight={ leftOrRight }
                       defaultValue={ team[showPlayerChoice + leftOrRight] }
                       onUpdate={ (e, player) =>
-                        this.updatePlayer(e, { pos: key, leftOrRight: side, team, player }
+                        this.updatePlayer(e, { pos, leftOrRight: side, team, player }
                         )}
                     />
                     : <SVG
                       className="admin-icon"
                       markup={ changeIcon }
-                      onClick={ () => this.showPlayerChoice({ pos: key, leftOrRight: side }) }
+                      onClick={ () => this.showPlayerChoice({ pos, leftOrRight: side }) }
                     />
                 }
                 </td>

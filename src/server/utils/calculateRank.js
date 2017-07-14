@@ -12,41 +12,37 @@ function rank(arr, pos, data) {
 }
 
 export default (teams) => {
-  const gwSUB = rank(teams, 'sub', 'gameWeek');
+  const gwGKS = rank(teams, 'gks', 'gameWeek');
   const gwCB = rank(teams, 'cb', 'gameWeek');
   const gwFB = rank(teams, 'fb', 'gameWeek');
   const gwWM = rank(teams, 'wm', 'gameWeek');
   const gwCM = rank(teams, 'cm', 'gameWeek');
   const gwSTR = rank(teams, 'str', 'gameWeek');
-  const gwGK = rank(teams, 'gk', 'gameWeek');
-  const sSUB = rank(teams, 'sub', 'total');
+  const sGKS = rank(teams, 'gks', 'total');
   const sCB = rank(teams, 'cb', 'total');
   const sFB = rank(teams, 'fb', 'total');
   const sWM = rank(teams, 'wm', 'total');
   const sCM = rank(teams, 'cm', 'total');
   const sSTR = rank(teams, 'str', 'total');
-  const sGK = rank(teams, 'gk', 'total');
 
   return teams.map((team, i) => {
     const seasonRank = {
-      sub: sSUB[i],
+      gks: sGKS[i],
       cb: sCB[i],
       fb: sFB[i],
       wm: sWM[i],
       cm: sCM[i],
       str: sSTR[i],
-      gk: sGK[i],
-      points: sSUB[i] + sCB[i] + sFB[i] + sWM[i] + sCM[i] + sSTR[i] + sGK[i]
+      points: sGKS[i] + sCB[i] + sFB[i] + sWM[i] + sCM[i] + sSTR[i]
     };
 
     const gameWeekRankChange = {
-      sub: (gwSUB[i] - sSUB[i]),
+      gks: (gwGKS[i] - sGKS[i]),
       cb: (gwCB[i] - sCB[i]),
       fb: (gwFB[i] - sFB[i]),
       wm: (gwWM[i] - sWM[i]),
       cm: (gwCM[i] - sCM[i]),
       str: (gwSTR[i] - sSTR[i]),
-      gk: (gwGK[i] - sGK[i]),
     };
     return {
       ...team,
@@ -55,7 +51,7 @@ export default (teams) => {
         points:
         gameWeekRankChange.cb + gameWeekRankChange.fb +
         gameWeekRankChange.wm + gameWeekRankChange.cm +
-        gameWeekRankChange.str + gameWeekRankChange.gk
+        gameWeekRankChange.str + gameWeekRankChange.gks
       },
       seasonRank
     };

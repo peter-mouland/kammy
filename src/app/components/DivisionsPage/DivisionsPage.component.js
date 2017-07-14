@@ -40,7 +40,7 @@ export default class DivisionsPage extends React.Component {
     const { pointsOrRank } = this.state;
     const totals = pointsOrRank === 'Rank' ? 'seasonRank' : 'total';
     const gameweek = pointsOrRank === 'Rank' ? 'gameWeekRankChange' : 'gameWeek';
-    const positions = ['gk', 'fb', 'cb', 'wm', 'cm', 'str'];
+    const positions = ['gks', 'fb', 'cb', 'wm', 'cm', 'str'];
 
     if (errors.length) {
       return <Errors errors={errors} />;

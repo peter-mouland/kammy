@@ -19,6 +19,7 @@ const schemaString = `
   }
 
   type Points {
+    gks: Int
     gk: Int
     cbleft: Int
     cbright: Int
@@ -40,13 +41,12 @@ const schemaString = `
   }
 
   type Rank {
-    gk: Float
+    gks: Float
     cb: Float 
     fb: Float 
     cm: Float 
     wm: Float 
     str: Float
-    sub: Float
     points: Float
   }
   

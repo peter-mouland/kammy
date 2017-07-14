@@ -18,6 +18,7 @@ export default class PlayerChoice extends React.Component {
     super(props);
     this.setClubs(props);
     this.state = {
+      positionFilter: props.pos,
       clubFilter: props.defaultValue.club || 'Arsenal',
     };
   }
@@ -47,16 +48,21 @@ export default class PlayerChoice extends React.Component {
     this.setState({ clubFilter: e.target.value, playerId: null });
   }
 
+  positionFilter = (e) => {
+    this.setState({ positionFilter: e.target.value, playerId: null });
+  }
+
 
   render() {
     const { pos, players, onUpdate, defaultValue } = this.props;
-    const { clubFilter } = this.state;
+    const { clubFilter, positionFilter } = this.state;
     const clubs = this.clubs;
+    const position = positionFilter || pos;
 
     const filteredPlayers = players
       .filter((player) => {
         const isFiltered =
-          (!!pos && pos.toUpperCase() !== player.pos.toUpperCase()) ||
+          (!!position && position.toUpperCase() !== player.pos.toUpperCase() && position !== 'sub') ||
           (!!clubFilter && clubFilter.toUpperCase() !== player.club.toUpperCase());
         return !isFiltered;
       })
@@ -64,6 +70,13 @@ export default class PlayerChoice extends React.Component {
 
     return (
       <form>
+        { pos === 'sub' &&
+          <Selector
+            onChange={ this.positionFilter }
+            defaultValue={ positionFilter }
+            options={ ['gk', 'fb', 'cb', 'wm', 'cm', 'str'] }
+          />
+        }
         <Selector
           onChange={ this.clubFilter }
           defaultValue={ clubFilter }

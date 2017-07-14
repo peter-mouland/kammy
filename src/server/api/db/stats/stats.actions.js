@@ -55,6 +55,8 @@ export const saveGameWeekStats = ({ seasonId, update }) => {
         'gameWeek.stats': player.gameWeek.stats,
       } }
     ));
+    allUpdates.push(Team.update(queryTeam('sub'), { $set: setTeam('sub') }));
+    allUpdates.push(Team.update(queryTeam(`${pos}`), { $set: setTeam(`${pos}`) }));
     allUpdates.push(Team.update(queryTeam(`${pos}left`), { $set: setTeam(`${pos}left`) }));
     allUpdates.push(Team.update(queryTeam(`${pos}right`), { $set: setTeam(`${pos}right`) }));
   });
