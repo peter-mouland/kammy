@@ -16,7 +16,7 @@ function AdditionalPoints({ children: points }) {
   return (
     <span { ...bem('additional-point')}>
       {
-        points > -1
+        points > 0
           ? <span className="text--success">+{points}</span>
           : <span className="text--error">{points}</span>
       }
@@ -39,7 +39,7 @@ export default class DivisionsPage extends React.Component {
     const { errors = [], loading, divisions } = this.props;
     const { pointsOrRank } = this.state;
     const totals = pointsOrRank === 'Rank' ? 'seasonRank' : 'total';
-    const gameweek = pointsOrRank === 'Rank' ? 'gameWeekRank' : 'gameWeek';
+    const gameweek = pointsOrRank === 'Rank' ? 'gameWeekRankChange' : 'gameWeek';
     const positions = ['gk', 'fb', 'cb', 'wm', 'cm', 'str'];
 
     if (errors.length) {

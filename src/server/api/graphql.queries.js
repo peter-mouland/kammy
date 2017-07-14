@@ -21,16 +21,16 @@ fragment playerStatsInfo on Player {
 const teamPointsFragment = `
 fragment teamPointsInfo on Team {
  gameWeek {
-    points gk cb fb cm wm str
+    points gk cb fb cm wm str sub
  }
- gameWeekRank {
-    points gk cb fb cm wm str
+ gameWeekRankChange {
+    points gk cb fb cm wm str sub
  }
  total {
-    points gk cb fb cm wm str
+    points gk cb fb cm wm str sub
  }
  seasonRank {
-    points gk cb fb cm wm str
+    points gk cb fb cm wm str sub
  }
 }`;
 

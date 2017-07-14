@@ -38,6 +38,17 @@ const schemaString = `
     sub: Int
     points: Int
   }
+
+  type Rank {
+    gk: Float
+    cb: Float 
+    fb: Float 
+    cm: Float 
+    wm: Float 
+    str: Float
+    sub: Float
+    points: Float
+  }
   
   type GameWeek {
     stats: PlayerStats
@@ -74,8 +85,8 @@ const schemaString = `
     sub: MinPlayerDetail
     gameWeek: Points
     total: Points
-    gameWeekRank: Points
-    seasonRank: Points
+    gameWeekRankChange: Rank
+    seasonRank: Rank
   }
   type Division {
     _id: String
