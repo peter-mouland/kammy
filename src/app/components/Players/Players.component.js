@@ -286,7 +286,7 @@ export default class PlayerTable extends React.Component {
                   const player = playerUpdates[originalPlayerData._id] || originalPlayerData;
                   const isOnMyTeam = teamPlayers[player.code];
                   return (
-                    <tr key={player.code} { ...bem('player', { selected: isOnMyTeam })}>
+                    <tr key={player.code} id={player.code} { ...bem('player', { selected: isOnMyTeam })}>
                       { editable && <td { ...bem('meta')}>{ player.code }</td> }
                       <td { ...bem('meta')}>
                         {this.CellEditor({ player, originalPlayerData, attribute: 'pos', editable, type: 'select' })}
