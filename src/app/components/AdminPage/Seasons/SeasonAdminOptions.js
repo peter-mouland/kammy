@@ -5,7 +5,7 @@ import debug from 'debug';
 import Toggle from '../../Toggle/Toggle';
 import Interstitial from '../../Interstitial/Interstitial';
 import Errors from '../../Errors/Errors';
-import Players from '../../Players/Players';
+import Players from '../../Players/Players.component';
 
 const log = debug('kammy:SeasonAdminOptions');
 
@@ -25,7 +25,6 @@ class SeasonAdminOptions extends React.Component {
   }
 
   saveGameWeekStats = (stats) => {
-    log({ stats });
     this.props.saveGameWeekStats(stats);
   }
 
@@ -37,9 +36,13 @@ class SeasonAdminOptions extends React.Component {
     this.props.updateSeason({ currentGW: this.props.season.currentGW + 1 });
   }
 
+  saveSeasonStats = () => {
+    this.props.saveSeasonStats({ currentGW: this.props.season.currentGW + 1 });
+  }
+
   render() {
     const {
-      season, statsErrors, statsLoading, stats,
+      season, statsErrors, statsLoading, statsSaving, statsSaved, stats,
     } = this.props;
 
     return (
@@ -59,8 +62,8 @@ class SeasonAdminOptions extends React.Component {
           </div>
         </div>
         <div className="admin-options">
-          <p>Game Week Actions:</p>
-          <form className="admin-option__value" onSubmit={ this.fetchExternalStats }>
+          <h3>Game Week Actions:</h3>
+          <form className="admin-option" onSubmit={ this.fetchExternalStats }>
             <select name="stats-source" ref={(node) => { this.sourceEl = node; } }>
               <option value="external">Sky Sports</option>
               <option value="internal">Test Data</option>
@@ -69,16 +72,19 @@ class SeasonAdminOptions extends React.Component {
             { statsLoading ? <Interstitial small message="Loading stats"/> : null }
             { statsErrors.length ? <Errors errors={statsErrors} small/> : null }
           </form>
-          <button
-            className="admin-option__value"
-            disabled={!stats}
-            onClick={ () => this.saveGameWeekStats(stats) }
-          >2. Save Game Week Stats</button>
-
-          <button className="admin-option__value" onClick={ this.incrementGameWeek } disabled>
-            3. Increment Game Week + Update Season Stats
-          </button>
-          <button className="admin-option__value" onClick={ this.decrementGameWeek } disabled>
+          <div className="admin-option">
+            <button
+              disabled={!stats}
+              onClick={ () => this.saveGameWeekStats(stats) }
+            >2. Save Game Week Stats</button>
+            { statsSaving ? <Interstitial small message="Saving GameWeek"/> : null }
+          </div>
+          <div className="admin-option">
+            <button onClick={ this.saveSeasonStats } disabled={!statsSaved}>
+              3. Increment Game Week + Update Season Stats
+            </button>
+          </div>
+          <button className="admin-option" onClick={ this.decrementGameWeek } >
             -1 (test admin only)
           </button>
         </div>
@@ -89,8 +95,6 @@ class SeasonAdminOptions extends React.Component {
                 players={ (Object.keys(stats)).map((key) => stats[key]) }
                 type="my-team"
                 showStats
-                // selectedPosition={ selectedPosition }
-                // selectPlayer={ this.selectPlayer }
               />
             </section>
           </div>

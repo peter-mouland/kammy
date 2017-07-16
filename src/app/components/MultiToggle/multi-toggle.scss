@@ -38,12 +38,12 @@
         outline-offset: 0;
       }
 
-      &:checked ~ label {
+      &:checked + label {
         background-color: $brand--dark;
         color: $white;
       }
 
-      &:active ~ label {
+      &:active + label {
         transform: scale(1.1);
       }
     }

@@ -8,13 +8,15 @@ import Selector from '../../components/Selector/Selector';
 import Errors from '../../components/Errors/Errors';
 import Interstitial from '../../components/Interstitial/Interstitial';
 import { FETCH_PLAYERS } from './players.actions';
+import MultiToggle from '../MultiToggle/MultiToggle';
 
 import './players.scss';
 
 const bem = bemHelper({ name: 'player-table' });
-debug('kammy:myteam');
+const log = debug('kammy:players.component');
 
 const extremeStat = (int) => int < -10 || int > 10;
+const statCols = ['apps', 'subs', 'gls', 'asts', 'cs', 'con', 'pensv', 'ycard', 'rcard'];
 
 // eslint-disable-next-line no-confusing-arrow
 const Highlight = ({ player, update = {}, attribute, className }) =>
@@ -22,15 +24,73 @@ const Highlight = ({ player, update = {}, attribute, className }) =>
     ? <em { ...bem(null, null, ['text--warning', className])}>{update[attribute]}</em>
     : <span className={ className }>{player[attribute]}</span>;
 
+const setClubs = ({ players = [], team }) => {
+  const clubs = new Set();
+  players.forEach((player) => clubs.add(player.club));
+  const clubsArr = [...clubs.keys()].sort();
+  if (team) clubsArr.unshift('My Team');
+  return clubsArr;
+};
+
+const applyFilters = ({ nameFilter, posFilter, clubFilter, player, myTeam }) => {
+  const nameFiltered = !nameFilter || player.name.toUpperCase().includes(nameFilter.toUpperCase());
+  const posFiltered = !posFilter || player.pos.toUpperCase().includes(posFilter.toUpperCase());
+  const clubFiltered = !clubFilter ||
+    (clubFilter.toUpperCase() === 'MY TEAM' && myTeam[player.code]) ||
+    (player.club.toUpperCase().includes(clubFilter.toUpperCase()));
+  return nameFiltered && posFiltered && clubFiltered;
+};
+
+const posIndex = (position) =>
+  availablePositions.findIndex((pos) => pos.toLowerCase() === position.toLowerCase());
+
+function fieldSorter(fields) {
+  return (prevSort, currSort) => fields
+    .map((field) => {
+      let dir = 1;
+      const desc = field[0] === '-';
+      if (desc) {
+        dir = -1;
+        field = field.substring(1);
+      }
+      const attrA = (field === 'pos') ? posIndex(prevSort.pos) : prevSort[field];
+      const attrB = (field === 'pos') ? posIndex(currSort.pos) : currSort[field];
+      if (attrA > attrB) return dir;
+      return (attrA < attrB) ? -(dir) : 0;
+    })
+    .reduce((prev, curr) => prev || curr, 0);
+}
+
+function AdditionalPoints({ children: points }) {
+  if (points === 0) {
+    return null;
+  }
+  return (
+    <sup { ...bem('additional-point')}>
+      {
+        points > 0
+          ? <span className="text--success">+{points}</span>
+          : <span className="text--error">{points}</span>
+      }
+    </sup>
+  );
+}
+
 export default class PlayerTable extends React.Component {
   static propTypes = {
     players: PropTypes.array,
     type: PropTypes.string,
-    selectedPosition: PropTypes.string
+    selectedPosition: PropTypes.string,
+    editable: PropTypes.bool,
+    showPoints: PropTypes.bool,
+    showStats: PropTypes.bool,
   };
 
   static defaultProps = {
     players: [],
+    editable: false,
+    showPoints: false,
+    showStats: false,
     selectedPosition: '',
     loading: false,
     errors: [],
@@ -39,23 +99,23 @@ export default class PlayerTable extends React.Component {
   };
 
   options = {
-    club: [],
+    clubs: [],
     pos: availablePositions
   }
 
   constructor(props) {
     super(props);
-    this.setClubs(props);
+    this.options.clubs = setClubs(props);
     this.state = {
       isSaving: false,
       nameFilter: '',
       posFilter: props.selectedPosition,
-      clubFilter: this.options.club[0],
+      clubFilter: this.options.clubs[0],
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setClubs(nextProps);
+    this.options.clubs = setClubs(nextProps);
     if (nextProps.selectedPosition !== this.state.selectedPosition) {
       this.setState({ posFilter: nextProps.selectedPosition });
     }
@@ -92,8 +152,7 @@ export default class PlayerTable extends React.Component {
         options={ this.options[attribute] }
       />;
     return editable ? (
-      <td
-        { ...bem('meta')}
+      <div
         onMouseOver={ (e) => this.showUpdater(e, player, attribute) }
         onClick={ (e) => this.showUpdater(e, player, attribute) }
       >
@@ -108,8 +167,8 @@ export default class PlayerTable extends React.Component {
               { ...bem('editable', type) }
             />
         }
-      </td>
-    ) : <td { ...bem('meta')} >{ player[attribute] }</td>;
+      </div>
+    ) : <div>{ player[attribute] }</div>;
   }
 
   posFilter = (e) => {
@@ -121,25 +180,11 @@ export default class PlayerTable extends React.Component {
   }
 
   nameFilter = (e) => {
-    this.setState({ nameFilter: e.target.value.toLowerCase().trim() });
+    this.setState({ nameFilter: e.target.value.trim() });
   }
 
   statsOrPoints = (e) => {
     this.setState({ statsOrPoints: e.target.value.trim() });
-  }
-
-  weeklyOrSeason = (e) => {
-    this.setState({ weeklyOrSeason: e.target.value.trim() });
-  }
-
-  setClubs = (props) => {
-    this.options.club = (props.players.length) ? this.getClubs(props.players) : [];
-  }
-
-  getClubs = (players) => {
-    const clubs = new Set();
-    players.forEach((player) => clubs.add(player.club));
-    return [...clubs.keys()].sort();
   }
 
   showUpdater(e, player, detail) {
@@ -154,18 +199,17 @@ export default class PlayerTable extends React.Component {
     });
   }
 
-  // from container: players, errors, loading
   render() {
     const {
-      players, errors, loading, type, className, selectPlayer, selectedPosition, showStats,
-      editable = false, playerUpdates = {},
+      players, errors, loading, type, className, selectPlayer,
+      selectedPosition, showStats, showPoints, editable, playerUpdates = {}, team,
     } = this.props;
     const {
-      posFilter, clubFilter, nameFilter,
-      statsOrPoints = 'stats', weeklyOrSeason = 'gameWeek'
+      posFilter, clubFilter, nameFilter, statsOrPoints = 'stats'
     } = this.state;
-    const clubs = this.options.club;
-    const highlight = weeklyOrSeason === 'gameWeek';
+    const clubs = this.options.clubs;
+    const teamPlayers = team ? (Object.keys(team))
+      .reduce((prev, curr) => team[curr] && ({ ...prev, [team[curr].code]: team[curr] }), {}) : {};
 
     if (players === null) {
       return <Errors errors={[{ message: 'no players found, do you need to log in again?' }]} />;
@@ -174,107 +218,117 @@ export default class PlayerTable extends React.Component {
     } else if (loading && loading === FETCH_PLAYERS) {
       return <Interstitial />;
     }
-
     return (
-      <table cellPadding={0} cellSpacing={0} { ...bem(null, type, className) }>
-        <thead>
-          <tr { ...bem('data-header')}>
-            <th>Code</th>
-            <th>Position</th>
-            <th>Player</th>
-            <th>Club</th>
-            { selectPlayer && <th></th> }
-            { showStats && <td> apps </td> }
-            { showStats && <td> subs </td> }
-            { showStats && <td> gls </td> }
-            { showStats && <td> asts </td> }
-            { showStats && <td> cs </td> }
-            { showStats && <td> con </td> }
-            { showStats && <td> pensv </td> }
-            { showStats && <td> ycard </td> }
-            { showStats && <td> rcard </td> }
-          </tr>
-          <tr {...bem('data-filter')}>
-            <th></th>
-            <th>
-              <Selector
+      <div>
+        <div { ...bem('options') }>
+          { showStats && (
+            <div { ...bem('option-group') }>
+              <MultiToggle
+                {...bem('toggle-options')}
+                checked={ statsOrPoints }
+                id={'stats-or-points'}
+                onChange={ this.statsOrPoints }
+                options={['stats', 'points']}
+              />
+            </div>
+          )}
+          <div { ...bem('option-group') }>
+            <div>
+              <MultiToggle
+                label="Position:"
+                id={'position-filter'}
                 onChange={ this.posFilter }
-                defaultValue={ posFilter }
+                checked={ posFilter }
                 options={ availablePositions }
               />
-            </th>
-            <th><input type="search" onChange={ this.nameFilter } defaultValue="" /></th>
-            <th>
+            </div>
+            <div>
+              <label htmlFor="name-filter">Player:</label>
+              <input
+                id="name-filter"
+                name="name-filter"
+                type="search"
+                onChange={ this.nameFilter }
+                defaultValue=""
+              />
+            </div>
+            <div>
+              <label htmlFor="club-filter">Club:</label>
               <Selector
+                id="club-filter"
+                name="club-filter"
                 onChange={ this.clubFilter }
                 defaultValue={ clubFilter }
                 options={ clubs }
               />
-            </th>
-            { showStats && (
-              <th>
-                <Selector
-                  onChange={ this.weeklyOrSeason }
-                  defaultValue={ weeklyOrSeason }
-                  options={ ['gameWeek', 'total'] }
-                />
-              </th>
-            )}
-            { showStats && (
-              <th>
-                <Selector
-                  onChange={ this.statsOrPoints }
-                  defaultValue={ statsOrPoints }
-                  options={ ['stats', 'points'] }
-                />
-              </th>
-            )}
-          </tr>
-        </thead>
-        <tbody>
-          {
-            players
-              .filter((player) => {
-                const isFiltered =
-                (!!nameFilter && !player.name.toLowerCase().includes(nameFilter)) ||
-                (!!posFilter && posFilter.toUpperCase() !== player.pos.toUpperCase()) ||
-                (!!clubFilter && clubFilter.toUpperCase() !== player.club.toUpperCase());
-                return !isFiltered;
-              })
-              .map((originalPlayerData) => {
-                const player = playerUpdates[originalPlayerData._id] || originalPlayerData;
-                const output = player[weeklyOrSeason][statsOrPoints];
-                return (
-                  <tr key={player.code} { ...bem('player')}>
-                    { player.code }
-                    {this.CellEditor({ player, originalPlayerData, attribute: 'pos', editable, type: 'select' })}
-                    {this.CellEditor({ player, originalPlayerData, attribute: 'name', editable, type: 'text' })}
-                    {this.CellEditor({ player, originalPlayerData, attribute: 'club', editable, type: 'select' })}
-                    { selectPlayer &&
-                  <td { ...bem('meta')} >
-                    <button
-                      onClick={ () => selectPlayer(player) }
-                      disabled={ !selectedPosition }
-                    >
-                      Select
-                    </button>
-                  </td>
-                    }
-                    { showStats && <td {...bem('output', { highlight: highlight && extremeStat(output.apps) })}> {output.apps} </td> }
-                    { showStats && <td {...bem('output', { highlight: highlight && extremeStat(output.subs) })}> {output.subs} </td> }
-                    { showStats && <td {...bem('output', { highlight: highlight && extremeStat(output.gls) })}> {output.gls} </td> }
-                    { showStats && <td {...bem('output', { highlight: highlight && extremeStat(output.asts) })}> {output.asts} </td> }
-                    { showStats && <td {...bem('output', { highlight: highlight && extremeStat(output.cs) })}> {output.cs} </td> }
-                    { showStats && <td {...bem('output', { highlight: highlight && extremeStat(output.con) })}> {output.con} </td> }
-                    { showStats && <td {...bem('output', { highlight: highlight && extremeStat(output.pensv) })}> {output.pensv} </td> }
-                    { showStats && <td {...bem('output', { highlight: highlight && extremeStat(output.ycard) })}> {output.ycard} </td> }
-                    { showStats && <td {...bem('output', { highlight: highlight && extremeStat(output.rcard) })}> {output.rcard} </td> }
-                  </tr>
-                );
-              })
-          }
-        </tbody>
-      </table>
+            </div>
+          </div>
+        </div>
+        <table cellPadding={0} cellSpacing={0} { ...bem(null, type, className) }>
+          <thead>
+            <tr { ...bem('data-header')}>
+              { editable && <th>Code</th> }
+              <th>Position</th>
+              <th>Player</th>
+              { showStats && statCols.map((stat) => <td key={stat}>{stat}</td>) }
+              { showPoints && <th>Points</th> }
+              { selectPlayer && <th></th> }
+            </tr>
+          </thead>
+          <tbody>
+            {
+              players
+                .filter((player) =>
+                  applyFilters({ player, nameFilter, posFilter, clubFilter, myTeam: teamPlayers })
+                )
+                .sort(fieldSorter(['pos', 'name']))
+                .map((originalPlayerData) => {
+                  const player = playerUpdates[originalPlayerData._id] || originalPlayerData;
+                  const isOnMyTeam = teamPlayers[player.code];
+                  return (
+                    <tr key={player.code} { ...bem('player', { selected: isOnMyTeam })}>
+                      { editable && <td { ...bem('meta')}>{ player.code }</td> }
+                      <td { ...bem('meta')}>
+                        {this.CellEditor({ player, originalPlayerData, attribute: 'pos', editable, type: 'select' })}
+                      </td>
+                      <td { ...bem('meta')}>
+                        {this.CellEditor({ player, originalPlayerData, attribute: 'name', editable, type: 'text' })}
+                        <small>{this.CellEditor({ player, originalPlayerData, attribute: 'club', editable, type: 'select' })}</small>
+                      </td>
+                      { showStats && statCols.map((stat) =>
+                        <td
+                          key={stat}
+                          {...bem('output')}
+                        >
+                          {player.total[statsOrPoints][stat]}
+                          <AdditionalPoints {...bem('additional', { highlight: extremeStat(player.gameWeek[stat]) })}>
+                            {player.gameWeek[statsOrPoints][stat]}
+                          </AdditionalPoints>
+                        </td>
+                      )}
+                      { showPoints && (
+                        <td {...bem('output')}>
+                          {player.total.points.total || 0}
+                          <AdditionalPoints>{player.gameWeek.points.total}</AdditionalPoints>
+                        </td>
+                      )}
+                      { selectPlayer &&
+                      <td { ...bem('meta')} >
+                        <button
+                          onClick={ () => selectPlayer(player) }
+                          disabled={ !selectedPosition || isOnMyTeam }
+                        >
+                          Select
+                        </button>
+                      </td>
+                      }
+                    </tr>
+                  );
+                })
+            }
+          </tbody>
+        </table>
+      </div>
     );
   }
 }

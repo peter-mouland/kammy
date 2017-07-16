@@ -167,3 +167,9 @@ export const saveGameWeekStatsMutation = `
     saveGameWeekStats(seasonId: $seasonId, update: $update){ stats }   
   }
 `;
+
+export const saveSeasonStatsMutation = `
+  mutation ($seasonId: String, $currentGW: Int) { 
+    saveSeasonStats(seasonId: $seasonId, currentGW: $currentGW){ stats }   
+  }
+`;

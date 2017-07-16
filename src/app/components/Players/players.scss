@@ -20,6 +20,10 @@ $row-bg--hover: #CACACA;
     &:hover {
       background: $row-bg--hover;
     }
+
+    &--selected {
+      color: $brand--dark;
+    }
   }
 
   &__meta--stat {
@@ -50,6 +54,15 @@ $row-bg--hover: #CACACA;
     &--select {
       padding-left: 9px;
     }
+  }
+
+  &__options {
+    display: flex;
+  }
+
+  &__option-group {
+    flex: 1 ;
+    margin-right: 2em;
   }
 }
 

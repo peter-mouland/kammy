@@ -98,6 +98,7 @@ export default class MyTeam extends React.Component {
           <section { ...bem('formation') }>
             <Svg { ...bem('field') } markup={field} />
             <ul { ...bem('squad') }>
+              {this.squadPlayer('sub')}
               {this.squadPlayer('gk')}
               {this.squadPlayer('fb', 'left')}
               {this.squadPlayer('cb', 'left')}
@@ -109,13 +110,14 @@ export default class MyTeam extends React.Component {
               {this.squadPlayer('wm', 'right')}
               {this.squadPlayer('str', 'left')}
               {this.squadPlayer('str', 'right')}
-              {this.squadPlayer('sub')}
             </ul>
             <button onClick={ this.saveTeam }>Save Team</button>
           </section>
           <section { ...bem('player-selection') }>
             <Players
               type="my-team"
+              team={ team }
+              showPoints
               selectedPosition={ selectedPosition }
               selectPlayer={ this.selectPlayer }
             />

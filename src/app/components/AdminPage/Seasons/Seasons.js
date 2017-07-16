@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 
 import SeasonsComponent from './Seasons.component';
 import {
-  fetchSeasons, updateSeason, addSeason, addDivision,
-  fetchExternalStats, saveGameWeekStats, fetchUsersWithTeams
+  fetchSeasons, updateSeason, addSeason, addDivision, fetchUsersWithTeams
 } from './seasons.actions';
+import { fetchExternalStats, saveGameWeekStats, saveSeasonStats } from './stats.actions';
 
 class AdminPage extends React.Component {
   static needs = [fetchSeasons];
@@ -33,6 +33,9 @@ function mapStateToProps(state) {
     seasons: state.seasons.data,
     stats: state.stats.data,
     statsErrors: state.stats.errors,
+    statsLoading: state.stats.loading,
+    statsSaving: state.stats.saving,
+    statsSaved: state.stats.saved,
     seasonAdded: state.seasons.seasonAdded,
     divisionAdded: state.seasons.divisionAdded,
     loading: state.promiseState.loading,
@@ -49,6 +52,7 @@ export default connect(
     addSeason,
     addDivision,
     updateSeason,
+    saveSeasonStats,
     saveGameWeekStats,
   }
 )(AdminPage);

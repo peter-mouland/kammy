@@ -66,10 +66,6 @@
       transform: translateX(-2.5vw);
     }
 
-    &--gk {
-      width: 100%;
-    }
-
     &--cb,
     &--fb,
     &--cm,
@@ -77,25 +73,19 @@
       width: 25%;
     }
 
-    &--str,
+    &--sub,
+    &--gk,
     &--str {
       width: 50%;
     }
 
-    &--sub {
-      position: absolute;
-      left: 0;
-      top: 36%;
-    }
-
-    &::after {
+    &::before {
       content: '';
       display: block;
       background: $lighter;
       width: 5vw;
       height: 5vw;
       border-radius: 50%;
-      border: 3px solid $brand--dark;
       margin: 0 auto;
     }
   }
@@ -121,7 +111,7 @@
 .position {
   &__label {
     position: absolute;
-    top: calc(2.5em + 2.5vw - .5em); // player-height + circle-height/2 - font-height/2
+    top: calc(2.5vw - .5em); //circle-height/2 - font-height/2
     text-align: center;
     width: 100%;
     opacity: .9;
@@ -130,7 +120,6 @@
   }
 
   &__player {
-    min-height: 2.5em;
     text-shadow: 0 0 4px $light;
     margin: 0 auto;
   }

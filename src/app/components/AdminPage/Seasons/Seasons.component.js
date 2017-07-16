@@ -10,7 +10,7 @@ import AdminList from '../AdminList/AdminList';
 import AddSeason from './AddSeason';
 import SeasonAdminOptions from './SeasonAdminOptions';
 import Divisions from '../Divisions/Divisions';
-import { ADD_SEASON, ADD_DIVISION, FETCH_EXTERNAL_STATS } from './seasons.actions';
+import { ADD_SEASON, ADD_DIVISION } from './seasons.actions';
 
 const bem = bemHelper({ name: 'seasons' });
 const log = debug('kammy:Seasons.component');
@@ -32,18 +32,21 @@ export default class AdminPage extends React.Component {
     this.props.updateSeason({ seasonId: season._id, ...update });
   }
 
+  saveSeasonStats = (season, update) => {
+    this.props.saveSeasonStats({ seasonId: season._id, ...update });
+  }
+
   saveGameWeekStats = (season, update) => {
-    log(season, update);
     this.props.saveGameWeekStats({ seasonId: season._id, update });
   }
 
   render() {
     const {
-      className, statsErrors = [], loading, seasons, match, stats,
+      className, statsErrors = [], loading, seasons, match,
+      stats, statsLoading, statsSaving, statsSaved
     } = this.props;
     const addingSeason = loading === ADD_SEASON;
     const addingDivision = loading === ADD_DIVISION;
-    const statsLoading = loading === FETCH_EXTERNAL_STATS;
 
     const seasonPath = join(match.url, ':seasonId/');
     const divisionPath = join(seasonPath, 'division/:divisionId/');
@@ -69,12 +72,15 @@ export default class AdminPage extends React.Component {
               <div>
                 <SeasonAdminOptions
                   season={season}
+                  saveSeasonStats={ (update) => this.saveSeasonStats(season, update) }
                   updateSeason={ (update) => this.updateSeason(season, update) }
                   fetchExternalStats={ (source) => this.fetchExternalStats(season, source) }
                   saveGameWeekStats={
                     (update) => this.saveGameWeekStats(season, update)
                   }
                   statsLoading={ statsLoading }
+                  statsSaved={ statsSaved }
+                  statsSaving={ statsSaving }
                   statsErrors={ statsErrors }
                   stats={ stats }
                 />
