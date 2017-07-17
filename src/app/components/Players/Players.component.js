@@ -271,6 +271,7 @@ export default class PlayerTable extends React.Component {
               <th>Position</th>
               <th>Player</th>
               { showStats && statCols.map((stat) => <td key={stat}>{stat}</td>) }
+              { showStats && <td>Total</td> }
               { showPoints && <th>Points</th> }
               { selectPlayer && <th></th> }
             </tr>
@@ -301,8 +302,16 @@ export default class PlayerTable extends React.Component {
                           {...bem('output')}
                         >
                           {player.total[statsOrPoints][stat]}
-                          <AdditionalPoints {...bem('additional', { highlight: extremeStat(player.gameWeek[stat]) })}>
+                          <AdditionalPoints {...bem('additional', { highlight: extremeStat(player.gameWeek[statsOrPoints][stat]) })}>
                             {player.gameWeek[statsOrPoints][stat]}
+                          </AdditionalPoints>
+                        </td>
+                      )}
+                      { showStats && (
+                        <td>
+                          {player.total[statsOrPoints].total}
+                          <AdditionalPoints {...bem('additional', { highlight: extremeStat(player.gameWeek[statsOrPoints].total) })}>
+                            {player.gameWeek[statsOrPoints].total}
                           </AdditionalPoints>
                         </td>
                       )}

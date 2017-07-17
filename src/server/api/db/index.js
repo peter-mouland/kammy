@@ -2,13 +2,15 @@
 const mongoose = require('mongoose');
 const debug = require('debug');
 
+const logger = require('./logger');
+
 const log = debug('kammy:models');
 let connected = false;
 
 module.exports.connect = (uri) => {
   if (connected) return;
   connected = true;
-
+  mongoose.set('debug', logger);
   mongoose.connect(uri);
   mongoose.Promise = global.Promise;
   log(uri);

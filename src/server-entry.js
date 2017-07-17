@@ -1,9 +1,6 @@
 require('babel-polyfill');
 const hook = require('node-hook').hook;
 const SvgLoader = require('svg-inline-loader');
-// require('babel-register')({
-//   only: [/src/, /tests/, /config/, /argos-ui-components/]
-// });
 
 const connect = require('./server/api/db').connect;
 const config = require('./config/db.js');

@@ -12,6 +12,7 @@ const mapper = () => ({
 });
 
 const zeros = {
+  total: 0,
   apps: 0,
   mom: 0,
   subs: 0,
