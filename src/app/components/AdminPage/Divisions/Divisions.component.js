@@ -1,6 +1,7 @@
 import React from 'react';
 import bemHelper from 'react-bem-helper';
 import Route from 'react-router-dom/Route';
+import debug from 'debug';
 
 import selectedItem from '../../../utils/selectedItem';
 import { SubLink } from '../../../routes';
@@ -12,6 +13,7 @@ import { ASSIGN_TEAM_TO_DIVISION } from './division.actions';
 
 const bem = bemHelper({ name: 'divisions' });
 const bem2 = bemHelper({ name: 'admin-options' });
+const log = debug('kammy:admin/Divisions');
 
 export default class Divisions extends React.Component {
   updateTeam = (team) => {
@@ -23,7 +25,7 @@ export default class Divisions extends React.Component {
   }
 
   render() {
-    const { loading, season, divisions, seasonUsers = [], match } = this.props;
+    const { loading, season, divisions, seasonUsers = [], match, updatingUserTeam } = this.props;
     const assigningUserToDivision = loading === ASSIGN_TEAM_TO_DIVISION;
 
     const division = selectedItem(match, divisions, 'divisionId');
@@ -52,6 +54,7 @@ export default class Divisions extends React.Component {
                   <Route
                     path={teamPath} render={() => (
                       <TeamAdminOptions
+                        updatingUserTeam={ updatingUserTeam }
                         team={ team }
                         saveUpdates={ this.updateTeam }
                       />

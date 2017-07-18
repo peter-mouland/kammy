@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Interstitial from '../../Interstitial/Interstitial';
 import SVG from '../../Svg/Svg';
 import PlayerChoice from '../Seasons/PlayerChoice';
 import changeIcon from '../../../../assets/change.svg';
@@ -39,9 +40,38 @@ class TeamAdminOptions extends React.Component {
     this.setState({ showPlayerChoice: pos, leftOrRight });
   }
 
+  getCta = (team, pos, side) => {
+    const { updatingUserTeam } = this.props;
+    const { showPlayerChoice, leftOrRight } = this.state;
+    switch (true) {
+      case updatingUserTeam :
+        return (
+          <Interstitial />
+        );
+      case showPlayerChoice === pos && leftOrRight === side :
+        return (
+          <PlayerChoice
+            pos={ showPlayerChoice }
+            leftOrRight={ leftOrRight }
+            defaultValue={ team[showPlayerChoice + leftOrRight] }
+            onUpdate={ (e, player) =>
+              this.updatePlayer(e, { pos, leftOrRight: side, team, player }
+              )}
+          />
+        );
+      default :
+        return (
+          <SVG
+            className="admin-icon"
+            markup={ changeIcon }
+            onClick={ () => this.showPlayerChoice({ pos, leftOrRight: side }) }
+          />
+        );
+    }
+  }
+
   render() {
     const { team } = this.props;
-    const { showPlayerChoice, leftOrRight } = this.state;
     return (
       <table
         data-test="admin-options--team"
@@ -59,31 +89,18 @@ class TeamAdminOptions extends React.Component {
 
           {(Object.keys(positions)).map((pos) => {
             const position = positions[pos];
-            return position.map((side) => (
-              <tr key={pos + side}>
-                <td>{team[pos + side].code}</td>
-                <td>{pos}</td>
-                <td>{team[pos + side].name || <em>unknown</em>}</td>
-                <td>{team[pos + side].club}</td>
-                <td>{
-                  showPlayerChoice && showPlayerChoice === pos && leftOrRight === side
-                    ? <PlayerChoice
-                      pos={ showPlayerChoice }
-                      leftOrRight={ leftOrRight }
-                      defaultValue={ team[showPlayerChoice + leftOrRight] }
-                      onUpdate={ (e, player) =>
-                        this.updatePlayer(e, { pos, leftOrRight: side, team, player }
-                        )}
-                    />
-                    : <SVG
-                      className="admin-icon"
-                      markup={ changeIcon }
-                      onClick={ () => this.showPlayerChoice({ pos, leftOrRight: side }) }
-                    />
-                }
-                </td>
-              </tr>
-            ));
+            return position.map((side) => {
+              const Cta = this.getCta(team, pos, side);
+              return (
+                <tr key={pos + side}>
+                  <td>{team[pos + side].code}</td>
+                  <td>{pos}</td>
+                  <td>{team[pos + side].name || <em>unknown</em>}</td>
+                  <td>{team[pos + side].club}</td>
+                  <td>{Cta}</td>
+                </tr>
+              );
+            });
           })}
         </tbody>
       </table>

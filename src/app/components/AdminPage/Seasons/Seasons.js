@@ -1,4 +1,5 @@
 import React from 'react';
+import debug from 'debug';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -7,6 +8,8 @@ import {
   fetchSeasons, updateSeason, addSeason, addDivision, fetchUsersWithTeams
 } from './seasons.actions';
 import { fetchExternalStats, saveGameWeekStats, saveSeasonStats } from './stats.actions';
+
+const log = debug('kammy:admin/Seasons');
 
 class AdminPage extends React.Component {
   static needs = [fetchSeasons];

@@ -29,6 +29,7 @@ function mapStateToProps(state) {
   return {
     seasonUsers: state.seasons.seasonUsers,
     seasons: state.seasons.data,
+    updatingUserTeam: state.seasons.updatingUserTeam,
     stats: state.stats.data,
     statsErrors: state.stats.errors,
     seasonAdded: state.seasons.seasonAdded,
