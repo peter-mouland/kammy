@@ -20,6 +20,12 @@ export default function stats(state = {}, action) {
         loading: true,
         errors: [],
       };
+    case `${actions.SAVE_SEASON_STATS}_PENDING`:
+      return {
+        ...state,
+        seasonSaving: true,
+        errors: [],
+      };
     case `${actions.SAVE_GAME_WEEK_STATS}_FULFILLED`:
       return {
         ...state,
@@ -27,6 +33,13 @@ export default function stats(state = {}, action) {
         saved: true,
         errors: action.payload.errors,
         data: data.saveGameWeekStats && data.saveGameWeekStats.stats,
+      };
+    case `${actions.SAVE_SEASON_STATS}_FULFILLED`:
+      return {
+        ...state,
+        seasonSaving: false,
+        errors: action.payload.errors,
+        data: data.saveSeasonStats && data.saveSeasonStats.stats,
       };
     case `${actions.FETCH_EXTERNAL_STATS}_FULFILLED`:
       return {

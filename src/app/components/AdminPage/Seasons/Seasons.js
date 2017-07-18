@@ -38,6 +38,7 @@ function mapStateToProps(state) {
     statsErrors: state.stats.errors,
     statsLoading: state.stats.loading,
     statsSaving: state.stats.saving,
+    statsSeasonSaving: state.stats.seasonSaving,
     statsSaved: state.stats.saved,
     seasonAdded: state.seasons.seasonAdded,
     divisionAdded: state.seasons.divisionAdded,

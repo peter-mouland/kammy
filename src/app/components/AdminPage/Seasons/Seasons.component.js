@@ -43,7 +43,7 @@ export default class AdminPage extends React.Component {
   render() {
     const {
       className, statsErrors = [], loading, seasons, match,
-      stats, statsLoading, statsSaving, statsSaved
+      stats, statsLoading, statsSaving, statsSaved, statsSeasonSaving
     } = this.props;
     const addingSeason = loading === ADD_SEASON;
     const addingDivision = loading === ADD_DIVISION;
@@ -81,6 +81,7 @@ export default class AdminPage extends React.Component {
                   statsLoading={ statsLoading }
                   statsSaved={ statsSaved }
                   statsSaving={ statsSaving }
+                  statsSeasonSaving={ statsSeasonSaving }
                   statsErrors={ statsErrors }
                   stats={ stats }
                 />
