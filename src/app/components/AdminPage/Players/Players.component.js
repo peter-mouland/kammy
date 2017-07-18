@@ -1,8 +1,8 @@
 import React from 'react';
 
 import Auth from '../../../authentication/auth-helper';
+import Interstitial from '../../Interstitial/Interstitial';
 import PlayerAdminOptions from './PlayerAdminOptions';
-import { UPDATE_PLAYERS } from './players.actions';
 
 export default class Players extends React.Component {
   importPlayers = () => {
@@ -14,12 +14,20 @@ export default class Players extends React.Component {
   }
 
   render() {
-    const { loading, players = [] } = this.props;
-    const updatingPlayer = loading === UPDATE_PLAYERS;
+    const { loading, importing, updating, players = [] } = this.props;
 
     if (!Auth.isAdmin()) {
       return <p>You're not admin!</p>;
     }
+
+    if (loading) {
+      return <Interstitial>Loading Players...</Interstitial>;
+    }
+
+    if (importing) {
+      return <Interstitial>Importing Players...</Interstitial>;
+    }
+
     if (!players.length) {
       return (
         <section className="admin__panel admin__panel--players">
@@ -34,7 +42,7 @@ export default class Players extends React.Component {
     return (
       <section className="admin__panel admin__panel--players">
         <PlayerAdminOptions
-          saving={ updatingPlayer }
+          saving={ updating }
           saveUpdates={ this.updatePlayers }
         />
       </section>
