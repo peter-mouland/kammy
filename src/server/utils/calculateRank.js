@@ -25,6 +25,8 @@ export default (teams) => {
   const sCM = rank(teams, 'cm', 'total');
   const sSTR = rank(teams, 'str', 'total');
 
+  const gwPointsTotal = teams.reduce((sum, team) => sum + team.gameWeek.points, 0);
+
   return teams.map((team, i) => {
     const seasonRank = {
       gks: sGKS[i],
@@ -37,13 +39,14 @@ export default (teams) => {
     };
 
     const gameWeekRankChange = {
-      gks: (gwGKS[i] - sGKS[i]),
-      cb: (gwCB[i] - sCB[i]),
-      fb: (gwFB[i] - sFB[i]),
-      wm: (gwWM[i] - sWM[i]),
-      cm: (gwCM[i] - sCM[i]),
-      str: (gwSTR[i] - sSTR[i]),
+      gks: !gwPointsTotal ? 0 : (gwGKS[i] - sGKS[i]),
+      cb: !gwPointsTotal ? 0 : (gwCB[i] - sCB[i]),
+      fb: !gwPointsTotal ? 0 : (gwFB[i] - sFB[i]),
+      wm: !gwPointsTotal ? 0 : (gwWM[i] - sWM[i]),
+      cm: !gwPointsTotal ? 0 : (gwCM[i] - sCM[i]),
+      str: !gwPointsTotal ? 0 : (gwSTR[i] - sSTR[i]),
     };
+
     return {
       ...team,
       gameWeekRankChange: {
