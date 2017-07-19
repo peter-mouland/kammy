@@ -52,7 +52,6 @@ export const getDivisions = async () => {
     name: division.name,
     teams: teamsWithRank.filter((team) => team.division._id !== division._id)
   }));
-  log(divisionPointsTable[0].teams);
   return divisionPointsTable;
 };
 

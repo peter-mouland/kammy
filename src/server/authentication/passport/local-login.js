@@ -46,7 +46,6 @@ module.exports = new PassportLocalStrategy({
         return done(error);
       }
 
-      Team.find().exec((e, teams) => log(e) && log(teams));
       return Team.findOne({ 'user._id': new ObjectId(user._id) })
         .sort({ dateCreated: -1 }).exec((e, team) => {
           if (e || !team) {

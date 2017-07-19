@@ -36,7 +36,6 @@ module.exports = new PassportLocalStrategy({
         salt: passwordObj.salt,
         mustChangePassword: false
       };
-      log(payload);
       return updateUser(user._id, payload).then((updatedUser) => done(null, updatedUser));
     });
   });
