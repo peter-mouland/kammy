@@ -59,6 +59,33 @@ const schemaString = `
     _id: String
     name: String
   }
+
+  type SeasonDetail {
+    _id: String
+    name: String
+    points: Int,
+    transfersRequested: Int,
+    transfersMade: Int,
+    gks: Int,
+    fb: Int,
+    cb: Int,
+    wm: Int,
+    cm: Int,
+    str: Int,
+    gk: Int,
+    cbleft: Int,
+    cbright: Int,
+    fbleft: Int,
+    fbright: Int,
+    cmleft: Int,
+    cmright: Int,
+    wmleft: Int,
+    wmright: Int,
+    strleft: Int,
+    strright: Int,
+    sub: Int,
+  }
+
   type MinPlayerDetail {
     _id: String
     name: String
@@ -69,7 +96,7 @@ const schemaString = `
     _id: String
     name: String
     user: MinDetail
-    season: MinDetail
+    season: SeasonDetail
     division: MinDetail
     gk: MinPlayerDetail
     cbleft: MinPlayerDetail
@@ -84,7 +111,6 @@ const schemaString = `
     strright: MinPlayerDetail
     sub: MinPlayerDetail
     gameWeek: Points
-    total: Points
     gameWeekRankChange: Rank
     seasonRank: Rank
   }
@@ -118,7 +144,7 @@ const schemaString = `
     club: String
     new: String
     gameWeek: GameWeek
-    total: GameWeek
+    season: GameWeek
     pointsChange: Int
   }
 

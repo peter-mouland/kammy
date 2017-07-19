@@ -45,7 +45,7 @@ const mongooseSchema = {
     stats,
     points
   },
-  total: {
+  season: {
     stats,
     points
   },

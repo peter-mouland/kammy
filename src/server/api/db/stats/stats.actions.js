@@ -30,7 +30,7 @@ export const getExternalStats = async ({ currentGW, source }) => {
     } else {
       player.pos = dbPlayer.pos;
       const formattedPlayer = mapSkyFormatToSchema(player);
-      stats[dbPlayer.name] = calculatePoints(formattedPlayer, dbPlayer.total, currentGW);
+      stats[dbPlayer.name] = calculatePoints(formattedPlayer, dbPlayer.season, currentGW);
     }
   });
   return { stats, errors };
@@ -71,32 +71,32 @@ export const saveSeasonStats = async ({ seasonId, currentGW }) => {
   allUpdates.push(Season.findByIdAndUpdate(seasonId, { currentGW }, { new: true }).exec());
   players.forEach(async (player) => {
     const pos = player.pos.toLowerCase();
-    const seasonStats = player.total.stats;
-    const seasonPoints = player.total.points;
+    const seasonStats = player.season.stats;
+    const seasonPoints = player.season.points;
     const gwStats = player.gameWeek.stats;
     const gwPoints = player.gameWeek.points;
     allUpdates.push(Player.findOneAndUpdate(
       { code: player.code },
       { $set: {
-        'total.points.pensv': seasonPoints.pensv + gwPoints.pensv,
-        'total.points.apps': seasonPoints.apps + gwPoints.apps,
-        'total.points.subs': seasonPoints.subs + gwPoints.subs,
-        'total.points.gls': seasonPoints.gls + gwPoints.gls,
-        'total.points.asts': seasonPoints.asts + gwPoints.asts,
-        'total.points.con': seasonPoints.con + gwPoints.con,
-        'total.points.cs': seasonPoints.cs + gwPoints.cs,
-        'total.points.rcard': seasonPoints.rcard + gwPoints.rcard,
-        'total.points.ycard': seasonPoints.ycard + gwPoints.ycard,
-        'total.points.total': seasonPoints.total + gwPoints.total,
-        'total.stats.pensv': seasonStats.pensv + gwStats.pensv,
-        'total.stats.apps': seasonStats.apps + gwStats.apps,
-        'total.stats.subs': seasonStats.subs + gwStats.subs,
-        'total.stats.gls': seasonStats.gls + gwStats.gls,
-        'total.stats.asts': seasonStats.asts + gwStats.asts,
-        'total.stats.con': seasonStats.con + gwStats.con,
-        'total.stats.cs': seasonStats.cs + gwStats.cs,
-        'total.stats.rcard': seasonStats.rcard + gwStats.rcard,
-        'total.stats.ycard': seasonStats.ycard + gwStats.ycard,
+        'season.points.pensv': seasonPoints.pensv + gwPoints.pensv,
+        'season.points.apps': seasonPoints.apps + gwPoints.apps,
+        'season.points.subs': seasonPoints.subs + gwPoints.subs,
+        'season.points.gls': seasonPoints.gls + gwPoints.gls,
+        'season.points.asts': seasonPoints.asts + gwPoints.asts,
+        'season.points.con': seasonPoints.con + gwPoints.con,
+        'season.points.cs': seasonPoints.cs + gwPoints.cs,
+        'season.points.rcard': seasonPoints.rcard + gwPoints.rcard,
+        'season.points.ycard': seasonPoints.ycard + gwPoints.ycard,
+        'season.points.total': seasonPoints.total + gwPoints.total,
+        'season.stats.pensv': seasonStats.pensv + gwStats.pensv,
+        'season.stats.apps': seasonStats.apps + gwStats.apps,
+        'season.stats.subs': seasonStats.subs + gwStats.subs,
+        'season.stats.gls': seasonStats.gls + gwStats.gls,
+        'season.stats.asts': seasonStats.asts + gwStats.asts,
+        'season.stats.con': seasonStats.con + gwStats.con,
+        'season.stats.cs': seasonStats.cs + gwStats.cs,
+        'season.stats.rcard': seasonStats.rcard + gwStats.rcard,
+        'season.stats.ycard': seasonStats.ycard + gwStats.ycard,
         'gameWeek.points.total': 0,
         'gameWeek.points.pensv': 0,
         'gameWeek.points.apps': 0,
@@ -130,7 +130,7 @@ export const saveSeasonStats = async ({ seasonId, currentGW }) => {
 
     allTeams.forEach((team) => {
       const setTeam = (position) => ({
-        [`total.${position}`]: team.total[position] + player.gameWeek.points.total,
+        [`season.${position}`]: team.season[position] + player.gameWeek.points.total,
         [`gameWeek.${position}`]: 0,
       });
       allUpdates.push(Team.update(queryTeam('sub'), { $set: setTeam('sub') }));

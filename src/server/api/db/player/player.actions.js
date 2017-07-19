@@ -2,7 +2,7 @@
 import debug from 'debug';
 import mongoose from 'mongoose';
 
-import { mapImportToSchema, mapSkyFormatToSchema } from '../../../utils/mapDataImportFormats';
+import { mapImportToSchema, mapSkyFormatToSchema, zeros } from '../../../utils/mapDataImportFormats';
 import { json } from '../../../../app/utils/fetch';
 import config from '../../../../config/config';
 
@@ -36,11 +36,14 @@ export const importPlayers = async () => {
     formattedSkyPlayer.pos = dbPlayer ? dbPlayer.pos : formattedJsonPlayer.pos || 'unknown';
     if (formattedSkyPlayer.pos === 'park') formattedSkyPlayer.pos = 'unknown';
     if (!dbPlayer) {
+      formattedSkyPlayer.season.stats = zeros;
+      formattedSkyPlayer.season.points = zeros;
+      formattedSkyPlayer.gameWeek.stats = zeros;
+      formattedSkyPlayer.gameWeek.points = zeros;
       updatePromises.push((new Player(formattedSkyPlayer)).save());
     } else {
       updatePromises.push((Player.findByIdAndUpdate(dbPlayer._id, formattedSkyPlayer)).exec());
     }
-
     stats[formattedSkyPlayer.name] = formattedSkyPlayer;
   });
   return Promise.all(updatePromises).catch(log);

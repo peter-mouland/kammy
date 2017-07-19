@@ -38,8 +38,8 @@ export default class DivisionsPage extends React.Component {
   render() {
     const { errors = [], loading, divisions } = this.props;
     const { pointsOrRank } = this.state;
-    const totals = pointsOrRank === 'Rank' ? 'seasonRank' : 'total';
-    const gameweek = pointsOrRank === 'Rank' ? 'gameWeekRankChange' : 'gameWeek';
+    const season = pointsOrRank === 'Rank' ? 'seasonRank' : 'season';
+    const gameWeek = pointsOrRank === 'Rank' ? 'gameWeekRankChange' : 'gameWeek';
     const positions = ['gks', 'fb', 'cb', 'wm', 'cm', 'str'];
 
     if (errors.length) {
@@ -93,15 +93,15 @@ export default class DivisionsPage extends React.Component {
                     {positions.map((pos) => (
                       <td key={pos}>
                         <span { ...bem('point')}>
-                          {team[totals][pos]}
-                          <AdditionalPoints>{team[gameweek][pos]}</AdditionalPoints>
+                          {team[season][pos]}
+                          <AdditionalPoints>{team[gameWeek][pos]}</AdditionalPoints>
                         </span>
                       </td>
                     ))}
                     <td>
                       <span { ...bem('point')}>
-                        {team[totals].points}
-                        <AdditionalPoints>{team[gameweek].points}</AdditionalPoints>
+                        {team[season].points}
+                        <AdditionalPoints>{team[gameWeek].points}</AdditionalPoints>
                       </span>
                     </td>
                   </tr>

@@ -18,12 +18,12 @@ export default (teams) => {
   const gwWM = rank(teams, 'wm', 'gameWeek');
   const gwCM = rank(teams, 'cm', 'gameWeek');
   const gwSTR = rank(teams, 'str', 'gameWeek');
-  const sGKS = rank(teams, 'gks', 'total');
-  const sCB = rank(teams, 'cb', 'total');
-  const sFB = rank(teams, 'fb', 'total');
-  const sWM = rank(teams, 'wm', 'total');
-  const sCM = rank(teams, 'cm', 'total');
-  const sSTR = rank(teams, 'str', 'total');
+  const sGKS = rank(teams, 'gks', 'season');
+  const sCB = rank(teams, 'cb', 'season');
+  const sFB = rank(teams, 'fb', 'season');
+  const sWM = rank(teams, 'wm', 'season');
+  const sCM = rank(teams, 'cm', 'season');
+  const sSTR = rank(teams, 'str', 'season');
 
   const gwPointsTotal = teams.reduce((sum, team) => sum + team.gameWeek.points, 0);
 

@@ -8,7 +8,7 @@ fragment playerStatsInfo on Player {
      apps subs gls asts mom cs con pensv ycard rcard total
    }
  }
- total {
+ season {
    stats {
      apps subs gls asts mom cs con pensv ycard rcard
    }
@@ -26,7 +26,7 @@ fragment teamPointsInfo on Team {
  gameWeekRankChange {
     points gks cb fb cm wm str
  }
- total {
+ season {
     points gks cb fb cm wm str
  }
  seasonRank {

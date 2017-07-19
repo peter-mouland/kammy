@@ -120,8 +120,8 @@ export function calculateGameWeek(totalStats, pos, previousStats) {
   };
 }
 
-export const calculatePoints = (player, previousTotal) => ({
+export const calculatePoints = (player, currentSeason) => ({
   ...player,
-  gameWeek: calculateGameWeek(player.total.stats, player.pos, previousTotal.stats),
-  total: previousTotal
+  gameWeek: calculateGameWeek(player.season.stats, player.pos, currentSeason.stats),
+  season: currentSeason
 });

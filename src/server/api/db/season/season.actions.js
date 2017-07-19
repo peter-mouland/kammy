@@ -22,13 +22,13 @@ export const getDivisions = async () => {
   const divisions = season.divisions;
   const $in = divisions.map((division) => new ObjectId(division._id));
   const aggFields = {
-    'total.gks': { $add: ['$total.gk', '$total.sub'] },
-    'total.cb': { $add: ['$total.cbleft', '$total.cbright'] },
-    'total.fb': { $add: ['$total.fbleft', '$total.fbright'] },
-    'total.cm': { $add: ['$total.cmleft', '$total.cmright'] },
-    'total.wm': { $add: ['$total.wmleft', '$total.wmright'] },
-    'total.str': { $add: ['$total.strleft', '$total.strright'] },
-    'total.points': { $add: ['$total.gk', '$total.sub', '$total.cbleft', '$total.cbright', '$total.fbleft', '$total.fbright', '$total.cmleft', '$total.cmright', '$total.wmleft', '$total.wmright', '$total.strleft', '$total.strright'] },
+    'season.gks': { $add: ['$season.gk', '$season.sub'] },
+    'season.cb': { $add: ['$season.cbleft', '$season.cbright'] },
+    'season.fb': { $add: ['$season.fbleft', '$season.fbright'] },
+    'season.cm': { $add: ['$season.cmleft', '$season.cmright'] },
+    'season.wm': { $add: ['$season.wmleft', '$season.wmright'] },
+    'season.str': { $add: ['$season.strleft', '$season.strright'] },
+    'season.points': { $add: ['$season.gk', '$season.sub', '$season.cbleft', '$season.cbright', '$season.fbleft', '$season.fbright', '$season.cmleft', '$season.cmright', '$season.wmleft', '$season.wmright', '$season.strleft', '$season.strright'] },
     'gameWeek.gks': { $add: ['$gameWeek.gk', '$gameWeek.sub'] },
     'gameWeek.cb': { $add: ['$gameWeek.cbleft', '$gameWeek.cbright'] },
     'gameWeek.fb': { $add: ['$gameWeek.fbleft', '$gameWeek.fbright'] },
@@ -37,7 +37,7 @@ export const getDivisions = async () => {
     'gameWeek.str': { $add: ['$gameWeek.strleft', '$gameWeek.strright'] },
     'gameWeek.points': { $add: ['$gameWeek.gk', '$gameWeek.sub', '$gameWeek.cbleft', '$gameWeek.cbright', '$gameWeek.fbleft', '$gameWeek.fbright', '$gameWeek.cmleft', '$gameWeek.cmright', '$gameWeek.wmleft', '$gameWeek.wmright', '$gameWeek.strleft', '$gameWeek.strright'] },
   };
-  aggFields.season = 1; // show season in agg query response.
+  // aggFields.season = 1; // show season in agg query response.
   aggFields.user = 1;
   aggFields.division = 1;
 

@@ -11,7 +11,7 @@ const mapper = () => ({
   SAVED_PENALTIES: 11
 });
 
-const zeros = {
+export const zeros = {
   total: 0,
   apps: 0,
   mom: 0,
@@ -65,7 +65,7 @@ export const mapImportToSkyFormat = (player) => {
 export const mapImportToSchema = (player) => {
   player.id = player.code;
   player.name = player.player;
-  player.total = {
+  player.season = {
     stats: zeros,
     points: zeros,
   };
@@ -98,7 +98,7 @@ export const mapSkyFormatToSchema = (player) => {
   const season = player.stats && player.stats.season;
   player.code = player.id;
   player.gameWeek = {};
-  player.total = {
+  player.season = {
     stats: {
       apps: season[map.STARTING_XI],
       mom: season[map.MAN_OF_MATCH],

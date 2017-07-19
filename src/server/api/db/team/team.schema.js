@@ -24,17 +24,7 @@ const TeamSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Season'
     },
-    name: String
-  },
-  division: {
-    _id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Season.divisions'
-    },
-    name: String
-  },
-  name: String,
-  gameWeek: {
+    name: String,
     points: { type: Number, default: 0 },
     transfersRequested: { type: Number, default: 0 },
     transfersMade: { type: Number, default: 0 },
@@ -51,7 +41,15 @@ const TeamSchema = new mongoose.Schema({
     strright: { type: Number, default: 0 },
     sub: { type: Number, default: 0 },
   },
-  total: {
+  division: {
+    _id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Season.divisions'
+    },
+    name: String
+  },
+  name: String,
+  gameWeek: {
     points: { type: Number, default: 0 },
     transfersRequested: { type: Number, default: 0 },
     transfersMade: { type: Number, default: 0 },
