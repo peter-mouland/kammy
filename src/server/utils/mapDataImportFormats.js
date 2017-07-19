@@ -96,6 +96,7 @@ export const mapImportToSchema = (player) => {
 export const mapSkyFormatToSchema = (player) => {
   const map = mapper();
   const season = player.stats && player.stats.season;
+  player.code = player.id;
   player.gameWeek = {};
   player.total = {
     stats: {
@@ -113,6 +114,7 @@ export const mapSkyFormatToSchema = (player) => {
   };
   player.name = player.name || `${player.sName}, ${player.fName}`;
   player.club = player.club || player.tName;
+  delete player.id;
   delete player.stats;
   delete player.sName;
   delete player.fName;

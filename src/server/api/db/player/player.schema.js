@@ -36,6 +36,10 @@ const mongooseSchema = {
   code: Number,
   pos: String,
   club: String,
+  isHidden: {
+    type: Boolean,
+    default: false
+  },
   new: Boolean,
   gameWeek: {
     stats,

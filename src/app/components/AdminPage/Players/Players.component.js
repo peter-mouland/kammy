@@ -57,8 +57,13 @@ export default class AdminPlayers extends React.Component {
 
           <div className="admin-option">
             <h2>Import</h2>
-            <button onClick={ this.importPlayers }>Import New Players From Sky</button>
-
+            <p>
+              Importing players will update player details to match Sky (<em>not position</em>)
+              e.g. The club the player belong's to may change.
+            </p>
+            <p>
+              <button onClick={ this.importPlayers }>Import New Players From Sky</button>
+            </p>
             <h2>Updates</h2>
             { updating ? <Interstitial small>Saving</Interstitial> : null }
             { !updating && (Object.keys(playerUpdates)).length > 0

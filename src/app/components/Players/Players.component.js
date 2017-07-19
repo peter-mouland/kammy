@@ -120,14 +120,14 @@ export default class PlayerTable extends React.Component {
     }
   }
 
-  onEdit(e, player, attribute, originalPlayerData) {
+  onEdit(value, player, attribute, originalPlayerData) {
     const existingPlayerUpdate = this.props.playerUpdates[player._id];
     const playerUpdates = {
       ...this.props.playerUpdates,
       [player._id]: {
         ...player,
         ...existingPlayerUpdate,
-        [attribute]: e.currentTarget.value
+        [attribute]: value
       }
     };
     const originalPlayers = {
@@ -138,7 +138,9 @@ export default class PlayerTable extends React.Component {
   }
 
   CellEditor = ({ player, originalPlayerData, editable = false, attribute, type }) => {
-    const onChange = (e) => this.onEdit(e, player, attribute, originalPlayerData);
+    const onChange = (e) => (
+      this.onEdit(e.currentTarget.value, player, attribute, originalPlayerData)
+    );
     const Editor = type === 'text'
       ? <input
         type="text"
@@ -275,6 +277,7 @@ export default class PlayerTable extends React.Component {
               { showStats && statCols.map((stat) => <td key={stat}>{stat}</td>) }
               { showStats && <td>Total</td> }
               { showPoints && <th>Points</th> }
+              { editable && <th>Hidden</th> }
               { selectPlayer && <th></th> }
             </tr>
           </thead>
@@ -282,6 +285,7 @@ export default class PlayerTable extends React.Component {
             {loading && <tr><td colSpan={4}><Interstitial>Loading Players</Interstitial></td></tr>}
             {
               players
+                .filter((player) => !player.isHidden || editable)
                 .filter((player) =>
                   applyFilters({ player, nameFilter, posFilter, clubFilter, myTeam: teamPlayers })
                 )
@@ -322,6 +326,15 @@ export default class PlayerTable extends React.Component {
                         <td {...bem('output')}>
                           {player.total.points.total}
                           <AdditionalPoints>{player.gameWeek.points.total}</AdditionalPoints>
+                        </td>
+                      )}
+                      { editable && (
+                        <td {...bem('output')}>
+                          <input
+                            type="checkbox"
+                            defaultChecked={player.isHidden}
+                            onChange={(e) => this.onEdit(e.currentTarget.checked, player, 'isHidden', originalPlayerData)}
+                          />
                         </td>
                       )}
                       { selectPlayer &&

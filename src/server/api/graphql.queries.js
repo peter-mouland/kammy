@@ -41,7 +41,7 @@ fragment minPlayerInfo on MinPlayerDetail {
 
 const playerFragment = `
 fragment playerInfo on Player {
-  _id code pos name club 
+  _id code pos name club isHidden
 }`;
 
 const divisionFragment = `
@@ -140,7 +140,7 @@ export const assignTeamToDivisionMutation = `
 
 export const updatePlayersMutation = `
   mutation ($playerUpdates: [PlayerUpdates]) { 
-    updatePlayers(playerUpdates: $playerUpdates){ _id code pos name club }   
+    updatePlayers(playerUpdates: $playerUpdates){ _id code pos name club isHidden }   
   }
 `;
 

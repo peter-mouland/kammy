@@ -106,10 +106,12 @@ const schemaString = `
     name: String
     pos: String
     club: String
+    isHidden: Boolean
   }
 
   type Player {
     _id: String!
+    isHidden: Boolean
     name: String!
     code: Int
     pos: String
@@ -196,6 +198,7 @@ const schemaString = `
     club: String
     name: String
     pos: String
+    isHidden: Boolean
   }
   
   type Query {

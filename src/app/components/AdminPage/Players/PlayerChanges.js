@@ -16,10 +16,12 @@ export default ({ players, updates, saveUpdates }) => (
           Update {player.name}:
           <ul>
             {(Object.keys(update))
-              .filter((attribute) => ['code', 'pos', 'club', 'name'].includes(attribute))
+              .filter((attribute) => ['code', 'pos', 'club', 'name', 'isHidden'].includes(attribute))
               .filter((attribute) => player[attribute] !== update[attribute])
               .map((attribute) => (
-                <li key={attribute}>{player[attribute]} to {update[attribute]}</li>
+                attribute === 'isHidden'
+                  ? <li key={attribute}>{!player[attribute] ? 'is not hidden to hidden' : 'is hidden to not hidden'}</li>
+                  : <li key={attribute}>{player[attribute]} to {update[attribute]}</li>
               ))
             }
           </ul>

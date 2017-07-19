@@ -34,7 +34,7 @@ function mapStateToProps(state) {
   return {
     players: state.players.data,
     loading: state.players.loading,
-    errors: state.promiseState.errors,
+    errors: state.players.errors,
   };
 }
 

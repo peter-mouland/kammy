@@ -41,6 +41,13 @@ export default function players(state = {}, action) {
       return {
         ...state,
         data: data && data.getPlayers,
+        errors: action.payload.errors,
+        loading: false,
+      };
+    case `${actions.FETCH_PLAYERS}_REJECTED`:
+      return {
+        ...state,
+        errors: [action.payload],
         loading: false,
       };
     case `${actions.IMPORT_PLAYERS}_PENDING`:
@@ -52,7 +59,14 @@ export default function players(state = {}, action) {
       return {
         ...state,
         data: data && data.importPlayers,
+        errors: action.payload.errors,
         importing: false
+      };
+    case `${actions.IMPORT_PLAYERS}_REJECTED`:
+      return {
+        ...state,
+        errors: [action.payload],
+        importing: false,
       };
     case `${actions.UPDATE_PLAYERS}_PENDING`:
       return {
@@ -63,7 +77,14 @@ export default function players(state = {}, action) {
       return {
         ...state,
         data: updatePlayersData(state, action),
+        errors: action.payload.errors,
         updating: false
+      };
+    case `${actions.UPDATE_PLAYERS}_REJECTED`:
+      return {
+        ...state,
+        errors: [action.payload],
+        updating: false,
       };
     default:
       return state;
