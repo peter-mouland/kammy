@@ -40,7 +40,7 @@ class TeamAdminOptions extends React.Component {
     this.setState({ showPlayerChoice: pos, leftOrRight });
   }
 
-  getCta = (team, pos, side) => {
+  getCta = ({ team, pos, side, divisionTeams }) => {
     const { updatingUserTeam } = this.props;
     const { showPlayerChoice, leftOrRight } = this.state;
     switch (true) {
@@ -51,12 +51,13 @@ class TeamAdminOptions extends React.Component {
       case showPlayerChoice === pos && leftOrRight === side :
         return (
           <PlayerChoice
+            teams={divisionTeams}
             pos={ showPlayerChoice }
             leftOrRight={ leftOrRight }
             defaultValue={ team[showPlayerChoice + leftOrRight] }
             onUpdate={ (e, player) =>
-              this.updatePlayer(e, { pos, leftOrRight: side, team, player }
-              )}
+              this.updatePlayer(e, { pos, leftOrRight: side, team, player })
+            }
           />
         );
       default :
@@ -71,7 +72,7 @@ class TeamAdminOptions extends React.Component {
   }
 
   render() {
-    const { team } = this.props;
+    const { team, divisionTeams } = this.props;
     return (
       <table
         data-test="admin-options--team"
@@ -90,7 +91,7 @@ class TeamAdminOptions extends React.Component {
           {(Object.keys(positions)).map((pos) => {
             const position = positions[pos];
             return position.map((side) => {
-              const Cta = this.getCta(team, pos, side);
+              const Cta = this.getCta({ team, pos, side, divisionTeams });
               return (
                 <tr key={pos + side}>
                   <td>{team[pos + side].code}</td>

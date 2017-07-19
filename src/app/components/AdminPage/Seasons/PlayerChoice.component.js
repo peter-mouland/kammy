@@ -54,10 +54,26 @@ export default class PlayerChoice extends React.Component {
 
 
   render() {
-    const { pos, players, onUpdate, defaultValue } = this.props;
+    const { pos, players, onUpdate, defaultValue, teams } = this.props;
     const { clubFilter, positionFilter } = this.state;
     const clubs = this.clubs;
     const position = positionFilter || pos;
+
+    const pickedPlayers = teams.reduce((prev, team) => {
+      prev.push(team.sub.code);
+      prev.push(team.gk._id);
+      prev.push(team.fbleft._id);
+      prev.push(team.fbright._id);
+      prev.push(team.cbleft._id);
+      prev.push(team.cbright._id);
+      prev.push(team.wmleft._id);
+      prev.push(team.wmright._id);
+      prev.push(team.cmleft._id);
+      prev.push(team.cmright._id);
+      prev.push(team.strleft._id);
+      prev.push(team.strright._id);
+      return prev;
+    }, []);
 
     const filteredPlayers = players
       .filter((player) => {
@@ -83,6 +99,7 @@ export default class PlayerChoice extends React.Component {
           options={ clubs }
         />
         <Selector
+          disabled={ pickedPlayers }
           onChange={ this.selectPlayer }
           defaultValue={ defaultValue._id }
           options={ filteredPlayers }

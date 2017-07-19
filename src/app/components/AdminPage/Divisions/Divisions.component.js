@@ -54,6 +54,7 @@ export default class Divisions extends React.Component {
                   <Route
                     path={teamPath} render={() => (
                       <TeamAdminOptions
+                        divisionTeams={ divisionTeams }
                         updatingUserTeam={ updatingUserTeam }
                         team={ team }
                         saveUpdates={ this.updateTeam }
