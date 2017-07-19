@@ -45,12 +45,13 @@ export const getDivisions = async () => {
     { $match: { 'division._id': { $in } } }, { $project: aggFields }
   ).exec();
 
-  const teamsWithRank = rankAllPositionInTeams(teams);
   const divisionPointsTable = divisions.map((division) => ({
     tier: division.tier,
     _id: division._id,
     name: division.name,
-    teams: teamsWithRank.filter((team) => team.division._id !== division._id)
+    teams: rankAllPositionInTeams(teams.filter((team) => (
+      team.division._id.toHexString() === division._id.toHexString()
+    )))
   }));
   return divisionPointsTable;
 };
