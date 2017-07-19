@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 
 import AdminPageComponent from './AdminPage.component';
 
-import {
-  fetchPlayers, fetchUsersWithTeams, updateTeam, addUser, updatePlayers, importPlayers
-} from './admin-page.actions';
+import { fetchUsersWithTeams, updateTeam, addUser } from './admin-page.actions';
 
 
 class AdminPage extends React.Component {
@@ -13,7 +11,7 @@ class AdminPage extends React.Component {
 
   componentDidMount() {
     if (!this.props.players) {
-      this.props.fetchPlayers();
+      this.props.fetchUsersWithTeams();
     }
   }
 
@@ -26,7 +24,6 @@ function mapStateToProps(state) {
   return {
     users: state.users.data,
     userErrors: state.users.errors,
-    players: state.players.data,
     loading: state.promiseState.loading,
     errors: state.promiseState.errors,
   };
@@ -36,10 +33,7 @@ export default connect(
   mapStateToProps,
   {
     fetchUsersWithTeams,
-    fetchPlayers,
-    importPlayers,
     addUser,
-    updatePlayers,
     updateTeam,
   }
 )(AdminPage);

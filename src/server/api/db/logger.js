@@ -1,5 +1,13 @@
 const bunyan = require('bunyan');
 
+const getToday = () => {
+  const now = new Date();
+  const dd = String(now.getDate()).padStart(2, '0');
+  const mm = String(now.getMonth() + 1).padStart(2, '0'); // January is 0!
+  const yyyy = now.getFullYear();
+  return `${yyyy}-${mm}-${dd}`;
+};
+
 function serializer(data) {
   const query = JSON.stringify(data.query);
   const options = JSON.stringify(data.options || data.doc);
@@ -16,7 +24,7 @@ const log = bunyan.createLogger({
     },
     {
       level: 'info',
-      path: './mongo.log'
+      path: `./mongo-${getToday()}.log`
     }
   ],
   serializers: {

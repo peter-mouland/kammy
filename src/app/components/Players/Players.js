@@ -33,7 +33,7 @@ class Players extends React.Component {
 function mapStateToProps(state) {
   return {
     players: state.players.data,
-    loading: state.promiseState.loading,
+    loading: state.players.loading,
     errors: state.promiseState.errors,
   };
 }

@@ -7,7 +7,6 @@ import { availablePositions } from '../../components/Positions/Positions';
 import Selector from '../../components/Selector/Selector';
 import Errors from '../../components/Errors/Errors';
 import Interstitial from '../../components/Interstitial/Interstitial';
-import { FETCH_PLAYERS } from './players.actions';
 import MultiToggle from '../MultiToggle/MultiToggle';
 
 import './players.scss';
@@ -99,23 +98,23 @@ export default class PlayerTable extends React.Component {
   };
 
   options = {
-    clubs: [],
+    club: [],
     pos: availablePositions
   }
 
   constructor(props) {
     super(props);
-    this.options.clubs = setClubs(props);
+    this.options.club = setClubs(props);
     this.state = {
       isSaving: false,
       nameFilter: '',
       posFilter: props.selectedPosition,
-      clubFilter: this.options.clubs[0],
+      clubFilter: this.options.club[0],
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    this.options.clubs = setClubs(nextProps);
+    this.options.club = setClubs(nextProps);
     if (nextProps.selectedPosition !== this.state.selectedPosition) {
       this.setState({ posFilter: nextProps.selectedPosition });
     }
@@ -154,6 +153,7 @@ export default class PlayerTable extends React.Component {
     return editable ? (
       <div
         onMouseOver={ (e) => this.showUpdater(e, player, attribute) }
+        onMouseLeave={ () => this.hideUpdater() }
         onClick={ (e) => this.showUpdater(e, player, attribute) }
       >
         {
@@ -187,14 +187,17 @@ export default class PlayerTable extends React.Component {
     this.setState({ statsOrPoints: e.target.value.trim() });
   }
 
-  showUpdater(e, player, detail) {
-    const reset = {
+  hideUpdater = () => {
+    this.setState({
       showposUpdater: null,
       shownameUpdater: null,
       showclubUpdater: null
-    };
+    });
+  }
+
+  showUpdater(e, player, detail) {
+    this.hideUpdater();
     this.setState({
-      ...reset,
       [`show${detail}Updater`]: player._id
     });
   }
@@ -207,7 +210,7 @@ export default class PlayerTable extends React.Component {
     const {
       posFilter, clubFilter, nameFilter, statsOrPoints = 'stats'
     } = this.state;
-    const clubs = this.options.clubs;
+    const club = this.options.club;
     const teamPlayers = team ? (Object.keys(team))
       .reduce((prev, curr) => team[curr] && ({ ...prev, [team[curr].code]: team[curr] }), {}) : {};
 
@@ -215,9 +218,8 @@ export default class PlayerTable extends React.Component {
       return <Errors errors={[{ message: 'no players found, do you need to log in again?' }]} />;
     } else if (errors.length) {
       return <Errors errors={errors} />;
-    } else if (loading && loading === FETCH_PLAYERS) {
-      return <Interstitial />;
     }
+
     return (
       <div>
         <div { ...bem('options') }>
@@ -259,7 +261,7 @@ export default class PlayerTable extends React.Component {
                 name="club-filter"
                 onChange={ this.clubFilter }
                 defaultValue={ clubFilter }
-                options={ clubs }
+                options={ club }
               />
             </div>
           </div>
@@ -277,6 +279,7 @@ export default class PlayerTable extends React.Component {
             </tr>
           </thead>
           <tbody>
+            {loading && <tr><td colSpan={4}><Interstitial>Loading Players</Interstitial></td></tr>}
             {
               players
                 .filter((player) =>
@@ -317,7 +320,7 @@ export default class PlayerTable extends React.Component {
                       )}
                       { showPoints && (
                         <td {...bem('output')}>
-                          {player.total.points.total || 0}
+                          {player.total.points.total}
                           <AdditionalPoints>{player.gameWeek.points.total}</AdditionalPoints>
                         </td>
                       )}

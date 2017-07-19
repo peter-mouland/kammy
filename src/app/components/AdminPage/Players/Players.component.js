@@ -1,10 +1,29 @@
 import React from 'react';
+import bemHelper from 'react-bem-helper';
 
 import Auth from '../../../authentication/auth-helper';
 import Interstitial from '../../Interstitial/Interstitial';
-import PlayerAdminOptions from './PlayerAdminOptions';
+import Players from '../../Players/Players';
+import PlayerChanges from './PlayerChanges';
 
-export default class Players extends React.Component {
+import '../../Players/players.scss';
+
+const bem = bemHelper({ name: 'player-admin' });
+
+export default class AdminPlayers extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isSaving: false,
+      playerUpdates: {},
+      originalPlayers: {}
+    };
+  }
+
+  saveToState = ({ playerUpdates, originalPlayers }) => {
+    this.setState({ playerUpdates, originalPlayers });
+  }
+
   importPlayers = () => {
     this.props.importPlayers();
   }
@@ -14,37 +33,46 @@ export default class Players extends React.Component {
   }
 
   render() {
-    const { loading, importing, updating, players = [] } = this.props;
+    const { importing, updating } = this.props;
+    const { playerUpdates, originalPlayers } = this.state;
 
     if (!Auth.isAdmin()) {
       return <p>You're not admin!</p>;
     }
 
-    if (loading) {
-      return <Interstitial>Loading Players...</Interstitial>;
-    }
-
     if (importing) {
       return <Interstitial>Importing Players...</Interstitial>;
     }
-
-    if (!players.length) {
-      return (
-        <section className="admin__panel admin__panel--players">
-          <div className="admin-options">
-            <p>No players found.</p>
-            <button onClick={ this.importPlayers }>Initialise</button>
-          </div>
-        </section>
-      );
-    }
-
     return (
       <section className="admin__panel admin__panel--players">
-        <PlayerAdminOptions
-          saving={ updating }
-          saveUpdates={ this.updatePlayers }
-        />
+        <div className="admin-options" data-test="admin-options--players">
+          <div { ...bem(null, 'admin', 'admin-option') }>
+            <Players
+              editable
+              onChange={ this.saveToState }
+              playerUpdates={ playerUpdates }
+              originalPlayers={ originalPlayers }
+            />
+          </div>
+
+          <div className="admin-option">
+            <h2>Import</h2>
+            <button onClick={ this.importPlayers }>Import New Players From Sky</button>
+
+            <h2>Updates</h2>
+            { updating ? <Interstitial small>Saving</Interstitial> : null }
+            { !updating && (Object.keys(playerUpdates)).length > 0
+              ? <PlayerChanges
+                updates={ playerUpdates }
+                players={ originalPlayers }
+                saveUpdates={ (updates) => {
+                  this.updatePlayers(updates);
+                  this.setState({ playerUpdates: {} });
+                }} />
+              : <em>none</em>
+            }
+          </div>
+        </div>
       </section>
     );
   }
