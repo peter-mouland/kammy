@@ -97,7 +97,10 @@ export const mapSkyFormatToSchema = (player) => {
   const map = mapper();
   const season = player.stats && player.stats.season;
   player.code = player.id;
-  player.gameWeek = {};
+  player.gameWeek = {
+    stats: zeros,
+    points: zeros,
+  };
   player.season = {
     stats: {
       apps: season[map.STARTING_XI],
@@ -110,7 +113,8 @@ export const mapSkyFormatToSchema = (player) => {
       pensv: season[map.SAVED_PENALTIES],
       ycard: season[map.YELLOW_CARDS],
       rcard: season[map.RED_CARDS],
-    }
+    },
+    points: zeros
   };
   player.name = player.name || `${player.sName}, ${player.fName}`;
   player.club = player.club || player.tName;

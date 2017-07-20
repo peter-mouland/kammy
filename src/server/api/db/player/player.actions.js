@@ -37,11 +37,10 @@ export const importPlayers = async () => {
     if (formattedSkyPlayer.pos === 'park') formattedSkyPlayer.pos = 'unknown';
     if (!dbPlayer) {
       formattedSkyPlayer.season.stats = zeros;
-      formattedSkyPlayer.season.points = zeros;
-      formattedSkyPlayer.gameWeek.stats = zeros;
-      formattedSkyPlayer.gameWeek.points = zeros;
       updatePromises.push((new Player(formattedSkyPlayer)).save());
     } else {
+      delete formattedSkyPlayer.season;
+      delete formattedSkyPlayer.gameWeek;
       updatePromises.push((Player.findByIdAndUpdate(dbPlayer._id, formattedSkyPlayer)).exec());
     }
     stats[formattedSkyPlayer.name] = formattedSkyPlayer;
