@@ -2,6 +2,7 @@ import React from 'react';
 
 const flattenUpdates = (updates) => (Object.keys(updates)).map((_id) => {
   delete updates[_id].gameWeek;
+  delete updates[_id].season;
   delete updates[_id].total;
   return updates[_id];
 });

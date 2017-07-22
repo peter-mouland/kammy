@@ -54,6 +54,7 @@ export default class AdminPage extends React.Component {
 
           <h3>tech-debt:</h3>
           <ul>
+            <li>fix saving players - no errors shown</li>
             <li>add <em>more</em> e2e tests</li>
             <li>make season/division names unique</li>
             <li>refactor links to use names rather than id</li>
