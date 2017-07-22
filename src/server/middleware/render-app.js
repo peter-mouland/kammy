@@ -8,8 +8,8 @@ export default function renderApp(assets) {
       ctx.body = ctx.renderPageToString(
         <Html
           initialState={ctx.initialState}
-          scripts={assets.javascript}
-          stylesheets={assets.styles}
+          scripts={assets.scripts}
+          stylesheets={assets.stylesheets}
           markup={ctx.markup}
         />
       );

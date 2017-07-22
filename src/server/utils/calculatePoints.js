@@ -12,8 +12,10 @@ export function forGoals(goals, position) { // depends on position
     multiplier = 10;
   } else if (position === 'FB' || position === 'CB') {
     multiplier = 8;
-  } else if (position === 'WM' || position === 'CM') {
+  } else if (position === 'WM' || position === 'CM' || position === 'M') {
     multiplier = 6;
+  } else if (position === 'AM') {
+    multiplier = 5;
   } else if (position === 'STR') {
     multiplier = 4;
   }
@@ -52,7 +54,7 @@ export function forConceded(ga, position) { // -1
   return parseInt(ga * multiplier, 10);
 }
 
-function forPenaltiesSaved(ps) {
+export function forPenaltiesSaved(ps) {
   return ps * 5;
 }
 function forMOM() {

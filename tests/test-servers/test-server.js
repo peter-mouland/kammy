@@ -9,7 +9,7 @@ const hook = require('node-hook').hook;
 require('../../src/config/config');
 
 const webpackAssets = require('../../compiled/webpack-assets.json');
-const mapWebpackAssets = require('../../src/server/utils/mapWebpackAssets');
+const { mapWebpackAssets } = require('../../src/server/utils/getAssets');
 const fixturesServer = require('./fixtures-server');
 const dbConfig = require('./db.json');
 const db = require('../../src/server/api/db');

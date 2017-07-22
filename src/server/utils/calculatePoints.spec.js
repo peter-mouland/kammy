@@ -57,6 +57,12 @@ describe('calculatePoints', () => {
       expect(calculatePoints.forConceded(0, position)).to.eql(0);
       expect(calculatePoints.forConceded(10, position)).to.eql(-10);
     });
+
+    it('returns +5 points for each clean sheet', () => {
+      expect(calculatePoints.forPenaltiesSaved(1, position)).to.eql(5);
+      expect(calculatePoints.forPenaltiesSaved(0, position)).to.eql(0);
+      expect(calculatePoints.forPenaltiesSaved(10, position)).to.eql(50);
+    });
   });
 
   context('when a FB has points calculated', ()=>{
@@ -117,29 +123,43 @@ describe('calculatePoints', () => {
       expect(calculatePoints.forGoals(10, position)).to.eql(60);
     });
 
+    // it('returns 3 points for Tackle Bonus', () => {
+    //   // to get forTackleBonus + 2 fields
+    //   expect(calculatePoints.forTackleBonus(1, position)).to.eql(3);
+    //   expect(calculatePoints.forTackleBonus(0, position)).to.eql(0);
+    //   expect(calculatePoints.forTackleBonus(10, position)).to.eql(30);
+    // });
+
     it('returns 0 points for each clean sheet', () => {
       expect(calculatePoints.forCleanSheet(1, position)).to.eql(0);
       expect(calculatePoints.forCleanSheet(0, position)).to.eql(0);
       expect(calculatePoints.forCleanSheet(10, position)).to.eql(0);
     });
 
-    it('returns 0 points for each clean sheet', () => {
+    it('returns 0 points for each conceded', () => {
       expect(calculatePoints.forConceded(1, position)).to.eql(0);
       expect(calculatePoints.forConceded(0, position)).to.eql(0);
       expect(calculatePoints.forConceded(10, position)).to.eql(0);
     });
   });
 
-  context('when a CM has points calculated', ()=>{
+  context('when a AM has points calculated', ()=>{
     beforeEach(()=>{
-      position = 'CM';
+      position = 'AM';
     });
 
-    it('returns 6 points for each goal', () => {
-      expect(calculatePoints.forGoals(1, position)).to.eql(6);
+    it('returns 5 points for each goal', () => {
+      expect(calculatePoints.forGoals(1, position)).to.eql(5);
       expect(calculatePoints.forGoals(0, position)).to.eql(0);
-      expect(calculatePoints.forGoals(10, position)).to.eql(60);
+      expect(calculatePoints.forGoals(10, position)).to.eql(50);
     });
+
+    // it('returns 0 points for Tackle Bonus', () => {
+    //   // to get forTackleBonus + 2 fields
+    //   expect(calculatePoints.forTackleBonus(1, position)).to.eql(0);
+    //   expect(calculatePoints.forTackleBonus(0, position)).to.eql(0);
+    //   expect(calculatePoints.forTackleBonus(10, position)).to.eql(0);
+    // });
 
     it('returns 0 points for each clean sheet', () => {
       expect(calculatePoints.forCleanSheet(1, position)).to.eql(0);

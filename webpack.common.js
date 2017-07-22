@@ -1,10 +1,10 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const AssetsPlugin = require('assets-webpack-plugin');
 const cssnano = require('cssnano');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-const { SRC, DIST } = require('./paths');
+const { SRC, DIST } = require('./src/config/paths');
 
 const postCssPlugins = [cssnano({
   autoprefixer: {
@@ -32,14 +32,14 @@ module.exports = {
   context: SRC,
   output: {
     path: DIST,
-    filename: '[name].js',
+    filename: '[name]_[hash].js',
     publicPath: '/'
   },
   plugins: [
     new ProgressBarPlugin(),
     new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({ names: ['vendor'], minChunks: Infinity }),
-    new ExtractTextPlugin('[name].css'),
+    new ExtractTextPlugin('[name]_[hash].css'),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.PORT': JSON.stringify(process.env.PORT),
@@ -47,7 +47,9 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       'process.env.GA_KEY': JSON.stringify(process.env.GA_KEY)
     }),
-    new AssetsPlugin({ filename: 'compiled/webpack-assets.json' })
+    new CopyWebpackPlugin([
+      { from: 'assets', to: '.' }
+    ]),
   ],
   resolve: {
     modules: ['node_modules', SRC],

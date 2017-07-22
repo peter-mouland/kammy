@@ -1,11 +1,12 @@
 const webpack = require('webpack');
 const nodemon = require('nodemon');
 const merge = require('webpack-merge');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const nodemonConfig = require('../../nodemon.json');
+const nodemonConfig = require('./nodemon.json');
 const baseConfig = require('./webpack.common');
-const { SRC } = require('./paths');
-require('./config');
+const { SRC, DIST } = require('./src/config/paths');
+require('./src/config/config');
 
 module.exports = merge(baseConfig, {
   devtool: 'inline-source-map',
@@ -18,7 +19,13 @@ module.exports = merge(baseConfig, {
     ],
     vendor: [`${SRC}/vendor.js`]
   },
+  output: {
+    path: DIST,
+    filename: '[name].js',
+    publicPath: '/'
+  },
   plugins: [
+    new ExtractTextPlugin('[name].css'),
     new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {

@@ -6,7 +6,7 @@ import supertest from 'supertest';
 import { TESTS, DIST } from '../../src/config/paths';
 import { sinon, React } from '../config/test.helper';
 import * as routes from '../../src/app/routes';
-import mapWebpackAssets from '../../src/server/utils/mapWebpackAssets';
+import { mapWebpackAssets } from '../../src/server/utils/getAssets';
 import server from '../../src/server/server';
 
 const fixtureAssets = require('./fixtures/webpack-assets.json');
@@ -89,7 +89,7 @@ describe('Server', function () {
     const testStatic = path.join(TESTS, 'functional','fixtures','public');
     fs.copySync(path.join(testStatic), DIST, { recursive: true });
     supertest(server(assets, testStatic).callback())
-      .get(assets.javascript[0])
+      .get(assets.scripts[0])
       .expect(200)
       .expect('Content-Encoding', 'gzip')
       .end(()=>{
