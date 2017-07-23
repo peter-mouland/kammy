@@ -65,13 +65,13 @@ export const importPlayers = async () => {
     const jsonPlayer = playersJson[formattedSkyPlayer.name];
     const formattedJsonPlayer = jsonPlayer ? mapImportToSchema(jsonPlayer) : {};
     const dbPlayer = await getPlayers({ code: formattedSkyPlayer.code });
-    formattedSkyPlayer.pos = dbPlayer ? dbPlayer.pos : formattedJsonPlayer.pos || 'unknown';
-    const maybeGK = String(formattedSkyPlayer.code).startsWith('1');
-    const maybeStr = String(formattedSkyPlayer.code).startsWith('4');
+    formattedSkyPlayer.pos = dbPlayer.length > 0 ? dbPlayer.pos : formattedJsonPlayer.pos || 'unknown';
     if (formattedSkyPlayer.pos === 'park') formattedSkyPlayer.pos = 'unknown';
-    if (formattedSkyPlayer.pos === 'unknown' && maybeGK) formattedSkyPlayer.pos = 'GK';
-    if (formattedSkyPlayer.pos === 'unknown' && maybeStr) formattedSkyPlayer.pos = 'STR';
-    if (!dbPlayer) {
+    if (!dbPlayer.length) {
+      const maybeGK = String(formattedSkyPlayer.code).startsWith('1');
+      const maybeStr = String(formattedSkyPlayer.code).startsWith('4');
+      if (formattedSkyPlayer.pos === 'unknown' && maybeGK) formattedSkyPlayer.pos = 'GK';
+      if (formattedSkyPlayer.pos === 'unknown' && maybeStr) formattedSkyPlayer.pos = 'STR';
       formattedSkyPlayer.new = true;
       formattedSkyPlayer.season.stats = zeros;
       updatePromises.push((new Player(formattedSkyPlayer)).save());

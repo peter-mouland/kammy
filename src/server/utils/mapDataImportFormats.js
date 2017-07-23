@@ -123,6 +123,7 @@ export const mapSkyFormatToSchema = (player) => {
   delete player.sName;
   delete player.fName;
   delete player.tName;
+  delete player.nxtfix;
   return player;
 };
 

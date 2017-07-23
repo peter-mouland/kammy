@@ -49,7 +49,8 @@ const mongooseSchema = {
     stats,
     points
   },
-  pointsChange: Number
+  pointsChange: Number,
+  value: Number
 };
 
 

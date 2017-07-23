@@ -99,6 +99,7 @@ export function calculateGameWeek(totalStats, gameWeekStats, pos, previousStats)
 
 export const calculatePoints = (externalPlayer, internalPlayer) => ({
   ...externalPlayer,
+  ...internalPlayer,
   gameWeek: calculateGameWeek(
     externalPlayer.season.stats,
     internalPlayer.gameWeek.stats,
