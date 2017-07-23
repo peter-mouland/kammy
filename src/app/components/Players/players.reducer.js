@@ -4,11 +4,11 @@ import * as actions from './players.actions';
 
 const log = debug('kammy:reducers/players');
 
-function clean(obj) { // remove null's
+function removeNulls(obj) { // remove null's
   const newObj = {};
   Object.keys(obj).forEach((key) => {
     const val = obj[key];
-    if (!val) return;
+    if (val === null || val === undefined) return;
     newObj[key] = val;
   });
 
@@ -19,7 +19,7 @@ const updatePlayersData = (state, action) => {
   const allPlayers = [...state.data];
   const updates = action.payload.data && action.payload.data.updatePlayers;
   updates.forEach((update) => {
-    const cleanUpdate = clean(update);
+    const cleanUpdate = removeNulls(update);
     allPlayers.find((player, i) => { // eslint-disable-line array-callback-return
       if (player._id === update._id) {
         allPlayers[i] = { ...player, ...cleanUpdate };

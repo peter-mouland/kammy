@@ -34,14 +34,17 @@ const setClubs = ({ players = [], team }) => {
   return clubsArr;
 };
 
-const applyFilters = ({ nameFilter, posFilter, clubFilter, player, myTeam, showHidden }) => {
+const applyFilters = ({
+  nameFilter, posFilter, clubFilter, player, myTeam, showHidden, showOnlyNewPlayers
+}) => {
   const nameFiltered = !nameFilter || player.name.toUpperCase().includes(nameFilter.toUpperCase());
   const posFiltered = !posFilter || posFilter === 'all' || player.pos.toUpperCase().includes(posFilter.toUpperCase());
   const hiddenFiltered = player.isHidden === showHidden;
+  const newFiltered = !showOnlyNewPlayers || player.new === showOnlyNewPlayers;
   const clubFiltered = !clubFilter ||
     (clubFilter.toUpperCase() === 'MY TEAM' && myTeam[player.code]) ||
     (player.club.toUpperCase().includes(clubFilter.toUpperCase()));
-  return nameFiltered && posFiltered && clubFiltered && hiddenFiltered;
+  return nameFiltered && posFiltered && clubFiltered && hiddenFiltered && newFiltered;
 };
 
 function fieldSorter(fields) {
@@ -111,6 +114,7 @@ export default class PlayerTable extends React.Component {
       .filter((pos) => props.editable || !playerPositions[pos].hiddenFromManager)
     );
     this.state = {
+      showOnlyNewPlayers: false,
       showHidden: false,
       isSaving: false,
       nameFilter: '',
@@ -200,6 +204,11 @@ export default class PlayerTable extends React.Component {
     this.setState({ showHidden });
   }
 
+  showOnlyNewPlayers = (e) => {
+    const showOnlyNewPlayers = e.target.checked;
+    this.setState({ showOnlyNewPlayers });
+  }
+
   hideUpdater = () => {
     this.setState({
       showposUpdater: null,
@@ -221,7 +230,7 @@ export default class PlayerTable extends React.Component {
       selectedPosition, showStats, showPoints, editable, playerUpdates = {}, team,
     } = this.props;
     const {
-      posFilter, clubFilter, nameFilter, statsOrPoints = 'stats', showHidden
+      posFilter, clubFilter, nameFilter, statsOrPoints = 'stats', showHidden, showOnlyNewPlayers
     } = this.state;
     const club = this.options.club;
     const teamPlayers = team ? (Object.keys(team))
@@ -277,8 +286,8 @@ export default class PlayerTable extends React.Component {
                 options={ club }
               />
             </div>
-            <div>
-              { editable && [
+            { editable && [
+              <div key={'toggle-hidden'}>
                 <Toggle
                   key="toggle-hidden"
                   {...bem('toggle-options')}
@@ -287,8 +296,18 @@ export default class PlayerTable extends React.Component {
                   onChange={ this.showHidden }
                   label={'Show Hidden Players'}
                 />
-              ]}
-            </div>
+              </div>,
+              <div key={'toggle-new'}>
+                <Toggle
+                  key="toggle-new"
+                  {...bem('toggle-options')}
+                  checked={ showOnlyNewPlayers }
+                  id={'show-new-players'}
+                  onChange={ this.showOnlyNewPlayers }
+                  label={'Show Only New Players'}
+                />
+              </div>
+            ]}
           </div>
         </div>
         <table cellPadding={0} cellSpacing={0} { ...bem(null, type, className) }>
@@ -324,7 +343,8 @@ export default class PlayerTable extends React.Component {
                     posFilter,
                     clubFilter,
                     myTeam: teamPlayers,
-                    showHidden
+                    showHidden,
+                    showOnlyNewPlayers
                   })
                 )
                 .sort(fieldSorter(['pos', 'name']))
