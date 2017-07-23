@@ -11,9 +11,38 @@ const playersJson = require('../../../../assets/2016-2017/stats-GW25.json');
 const log = debug('kammy:db/player.actions');
 const Player = mongoose.model('Player');
 
-export const findPlayers = (players = {}) => Player.find(players).exec();
-export const findPlayer = (playerDetails) => Player.findOne(playerDetails).exec();
-export const getPlayers = ({ player } = {}) => player ? findPlayer({ player }) : findPlayers();
+const aggFields = {
+  'season.points.total': { $add: ['$season.points.total', '$gameWeek.points.total'] },
+  'season.points.apps': { $add: ['$season.points.apps', '$gameWeek.points.apps'] },
+  'season.points.mom': { $add: ['$season.points.mom', '$gameWeek.points.mom'] },
+  'season.points.subs': { $add: ['$season.points.subs', '$gameWeek.points.subs'] },
+  'season.points.gls': { $add: ['$season.points.gls', '$gameWeek.points.gls'] },
+  'season.points.asts': { $add: ['$season.points.asts', '$gameWeek.points.asts'] },
+  'season.points.ycard': { $add: ['$season.points.ycard', '$gameWeek.points.ycard'] },
+  'season.points.rcard': { $add: ['$season.points.rcard', '$gameWeek.points.rcard'] },
+  'season.points.cs': { $add: ['$season.points.cs', '$gameWeek.points.cs'] },
+  'season.points.con': { $add: ['$season.points.con', '$gameWeek.points.con'] },
+  'season.points.pensv': { $add: ['$season.points.pensv', '$gameWeek.points.pensv'] },
+  'season.stats.apps': { $add: ['$season.stats.apps', '$gameWeek.stats.apps'] },
+  'season.stats.mom': { $add: ['$season.stats.mom', '$gameWeek.stats.mom'] },
+  'season.stats.subs': { $add: ['$season.stats.subs', '$gameWeek.stats.subs'] },
+  'season.stats.gls': { $add: ['$season.stats.gls', '$gameWeek.stats.gls'] },
+  'season.stats.asts': { $add: ['$season.stats.asts', '$gameWeek.stats.asts'] },
+  'season.stats.ycard': { $add: ['$season.stats.ycard', '$gameWeek.stats.ycard'] },
+  'season.stats.rcard': { $add: ['$season.stats.rcard', '$gameWeek.stats.rcard'] },
+  'season.stats.cs': { $add: ['$season.stats.cs', '$gameWeek.stats.cs'] },
+  'season.stats.con': { $add: ['$season.stats.con', '$gameWeek.stats.con'] },
+  'season.stats.pensv': { $add: ['$season.stats.pensv', '$gameWeek.stats.pensv'] },
+  gameWeek: 1,
+  name: 1,
+  code: 1,
+  club: 1,
+  pos: 1,
+  isHidden: 1
+};
+
+export const getPlayers = (playerDetails = {}) =>
+  Player.aggregate({ $match: playerDetails }, { $project: aggFields }).exec();
 
 export const updatePlayers = ({ playerUpdates }) => {
   const bulkUpdate = playerUpdates.map((update) => ({
@@ -32,7 +61,7 @@ export const importPlayers = async () => {
     const formattedSkyPlayer = mapSkyFormatToSchema(skyPlayer);
     const jsonPlayer = playersJson[formattedSkyPlayer.name];
     const formattedJsonPlayer = jsonPlayer ? mapImportToSchema(jsonPlayer) : {};
-    const dbPlayer = await findPlayer({ code: formattedSkyPlayer.code });
+    const dbPlayer = await getPlayers({ code: formattedSkyPlayer.code });
     formattedSkyPlayer.pos = dbPlayer ? dbPlayer.pos : formattedJsonPlayer.pos || 'unknown';
     if (formattedSkyPlayer.pos === 'park') formattedSkyPlayer.pos = 'unknown';
     if (!dbPlayer) {

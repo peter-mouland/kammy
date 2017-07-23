@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import debug from 'debug';
 import bemHelper from 'react-bem-helper';
 
-import { availablePositions } from '../../components/Positions/Positions';
+import { playerPositions } from '../../components/Positions/Positions';
 import Selector from '../../components/Selector/Selector';
 import Errors from '../../components/Errors/Errors';
 import Interstitial from '../../components/Interstitial/Interstitial';
@@ -40,11 +40,8 @@ const applyFilters = ({ nameFilter, posFilter, clubFilter, player, myTeam }) => 
   return nameFiltered && posFiltered && clubFiltered;
 };
 
-const posIndex = (position) =>
-  availablePositions.findIndex((pos) => pos.toLowerCase() === position.toLowerCase());
-
 function fieldSorter(fields) {
-  return (prevSort, currSort) => fields
+  return (prevPlayer, currPlayer) => fields
     .map((field) => {
       let dir = 1;
       const desc = field[0] === '-';
@@ -52,8 +49,8 @@ function fieldSorter(fields) {
         dir = -1;
         field = field.substring(1);
       }
-      const attrA = (field === 'pos') ? posIndex(prevSort.pos) : prevSort[field];
-      const attrB = (field === 'pos') ? posIndex(currSort.pos) : currSort[field];
+      const attrA = (field === 'pos') ? playerPositions[prevPlayer.pos].order : prevPlayer[field];
+      const attrB = (field === 'pos') ? playerPositions[currPlayer.pos].order : currPlayer[field];
       if (attrA > attrB) return dir;
       return (attrA < attrB) ? -(dir) : 0;
     })
@@ -68,8 +65,8 @@ function AdditionalPoints({ children: points }) {
     <sup { ...bem('additional-point')}>
       {
         points > 0
-          ? <span className="text--success">+{points}</span>
-          : <span className="text--error">{points}</span>
+          ? <span className="text--success">(+{points})</span>
+          : <span className="text--error">({points})</span>
       }
     </sup>
   );
@@ -99,7 +96,7 @@ export default class PlayerTable extends React.Component {
 
   options = {
     club: [],
-    pos: availablePositions
+    pos: Object.keys(playerPositions).filter((pos) => !playerPositions[pos].hiddenFromManager)
   }
 
   constructor(props) {
@@ -189,6 +186,10 @@ export default class PlayerTable extends React.Component {
     this.setState({ statsOrPoints: e.target.value.trim() });
   }
 
+  gameWeekOrSeason = (e) => {
+    this.setState({ gameWeekOrSeason: e.target.value.trim() });
+  }
+
   hideUpdater = () => {
     this.setState({
       showposUpdater: null,
@@ -210,7 +211,7 @@ export default class PlayerTable extends React.Component {
       selectedPosition, showStats, showPoints, editable, playerUpdates = {}, team,
     } = this.props;
     const {
-      posFilter, clubFilter, nameFilter, statsOrPoints = 'stats'
+      posFilter, clubFilter, nameFilter, statsOrPoints = 'stats', gameWeekOrSeason = 'season'
     } = this.state;
     const club = this.options.club;
     const teamPlayers = team ? (Object.keys(team))
@@ -234,6 +235,13 @@ export default class PlayerTable extends React.Component {
                 onChange={ this.statsOrPoints }
                 options={['stats', 'points']}
               />
+              <MultiToggle
+                {...bem('toggle-options')}
+                checked={ gameWeekOrSeason }
+                id={'gameWeek-or-season'}
+                onChange={ this.gameWeekOrSeason }
+                options={['season', 'gameWeek']}
+              />
             </div>
           )}
           <div { ...bem('option-group') }>
@@ -243,7 +251,7 @@ export default class PlayerTable extends React.Component {
                 id={'position-filter'}
                 onChange={ this.posFilter }
                 checked={ posFilter }
-                options={ availablePositions }
+                options={ this.options.pos }
               />
             </div>
             <div>

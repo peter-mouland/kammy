@@ -2,6 +2,7 @@ import debug from 'debug';
 import mongoose from 'mongoose';
 
 import rankAllPositionInTeams from '../../../utils/calculateRank';
+import aggFields from './buildAggregates';
 
 const log = debug('kammy:db/season.actions');
 const Seasons = mongoose.model('Season');
@@ -21,23 +22,6 @@ export const getDivisions = async () => {
   const season = await Seasons.findOne({ isLive: true }).sort({ dateCreated: -1 }).exec();
   const divisions = season.divisions;
   const $in = divisions.map((division) => new ObjectId(division._id));
-  const aggFields = {
-    'season.gks': { $add: ['$season.gk', '$season.sub'] },
-    'season.cb': { $add: ['$season.cbleft', '$season.cbright'] },
-    'season.fb': { $add: ['$season.fbleft', '$season.fbright'] },
-    'season.cm': { $add: ['$season.cmleft', '$season.cmright'] },
-    'season.wm': { $add: ['$season.wmleft', '$season.wmright'] },
-    'season.str': { $add: ['$season.strleft', '$season.strright'] },
-    'season.points': { $add: ['$season.gk', '$season.sub', '$season.cbleft', '$season.cbright', '$season.fbleft', '$season.fbright', '$season.cmleft', '$season.cmright', '$season.wmleft', '$season.wmright', '$season.strleft', '$season.strright'] },
-    'gameWeek.gks': { $add: ['$gameWeek.gk', '$gameWeek.sub'] },
-    'gameWeek.cb': { $add: ['$gameWeek.cbleft', '$gameWeek.cbright'] },
-    'gameWeek.fb': { $add: ['$gameWeek.fbleft', '$gameWeek.fbright'] },
-    'gameWeek.cm': { $add: ['$gameWeek.cmleft', '$gameWeek.cmright'] },
-    'gameWeek.wm': { $add: ['$gameWeek.wmleft', '$gameWeek.wmright'] },
-    'gameWeek.str': { $add: ['$gameWeek.strleft', '$gameWeek.strright'] },
-    'gameWeek.points': { $add: ['$gameWeek.gk', '$gameWeek.sub', '$gameWeek.cbleft', '$gameWeek.cbright', '$gameWeek.fbleft', '$gameWeek.fbright', '$gameWeek.cmleft', '$gameWeek.cmright', '$gameWeek.wmleft', '$gameWeek.wmright', '$gameWeek.strleft', '$gameWeek.strright'] },
-  };
-  // aggFields.season = 1; // show season in agg query response.
   aggFields.user = 1;
   aggFields.division = 1;
 

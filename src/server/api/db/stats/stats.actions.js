@@ -30,7 +30,7 @@ export const getExternalStats = async ({ currentGW, source }) => {
     } else {
       player.pos = dbPlayer.pos;
       const formattedPlayer = mapSkyFormatToSchema(player);
-      stats[dbPlayer.name] = calculatePoints(formattedPlayer, dbPlayer.season, currentGW);
+      stats[dbPlayer.name] = calculatePoints(formattedPlayer, dbPlayer);
     }
   });
   return { stats, errors };

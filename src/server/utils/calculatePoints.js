@@ -73,57 +73,37 @@ export function calculateTotalPoints(stats, pos) {
   const ycard = forYellowCards(stats.ycard, pos);
   const rcard = forRedCards(stats.rcard, pos);
   const total = mom + gls + ycard + rcard + apps + subs + asts + cs + con + pensv;
+  return { apps, subs, gls, asts, mom, cs, con, pensv, ycard, rcard, total };
+}
+
+export function calculateGameWeek(totalStats, gameWeekStats, pos, previousStats) {
+  // retrieved season stats now include previous gameWeek
+  const stats = {
+    apps: (totalStats.apps - previousStats.apps) + gameWeekStats.apps,
+    subs: (totalStats.subs - previousStats.subs) + gameWeekStats.subs,
+    mom: (totalStats.mom - previousStats.mom) + gameWeekStats.mom,
+    gls: (totalStats.gls - previousStats.gls) + gameWeekStats.gls,
+    asts: (totalStats.asts - previousStats.asts) + gameWeekStats.asts,
+    cs: (totalStats.cs - previousStats.cs) + gameWeekStats.cs,
+    con: (totalStats.con - previousStats.con) + gameWeekStats.con,
+    pensv: (totalStats.pensv - previousStats.pensv) + gameWeekStats.pensv,
+    ycard: (totalStats.ycard - previousStats.ycard) + gameWeekStats.ycard,
+    rcard: (totalStats.rcard - previousStats.rcard) + gameWeekStats.rcard
+  };
+  const points = calculateTotalPoints(stats, pos);
   return {
-    apps,
-    subs,
-    gls,
-    asts,
-    mom,
-    cs,
-    con,
-    pensv,
-    ycard,
-    rcard,
-    total
+    points,
+    stats
   };
 }
 
-export function calculateGameWeek(totalStats, pos, previousStats) {
-  const points = {
-    apps: forStarting(totalStats.apps, pos) - forStarting(previousStats.apps, pos),
-    subs: forSub(totalStats.subs, pos) - forSub(previousStats.subs, pos),
-    mom: forMOM(totalStats.mom, pos) - forMOM(previousStats.mom, pos),
-    gls: forGoals(totalStats.gls, pos) - forGoals(previousStats.gls, pos),
-    asts: forAssists(totalStats.asts, pos) - forAssists(previousStats.asts, pos),
-    cs: forCleanSheet(totalStats.cs, pos) - forCleanSheet(previousStats.cs, pos),
-    con: forConceded(totalStats.con, pos) - forConceded(previousStats.con, pos),
-    pensv: forPenaltiesSaved(totalStats.pensv, pos) - forPenaltiesSaved(previousStats.pensv, pos),
-    ycard: forYellowCards(totalStats.ycard, pos) - forYellowCards(previousStats.ycard, pos),
-    rcard: forRedCards(totalStats.rcard, pos) - forRedCards(previousStats.rcard, pos),
-  };
-  return {
-    points: {
-      ...points,
-      total: points.apps + points.subs + points.mom + points.gls + points.asts + points.cs
-              + points.con + points.ycard + points.rcard + points.pensv
-    },
-    stats: {
-      apps: totalStats.apps - previousStats.apps,
-      subs: totalStats.subs - previousStats.subs,
-      mom: totalStats.mom - previousStats.mom,
-      gls: totalStats.gls - previousStats.gls,
-      asts: totalStats.asts - previousStats.asts,
-      cs: totalStats.cs - previousStats.cs,
-      con: totalStats.con - previousStats.con,
-      pensv: totalStats.pensv - previousStats.pensv,
-      ycard: totalStats.ycard - previousStats.ycard,
-      rcard: totalStats.rcard - previousStats.rcard
-    }
-  };
-}
-
-export const calculatePoints = (player, currentSeason) => ({
-  ...player,
-  gameWeek: calculateGameWeek(player.season.stats, player.pos, currentSeason.stats),
-  season: currentSeason
+export const calculatePoints = (externalPlayer, internalPlayer) => ({
+  ...externalPlayer,
+  gameWeek: calculateGameWeek(
+    externalPlayer.season.stats,
+    internalPlayer.gameWeek.stats,
+    internalPlayer.pos,
+    internalPlayer.season.stats
+  ),
+  season: internalPlayer.season
 });
