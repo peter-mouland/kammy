@@ -40,6 +40,7 @@ function mapStateToProps(state) {
     statsSaving: state.stats.saving,
     statsSeasonSaving: state.stats.seasonSaving,
     statsSaved: state.stats.saved,
+    savedSeason: state.stats.savedSeason,
     seasonAdded: state.seasons.seasonAdded,
     divisionAdded: state.seasons.divisionAdded,
     loading: state.promiseState.loading,

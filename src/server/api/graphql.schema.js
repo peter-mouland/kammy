@@ -249,7 +249,7 @@ const schemaString = `
     assignTeamToDivision(divisionId: String, divisionName: String, teamId: String): Team
     updateSeason(seasonId: String, isLive: Boolean, currentGW: Int): Season
     saveGameWeekStats(seasonId: String, update: JSON): Stats
-    saveSeasonStats(seasonId: String, currentGW: Int): Stats
+    saveSeasonStats(seasonId: String): Stats
   }
 `;
 

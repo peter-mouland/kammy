@@ -32,8 +32,8 @@ export default class AdminPage extends React.Component {
     this.props.updateSeason({ seasonId: season._id, ...update });
   }
 
-  saveSeasonStats = (season, update) => {
-    this.props.saveSeasonStats({ seasonId: season._id, ...update });
+  saveSeasonStats = (season) => {
+    this.props.saveSeasonStats({ seasonId: season._id });
   }
 
   saveGameWeekStats = (season, update) => {
@@ -43,7 +43,7 @@ export default class AdminPage extends React.Component {
   render() {
     const {
       className, statsErrors = [], loading, seasons, match,
-      stats, statsLoading, statsSaving, statsSaved, statsSeasonSaving
+      stats, statsLoading, statsSaving, statsSaved, statsSeasonSaving, savedSeason
     } = this.props;
     const addingSeason = loading === ADD_SEASON;
     const addingDivision = loading === ADD_DIVISION;
@@ -79,6 +79,7 @@ export default class AdminPage extends React.Component {
                     (update) => this.saveGameWeekStats(season, update)
                   }
                   statsLoading={ statsLoading }
+                  savedSeason={ savedSeason }
                   statsSaved={ statsSaved }
                   statsSaving={ statsSaving }
                   statsSeasonSaving={ statsSeasonSaving }

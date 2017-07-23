@@ -61,26 +61,27 @@ export const importPlayers = async () => {
   const updatePromises = [];
   const skyPlayers = (await json.get(config.EXTERNAL_STATS_URL)).players;
   skyPlayers.forEach(async (skyPlayer) => {
-    const formattedSkyPlayer = mapSkyFormatToSchema(skyPlayer);
-    const jsonPlayer = playersJson[formattedSkyPlayer.name];
+    const player = mapSkyFormatToSchema(skyPlayer);
+    const jsonPlayer = playersJson[player.name];
     const formattedJsonPlayer = jsonPlayer ? mapImportToSchema(jsonPlayer) : {};
-    const dbPlayer = await getPlayers({ code: formattedSkyPlayer.code });
-    formattedSkyPlayer.pos = dbPlayer.length > 0 ? dbPlayer.pos : formattedJsonPlayer.pos || 'unknown';
-    if (formattedSkyPlayer.pos === 'park') formattedSkyPlayer.pos = 'unknown';
+    const dbPlayer = await getPlayers({ code: player.code });
+    player.pos = dbPlayer.length > 0 ? dbPlayer.pos : formattedJsonPlayer.pos || 'unknown';
+    if (player.pos === 'park') player.pos = 'unknown';
     if (!dbPlayer.length) {
-      const maybeGK = String(formattedSkyPlayer.code).startsWith('1');
-      const maybeStr = String(formattedSkyPlayer.code).startsWith('4');
-      if (formattedSkyPlayer.pos === 'unknown' && maybeGK) formattedSkyPlayer.pos = 'GK';
-      if (formattedSkyPlayer.pos === 'unknown' && maybeStr) formattedSkyPlayer.pos = 'STR';
-      formattedSkyPlayer.new = true;
-      formattedSkyPlayer.season.stats = zeros;
-      updatePromises.push((new Player(formattedSkyPlayer)).save());
+      const maybeGK = String(player.code).startsWith('1');
+      const maybeStr = String(player.code).startsWith('4');
+      if (player.pos === 'unknown' && maybeGK) player.pos = 'GK';
+      if (player.pos === 'unknown' && maybeStr) player.pos = 'STR';
+      player.new = true;
+      player.season.stats = zeros;
+      updatePromises.push((new Player(player)).save());
     } else {
-      delete formattedSkyPlayer.season;
-      delete formattedSkyPlayer.gameWeek;
-      updatePromises.push((Player.findByIdAndUpdate(dbPlayer._id, formattedSkyPlayer)).exec());
+      delete player.season;
+      delete player.gameWeek;
+      player.new = false;
+      updatePromises.push((Player.findByIdAndUpdate(dbPlayer._id, player)).exec());
     }
-    stats[formattedSkyPlayer.name] = formattedSkyPlayer;
+    stats[player.name] = player;
   });
   return Promise.all(updatePromises).catch(log);
 };

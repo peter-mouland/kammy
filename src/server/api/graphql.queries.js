@@ -169,7 +169,7 @@ export const saveGameWeekStatsMutation = `
 `;
 
 export const saveSeasonStatsMutation = `
-  mutation ($seasonId: String, $currentGW: Int) { 
-    saveSeasonStats(seasonId: $seasonId, currentGW: $currentGW){ stats }   
+  mutation ($seasonId: String) { 
+    saveSeasonStats(seasonId: $seasonId){ stats }   
   }
 `;

@@ -7,7 +7,6 @@ import { json } from '../../../../app/utils/fetch';
 import { mapSkyFormatToSchema, mapImportToSkyFormat } from '../../../utils/mapDataImportFormats';
 import { calculatePoints } from '../../../utils/calculatePoints';
 
-const Season = mongoose.model('Season');
 const Player = mongoose.model('Player');
 const Team = mongoose.model('Team');
 const ObjectId = mongoose.Types.ObjectId;
@@ -65,10 +64,9 @@ export const saveGameWeekStats = ({ seasonId, update }) => {
 };
 
 
-export const saveSeasonStats = async ({ seasonId, currentGW }) => {
+export const saveSeasonStats = async ({ seasonId }) => {
   const allUpdates = [];
   const players = await Player.find().exec();
-  allUpdates.push(Season.findByIdAndUpdate(seasonId, { currentGW }, { new: true }).exec());
   players.forEach(async (player) => {
     const pos = player.pos.toLowerCase();
     const seasonStats = player.season.stats;

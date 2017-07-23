@@ -37,12 +37,14 @@ class SeasonAdminOptions extends React.Component {
   }
 
   saveSeasonStats = () => {
-    this.props.saveSeasonStats({ currentGW: this.props.season.currentGW + 1 });
+    this.props.updateSeason({ currentGW: this.props.season.currentGW + 1 });
+    this.props.saveSeasonStats();
   }
 
   render() {
     const {
-      season, statsErrors, statsLoading, statsSaving, statsSaved, stats, statsSeasonSaving
+      statsErrors, statsLoading, statsSaving, statsSaved, statsSeasonSaving, savedSeason,
+      season, stats
     } = this.props;
 
     return (
@@ -80,14 +82,11 @@ class SeasonAdminOptions extends React.Component {
             { statsSaving ? <Interstitial small message="Saving GameWeek"/> : null }
           </div>
           <div className="admin-option">
-            <button onClick={ this.saveSeasonStats } disabled={!statsSaved}>
+            <button onClick={ this.saveSeasonStats } disabled={!statsSaved || savedSeason}>
               3. Increment Game Week + Update Season Stats
             </button>
             { statsSeasonSaving ? <Interstitial small message="Saving Season"/> : null }
           </div>
-          <button className="admin-option" onClick={ this.decrementGameWeek } >
-            -1 (test admin only)
-          </button>
         </div>
         { stats ?
           <div className="admin-options" >

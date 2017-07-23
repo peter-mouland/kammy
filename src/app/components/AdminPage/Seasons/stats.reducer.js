@@ -24,6 +24,7 @@ export default function stats(state = {}, action) {
       return {
         ...state,
         seasonSaving: true,
+        savedSeason: false,
         errors: [],
       };
     case `${actions.SAVE_GAME_WEEK_STATS}_FULFILLED`:
@@ -31,13 +32,13 @@ export default function stats(state = {}, action) {
         ...state,
         saving: false,
         saved: true,
-        errors: action.payload.errors,
-        data: data.saveGameWeekStats && data.saveGameWeekStats.stats,
+        errors: action.payload.errors
       };
     case `${actions.SAVE_SEASON_STATS}_FULFILLED`:
       return {
         ...state,
         seasonSaving: false,
+        savedSeason: true,
         errors: action.payload.errors,
         data: data.saveSeasonStats && data.saveSeasonStats.stats,
       };
