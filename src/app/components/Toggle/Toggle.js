@@ -5,7 +5,7 @@ import './toggle.scss';
 
 const bem = bemHelper({ name: 'toggle' });
 
-export default ({ id, checked, children, className, ...props }) => (
+export default ({ id, checked, children, label, className, ...props }) => (
   <span className={className || ''}>
     <input
       { ...bem(null, 'ios') }
@@ -15,7 +15,7 @@ export default ({ id, checked, children, className, ...props }) => (
       { ...props }
     />
     <label { ...bem('label') } htmlFor={ id } >
-      {children}
+      {label || children}
       <span { ...bem('btn') } />
     </label>
   </span>

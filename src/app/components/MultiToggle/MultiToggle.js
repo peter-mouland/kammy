@@ -12,7 +12,14 @@ export default ({ id, checked, options = [], label, className, onChange, ...prop
       {
         options.map((option, i) => (
           <div { ...bem('option') } key={ `${id}-${i}` }>
-            <input checked={checked === option} id={ `${id}-${i}` } name={ id } type='radio' value={option} onChange={ onChange } />
+            <input
+              checked={checked === option}
+              id={ `${id}-${i}` }
+              name={ id }
+              type={'radio'}
+              value={option}
+              onChange={ onChange }
+            />
             <label htmlFor={ `${id}-${i}` }>{option}</label>
           </div>
         ))

@@ -48,6 +48,7 @@ export default class AdminPlayers extends React.Component {
         <div className="admin-options" data-test="admin-options--players">
           <div { ...bem(null, 'admin', 'admin-option') }>
             <Players
+              type="import"
               editable
               onChange={ this.saveToState }
               playerUpdates={ playerUpdates }
