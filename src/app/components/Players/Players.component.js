@@ -34,7 +34,7 @@ const setClubs = ({ players = [], team }) => {
 
 const applyFilters = ({ nameFilter, posFilter, clubFilter, player, myTeam, showHidden }) => {
   const nameFiltered = !nameFilter || player.name.toUpperCase().includes(nameFilter.toUpperCase());
-  const posFiltered = !posFilter || player.pos.toUpperCase().includes(posFilter.toUpperCase());
+  const posFiltered = !posFilter || posFilter === 'all' || player.pos.toUpperCase().includes(posFilter.toUpperCase());
   const hiddenFiltered = player.isHidden === showHidden;
   const clubFiltered = !clubFilter ||
     (clubFilter.toUpperCase() === 'MY TEAM' && myTeam[player.code]) ||
@@ -104,13 +104,15 @@ export default class PlayerTable extends React.Component {
   constructor(props) {
     super(props);
     this.options.club = setClubs(props);
-    this.options.pos = Object.keys(playerPositions)
-      .filter((pos) => props.editable || !playerPositions[pos].hiddenFromManager);
+    this.options.pos = ['all'].concat(Object
+      .keys(playerPositions)
+      .filter((pos) => props.editable || !playerPositions[pos].hiddenFromManager)
+    );
     this.state = {
       showHidden: false,
       isSaving: false,
       nameFilter: '',
-      posFilter: props.selectedPosition,
+      posFilter: props.selectedPosition || 'all',
       clubFilter: this.options.club[0],
     };
   }
@@ -118,7 +120,7 @@ export default class PlayerTable extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.options.club = setClubs(nextProps);
     if (nextProps.selectedPosition !== this.state.selectedPosition) {
-      this.setState({ posFilter: nextProps.selectedPosition });
+      this.setState({ posFilter: nextProps.selectedPosition || 'all' });
     }
   }
 

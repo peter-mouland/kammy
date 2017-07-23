@@ -45,11 +45,14 @@ export const getPlayers = (playerDetails = {}) =>
   Player.aggregate({ $match: playerDetails }, { $project: aggFields }).exec();
 
 export const updatePlayers = ({ playerUpdates }) => {
-  const bulkUpdate = playerUpdates.map((update) => ({
-    updateOne: {
-      filter: { _id: update._id }, update
-    },
-  }));
+  const bulkUpdate = playerUpdates.map((update) => {
+    update.new = false;
+    return {
+      updateOne: {
+        filter: { _id: update._id }, update
+      },
+    };
+  });
   return Player.bulkWrite(bulkUpdate).then(() => (playerUpdates));
 };
 
@@ -63,8 +66,13 @@ export const importPlayers = async () => {
     const formattedJsonPlayer = jsonPlayer ? mapImportToSchema(jsonPlayer) : {};
     const dbPlayer = await getPlayers({ code: formattedSkyPlayer.code });
     formattedSkyPlayer.pos = dbPlayer ? dbPlayer.pos : formattedJsonPlayer.pos || 'unknown';
+    const maybeGK = String(formattedSkyPlayer.code).startsWith('1');
+    const maybeStr = String(formattedSkyPlayer.code).startsWith('4');
     if (formattedSkyPlayer.pos === 'park') formattedSkyPlayer.pos = 'unknown';
+    if (formattedSkyPlayer.pos === 'unknown' && maybeGK) formattedSkyPlayer.pos = 'GK';
+    if (formattedSkyPlayer.pos === 'unknown' && maybeStr) formattedSkyPlayer.pos = 'STR';
     if (!dbPlayer) {
+      formattedSkyPlayer.new = true;
       formattedSkyPlayer.season.stats = zeros;
       updatePromises.push((new Player(formattedSkyPlayer)).save());
     } else {
