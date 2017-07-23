@@ -186,10 +186,6 @@ export default class PlayerTable extends React.Component {
     this.setState({ statsOrPoints: e.target.value.trim() });
   }
 
-  gameWeekOrSeason = (e) => {
-    this.setState({ gameWeekOrSeason: e.target.value.trim() });
-  }
-
   hideUpdater = () => {
     this.setState({
       showposUpdater: null,
@@ -211,7 +207,7 @@ export default class PlayerTable extends React.Component {
       selectedPosition, showStats, showPoints, editable, playerUpdates = {}, team,
     } = this.props;
     const {
-      posFilter, clubFilter, nameFilter, statsOrPoints = 'stats', gameWeekOrSeason = 'season'
+      posFilter, clubFilter, nameFilter, statsOrPoints = 'stats'
     } = this.state;
     const club = this.options.club;
     const teamPlayers = team ? (Object.keys(team))
@@ -234,13 +230,6 @@ export default class PlayerTable extends React.Component {
                 id={'stats-or-points'}
                 onChange={ this.statsOrPoints }
                 options={['stats', 'points']}
-              />
-              <MultiToggle
-                {...bem('toggle-options')}
-                checked={ gameWeekOrSeason }
-                id={'gameWeek-or-season'}
-                onChange={ this.gameWeekOrSeason }
-                options={['season', 'gameWeek']}
               />
             </div>
           )}
@@ -282,9 +271,18 @@ export default class PlayerTable extends React.Component {
               { editable && <th>Code</th> }
               <th>Position</th>
               <th>Player</th>
-              { showStats && statCols.map((stat) => <td key={stat}>{stat}</td>) }
-              { showStats && <td>Total</td> }
-              { showPoints && <th>Points</th> }
+              { showStats && statCols.map((stat) => [
+                <td key={stat}>{stat}</td>,
+                <td key={`${stat}-gw`}><sup>(gw)</sup></td>
+              ])}
+              { showStats && [
+                <td key={'total'}>Total</td>,
+                <td key={'total-gw'}><sup>(gw)</sup></td>
+              ] }
+              { showPoints && [
+                <td key={'points'}>Points</td>,
+                <td key={'points-gw'}><sup>(gw)</sup></td>
+              ] }
               { editable && <th>Hidden</th> }
               { selectPlayer && <th></th> }
             </tr>
@@ -311,31 +309,34 @@ export default class PlayerTable extends React.Component {
                         {this.CellEditor({ player, originalPlayerData, attribute: 'name', editable, type: 'text' })}
                         <small>{this.CellEditor({ player, originalPlayerData, attribute: 'club', editable, type: 'select' })}</small>
                       </td>
-                      { showStats && statCols.map((stat) =>
-                        <td
-                          key={stat}
-                          {...bem('output')}
-                        >
+                      { showStats && statCols.map((stat) => [
+                        <td key={stat} {...bem('output')}>
                           {player.season[statsOrPoints][stat]}
+                        </td>,
+                        <td key={`${stat}-gw`} {...bem('gw-output')}>
                           <AdditionalPoints {...bem('additional', { highlight: extremeStat(player.gameWeek[statsOrPoints][stat]) })}>
                             {player.gameWeek[statsOrPoints][stat]}
                           </AdditionalPoints>
                         </td>
-                      )}
-                      { showStats && (
-                        <td>
+                      ])}
+                      { showStats && [
+                        <td key={'total'} {...bem('output')}>
                           {player.season[statsOrPoints].total}
+                        </td>,
+                        <td key={'total-gw'} {...bem('gw-output')}>
                           <AdditionalPoints {...bem('additional', { highlight: extremeStat(player.gameWeek[statsOrPoints].total) })}>
                             {player.gameWeek[statsOrPoints].total}
                           </AdditionalPoints>
                         </td>
-                      )}
-                      { showPoints && (
-                        <td {...bem('output')}>
+                      ]}
+                      { showPoints && [
+                        <td key="total" {...bem('output')}>
                           {player.season.points.total}
+                        </td>,
+                        <td key="total-gw" {...bem('gw-output')}>
                           <AdditionalPoints>{player.gameWeek.points.total}</AdditionalPoints>
                         </td>
-                      )}
+                      ]}
                       { editable && (
                         <td {...bem('output')}>
                           <input

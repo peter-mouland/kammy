@@ -92,8 +92,6 @@ class SeasonAdminOptions extends React.Component {
         { stats ?
           <div className="admin-options" >
             <section >
-              <p>Any stat shown in parentheses is the change in stat since the previous save.</p>
-              <p><em>(previous save: <b>on date </b>)</em></p>
               <Players
                 players={ (Object.keys(stats)).map((key) => stats[key]) }
                 type="admin"

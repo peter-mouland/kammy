@@ -64,6 +64,14 @@ $row-bg--hover: #CACACA;
     flex: 1 ;
     margin-right: 2em;
   }
+
+  &__output {
+    text-align: right;
+  }
+
+  &__gw-output {
+    text-align: left;
+  }
 }
 
 .player-table--my-team {
@@ -76,11 +84,11 @@ $row-bg--hover: #CACACA;
 }
 
 .player-table--admin {
-  &__player {
+  .player-table__player {
     height: calc(2em + 10px);
   }
 
-  &__data-filter {
+  .player-table__data-filter {
     select,
     input {
       border-color: $black;
