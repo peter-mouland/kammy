@@ -8,6 +8,7 @@ $row-bg--hover: #CACACA;
   td,
   th {
     padding: 5px;
+    position: relative;
   }
 
   &__player {
@@ -24,6 +25,13 @@ $row-bg--hover: #CACACA;
     &--selected {
       color: $brand--dark;
     }
+  }
+
+  &__new-icon {
+    position: absolute;
+    fill: $error;
+    top: -2px;
+    left: -13px;
   }
 
   &__meta--stat {

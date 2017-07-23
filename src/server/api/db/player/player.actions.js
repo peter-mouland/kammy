@@ -38,6 +38,8 @@ const aggFields = {
   code: 1,
   club: 1,
   pos: 1,
+  value: 1,
+  new: 1,
   isHidden: 1
 };
 
@@ -60,14 +62,16 @@ export const importPlayers = async () => {
   const stats = {};
   const updatePromises = [];
   const skyPlayers = (await json.get(config.EXTERNAL_STATS_URL)).players;
-  skyPlayers.forEach(async (skyPlayer) => {
+  const dbPlayers = (await getPlayers());
+  const players = dbPlayers.reduce((prev, player) => ({ ...prev, [player.code]: player }), {});
+  skyPlayers.forEach((skyPlayer) => {
     const player = mapSkyFormatToSchema(skyPlayer);
     const jsonPlayer = playersJson[player.name];
+    const dbPlayer = players[player.code];
     const formattedJsonPlayer = jsonPlayer ? mapImportToSchema(jsonPlayer) : {};
-    const dbPlayer = await getPlayers({ code: player.code });
-    player.pos = dbPlayer.length > 0 ? dbPlayer.pos : formattedJsonPlayer.pos || 'unknown';
+    player.pos = dbPlayer ? dbPlayer.pos : formattedJsonPlayer.pos || 'unknown';
     if (player.pos === 'park') player.pos = 'unknown';
-    if (!dbPlayer.length) {
+    if (!dbPlayer) {
       const maybeGK = String(player.code).startsWith('1');
       const maybeStr = String(player.code).startsWith('4');
       if (player.pos === 'unknown' && maybeGK) player.pos = 'GK';

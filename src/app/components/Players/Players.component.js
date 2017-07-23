@@ -4,11 +4,13 @@ import debug from 'debug';
 import bemHelper from 'react-bem-helper';
 
 import { playerPositions } from '../../components/Positions/Positions';
+import Svg from '../../components/Svg/Svg';
 import Selector from '../../components/Selector/Selector';
 import Errors from '../../components/Errors/Errors';
 import Interstitial from '../../components/Interstitial/Interstitial';
 import MultiToggle from '../MultiToggle/MultiToggle';
 import Toggle from '../Toggle/Toggle';
+import New from '../../../assets/new.svg';
 
 import './players.scss';
 
@@ -330,8 +332,13 @@ export default class PlayerTable extends React.Component {
                   const player = playerUpdates[originalPlayerData._id] || originalPlayerData;
                   const isOnMyTeam = teamPlayers[player.code];
                   return (
-                    <tr key={player.code} id={player.code} { ...bem('player', { selected: isOnMyTeam })}>
-                      { editable && <td { ...bem('meta')}>{ player.code }</td> }
+                    <tr key={player.code} id={player.code} { ...bem('player', { selected: isOnMyTeam, new: !!player.new })}>
+                      { editable && (
+                        <td { ...bem('meta')}>
+                          { player.new && <Svg markup={New} { ...bem('new-icon')} />}
+                          { player.code }
+                        </td>
+                      ) }
                       <td { ...bem('meta')}>
                         {this.CellEditor({ player, originalPlayerData, attribute: 'pos', editable, type: 'select' })}
                       </td>

@@ -23,9 +23,7 @@ class AdminPage extends React.Component {
 function mapStateToProps(state) {
   return {
     users: state.users.data,
-    userErrors: state.users.errors,
-    loading: state.promiseState.loading,
-    errors: state.promiseState.errors,
+    userErrors: state.users.errors
   };
 }
 

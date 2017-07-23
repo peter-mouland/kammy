@@ -75,7 +75,7 @@ export default class AdminPlayers extends React.Component {
                   this.updatePlayers(updates);
                   this.setState({ playerUpdates: {} });
                 }} />
-              : <em>none</em>
+              : <em>No updates pending</em>
             }
           </div>
         </div>

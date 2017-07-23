@@ -58,7 +58,6 @@ export default function players(state = {}, action) {
     case `${actions.IMPORT_PLAYERS}_FULFILLED`:
       return {
         ...state,
-        data: data && data.importPlayers,
         errors: action.payload.errors,
         importing: false
       };
@@ -76,7 +75,7 @@ export default function players(state = {}, action) {
     case `${actions.UPDATE_PLAYERS}_FULFILLED`:
       return {
         ...state,
-        data: updatePlayersData(state, action),
+        data: !action.payload.errors ? updatePlayersData(state, action) : [],
         errors: action.payload.errors,
         updating: false
       };

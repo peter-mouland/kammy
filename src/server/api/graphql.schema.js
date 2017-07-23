@@ -133,6 +133,8 @@ const schemaString = `
     pos: String
     club: String
     isHidden: Boolean
+    new: Boolean
+    value: Float
   }
 
   type Player {
@@ -142,7 +144,8 @@ const schemaString = `
     code: Int
     pos: String
     club: String
-    new: String
+    new: Boolean
+    value: Float
     gameWeek: GameWeek
     season: GameWeek
     pointsChange: Int
@@ -225,6 +228,8 @@ const schemaString = `
     name: String
     pos: String
     isHidden: Boolean
+    new: Boolean
+    value: Float
   }
   
   type Query {

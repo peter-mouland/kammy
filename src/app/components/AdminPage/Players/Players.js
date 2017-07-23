@@ -15,7 +15,7 @@ function mapStateToProps(state) {
     players: state.players.data,
     updating: state.players.updating,
     importing: state.players.importing,
-    errors: state.promiseState.errors,
+    errors: state.players.errors,
   };
 }
 

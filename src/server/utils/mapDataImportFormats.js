@@ -59,6 +59,7 @@ export const mapImportToSkyFormat = (player) => {
   delete player.player;
   delete player.gw0;
   delete player.gw1;
+  delete player.gw2;
   return player;
 };
 
@@ -123,6 +124,11 @@ export const mapSkyFormatToSchema = (player) => {
   delete player.sName;
   delete player.fName;
   delete player.tName;
+  delete player.tCode;
+  delete player.avail;
+  delete player.picked;
+  delete player.group; // pos
+  delete player.pts;
   delete player.nxtfix;
   return player;
 };
