@@ -66,10 +66,10 @@ export default class PlayerChoice extends React.Component {
       prev.push(team.fbright._id);
       prev.push(team.cbleft._id);
       prev.push(team.cbright._id);
-      prev.push(team.wmleft._id);
-      prev.push(team.wmright._id);
-      prev.push(team.cmleft._id);
-      prev.push(team.cmright._id);
+      prev.push(team.amleft._id);
+      prev.push(team.amright._id);
+      prev.push(team.midleft._id);
+      prev.push(team.midright._id);
       prev.push(team.strleft._id);
       prev.push(team.strright._id);
       return prev;
@@ -90,7 +90,7 @@ export default class PlayerChoice extends React.Component {
           <Selector
             onChange={ this.positionFilter }
             defaultValue={ positionFilter }
-            options={ ['gk', 'fb', 'cb', 'wm', 'cm', 'str'] }
+            options={ ['gk', 'fb', 'cb', 'mid', 'am', 'str'] }
           />
         }
         <Selector

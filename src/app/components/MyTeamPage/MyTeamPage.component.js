@@ -104,10 +104,10 @@ export default class MyTeam extends React.Component {
               {this.squadPlayer('cb', 'left')}
               {this.squadPlayer('cb', 'right')}
               {this.squadPlayer('fb', 'right')}
-              {this.squadPlayer('wm', 'left')}
-              {this.squadPlayer('cm', 'left')}
-              {this.squadPlayer('cm', 'right')}
-              {this.squadPlayer('wm', 'right')}
+              {this.squadPlayer('mid', 'left')}
+              {this.squadPlayer('mid', 'left')}
+              {this.squadPlayer('am', 'right')}
+              {this.squadPlayer('am', 'right')}
               {this.squadPlayer('str', 'left')}
               {this.squadPlayer('str', 'right')}
             </ul>

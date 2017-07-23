@@ -4,6 +4,7 @@ import bemHelper from 'react-bem-helper';
 import Errors from '../Errors/Errors';
 import Interstitial from '../Interstitial/Interstitial';
 import MultiToggle from '../MultiToggle/MultiToggle';
+import { positionMapping } from '../Positions/Positions';
 
 import './divisions-page.scss';
 
@@ -26,21 +27,22 @@ function AdditionalPoints({ children: points }) {
 
 export default class DivisionsPage extends React.Component {
   state = {
-    pointsOrRank: 'Points'
+    seasonOrGameWeek: 'Season'
   }
 
-  togglePointsOrStats = (e) => {
+  toggleSeasonOrGameWeek = (e) => {
     this.setState({
-      pointsOrRank: e.target.value
+      seasonOrGameWeek: e.target.value
     });
   }
 
   render() {
     const { errors = [], loading, divisions } = this.props;
-    const { pointsOrRank } = this.state;
-    const season = pointsOrRank === 'Rank' ? 'seasonRank' : 'season';
-    const gameWeek = pointsOrRank === 'Rank' ? 'gameWeekRankChange' : 'gameWeek';
-    const positions = ['gks', 'fb', 'cb', 'wm', 'cm', 'str'];
+    const { seasonOrGameWeek } = this.state;
+    const rank = seasonOrGameWeek === 'Season' ? 'seasonRank' : 'gameWeekRankChange';
+    const points = seasonOrGameWeek === 'Season' ? 'season' : 'gameWeek';
+    const positions = (Object.keys(positionMapping))
+      .filter((pos) => !positionMapping[pos].hiddenFromManager);
 
     if (errors.length) {
       return <Errors errors={errors} />;
@@ -62,12 +64,12 @@ export default class DivisionsPage extends React.Component {
         <h1>Divisions</h1>
         <section {...bem('config', null, 'page-content')}>
           <MultiToggle
-            label="Options:"
-            {...bem('points-or-rank')}
-            checked={ pointsOrRank }
+            label="Display:"
+            {...bem('season-or-gameweek')}
+            checked={ seasonOrGameWeek }
             id={'points-or-stats'}
-            onChange={ this.togglePointsOrStats }
-            options={['Points', 'Rank']}
+            onChange={ this.toggleSeasonOrGameWeek }
+            options={['Season', 'GameWeek']}
           />
         </section>
         {divisions.map((division) => (
@@ -77,32 +79,39 @@ export default class DivisionsPage extends React.Component {
               <thead>
                 <tr>
                   <th>Team</th>
-                  <th>GK/S</th>
-                  <th>FB</th>
-                  <th>CB</th>
-                  <th>WM</th>
-                  <th>CM</th>
-                  <th>FWD</th>
-                  <th>Total</th>
+                  {positions.map((pos) => (
+                    <th key={pos} colSpan={2}>{positionMapping[pos].label}</th>
+                  ))}
+                  <th colSpan={2}>Total</th>
                 </tr>
               </thead>
               <tbody>
                 {division.teams.map((team) => (
                   <tr key={`${team.name}-${team.user.name}`}>
                     <td>{team.name} {team.user.name}</td>
-                    {positions.map((pos) => (
-                      <td key={pos}>
+                    {positions.map((pos) => [
+                      <td key={`${pos}-rank`} { ...bem('data', 'rank') }>
                         <span { ...bem('point')}>
-                          {team[season][pos]}
-                          <AdditionalPoints>{team[gameWeek][pos]}</AdditionalPoints>
+                          {team[rank][pos]}
                         </span>
+                      </td>,
+                      <td key={`${pos}-points`} { ...bem('data', 'points') }>
+                        { points === 'gameWeek'
+                          ? <AdditionalPoints>{team[points][pos]}</AdditionalPoints>
+                          : <span>{team[points][pos]}</span>
+                        }
                       </td>
-                    ))}
-                    <td>
+                    ])}
+                    <td { ...bem('data', 'rank') }>
                       <span { ...bem('point')}>
-                        {team[season].points}
-                        <AdditionalPoints>{team[gameWeek].points}</AdditionalPoints>
+                        {team[rank].points}
                       </span>
+                    </td>
+                    <td { ...bem('data', 'points') }>
+                      { points === 'gameWeek'
+                        ? <AdditionalPoints>{team[points].points}</AdditionalPoints>
+                        : <span>{team[points].points}</span>
+                      }
                     </td>
                   </tr>
                 ))}

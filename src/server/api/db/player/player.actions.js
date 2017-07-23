@@ -6,7 +6,7 @@ import { mapImportToSchema, mapSkyFormatToSchema, zeros } from '../../../utils/m
 import { json } from '../../../../app/utils/fetch';
 import config from '../../../../config/config';
 
-const playersJson = require('../../../../assets/2016-2017/stats-GW25.json');
+const playersJson = require('../../../../assets/ff-1718.json');
 
 const log = debug('kammy:db/player.actions');
 const Player = mongoose.model('Player');

@@ -25,16 +25,16 @@ const schemaString = `
     cbright: Int
     fbleft: Int
     fbright: Int
-    cmleft: Int
-    cmright: Int
-    wmleft: Int
-    wmright: Int
+    amleft: Int
+    amright: Int
+    midleft: Int
+    midright: Int
     strleft: Int
     strright: Int
     cb: Int 
     fb: Int 
-    cm: Int 
-    wm: Int 
+    mid: Int 
+    am: Int 
     str: Int
     sub: Int
     points: Int
@@ -44,8 +44,8 @@ const schemaString = `
     gks: Float
     cb: Float 
     fb: Float 
-    cm: Float 
-    wm: Float 
+    mid: Float 
+    am: Float 
     str: Float
     points: Float
   }
@@ -69,18 +69,18 @@ const schemaString = `
     gks: Int,
     fb: Int,
     cb: Int,
-    wm: Int,
-    cm: Int,
+    mid: Int,
+    am: Int,
     str: Int,
     gk: Int,
     cbleft: Int,
     cbright: Int,
     fbleft: Int,
     fbright: Int,
-    cmleft: Int,
-    cmright: Int,
-    wmleft: Int,
-    wmright: Int,
+    midleft: Int,
+    midright: Int,
+    amleft: Int,
+    amright: Int,
     strleft: Int,
     strright: Int,
     sub: Int,
@@ -103,10 +103,10 @@ const schemaString = `
     cbright: MinPlayerDetail
     fbleft: MinPlayerDetail
     fbright: MinPlayerDetail
-    cmleft: MinPlayerDetail
-    cmright: MinPlayerDetail
-    wmleft: MinPlayerDetail
-    wmright: MinPlayerDetail
+    midleft: MinPlayerDetail
+    midright: MinPlayerDetail
+    amleft: MinPlayerDetail
+    amright: MinPlayerDetail
     strleft: MinPlayerDetail
     strright: MinPlayerDetail
     sub: MinPlayerDetail
@@ -212,10 +212,10 @@ const schemaString = `
     cbright: InputMinPlayerDetail
     fbleft: InputMinPlayerDetail
     fbright: InputMinPlayerDetail
-    cmleft: InputMinPlayerDetail
-    cmright: InputMinPlayerDetail
-    wmleft: InputMinPlayerDetail
-    wmright: InputMinPlayerDetail
+    midleft: InputMinPlayerDetail
+    midright: InputMinPlayerDetail
+    amleft: InputMinPlayerDetail
+    amright: InputMinPlayerDetail
     strleft: InputMinPlayerDetail
     strright: InputMinPlayerDetail
     sub: InputMinPlayerDetail

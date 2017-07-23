@@ -12,7 +12,7 @@ export function forGoals(goals, position) { // depends on position
     multiplier = 10;
   } else if (position === 'FB' || position === 'CB') {
     multiplier = 8;
-  } else if (position === 'WM' || position === 'CM' || position === 'M') {
+  } else if (position === 'MID') {
     multiplier = 6;
   } else if (position === 'AM') {
     multiplier = 5;

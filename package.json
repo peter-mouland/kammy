@@ -5,6 +5,7 @@
   "main": "src/server-entry.js",
   "scripts": {
     "postinstall": "npm run build",
+    "retrieve-players": "babel-node ./scripts/retrieve-player-positions.js",
     "//retrieve-players": "babel-node ./scripts/retrieve-players.js",
     "mongo": "mongod  --dbpath mongodb",
     "build": "rm -rf compiled && npm run compile:server && npm run compile:app && node scripts/copyAssets.js",

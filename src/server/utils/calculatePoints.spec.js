@@ -113,9 +113,9 @@ describe('calculatePoints', () => {
     });
   });
 
-  context('when a WM has points calculated', ()=>{
+  context('when a MID has points calculated', ()=>{
     beforeEach(()=>{
-      position = 'WM';
+      position = 'MID';
     });
     it('returns 6 points for each goal', () => {
       expect(calculatePoints.forGoals(1, position)).to.eql(6);

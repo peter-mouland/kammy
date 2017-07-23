@@ -9,8 +9,8 @@ const positions = {
   gk: [''],
   cb: ['left', 'right'],
   fb: ['left', 'right'],
-  wm: ['left', 'right'],
-  cm: ['left', 'right'],
+  am: ['left', 'right'],
+  mid: ['left', 'right'],
   str: ['left', 'right'],
   sub: [''],
 };
