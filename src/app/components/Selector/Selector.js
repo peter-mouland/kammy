@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({ onChange, defaultValue, options, disabled = [] }) => (
+export default ({ onChange, defaultValue, options, warn = [], disabled = [] }) => (
   <select onChange={onChange} defaultValue={defaultValue}>
     <option value={''}>all</option>
     {options.map((item) => (
@@ -9,7 +9,7 @@ export default ({ onChange, defaultValue, options, disabled = [] }) => (
         key={ item._id || item }
         disabled={ disabled.indexOf(item._id || item) > -1 }
       >
-        { item.name || item }
+        { item.name || item }{ warn.indexOf(item._id || item) > -1 ? '*' : '' }
       </option>
     ))}
   </select>

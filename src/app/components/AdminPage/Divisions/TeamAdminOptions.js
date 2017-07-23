@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Modal from '../../Modal/Modal';
 import Interstitial from '../../Interstitial/Interstitial';
 import SVG from '../../Svg/Svg';
 import PlayerChoice from '../Seasons/PlayerChoice';
@@ -17,14 +18,14 @@ const positions = {
 
 class TeamAdminOptions extends React.Component {
   state = {
-    showPlayerChoice: false
+    showPlayerChoice: false,
+    duplicatePlayerWaning: false
   }
 
-  updatePlayer = (e, { pos, leftOrRight, team, player }) => {
-    e.preventDefault();
+  updatePlayerWithoutWarning = ({ pos, team, player }) => {
     const updatedTeam = {
       ...team,
-      [pos + leftOrRight]: {
+      [pos]: {
         club: player.club,
         code: player.code,
         name: player.name,
@@ -32,8 +33,18 @@ class TeamAdminOptions extends React.Component {
         _id: player._id,
       }
     };
-    this.setState({ showPlayerChoice: null, leftOrRight: null });
+    this.setState({ duplicatePlayerWaning: false, showPlayerChoice: null, leftOrRight: null });
     this.props.saveUpdates(updatedTeam);
+  }
+
+  updatePlayer = (e, { pos, leftOrRight, team, player, pickedPlayers }) => {
+    e.preventDefault();
+    const props = { pos: pos + leftOrRight, team, player };
+    if (pickedPlayers.indexOf(player._id) > -1) {
+      this.setState({ duplicatePlayerWaning: { player, props } });
+    } else {
+      this.updatePlayerWithoutWarning(props);
+    }
   }
 
   showPlayerChoice = ({ pos, leftOrRight }) => {
@@ -55,8 +66,8 @@ class TeamAdminOptions extends React.Component {
             pos={ showPlayerChoice }
             leftOrRight={ leftOrRight }
             defaultValue={ team[showPlayerChoice + leftOrRight] }
-            onUpdate={ (e, player) =>
-              this.updatePlayer(e, { pos, leftOrRight: side, team, player })
+            onUpdate={ (e, player, pickedPlayers) =>
+              this.updatePlayer(e, { pos, leftOrRight: side, team, player, pickedPlayers })
             }
           />
         );
@@ -71,40 +82,70 @@ class TeamAdminOptions extends React.Component {
     }
   }
 
+  ModalContents = ({ warning }) => {
+    if (!warning) return <div />;
+    return (
+      <div>
+        <p>{warning.player.name} has already been selected within this division.</p>
+        <p>
+          <button onClick={ () => this.updatePlayerWithoutWarning(warning.props)}>
+            Save Duplicate Selection
+          </button>
+          <button onClick={ () => this.setState({ duplicatePlayerWaning: false }) }>
+            Cancel Update
+          </button>
+        </p>
+      </div>
+    );
+  }
+
   render() {
     const { team, divisionTeams } = this.props;
+    const { duplicatePlayerWaning = false } = this.state;
     return (
-      <table
-        data-test="admin-options--team"
-      >
-        <thead>
-          <tr>
-            <th>code</th>
-            <th>Position</th>
-            <th>Player</th>
-            <th>Team</th>
-            <th>Transfer</th>
-          </tr>
-        </thead>
-        <tbody>
-
-          {(Object.keys(positions)).map((pos) => {
-            const position = positions[pos];
-            return position.map((side) => {
-              const Cta = this.getCta({ team, pos, side, divisionTeams });
-              return (
-                <tr key={pos + side}>
-                  <td>{team[pos + side].code}</td>
-                  <td>{pos}</td>
-                  <td>{team[pos + side].name || <em>unknown</em>}</td>
-                  <td>{team[pos + side].club}</td>
-                  <td>{Cta}</td>
-                </tr>
-              );
-            });
-          })}
-        </tbody>
-      </table>
+      <div>
+        <Modal
+          id="duplicate-player-warning"
+          title="Player Already Selected"
+          open={ !!duplicatePlayerWaning }
+          onClose={ () => this.setState({ duplicatePlayerWaning: false })}
+          key="duplicate-player-warning"
+        >
+          {this.ModalContents({ warning: duplicatePlayerWaning })}
+        </Modal>
+        <table
+          key="admin-options--team"
+          id="admin-options--team"
+          data-test="admin-options--team"
+        >
+          <thead>
+            <tr>
+              <th>code</th>
+              <th>Position</th>
+              <th>Player</th>
+              <th>Team</th>
+              <th>Transfer</th>
+            </tr>
+          </thead>
+          <tbody>
+            {(Object.keys(positions)).map((pos) => {
+              const position = positions[pos];
+              return position.map((side) => {
+                const Cta = this.getCta({ team, pos, side, divisionTeams });
+                return (
+                  <tr key={pos + side}>
+                    <td>{team[pos + side].code}</td>
+                    <td>{pos}</td>
+                    <td>{team[pos + side].name || <em>unknown</em>}</td>
+                    <td>{team[pos + side].club}</td>
+                    <td>{Cta}</td>
+                  </tr>
+                );
+              });
+            })}
+          </tbody>
+        </table>
+      </div>
     );
   }
 }

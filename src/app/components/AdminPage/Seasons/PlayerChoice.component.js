@@ -99,14 +99,14 @@ export default class PlayerChoice extends React.Component {
           options={ clubs }
         />
         <Selector
-          disabled={ pickedPlayers }
+          warn={ pickedPlayers }
           onChange={ this.selectPlayer }
           defaultValue={ defaultValue._id }
           options={ filteredPlayers }
         />
         <input
           type="submit"
-          onClick={ (e) => onUpdate(e, this.state.player) }
+          onClick={ (e) => onUpdate(e, this.state.player, pickedPlayers) }
           disabled={ !this.state.playerId || this.state.playerId === defaultValue._id }
           value="Update"
         />
