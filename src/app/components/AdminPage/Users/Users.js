@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import UsersComponent from './Users.component';
 
-import { fetchUsersWithTeams, updateTeam, addUser } from './users.actions';
+import { fetchUsersWithTeams, updateTeam, addUser, updateUser } from './users.actions';
 import { fetchSeasons } from '../Seasons/seasons.actions';
 
 class Users extends React.Component {
@@ -39,6 +39,7 @@ export default connect(
     fetchSeasons,
     fetchUsersWithTeams,
     addUser,
+    updateUser,
     updateTeam,
   }
 )(Users);

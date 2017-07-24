@@ -41,6 +41,7 @@
 
 .admin-option {
   display: inline-block;
+  align-self: flex-start;
   flex: 3;
 
   &:not(:last-child) {

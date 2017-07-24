@@ -35,7 +35,8 @@ class AddUser extends React.Component {
     const { loading, errors, seasons = [] } = this.props;
     const { divisions } = this.state;
     return (
-      <div>
+      <div className="admin-option">
+        <h2>Add User</h2>
         { errors.length > 0 ? <Errors errors={ errors } small /> : null }
         { loading && errors.length === 0
           ? <Interstitial>Saving</Interstitial>

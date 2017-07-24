@@ -29,6 +29,12 @@ export default function users(state = {}, action) {
           data && data.addUser
         ],
       };
+    case `${actions.UPDATE_USER}_FULFILLED`:
+      return {
+        ...state,
+        errors: action.payload.errors,
+        data: data && data.updateUser,
+      };
     default:
       return state;
   }

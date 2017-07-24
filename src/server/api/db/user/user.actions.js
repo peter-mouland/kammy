@@ -14,7 +14,7 @@ export const saveNewUser = (userData) => {
 
 export const findOneUser = (userDetails) => User.findOne(userDetails).exec();
 
-export const updateUser = (_id, userDetails) =>
+export const updateUser = ({ _id, ...userDetails }) =>
   User.findByIdAndUpdate(_id, userDetails, { new: true }).populate('teams').exec();
 
 export const addUser = ({ seasonId, divisionId, name, email, isAdmin, mustChangePassword, password = 'password123' }) => {
@@ -40,7 +40,7 @@ export const addUser = ({ seasonId, divisionId, name, email, isAdmin, mustChange
         division: { _id: division._id, name: division.name },
       });
     })
-    .then((team) => updateUser(user._id, { $push: { teams: team._id } }));
+    .then((team) => updateUser({ _id: user._id, $push: { teams: team._id } }));
 };
 
 export const getUsersWithTeams = () => (

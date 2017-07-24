@@ -1,5 +1,5 @@
 /* eslint-disable no-confusing-arrow */
-import { getUser, addUser, getUsersWithTeams } from './db/user/user.actions';
+import { getUser, addUser, updateUser, getUsersWithTeams } from './db/user/user.actions';
 import { getPlayers, updatePlayers, importPlayers } from './db/player/player.actions';
 import { updateTeam, getTeams, getTeam, assignTeamToDivision } from './db/team/team.actions';
 import { getSeasons, getDivisions, addDivision, addSeason, updateSeason } from './db/season/season.actions';
@@ -29,5 +29,6 @@ export default {
   getUsersWithTeams,
   getUser,
   addUser,
+  updateUser,
   getDashboard,
 };

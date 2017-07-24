@@ -248,6 +248,7 @@ const schemaString = `
     importPlayers: [UpdatedPlayer]
     updatePlayers(playerUpdates: [PlayerUpdates]): [UpdatedPlayer]
     addUser(seasonId: String, divisionId: String, email: String, name: String): UserTeams
+    updateUser(_id: String, email: String, name: String): User
     addDivision(seasonId: String, name: String): Division
     addSeason(name: String): Season
     updateTeam(teamUpdate: TeamUpdate): Team

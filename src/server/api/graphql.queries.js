@@ -131,6 +131,12 @@ export const addUserMutation = `
   }
 `;
 
+export const updateUserMutation = `
+  mutation ($_id: String, $name: String, $email: String) { 
+    updateUser(_id: $_id, name: $name, email: $email){ _id name email } 
+  }
+`;
+
 export const assignTeamToDivisionMutation = `
   ${teamFragment}
   mutation ($divisionId: String, $divisionName: String, $teamId: String) { 
