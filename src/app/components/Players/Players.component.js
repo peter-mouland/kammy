@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import debug from 'debug';
 import bemHelper from 'react-bem-helper';
 
-import { playerPositions } from '../../components/Positions/Positions';
+import { playerPositions } from '../../../config/positions';
 import Svg from '../../components/Svg/Svg';
 import Selector from '../../components/Selector/Selector';
 import Errors from '../../components/Errors/Errors';
@@ -18,7 +18,7 @@ const bem = bemHelper({ name: 'player-table' });
 const log = debug('kammy:players.component');
 
 const extremeStat = (int) => int < -10 || int > 10;
-const statCols = ['apps', 'subs', 'gls', 'asts', 'cs', 'con', 'pensv', 'ycard', 'rcard'];
+const statCols = ['apps', 'subs', 'gls', 'asts', 'cs', 'con', 'pensv', 'tb', 'ycard', 'rcard'];
 
 // eslint-disable-next-line no-confusing-arrow
 const Highlight = ({ player, update = {}, attribute, className }) =>

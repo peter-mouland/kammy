@@ -1,5 +1,3 @@
-import './positions.scss';
-
 export const positionMapping = {
   unknown: { label: 'Unknown', order: 0, statsFields: [], hiddenFromManager: true },
   gks: { label: 'GK/S', order: 1, statsFields: ['gk', 'sub'] },

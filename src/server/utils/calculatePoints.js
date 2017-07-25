@@ -44,14 +44,24 @@ export function forCleanSheet(cs, position) { // 5
   return cs * multiplier;
 }
 
-export function forConceded(ga, position) { // -1
+export function forConceded(conceded, position) { // -1
   let multiplier;
   if ((position === 'FB' || position === 'CB') || position === 'GK') {
     multiplier = -1;
   } else {
     multiplier = 0;
   }
-  return parseInt(ga * multiplier, 10);
+  return parseInt(conceded * multiplier, 10);
+}
+
+export function forTackleBonus(bonusPoints, position) { // -1
+  let multiplier;
+  if (position === 'MID') {
+    multiplier = 3;
+  } else {
+    multiplier = 0;
+  }
+  return parseInt(bonusPoints * multiplier, 10);
 }
 
 export function forPenaltiesSaved(ps) {
@@ -72,23 +82,29 @@ export function calculateTotalPoints(stats, pos) {
   const pensv = forPenaltiesSaved(stats.pensv, pos);
   const ycard = forYellowCards(stats.ycard, pos);
   const rcard = forRedCards(stats.rcard, pos);
+  const tb = forTackleBonus(stats.tb, pos);
   const total = mom + gls + ycard + rcard + apps + subs + asts + cs + con + pensv;
-  return { apps, subs, gls, asts, mom, cs, con, pensv, ycard, rcard, total };
+  return { apps, subs, gls, asts, mom, cs, con, pensv, ycard, rcard, tb, total };
 }
 
-export function calculateGameWeek(totalStats, gameWeekStats, pos, previousStats) {
-  // retrieved season stats now include previous gameWeek
+// externalSeasonStats : the new season stats - including any gameWeek stats
+// savedSeasonStats : previously saved season stats - including the latest gameWeek stats
+// savedGameWeekStats : previously saved gameWeek stats
+// pos : the player position
+export function calculateGameWeek(externalSeasonStats, savedSeasonStats, savedGameWeekStats, pos) {
   const stats = {
-    apps: (totalStats.apps - previousStats.apps) + gameWeekStats.apps,
-    subs: (totalStats.subs - previousStats.subs) + gameWeekStats.subs,
-    mom: (totalStats.mom - previousStats.mom) + gameWeekStats.mom,
-    gls: (totalStats.gls - previousStats.gls) + gameWeekStats.gls,
-    asts: (totalStats.asts - previousStats.asts) + gameWeekStats.asts,
-    cs: (totalStats.cs - previousStats.cs) + gameWeekStats.cs,
-    con: (totalStats.con - previousStats.con) + gameWeekStats.con,
-    pensv: (totalStats.pensv - previousStats.pensv) + gameWeekStats.pensv,
-    ycard: (totalStats.ycard - previousStats.ycard) + gameWeekStats.ycard,
-    rcard: (totalStats.rcard - previousStats.rcard) + gameWeekStats.rcard
+    apps: (externalSeasonStats.apps - savedSeasonStats.apps) + savedGameWeekStats.apps,
+    subs: (externalSeasonStats.subs - savedSeasonStats.subs) + savedGameWeekStats.subs,
+    mom: (externalSeasonStats.mom - savedSeasonStats.mom) + savedGameWeekStats.mom,
+    gls: (externalSeasonStats.gls - savedSeasonStats.gls) + savedGameWeekStats.gls,
+    asts: (externalSeasonStats.asts - savedSeasonStats.asts) + savedGameWeekStats.asts,
+    cs: (externalSeasonStats.cs - savedSeasonStats.cs) + savedGameWeekStats.cs,
+    con: (externalSeasonStats.con - savedSeasonStats.con) + savedGameWeekStats.con,
+    pensv: (externalSeasonStats.pensv - savedSeasonStats.pensv) + savedGameWeekStats.pensv,
+    ycard: (externalSeasonStats.ycard - savedSeasonStats.ycard) + savedGameWeekStats.ycard,
+    rcard: (externalSeasonStats.rcard - savedSeasonStats.rcard) + savedGameWeekStats.rcard,
+    tb: (externalSeasonStats.tb - savedSeasonStats.tb)
+      + savedGameWeekStats.tb,
   };
   const points = calculateTotalPoints(stats, pos);
   return {
@@ -102,9 +118,9 @@ export const calculatePoints = (externalPlayer, internalPlayer) => ({
   ...internalPlayer,
   gameWeek: calculateGameWeek(
     externalPlayer.season.stats,
+    internalPlayer.season.stats,
     internalPlayer.gameWeek.stats,
     internalPlayer.pos,
-    internalPlayer.season.stats
   ),
   season: internalPlayer.season
 });

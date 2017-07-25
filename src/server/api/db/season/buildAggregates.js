@@ -1,4 +1,4 @@
-import { positionMapping } from '../../../../app/components/Positions/Positions';
+import { positionMapping } from '../../../../config/positions';
 
 const addStringFactory = (period) =>
   (pos) => positionMapping[pos].statsFields.map((col) => `$${period}.${col}`);

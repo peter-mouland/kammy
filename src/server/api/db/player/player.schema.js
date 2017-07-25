@@ -11,6 +11,7 @@ const stats = {
   pensv: Number,
   ycard: Number,
   rcard: Number,
+  tb: Number,
 };
 
 const points = {
@@ -24,7 +25,8 @@ const points = {
   pensv: Number,
   ycard: Number,
   rcard: Number,
-  total: Number
+  tb: Number,
+  total: Number,
 };
 
 const mongooseSchema = {

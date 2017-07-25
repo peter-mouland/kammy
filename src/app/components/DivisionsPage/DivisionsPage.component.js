@@ -4,7 +4,7 @@ import bemHelper from 'react-bem-helper';
 import Errors from '../Errors/Errors';
 import Interstitial from '../Interstitial/Interstitial';
 import MultiToggle from '../MultiToggle/MultiToggle';
-import { positionMapping } from '../Positions/Positions';
+import { positionMapping } from '../../../config/positions';
 
 import './divisions-page.scss';
 
