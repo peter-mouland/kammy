@@ -25,7 +25,7 @@ const baseMetaData = {
   title: 'Fantasy Football',
   description: '',
   meta: {
-    charset: 'utf-8',
+    charSet: 'utf-8',
     name: {
       keywords: 'react,example'
     }

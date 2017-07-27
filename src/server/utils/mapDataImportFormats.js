@@ -10,6 +10,8 @@ const mapper = () => ({
   CONCEDED: 8,
   SAVED_PENALTIES: 11,
   TACKLE_BONUS1: 15,
+  SAVE_BONUS1: 16,
+  SAVE_BONUS2: 17,
   TACKLE_BONUS2: 19,
 });
 
@@ -20,6 +22,7 @@ export const zeros = {
   subs: 0,
   gls: 0,
   tb: 0,
+  sb: 0,
   asts: 0,
   ycard: 0,
   rcard: 0,
@@ -48,7 +51,9 @@ export const mapImportToSkyFormat = (player) => {
       null,
       null,
       null,
-      player.tb || 0
+      player.tb || 0,
+      player.sb || 0,
+      null
     ] };
   delete player.new;
   delete player.player_2;
@@ -115,7 +120,8 @@ export const mapSkyFormatToSchema = (player) => {
     pensv: season[map.SAVED_PENALTIES],
     ycard: season[map.YELLOW_CARDS],
     rcard: season[map.RED_CARDS],
-    tb: parseInt(season[map.TACKLE_BONUS1], 10) + parseInt(season[map.TACKLE_BONUS2], 10)
+    tb: parseInt(season[map.TACKLE_BONUS1], 10) + parseInt(season[map.TACKLE_BONUS2], 10),
+    sb: parseInt(season[map.SAVE_BONUS1], 10) + parseInt(season[map.SAVE_BONUS2], 10),
   };
   player.code = player.id;
   player.gameWeek = {

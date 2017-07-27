@@ -12,6 +12,7 @@ const stats = {
   ycard: Number,
   rcard: Number,
   tb: Number,
+  sb: Number,
 };
 
 const points = {
@@ -26,6 +27,7 @@ const points = {
   ycard: Number,
   rcard: Number,
   tb: Number,
+  sb: Number,
   total: Number,
 };
 

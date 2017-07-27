@@ -54,7 +54,7 @@ export function forConceded(conceded, position) { // -1
   return parseInt(conceded * multiplier, 10);
 }
 
-export function forTackleBonus(bonusPoints, position) { // -1
+export function forTackleBonus(bonusPoints, position) { // 3
   let multiplier;
   if (position === 'MID') {
     multiplier = 3;
@@ -67,6 +67,17 @@ export function forTackleBonus(bonusPoints, position) { // -1
 export function forPenaltiesSaved(ps) {
   return ps * 5;
 }
+
+export function forSaveBonus(bonusPoints, position) { // 3
+  let multiplier;
+  if (position === 'GK') {
+    multiplier = 3;
+  } else {
+    multiplier = 0;
+  }
+  return parseInt(bonusPoints * multiplier, 10);
+}
+
 function forMOM() {
   return 0;
 }
@@ -83,8 +94,9 @@ export function calculateTotalPoints(stats, pos) {
   const ycard = forYellowCards(stats.ycard, pos);
   const rcard = forRedCards(stats.rcard, pos);
   const tb = forTackleBonus(stats.tb, pos);
-  const total = mom + gls + ycard + rcard + apps + subs + asts + cs + con + pensv;
-  return { apps, subs, gls, asts, mom, cs, con, pensv, ycard, rcard, tb, total };
+  const sb = forSaveBonus(stats.sb, pos);
+  const total = mom + gls + ycard + rcard + apps + subs + asts + cs + tb + sb + con + pensv;
+  return { apps, subs, gls, asts, mom, cs, con, pensv, ycard, rcard, tb, sb, total };
 }
 
 // externalSeasonStats : the new season stats - including any gameWeek stats
@@ -103,8 +115,8 @@ export function calculateGameWeek(externalSeasonStats, savedSeasonStats, savedGa
     pensv: (externalSeasonStats.pensv - savedSeasonStats.pensv) + savedGameWeekStats.pensv,
     ycard: (externalSeasonStats.ycard - savedSeasonStats.ycard) + savedGameWeekStats.ycard,
     rcard: (externalSeasonStats.rcard - savedSeasonStats.rcard) + savedGameWeekStats.rcard,
-    tb: (externalSeasonStats.tb - savedSeasonStats.tb)
-      + savedGameWeekStats.tb,
+    tb: (externalSeasonStats.tb - savedSeasonStats.tb) + savedGameWeekStats.tb,
+    sb: (externalSeasonStats.sb - savedSeasonStats.sb) + savedGameWeekStats.sb,
   };
   const points = calculateTotalPoints(stats, pos);
   return {

@@ -48,6 +48,13 @@ describe('calculatePoints', () => {
       expect(calculatePoints.forGoals(10, position)).to.eql(100);
     });
 
+
+    it('returns 3 points for save bonus', () => {
+      expect(calculatePoints.forSaveBonus(1, position)).to.eql(3);
+      expect(calculatePoints.forSaveBonus(0, position)).to.eql(0);
+      expect(calculatePoints.forSaveBonus(10, position)).to.eql(30);
+    });
+
     it('returns 5 points for each clean sheet', () => {
       expect(calculatePoints.forCleanSheet(1, position)).to.eql(5);
       expect(calculatePoints.forCleanSheet(0, position)).to.eql(0);
@@ -68,7 +75,7 @@ describe('calculatePoints', () => {
 
     it('return a correct totals', () => {
       const stats = {
-        apps: 1, subs: 1, mom: 1, gls: 1, tb: 1, asts: 1, cs: 1, con: 1, pensv: 1, ycard: 1, rcard: 1
+        apps: 1, subs: 1, mom: 1, gls: 1, tb: 1,  sb: 1, asts: 1, cs: 1, con: 1, pensv: 1, ycard: 1, rcard: 1
       };
       const points = calculatePoints.calculateTotalPoints(stats, position);
       expect(points.apps).to.eql(3);
@@ -76,24 +83,25 @@ describe('calculatePoints', () => {
       expect(points.mom).to.eql(0);
       expect(points.gls).to.eql(10);
       expect(points.asts).to.eql(3);
+      expect(points.sb).to.eql(3);
       expect(points.tb).to.eql(0);
       expect(points.cs).to.eql(5);
       expect(points.con).to.eql(-1);
       expect(points.pensv).to.eql(5);
       expect(points.ycard).to.eql(-2);
       expect(points.rcard).to.eql(-5);
-      expect(points.total).to.eql(19);
+      expect(points.total).to.eql(22);
     });
 
     it('return a correct gameWeek points', () => {
       const externalSeasonStats = {
-        apps: 3, subs: 3, mom: 3, gls: 3, tb: 3, asts: 3, cs: 3, con: 3, pensv: 3, ycard: 3, rcard: 3
+        apps: 3, subs: 3, mom: 3, gls: 3, tb: 3, sb:3, asts: 3, cs: 3, con: 3, pensv: 3, ycard: 3, rcard: 3
       };
       const savedSeasonStats = {
-        apps: 2, subs: 2, mom: 2, gls: 2, tb: 2, asts: 2, cs: 2, con: 2, pensv: 2, ycard: 2, rcard: 2
+        apps: 2, subs: 2, mom: 2, gls: 2, tb: 2, sb:2, asts: 2, cs: 2, con: 2, pensv: 2, ycard: 2, rcard: 2
       };
       const savedGameWeekStats = {
-        apps: 1, subs: 1, mom: 1, gls: 1, tb: 1, asts: 1, cs: 1, con: 1, pensv: 1, ycard: 1, rcard: 1
+        apps: 1, subs: 1, mom: 1, gls: 1, tb: 1, sb:1, asts: 1, cs: 1, con: 1, pensv: 1, ycard: 1, rcard: 1
       };
       const gameWeek = calculatePoints.calculateGameWeek(externalSeasonStats, savedSeasonStats, savedGameWeekStats, position);
       const points = gameWeek.points;
@@ -103,6 +111,7 @@ describe('calculatePoints', () => {
       expect(stats.mom).to.eql(2);
       expect(stats.gls).to.eql(2);
       expect(stats.asts).to.eql(2);
+      expect(stats.sb).to.eql(2);
       expect(stats.tb).to.eql(2);
       expect(stats.cs).to.eql(2);
       expect(stats.con).to.eql(2);
@@ -115,13 +124,14 @@ describe('calculatePoints', () => {
       expect(points.mom).to.eql(0);
       expect(points.gls).to.eql(20);
       expect(points.asts).to.eql(6);
+      expect(points.sb).to.eql(6);
       expect(points.tb).to.eql(0);
       expect(points.cs).to.eql(10);
       expect(points.con).to.eql(-2);
       expect(points.pensv).to.eql(10);
       expect(points.ycard).to.eql(-4);
       expect(points.rcard).to.eql(-10);
-      expect(points.total).to.eql(38);
+      expect(points.total).to.eql(44);
     });
   });
 
@@ -150,7 +160,7 @@ describe('calculatePoints', () => {
 
     it('return a correct total', () => {
       const stats = {
-        apps: 1, subs: 1, mom: 1, gls: 1, tb: 1, asts: 1, cs: 1, con: 1, pensv: 1, ycard: 1, rcard: 1
+        apps: 1, subs: 1, mom: 1, gls: 1, tb: 1, sb: 1, asts: 1, cs: 1, con: 1, pensv: 1, ycard: 1, rcard: 1
       };
       const points = calculatePoints.calculateTotalPoints(stats, position);
       expect(points.apps).to.eql(3);
@@ -159,6 +169,7 @@ describe('calculatePoints', () => {
       expect(points.gls).to.eql(8);
       expect(points.asts).to.eql(3);
       expect(points.tb).to.eql(0);
+      expect(points.sb).to.eql(0);
       expect(points.cs).to.eql(5);
       expect(points.con).to.eql(-1);
       expect(points.pensv).to.eql(5);
@@ -193,7 +204,7 @@ describe('calculatePoints', () => {
 
     it('return a correct total', () => {
       const stats = {
-        apps: 1, subs: 1, mom: 1, gls: 1, tb: 1, asts: 1, cs: 1, con: 1, pensv: 1, ycard: 1, rcard: 1
+        apps: 1, subs: 1, mom: 1, gls: 1, tb: 1, sb: 1, asts: 1, cs: 1, con: 1, pensv: 1, ycard: 1, rcard: 1
       };
       const points = calculatePoints.calculateTotalPoints(stats, position);
       expect(points.apps).to.eql(3);
@@ -202,6 +213,7 @@ describe('calculatePoints', () => {
       expect(points.gls).to.eql(8);
       expect(points.asts).to.eql(3);
       expect(points.tb).to.eql(0);
+      expect(points.sb).to.eql(0);
       expect(points.cs).to.eql(5);
       expect(points.con).to.eql(-1);
       expect(points.pensv).to.eql(5);
@@ -241,7 +253,7 @@ describe('calculatePoints', () => {
 
     it('return a correct total', () => {
       const stats = {
-        apps: 1, subs: 1, mom: 1, gls: 1, tb: 1, asts: 1, cs: 1, con: 1, pensv: 1, ycard: 1, rcard: 1
+        apps: 1, subs: 1, mom: 1, gls: 1, tb: 1, sb: 1, asts: 1, cs: 1, con: 1, pensv: 1, ycard: 1, rcard: 1
       };
       const points = calculatePoints.calculateTotalPoints(stats, position);
       expect(points.apps).to.eql(3);
@@ -250,12 +262,13 @@ describe('calculatePoints', () => {
       expect(points.gls).to.eql(6);
       expect(points.asts).to.eql(3);
       expect(points.tb).to.eql(3);
+      expect(points.sb).to.eql(0);
       expect(points.cs).to.eql(0);
       expect(points.con).to.eql(0);
       expect(points.pensv).to.eql(5);
       expect(points.ycard).to.eql(-2);
       expect(points.rcard).to.eql(-5);
-      expect(points.total).to.eql(11);
+      expect(points.total).to.eql(14);
     });
   });
 
@@ -284,7 +297,7 @@ describe('calculatePoints', () => {
 
     it('return a correct total', () => {
       const stats = {
-        apps: 1, subs: 1, mom: 1, gls: 1, tb: 1, asts: 1, cs: 1, con: 1, pensv: 1, ycard: 1, rcard: 1
+        apps: 1, subs: 1, mom: 1, gls: 1, tb: 1, sb: 1, asts: 1, cs: 1, con: 1, pensv: 1, ycard: 1, rcard: 1
       };
       const points = calculatePoints.calculateTotalPoints(stats, position);
       expect(points.apps).to.eql(3);
@@ -293,6 +306,7 @@ describe('calculatePoints', () => {
       expect(points.gls).to.eql(5);
       expect(points.asts).to.eql(3);
       expect(points.tb).to.eql(0);
+      expect(points.sb).to.eql(0);
       expect(points.cs).to.eql(0);
       expect(points.con).to.eql(0);
       expect(points.pensv).to.eql(5);
@@ -327,7 +341,7 @@ describe('calculatePoints', () => {
 
     it('return a correct total', () => {
       const stats = {
-        apps: 1, subs: 1, mom: 1, gls: 1, tb: 1, asts: 1, cs: 1, con: 1, pensv: 1, ycard: 1, rcard: 1
+        apps: 1, subs: 1, mom: 1, gls: 1, tb: 1, sb: 1, asts: 1, cs: 1, con: 1, pensv: 1, ycard: 1, rcard: 1
       };
       const points = calculatePoints.calculateTotalPoints(stats, position);
       expect(points.apps).to.eql(3);
@@ -336,6 +350,7 @@ describe('calculatePoints', () => {
       expect(points.gls).to.eql(4);
       expect(points.asts).to.eql(3);
       expect(points.tb).to.eql(0);
+      expect(points.sb).to.eql(0);
       expect(points.cs).to.eql(0);
       expect(points.con).to.eql(0);
       expect(points.pensv).to.eql(5);

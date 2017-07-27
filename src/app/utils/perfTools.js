@@ -21,6 +21,10 @@ if (process.env.NODE_ENV !== 'production') {
           Perf.start();
         }
         break;
+      case 'o':
+        console.log('Output of printOperations');
+        Perf.printOperations();
+        break;
       case 'w':
         console.log('Output of printWasted');
         Perf.printWasted();

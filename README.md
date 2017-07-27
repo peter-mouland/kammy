@@ -48,7 +48,21 @@ The purpose of these tests is to ensure that the vital part of the app has been 
 
 These tests will use `BrowserStack` to run all tests tagged up as `production` against a single browser.
 
-##Debugging Node files via Chrome Dev Tools
+##Debugging 
+
+### Debug React performance via the browser
+
+In non-production environments, [`react-addons-perf`](https://facebook.github.io/react/docs/perf.html) are included in the bundle.  
+To make usage easier, (if the user focus is on the document body) we have enabled the following shortcut keys:
+ - `s`: Start/Stop the performance tools 
+ - `w`: Display `printWasted` (wasted time re-rendering components) 
+ - `e`: Display `printExclusive` (overall time taken)
+ - `i`: Display `printInclusive` ("Exclusive" times don't include the times taken to mount the components)
+ - `o`: Display `printOperations` (prints DOM manipulations i.e. setInnerHTML and Remove)
+
+You can also install [`react-dev-tools`](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) and check `highlight updates' to see which components are being re-rendered.
+
+### Debug Node via Chrome Dev Tools
 
 To enable Node debugging in Chrome, you have to do the following as it's still an experimental feature:
 

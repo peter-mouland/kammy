@@ -86,6 +86,7 @@ export const saveSeasonStats = async ({ seasonId }) => {
         'season.points.rcard': seasonPoints.rcard + gwPoints.rcard,
         'season.points.ycard': seasonPoints.ycard + gwPoints.ycard,
         'season.points.tb': seasonPoints.tb + gwPoints.tb,
+        'season.points.sb': seasonPoints.sb + gwPoints.sb,
         'season.points.total': seasonPoints.total + gwPoints.total,
         'season.stats.pensv': seasonStats.pensv + gwStats.pensv,
         'season.stats.apps': seasonStats.apps + gwStats.apps,
@@ -97,6 +98,7 @@ export const saveSeasonStats = async ({ seasonId }) => {
         'season.stats.rcard': seasonStats.rcard + gwStats.rcard,
         'season.stats.ycard': seasonStats.ycard + gwStats.ycard,
         'season.stats.tb': seasonStats.tb + gwStats.tb,
+        'season.stats.sb': seasonStats.sb + gwStats.sb,
         'gameWeek.points.total': 0,
         'gameWeek.points.pensv': 0,
         'gameWeek.points.apps': 0,
@@ -108,6 +110,7 @@ export const saveSeasonStats = async ({ seasonId }) => {
         'gameWeek.points.rcard': 0,
         'gameWeek.points.ycard': 0,
         'gameWeek.points.tb': 0,
+        'gameWeek.points.sb': 0,
         'gameWeek.stats.pensv': 0,
         'gameWeek.stats.apps': 0,
         'gameWeek.stats.subs': 0,
@@ -118,6 +121,7 @@ export const saveSeasonStats = async ({ seasonId }) => {
         'gameWeek.stats.rcard': 0,
         'gameWeek.stats.ycard': 0,
         'gameWeek.stats.tb': 0,
+        'gameWeek.stats.sb': 0,
       } }
     ));
     const queryTeam = (position) => ({
