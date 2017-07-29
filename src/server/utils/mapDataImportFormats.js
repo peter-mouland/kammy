@@ -1,6 +1,6 @@
 const mapper = () => ({
   STARTING_XI: 0,
-  MAN_OF_MATCH: 1,
+  NA: 1,
   SUBS: 2,
   GOALS: 3,
   ASSISTS: 4,
@@ -8,11 +8,23 @@ const mapper = () => ({
   RED_CARDS: 6,
   CLEAN_SHEETS: 7,
   CONCEDED: 8,
-  SAVED_PENALTIES: 11,
-  TACKLE_BONUS1: 15,
-  SAVE_BONUS1: 16,
-  SAVE_BONUS2: 17,
-  TACKLE_BONUS2: 20,
+  OWN_GOALS: 9,
+  SAVED_PENALTIES: 10,
+  MISSED_PENALTIES: 11,
+  MAN_OF_MATCH: 12,
+  PASSING_BONUS1: 13,
+  TACKLE_BONUS1: 14,
+  SAVE_BONUS1: 15,
+  SHOTS_BONUS1: 16,
+  PASSING_BONUS2: 17,
+  TACKLE_BONUS2: 18,
+  SAVE_BONUS2: 19,
+  SHOTS_BONUS2: 20,
+  TOTAL_PASSES: 21,
+  TOTAL_TACKLES: 22,
+  TOTAL_SAVES: 23,
+  TOTAL_SHOTS: 24,
+  SKY_FF_POINTS: 25,
 });
 
 export const zeros = {
@@ -37,7 +49,7 @@ export const mapImportToSkyFormat = (player) => {
   player.stats = {
     season: [
       player.apps, // 0
-      player.mom, // 1
+      null, // 1
       player.subs, // 2
       player.gls, // 3
       player.asts, // 4
@@ -46,13 +58,13 @@ export const mapImportToSkyFormat = (player) => {
       player.cs, // 7
       player.con, // 8
       null, // 9
-      null, // 10
-      player.pensv, // 11
+      player.pensv, // 10
+      null, // 11
       null, // 12
       null, // 13
-      null, // 14
-      player.tb || 0, // 15
-      player.sb || 0, // 16
+      player.tb || 0, // 14
+      player.sb || 0, // 15
+      null, // 16
       null // 17
     ] };
   delete player.new;
