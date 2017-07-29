@@ -18,7 +18,7 @@ const bem = bemHelper({ name: 'player-table' });
 const log = debug('kammy:players.component');
 
 const extremeStat = (int) => int < -10 || int > 10;
-const statCols = ['apps', 'subs', 'gls', 'asts', 'cs', 'con', 'pensv', 'tb', 'ycard', 'rcard'];
+const statCols = ['apps', 'subs', 'gls', 'asts', 'cs', 'con', 'pensv', 'tb', 'sb', 'ycard', 'rcard'];
 
 // eslint-disable-next-line no-confusing-arrow
 const Highlight = ({ player, update = {}, attribute, className }) =>
