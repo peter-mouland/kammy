@@ -31,8 +31,8 @@ const createJsonObj = (item) => ({
 
 // for authorising a new sheet look: https://www.npmjs.com/package/google-spreadsheet
 // probably easiest to make the sheet public
-const spreadsheet = new GoogleSpreadsheet('1t4dB4FjlVlm83ugthWwlVOVH_dWTFi_F-RyP9zRqGdI', creds);
-const playerListSheet = spreadsheet.getWorksheet('autopick');
+const spreadsheet = new GoogleSpreadsheet('1kj4HkXs2kjK__NZ8z9mmtHsg6C-fTQr7_MlUFdEKouw', creds);
+const playerListSheet = spreadsheet.getWorksheet('Auto pick list');
 
 playerListSheet
   .toJson(createJsonObj)
