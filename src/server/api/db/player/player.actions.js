@@ -77,9 +77,7 @@ export const importPlayers = async () => {
     if (player.pos === 'park') player.pos = 'unknown';
     if (!dbPlayer) {
       const maybeGK = String(player.code).startsWith('1');
-      const maybeStr = String(player.code).startsWith('4');
       if (player.pos === 'unknown' && maybeGK) player.pos = 'GK';
-      if (player.pos === 'unknown' && maybeStr) player.pos = 'STR';
       player.new = true;
       player.season.stats = zeros;
       updatePromises.push((new Player(player)).save());
