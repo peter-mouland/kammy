@@ -12,7 +12,7 @@ const mapper = () => ({
   TACKLE_BONUS1: 15,
   SAVE_BONUS1: 16,
   SAVE_BONUS2: 17,
-  TACKLE_BONUS2: 19,
+  TACKLE_BONUS2: 20,
 });
 
 export const zeros = {
@@ -36,24 +36,24 @@ export const mapImportToSkyFormat = (player) => {
   player.name = player.player;
   player.stats = {
     season: [
-      player.apps,
-      player.mom,
-      player.subs,
-      player.gls,
-      player.asts,
-      player.ycard,
-      player.rcard,
-      player.cs,
-      player.con,
-      null,
-      null,
-      player.pensv,
-      null,
-      null,
-      null,
-      player.tb || 0,
-      player.sb || 0,
-      null
+      player.apps, // 0
+      player.mom, // 1
+      player.subs, // 2
+      player.gls, // 3
+      player.asts, // 4
+      player.ycard, // 5
+      player.rcard, // 6
+      player.cs, // 7
+      player.con, // 8
+      null, // 9
+      null, // 10
+      player.pensv, // 11
+      null, // 12
+      null, // 13
+      null, // 14
+      player.tb || 0, // 15
+      player.sb || 0, // 16
+      null // 17
     ] };
   delete player.new;
   delete player.player_2;

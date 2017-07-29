@@ -56,7 +56,7 @@ export function forConceded(conceded, position) { // -1
 
 export function forTackleBonus(bonusPoints, position) { // 3
   let multiplier;
-  if (position === 'MID') {
+  if ((position === 'FB' || position === 'CB') || position === 'MID') {
     multiplier = 3;
   } else {
     multiplier = 0;

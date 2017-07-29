@@ -168,14 +168,14 @@ describe('calculatePoints', () => {
       expect(points.mom).to.eql(0);
       expect(points.gls).to.eql(8);
       expect(points.asts).to.eql(3);
-      expect(points.tb).to.eql(0);
+      expect(points.tb).to.eql(3);
       expect(points.sb).to.eql(0);
       expect(points.cs).to.eql(5);
       expect(points.con).to.eql(-1);
       expect(points.pensv).to.eql(5);
       expect(points.ycard).to.eql(-2);
       expect(points.rcard).to.eql(-5);
-      expect(points.total).to.eql(17);
+      expect(points.total).to.eql(20);
     });
   });
 
@@ -212,14 +212,14 @@ describe('calculatePoints', () => {
       expect(points.mom).to.eql(0);
       expect(points.gls).to.eql(8);
       expect(points.asts).to.eql(3);
-      expect(points.tb).to.eql(0);
+      expect(points.tb).to.eql(3);
       expect(points.sb).to.eql(0);
       expect(points.cs).to.eql(5);
       expect(points.con).to.eql(-1);
       expect(points.pensv).to.eql(5);
       expect(points.ycard).to.eql(-2);
       expect(points.rcard).to.eql(-5);
-      expect(points.total).to.eql(17);
+      expect(points.total).to.eql(20);
     });
   });
 
