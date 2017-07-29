@@ -60,7 +60,7 @@ export const mapImportToSkyFormat = (player) => {
       null, // 9
       player.pensv, // 10
       null, // 11
-      null, // 12
+      player.mom, // 12
       null, // 13
       player.tb || 0, // 14
       player.sb || 0, // 15

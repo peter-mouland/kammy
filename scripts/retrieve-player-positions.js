@@ -20,6 +20,8 @@ const createJsonObj = (item) => ({
     asts: 0,
     mom: 0,
     cs: 0,
+    tb: 0,
+    sb: 0,
     con: 0,
     pensv: 0,
     ycard: 0,
@@ -29,7 +31,7 @@ const createJsonObj = (item) => ({
 
 // for authorising a new sheet look: https://www.npmjs.com/package/google-spreadsheet
 // probably easiest to make the sheet public
-const spreadsheet = new GoogleSpreadsheet('1QafyTlopXTyvpudkPh_oB0Vpx-Q0gWDN2yWwVQTl0og', creds);
+const spreadsheet = new GoogleSpreadsheet('1t4dB4FjlVlm83ugthWwlVOVH_dWTFi_F-RyP9zRqGdI', creds);
 const playerListSheet = spreadsheet.getWorksheet('autopick');
 
 playerListSheet
