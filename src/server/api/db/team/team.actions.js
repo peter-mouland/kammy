@@ -11,13 +11,13 @@ export const saveNewTeam = (teamData) => {
   return newTeam.save();
 };
 
-export const getTeams = (search = {}) => Team.find(search).exec();
+export const getTeams = (search = {}) => Team.find(search).populate('user').exec();
 
 export const getTeam = ({ teamId }, context) => {
   if (!teamId) {
-    return Team.findOne({ 'user._id': new ObjectId(context.user._id) }).exec();
+    return Team.findOne({ 'user._id': new ObjectId(context.user._id) }).populate('user').exec();
   }
-  return Team.findById(teamId).exec();
+  return Team.findById(teamId).populate('user').exec();
 };
 
 export const updateTeamById = (_id, teamUpdate) =>
