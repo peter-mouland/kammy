@@ -313,9 +313,10 @@ export default class PlayerTable extends React.Component {
         <table cellPadding={0} cellSpacing={0} { ...bem(null, type, className) }>
           <thead>
             <tr { ...bem('data-header')}>
-              { editable && <th>Code</th> }
+              <th>Code</th>
               <th>Position</th>
               <th>Player</th>
+              <th>Club</th>
               { showStats && statCols.map((stat) => [
                 <td key={stat}>{stat}</td>,
                 <td key={`${stat}-gw`}><sup>(gw)</sup></td>
@@ -353,17 +354,17 @@ export default class PlayerTable extends React.Component {
                   const isOnMyTeam = teamPlayers[player.code];
                   return (
                     <tr key={player.code} id={player.code} { ...bem('player', { selected: isOnMyTeam, new: !!player.new })}>
-                      { editable && (
-                        <td { ...bem('meta')}>
-                          { player.new && <Svg markup={New} { ...bem('new-icon')} />}
-                          { player.code }
-                        </td>
-                      ) }
+                      <td { ...bem('meta')}>
+                        { player.new && <Svg markup={New} { ...bem('new-icon')} />}
+                        { player.code }
+                      </td>
                       <td { ...bem('meta')}>
                         {this.CellEditor({ player, originalPlayerData, attribute: 'pos', editable, type: 'select' })}
                       </td>
                       <td { ...bem('meta')}>
                         {this.CellEditor({ player, originalPlayerData, attribute: 'name', editable, type: 'text' })}
+                      </td>
+                      <td { ...bem('meta')}>
                         <small>{this.CellEditor({ player, originalPlayerData, attribute: 'club', editable, type: 'select' })}</small>
                       </td>
                       { showStats && statCols.map((stat) => [
