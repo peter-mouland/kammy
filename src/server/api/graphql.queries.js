@@ -1,20 +1,10 @@
 const playerStatsFragment = `
 fragment playerStatsInfo on Player {
  gameWeek {
-   stats {
-     apps subs gls asts mom cs con pensv ycard rcard
-   }
-   points {
-     apps subs gls asts mom cs con pensv ycard rcard total
-   }
+   apps subs gls asts mom cs con pensv ycard rcard points
  }
  season {
-   stats {
-     apps subs gls asts mom cs con pensv ycard rcard
-   }
-   points {
-     apps subs gls asts mom cs con pensv ycard rcard total
-   }
+   apps subs gls asts mom cs con pensv ycard rcard points
  }
 }`;
 

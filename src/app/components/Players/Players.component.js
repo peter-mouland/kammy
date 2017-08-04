@@ -65,7 +65,7 @@ function fieldSorter(fields) {
 }
 
 function AdditionalPoints({ children: points }) {
-  if (points === 0) {
+  if (!points) {
     return null;
   }
   return (
@@ -195,10 +195,6 @@ export default class PlayerTable extends React.Component {
     this.setState({ nameFilter: e.target.value.trim() });
   }
 
-  statsOrPoints = (e) => {
-    this.setState({ statsOrPoints: e.target.value.trim() });
-  }
-
   showHidden = (e) => {
     const showHidden = e.target.checked;
     this.setState({ showHidden });
@@ -230,7 +226,7 @@ export default class PlayerTable extends React.Component {
       selectedPosition, showStats, showPoints, editable, playerUpdates = {}, team,
     } = this.props;
     const {
-      posFilter, clubFilter, nameFilter, statsOrPoints = 'stats', showHidden, showOnlyNewPlayers
+      posFilter, clubFilter, nameFilter, showHidden, showOnlyNewPlayers
     } = this.state;
     const club = this.options.club;
     const teamPlayers = team ? (Object.keys(team))
@@ -245,17 +241,6 @@ export default class PlayerTable extends React.Component {
     return (
       <div>
         <div { ...bem('options') }>
-          { showStats && (
-            <div { ...bem('option-group') }>
-              <MultiToggle
-                {...bem('toggle-options')}
-                checked={ statsOrPoints }
-                id={'stats-or-points'}
-                onChange={ this.statsOrPoints }
-                options={['stats', 'points']}
-              />
-            </div>
-          )}
           <div { ...bem('option-group') }>
             <div>
               <MultiToggle
@@ -321,11 +306,7 @@ export default class PlayerTable extends React.Component {
                 <td key={stat}>{stat}</td>,
                 <td key={`${stat}-gw`}><sup>(gw)</sup></td>
               ])}
-              { showStats && [
-                <td key={'total'}>Total</td>,
-                <td key={'total-gw'}><sup>(gw)</sup></td>
-              ] }
-              { showPoints && [
+              { (showStats || showPoints) && [
                 <td key={'points'}>Points</td>,
                 <td key={'points-gw'}><sup>(gw)</sup></td>
               ] }
@@ -369,30 +350,22 @@ export default class PlayerTable extends React.Component {
                       </td>
                       { showStats && statCols.map((stat) => [
                         <td key={stat} {...bem('output')}>
-                          {player.season[statsOrPoints][stat]}
+                          {player.season[stat]}
                         </td>,
                         <td key={`${stat}-gw`} {...bem('gw-output')}>
-                          <AdditionalPoints {...bem('additional', { highlight: extremeStat(player.gameWeek[statsOrPoints][stat]) })}>
-                            {player.gameWeek[statsOrPoints][stat]}
+                          <AdditionalPoints {...bem('additional', { highlight: extremeStat(player.gameWeek[stat]) })}>
+                            {player.gameWeek[stat]}
                           </AdditionalPoints>
                         </td>
                       ])}
-                      { showStats && [
-                        <td key={'total'} {...bem('output')}>
-                          {player.season[statsOrPoints].total}
+                      { (showStats || showPoints) && [
+                        <td key={'points'} {...bem('output')}>
+                          {player.season.points}
                         </td>,
-                        <td key={'total-gw'} {...bem('gw-output')}>
-                          <AdditionalPoints {...bem('additional', { highlight: extremeStat(player.gameWeek[statsOrPoints].total) })}>
-                            {player.gameWeek[statsOrPoints].total}
+                        <td key={'points-gw'} {...bem('gw-output')}>
+                          <AdditionalPoints {...bem('additional', { highlight: extremeStat(player.gameWeek.points) })}>
+                            {player.gameWeek.points}
                           </AdditionalPoints>
-                        </td>
-                      ]}
-                      { showPoints && [
-                        <td key="total" {...bem('output')}>
-                          {player.season.points.total}
-                        </td>,
-                        <td key="total-gw" {...bem('gw-output')}>
-                          <AdditionalPoints>{player.gameWeek.points.total}</AdditionalPoints>
                         </td>
                       ]}
                       { editable && (

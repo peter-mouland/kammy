@@ -12,31 +12,19 @@ const log = debug('kammy:db/player.actions');
 const Player = mongoose.model('Player');
 
 const aggFields = {
-  'season.points.total': { $add: ['$season.points.total', '$gameWeek.points.total'] },
-  'season.points.apps': { $add: ['$season.points.apps', '$gameWeek.points.apps'] },
-  'season.points.mom': { $add: ['$season.points.mom', '$gameWeek.points.mom'] },
-  'season.points.subs': { $add: ['$season.points.subs', '$gameWeek.points.subs'] },
-  'season.points.gls': { $add: ['$season.points.gls', '$gameWeek.points.gls'] },
-  'season.points.asts': { $add: ['$season.points.asts', '$gameWeek.points.asts'] },
-  'season.points.ycard': { $add: ['$season.points.ycard', '$gameWeek.points.ycard'] },
-  'season.points.rcard': { $add: ['$season.points.rcard', '$gameWeek.points.rcard'] },
-  'season.points.tb': { $add: ['$season.points.tb', '$gameWeek.points.tb'] },
-  'season.points.sb': { $add: ['$season.points.sb', '$gameWeek.points.sb'] },
-  'season.points.cs': { $add: ['$season.points.cs', '$gameWeek.points.cs'] },
-  'season.points.con': { $add: ['$season.points.con', '$gameWeek.points.con'] },
-  'season.points.pensv': { $add: ['$season.points.pensv', '$gameWeek.points.pensv'] },
-  'season.stats.apps': { $add: ['$season.stats.apps', '$gameWeek.stats.apps'] },
-  'season.stats.mom': { $add: ['$season.stats.mom', '$gameWeek.stats.mom'] },
-  'season.stats.subs': { $add: ['$season.stats.subs', '$gameWeek.stats.subs'] },
-  'season.stats.gls': { $add: ['$season.stats.gls', '$gameWeek.stats.gls'] },
-  'season.stats.asts': { $add: ['$season.stats.asts', '$gameWeek.stats.asts'] },
-  'season.stats.ycard': { $add: ['$season.stats.ycard', '$gameWeek.stats.ycard'] },
-  'season.stats.rcard': { $add: ['$season.stats.rcard', '$gameWeek.stats.rcard'] },
-  'season.stats.tb': { $add: ['$season.stats.tb', '$gameWeek.stats.tb'] },
-  'season.stats.sb': { $add: ['$season.stats.sb', '$gameWeek.stats.sb'] },
-  'season.stats.cs': { $add: ['$season.stats.cs', '$gameWeek.stats.cs'] },
-  'season.stats.con': { $add: ['$season.stats.con', '$gameWeek.stats.con'] },
-  'season.stats.pensv': { $add: ['$season.stats.pensv', '$gameWeek.stats.pensv'] },
+  'season.points': { $add: ['$season.points', '$gameWeek.points'] },
+  'season.apps': { $add: ['$season.apps', '$gameWeek.apps'] },
+  'season.mom': { $add: ['$season.mom', '$gameWeek.mom'] },
+  'season.subs': { $add: ['$season.subs', '$gameWeek.subs'] },
+  'season.gls': { $add: ['$season.gls', '$gameWeek.gls'] },
+  'season.asts': { $add: ['$season.asts', '$gameWeek.asts'] },
+  'season.ycard': { $add: ['$season.ycard', '$gameWeek.ycard'] },
+  'season.rcard': { $add: ['$season.rcard', '$gameWeek.rcard'] },
+  'season.tb': { $add: ['$season.tb', '$gameWeek.tb'] },
+  'season.sb': { $add: ['$season.sb', '$gameWeek.sb'] },
+  'season.cs': { $add: ['$season.cs', '$gameWeek.cs'] },
+  'season.con': { $add: ['$season.con', '$gameWeek.con'] },
+  'season.pensv': { $add: ['$season.pensv', '$gameWeek.pensv'] },
   gameWeek: 1,
   name: 1,
   code: 1,
@@ -79,7 +67,7 @@ export const importPlayers = async () => {
       const maybeGK = String(player.code).startsWith('1');
       if (player.pos === 'unknown' && maybeGK) player.pos = 'GK';
       player.new = true;
-      player.season.stats = zeros;
+      player.season = zeros;
       updatePromises.push((new Player(player)).save());
     } else {
       delete player.season;

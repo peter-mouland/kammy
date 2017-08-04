@@ -13,22 +13,7 @@ const stats = {
   rcard: Number,
   tb: Number,
   sb: Number,
-};
-
-const points = {
-  apps: Number,
-  subs: Number,
-  gls: Number,
-  asts: Number,
-  mom: Number,
-  cs: Number,
-  con: Number,
-  pensv: Number,
-  ycard: Number,
-  rcard: Number,
-  tb: Number,
-  sb: Number,
-  total: Number,
+  points: Number,
 };
 
 const mongooseSchema = {
@@ -45,14 +30,8 @@ const mongooseSchema = {
     default: false
   },
   new: Boolean,
-  gameWeek: {
-    stats,
-    points
-  },
-  season: {
-    stats,
-    points
-  },
+  gameWeek: stats,
+  season: stats,
   pointsChange: Number,
   value: Number
 };

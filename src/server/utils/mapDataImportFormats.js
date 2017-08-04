@@ -28,7 +28,7 @@ const mapper = () => ({
 });
 
 export const zeros = {
-  total: 0,
+  points: 0,
   apps: 0,
   mom: 0,
   subs: 0,
@@ -90,14 +90,8 @@ export const mapImportToSkyFormat = (player) => {
 export const mapImportToSchema = (player) => {
   player.id = player.code;
   player.name = player.player;
-  player.season = {
-    stats: zeros,
-    points: zeros,
-  };
-  player.gameWeek = {
-    stats: zeros,
-    points: zeros,
-  };
+  player.season = zeros;
+  player.gameWeek = zeros;
   delete player.id;
   delete player.new;
   delete player.player_2;
@@ -122,28 +116,23 @@ export const mapSkyFormatToSchema = (player) => {
   const map = mapper();
   const season = player.stats && player.stats.season;
   const stats = {
-    apps: season[map.STARTING_XI],
-    mom: season[map.MAN_OF_MATCH],
-    subs: season[map.SUBS],
-    gls: season[map.GOALS],
-    asts: season[map.ASSISTS],
-    cs: season[map.CLEAN_SHEETS],
-    con: season[map.CONCEDED],
-    pensv: season[map.SAVED_PENALTIES],
-    ycard: season[map.YELLOW_CARDS],
-    rcard: season[map.RED_CARDS],
-    tb: parseInt(season[map.TACKLE_BONUS1], 10) + parseInt(season[map.TACKLE_BONUS2], 10),
-    sb: parseInt(season[map.SAVE_BONUS1], 10) + parseInt(season[map.SAVE_BONUS2], 10),
+    apps: season[map.STARTING_XI] || 0,
+    mom: season[map.MAN_OF_MATCH] || 0,
+    subs: season[map.SUBS] || 0,
+    gls: season[map.GOALS] || 0,
+    asts: season[map.ASSISTS] || 0,
+    cs: season[map.CLEAN_SHEETS] || 0,
+    con: season[map.CONCEDED] || 0,
+    pensv: season[map.SAVED_PENALTIES] || 0,
+    ycard: season[map.YELLOW_CARDS] || 0,
+    rcard: season[map.RED_CARDS] || 0,
+    tb: parseInt(season[map.TACKLE_BONUS1], 10) + parseInt(season[map.TACKLE_BONUS2], 10) || 0,
+    sb: parseInt(season[map.SAVE_BONUS1], 10) + parseInt(season[map.SAVE_BONUS2], 10) || 0,
+    points: 0
   };
   player.code = player.id;
-  player.gameWeek = {
-    stats: zeros,
-    points: zeros,
-  };
-  player.season = {
-    stats,
-    points: zeros
-  };
+  player.gameWeek = zeros;
+  player.season = stats;
   player.name = player.name || `${player.sName}, ${player.fName}`;
   player.club = player.club || player.tName;
   delete player.id;

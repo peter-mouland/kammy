@@ -45,14 +45,13 @@ export const saveGameWeekStats = ({ seasonId, update }) => {
       [`${position}.code`]: player.code
     });
     const setTeam = (position) => ({
-      [`gameWeek.${position}`]: player.gameWeek.points.total
+      [`gameWeek.${position}`]: player.gameWeek.points
     });
 
     allUpdates.push(Player.findOneAndUpdate(
       { code: player.code },
       { $set: {
-        'gameWeek.points': player.gameWeek.points,
-        'gameWeek.stats': player.gameWeek.stats,
+        gameWeek: player.gameWeek,
       } }
     ));
     allUpdates.push(Team.update(queryTeam('sub'), { $set: setTeam('sub') }));
@@ -69,59 +68,35 @@ export const saveSeasonStats = async ({ seasonId }) => {
   const players = await Player.find().exec();
   players.forEach(async (player) => {
     const pos = player.pos.toLowerCase();
-    const seasonStats = player.season.stats;
-    const seasonPoints = player.season.points;
-    const gwStats = player.gameWeek.stats;
-    const gwPoints = player.gameWeek.points;
+    const season = player.season;
+    const gameWeek = player.gameWeek;
     allUpdates.push(Player.findOneAndUpdate(
       { code: player.code },
       { $set: {
-        'season.points.pensv': seasonPoints.pensv + gwPoints.pensv,
-        'season.points.apps': seasonPoints.apps + gwPoints.apps,
-        'season.points.subs': seasonPoints.subs + gwPoints.subs,
-        'season.points.gls': seasonPoints.gls + gwPoints.gls,
-        'season.points.asts': seasonPoints.asts + gwPoints.asts,
-        'season.points.con': seasonPoints.con + gwPoints.con,
-        'season.points.cs': seasonPoints.cs + gwPoints.cs,
-        'season.points.rcard': seasonPoints.rcard + gwPoints.rcard,
-        'season.points.ycard': seasonPoints.ycard + gwPoints.ycard,
-        'season.points.tb': seasonPoints.tb + gwPoints.tb,
-        'season.points.sb': seasonPoints.sb + gwPoints.sb,
-        'season.points.total': seasonPoints.total + gwPoints.total,
-        'season.stats.pensv': seasonStats.pensv + gwStats.pensv,
-        'season.stats.apps': seasonStats.apps + gwStats.apps,
-        'season.stats.subs': seasonStats.subs + gwStats.subs,
-        'season.stats.gls': seasonStats.gls + gwStats.gls,
-        'season.stats.asts': seasonStats.asts + gwStats.asts,
-        'season.stats.con': seasonStats.con + gwStats.con,
-        'season.stats.cs': seasonStats.cs + gwStats.cs,
-        'season.stats.rcard': seasonStats.rcard + gwStats.rcard,
-        'season.stats.ycard': seasonStats.ycard + gwStats.ycard,
-        'season.stats.tb': seasonStats.tb + gwStats.tb,
-        'season.stats.sb': seasonStats.sb + gwStats.sb,
-        'gameWeek.points.total': 0,
-        'gameWeek.points.pensv': 0,
-        'gameWeek.points.apps': 0,
-        'gameWeek.points.subs': 0,
-        'gameWeek.points.gls': 0,
-        'gameWeek.points.asts': 0,
-        'gameWeek.points.con': 0,
-        'gameWeek.points.cs': 0,
-        'gameWeek.points.rcard': 0,
-        'gameWeek.points.ycard': 0,
-        'gameWeek.points.tb': 0,
-        'gameWeek.points.sb': 0,
-        'gameWeek.stats.pensv': 0,
-        'gameWeek.stats.apps': 0,
-        'gameWeek.stats.subs': 0,
-        'gameWeek.stats.gls': 0,
-        'gameWeek.stats.asts': 0,
-        'gameWeek.stats.con': 0,
-        'gameWeek.stats.cs': 0,
-        'gameWeek.stats.rcard': 0,
-        'gameWeek.stats.ycard': 0,
-        'gameWeek.stats.tb': 0,
-        'gameWeek.stats.sb': 0,
+        'season.points': season.points + gameWeek.points,
+        'season.pensv': season.pensv + gameWeek.pensv,
+        'season.apps': season.apps + gameWeek.apps,
+        'season.subs': season.subs + gameWeek.subs,
+        'season.gls': season.gls + gameWeek.gls,
+        'season.asts': season.asts + gameWeek.asts,
+        'season.con': season.con + gameWeek.con,
+        'season.cs': season.cs + gameWeek.cs,
+        'season.rcard': season.rcard + gameWeek.rcard,
+        'season.ycard': season.ycard + gameWeek.ycard,
+        'season.tb': season.tb + gameWeek.tb,
+        'season.sb': season.sb + gameWeek.sb,
+        'gameWeek.points': 0,
+        'gameWeek.pensv': 0,
+        'gameWeek.apps': 0,
+        'gameWeek.subs': 0,
+        'gameWeek.gls': 0,
+        'gameWeek.asts': 0,
+        'gameWeek.con': 0,
+        'gameWeek.cs': 0,
+        'gameWeek.rcard': 0,
+        'gameWeek.ycard': 0,
+        'gameWeek.tb': 0,
+        'gameWeek.sb': 0,
       } }
     ));
     const queryTeam = (position) => ({
@@ -136,7 +111,7 @@ export const saveSeasonStats = async ({ seasonId }) => {
 
     allTeams.forEach((team) => {
       const setTeam = (position) => ({
-        [`season.${position}`]: team.season[position] + player.gameWeek.points.total,
+        [`season.${position}`]: team.season[position] + player.gameWeek.points,
         [`gameWeek.${position}`]: 0,
       });
       allUpdates.push(Team.update(queryTeam('sub'), { $set: setTeam('sub') }));

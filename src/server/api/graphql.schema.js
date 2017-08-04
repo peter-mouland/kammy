@@ -5,7 +5,7 @@ const schemaString = `
   scalar JSON
 
   type PlayerStats {
-    total: Int
+    points: Int
     apps: Int
     subs: Int
     gls: Int
@@ -48,11 +48,6 @@ const schemaString = `
     am: Float 
     str: Float
     points: Float
-  }
-  
-  type GameWeek {
-    stats: PlayerStats
-    points: PlayerStats
   }
 
   type MinDetail {
@@ -146,8 +141,8 @@ const schemaString = `
     club: String
     new: Boolean
     value: Float
-    gameWeek: GameWeek
-    season: GameWeek
+    gameWeek: PlayerStats
+    season: PlayerStats
     pointsChange: Int
   }
 
