@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 import React from 'react';
 import PropTypes from 'prop-types';
 import debug from 'debug';
@@ -14,9 +15,18 @@ class SeasonAdminOptions extends React.Component {
     season: PropTypes.object,
   }
 
+  state = {
+    showDivBreakdown: false
+  }
+
   toggleLive = (e) => {
     const isLive = e.target.checked;
     this.props.updateSeason({ isLive, currentGW: 1 });
+  }
+
+  toggleDivBreakdown = (e) => {
+    const showDivBreakdown = e.target.checked;
+    this.setState({ showDivBreakdown });
   }
 
   fetchExternalStats = (e) => {
@@ -44,9 +54,11 @@ class SeasonAdminOptions extends React.Component {
   render() {
     const {
       statsErrors, statsLoading, statsSaving, statsSaved, statsSeasonSaving, savedSeason,
-      season, stats
+      season, teams, stats
     } = this.props;
 
+    const { showDivBreakdown } = this.state;
+    let shownHeader = '';
     return (
       <div data-test="admin-options--season">
         <div className="admin-options" >
@@ -80,6 +92,15 @@ class SeasonAdminOptions extends React.Component {
               onClick={ () => this.saveGameWeekStats(stats) }
             >2. Save Game Week Stats</button>
             { statsSaving ? <Interstitial small message="Saving GameWeek"/> : null }
+            <Toggle
+              disabled={ !stats }
+              checked={ showDivBreakdown }
+              id={`showDivBreakdown-${season._id}`}
+              className="admin-option"
+              onChange={ this.toggleDivBreakdown }
+            >
+              Show Division Breakdown
+            </Toggle>
           </div>
           <div className="admin-option">
             <button onClick={ this.saveSeasonStats } disabled={!statsSaved || savedSeason}>
@@ -88,7 +109,7 @@ class SeasonAdminOptions extends React.Component {
             { statsSeasonSaving ? <Interstitial small message="Saving Season"/> : null }
           </div>
         </div>
-        { stats ?
+        { stats && !showDivBreakdown ?
           <div className="admin-options" >
             <section >
               <Players
@@ -96,6 +117,41 @@ class SeasonAdminOptions extends React.Component {
                 type="admin"
                 showStats
               />
+            </section>
+          </div>
+          : null
+        }
+        { stats && showDivBreakdown ?
+          <div className="admin-options" >
+            <section >
+              {teams
+                .sort((teamA, teamB) => {
+                  return teamA.division.name < teamB.division.name ? -1 : 1;
+                })
+                .sort((teamA, teamB) => {
+                  return teamA.user.name < teamB.user.name ? -1 : 1;
+                })
+                .map((team) => {
+                  const row = (
+                    <section key={team.user.name || team.user.email}>
+                      {
+                        shownHeader !== team.division.name
+                          && <h3>{team.division.name}</h3>
+                      }
+                      <Players
+                        headerRow={team.user.name || team.user.email}
+                        hideOptions={true}
+                        team={team}
+                        players={ (Object.keys(stats)).map((key) => stats[key]) }
+                        type="admin"
+                        showPoints
+                      />
+                    </section>
+                  );
+                  shownHeader = team.division.name;
+                  return row;
+                })
+              }
             </section>
           </div>
           : null

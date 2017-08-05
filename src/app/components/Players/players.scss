@@ -1,7 +1,8 @@
 @import '../../../styles/base/colours';
 
 $row-bg: #EAEAEA;
-$row-bg--hover: #CACACA;
+$odd-row-bg: #CACACA;
+$row-bg--hover: #AAA;
 
 .player-table {
   tr,
@@ -11,8 +12,16 @@ $row-bg--hover: #CACACA;
     position: relative;
   }
 
+  thead {
+    background-color: $white;
+  }
+
   &__player {
     height: 2em;
+
+    &:nth-child(odd) {
+      background: $odd-row-bg;
+    }
 
     &:nth-child(even) {
       background: $row-bg;

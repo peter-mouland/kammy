@@ -42,12 +42,12 @@ export default class AdminPage extends React.Component {
 
   render() {
     const {
-      className, statsErrors = [], loading, seasons, match,
+      className, statsErrors = [], loading, seasons, match, seasonUsers,
       stats, statsLoading, statsSaving, statsSaved, statsSeasonSaving, savedSeason
     } = this.props;
     const addingSeason = loading === ADD_SEASON;
     const addingDivision = loading === ADD_DIVISION;
-
+    const teams = seasonUsers.reduce((prev, curr) => prev.concat(curr.teams), []);
     const seasonPath = join(match.url, ':seasonId/');
     const divisionPath = join(seasonPath, 'division/:divisionId/');
 
@@ -72,6 +72,7 @@ export default class AdminPage extends React.Component {
               <div>
                 <SeasonAdminOptions
                   season={season}
+                  teams={teams}
                   saveSeasonStats={ (update) => this.saveSeasonStats(season, update) }
                   updateSeason={ (update) => this.updateSeason(season, update) }
                   fetchExternalStats={ (source) => this.fetchExternalStats(season, source) }

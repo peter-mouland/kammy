@@ -86,11 +86,13 @@ export default class PlayerTable extends React.Component {
     selectedPosition: PropTypes.string,
     editable: PropTypes.bool,
     showPoints: PropTypes.bool,
+    hideOptions: PropTypes.bool,
     showStats: PropTypes.bool,
   };
 
   static defaultProps = {
     players: [],
+    hideOptions: false,
     editable: false,
     showPoints: false,
     showStats: false,
@@ -222,7 +224,7 @@ export default class PlayerTable extends React.Component {
 
   render() {
     const {
-      players, errors, loading, type, className, selectPlayer,
+      players, errors, loading, type, className, selectPlayer, hideOptions, headerRow,
       selectedPosition, showStats, showPoints, editable, playerUpdates = {}, team,
     } = this.props;
     const {
@@ -241,62 +243,69 @@ export default class PlayerTable extends React.Component {
     return (
       <div>
         <div { ...bem('options') }>
-          <div { ...bem('option-group') }>
-            <div>
-              <MultiToggle
-                label="Position:"
-                id={'position-filter'}
-                onChange={ this.posFilter }
-                checked={ posFilter }
-                options={ this.options.pos }
-              />
-            </div>
-            <div>
-              <label htmlFor="name-filter">Player:</label>
-              <input
-                id="name-filter"
-                name="name-filter"
-                type="search"
-                onChange={ this.nameFilter }
-                defaultValue=""
-              />
-            </div>
-            <div>
-              <label htmlFor="club-filter">Club:</label>
-              <Selector
-                id="club-filter"
-                name="club-filter"
-                onChange={ this.clubFilter }
-                defaultValue={ clubFilter }
-                options={ club }
-              />
-            </div>
-            { editable && [
-              <div key={'toggle-hidden'}>
-                <Toggle
-                  key="toggle-hidden"
-                  {...bem('toggle-options')}
-                  checked={ showHidden }
-                  id={'show-hidden-players'}
-                  onChange={ this.showHidden }
-                  label={'Show Hidden Players'}
-                />
-              </div>,
-              <div key={'toggle-new'}>
-                <Toggle
-                  key="toggle-new"
-                  {...bem('toggle-options')}
-                  checked={ showOnlyNewPlayers }
-                  id={'show-new-players'}
-                  onChange={ this.showOnlyNewPlayers }
-                  label={'Show Only New Players'}
+          {!hideOptions &&
+            <div {...bem('option-group')}>
+              <div>
+                <MultiToggle
+                  label="Position:"
+                  id={'position-filter'}
+                  onChange={this.posFilter}
+                  checked={posFilter}
+                  options={this.options.pos}
                 />
               </div>
-            ]}
-          </div>
+              <div>
+                <label htmlFor="name-filter">Player:</label>
+                <input
+                  id="name-filter"
+                  name="name-filter"
+                  type="search"
+                  onChange={this.nameFilter}
+                  defaultValue=""
+                />
+              </div>
+              <div>
+                <label htmlFor="club-filter">Club:</label>
+                <Selector
+                  id="club-filter"
+                  name="club-filter"
+                  onChange={this.clubFilter}
+                  defaultValue={clubFilter}
+                  options={club}
+                />
+              </div>
+              {editable && [
+                <div key={'toggle-hidden'}>
+                  <Toggle
+                    key="toggle-hidden"
+                    {...bem('toggle-options')}
+                    checked={showHidden}
+                    id={'show-hidden-players'}
+                    onChange={this.showHidden}
+                    label={'Show Hidden Players'}
+                  />
+                </div>,
+                <div key={'toggle-new'}>
+                  <Toggle
+                    key="toggle-new"
+                    {...bem('toggle-options')}
+                    checked={showOnlyNewPlayers}
+                    id={'show-new-players'}
+                    onChange={this.showOnlyNewPlayers}
+                    label={'Show Only New Players'}
+                  />
+                </div>
+              ]}
+            </div>
+          }
         </div>
         <table cellPadding={0} cellSpacing={0} { ...bem(null, type, className) }>
           <thead>
+            {headerRow &&
+              <tr {...bem('data-header')}>
+                <th colSpan={10}>{headerRow}</th>
+              </tr>
+            }
             <tr { ...bem('data-header')}>
               <th>Code</th>
               <th>Position</th>

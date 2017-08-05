@@ -86,6 +86,8 @@ const schemaString = `
     name: String
     club: String
     code: Int
+    season: Points
+    gameWeek: Points
   }
   type Team {
     _id: String
