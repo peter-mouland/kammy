@@ -72,8 +72,8 @@ function AdditionalPoints({ children: points }) {
     <sup { ...bem('additional-point')}>
       {
         points > 0
-          ? <span className="text--success">(+{points})</span>
-          : <span className="text--error">({points})</span>
+          ? <span className="text--success">{points}</span>
+          : <span className="text--error">{points}</span>
       }
     </sup>
   );
@@ -231,8 +231,11 @@ export default class PlayerTable extends React.Component {
       posFilter, clubFilter, nameFilter, showHidden, showOnlyNewPlayers
     } = this.state;
     const club = this.options.club;
-    const teamPlayers = team ? (Object.keys(team))
-      .reduce((prev, curr) => team[curr] && ({ ...prev, [team[curr].code]: team[curr] }), {}) : {};
+    const teamPlayers = team
+      ? (Object.keys(team))
+        .reduce((prev, curr) => team[curr] &&
+            ({ ...prev, [team[curr].code]: { ...team[curr], teamPos: curr } }), {})
+      : {};
 
     if (players === null) {
       return <Errors errors={[{ message: 'no players found, do you need to log in again?' }]} />;
@@ -242,8 +245,8 @@ export default class PlayerTable extends React.Component {
 
     return (
       <div>
-        <div { ...bem('options') }>
-          {!hideOptions &&
+        {!hideOptions &&
+          <div { ...bem('options') }>
             <div {...bem('option-group')}>
               <div>
                 <MultiToggle
@@ -297,13 +300,13 @@ export default class PlayerTable extends React.Component {
                 </div>
               ]}
             </div>
-          }
-        </div>
+          </div>
+        }
         <table cellPadding={0} cellSpacing={0} { ...bem(null, type, className) }>
           <thead>
             {headerRow &&
               <tr {...bem('data-header')}>
-                <th colSpan={10}>{headerRow}</th>
+                <th colSpan={6} style={{ textAlign: 'left' }}>{headerRow}</th>
               </tr>
             }
             <tr { ...bem('data-header')}>
@@ -342,6 +345,7 @@ export default class PlayerTable extends React.Component {
                 .map((originalPlayerData) => {
                   const player = playerUpdates[originalPlayerData._id] || originalPlayerData;
                   const isOnMyTeam = teamPlayers[player.code];
+
                   return (
                     <tr key={player.code} id={player.code} { ...bem('player', { selected: isOnMyTeam, new: !!player.new })}>
                       <td { ...bem('meta')}>
@@ -349,7 +353,10 @@ export default class PlayerTable extends React.Component {
                         { player.code }
                       </td>
                       <td { ...bem('meta')}>
-                        {this.CellEditor({ player, originalPlayerData, attribute: 'pos', editable, type: 'select' })}
+                        { isOnMyTeam && isOnMyTeam.teamPos === 'sub'
+                          ? 'SUB'
+                          : this.CellEditor({ player, originalPlayerData, attribute: 'pos', editable, type: 'select' })
+                        }
                       </td>
                       <td { ...bem('meta')}>
                         {this.CellEditor({ player, originalPlayerData, attribute: 'name', editable, type: 'text' })}
