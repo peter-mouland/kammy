@@ -1,3 +1,4 @@
+/* eslint-disable no-confusing-arrow */
 import React from 'react';
 import bemHelper from 'react-bem-helper';
 import Route from 'react-router-dom/Route';
@@ -35,13 +36,16 @@ export default class Users extends React.Component {
         <div className="admin-options" data-test="admin-options--user">
           <div className="admin-option">
             <ul className="simple-list">
-              { users.map((user) => user && (
-                <li key={user._id}>
-                  <SubLink { ...bem('text') } to={joinPaths(match.url, user._id)}>
-                    { user.name || user.email }
-                  </SubLink>
-                </li>)
-              )}
+              { users
+                .sort((userA, userB) => userA.name < userB.name ? -1 : 1)
+                .map((user) => user && (
+                  <li key={user._id}>
+                    <SubLink { ...bem('text') } to={joinPaths(match.url, user._id)}>
+                      { user.name || user.email }
+                    </SubLink>
+                  </li>)
+                )
+              }
             </ul>
           </div>
           <div className="admin-option admin-option__btn">

@@ -1,3 +1,4 @@
+/* eslint-disable no-confusing-arrow */
 import React from 'react';
 import bemHelper from 'react-bem-helper';
 import Route from 'react-router-dom/Route';
@@ -43,27 +44,29 @@ export default class Divisions extends React.Component {
       >
         <div className="admin-option">
           <ul className="simple-list">
-            { divisionTeams.map((team) => {
-              const teamPath = joinPaths(match.url, 'team', team._id);
-              return (
-                <li key={team._id}>
-                  {team.name}
-                  <SubLink { ...bem2('text') } to={teamPath}>
-                    {team.user.name}
-                  </SubLink>
-                  <Route
-                    path={teamPath} render={() => (
-                      <TeamAdminOptions
-                        divisionTeams={ divisionTeams }
-                        updatingUserTeam={ updatingUserTeam }
-                        team={ team }
-                        saveUpdates={ this.updateTeam }
-                      />
-                    )}
-                  />
-                </li>
-              );
-            })}
+            { divisionTeams
+              .sort((teamA, teamB) => teamA.user.name < teamB.user.name ? -1 : 1)
+              .map((team) => {
+                const teamPath = joinPaths(match.url, 'team', team._id);
+                return (
+                  <li key={team._id}>
+                    {team.name}
+                    <SubLink { ...bem2('text') } to={teamPath}>
+                      {team.user.name}
+                    </SubLink>
+                    <Route
+                      path={teamPath} render={() => (
+                        <TeamAdminOptions
+                          divisionTeams={ divisionTeams }
+                          updatingUserTeam={ updatingUserTeam }
+                          team={ team }
+                          saveUpdates={ this.updateTeam }
+                        />
+                      )}
+                    />
+                  </li>
+                );
+              })}
           </ul>
         </div>
         <div className="admin-option admin-option__btn">
