@@ -1,7 +1,7 @@
 import debug from 'debug';
 import mongoose from 'mongoose';
 
-import { saveNewTeam } from '../team/team.actions';
+import { saveNewTeam, updateTeamById } from '../team/team.actions';
 import { findSeasonById, getLatestSeason } from '../season/season.actions';
 
 const log = debug('kammy:db/user.actions');
@@ -14,8 +14,11 @@ export const saveNewUser = (userData) => {
 
 export const findOneUser = (userDetails) => User.findOne(userDetails).exec();
 
-export const updateUser = ({ _id, ...userDetails }) =>
-  User.findByIdAndUpdate(_id, userDetails, { new: true }).populate('teams').exec();
+export const updateUser = async ({ _id, ...userDetails }) => {
+  const user = await User.findByIdAndUpdate(_id, userDetails, { new: true }).populate('teams').exec();
+  await updateTeamById(user.teams[0]._id, { user: { _id, name: userDetails.name } });
+  return user;
+};
 
 export const addUser = ({ seasonId, divisionId, name, email, isAdmin, mustChangePassword, password = 'password123' }) => {
   let user;
