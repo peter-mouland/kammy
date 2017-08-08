@@ -37,10 +37,7 @@ $row-bg--hover: #AAA;
   }
 
   &__new-icon {
-    position: absolute;
     fill: $error;
-    top: -2px;
-    left: -13px;
   }
 
   &__meta--stat {

@@ -310,6 +310,7 @@ export default class PlayerTable extends React.Component {
               </tr>
             }
             <tr { ...bem('data-header')}>
+              <th>New</th>
               <th>Code</th>
               <th>Position</th>
               <th>Player</th>
@@ -350,6 +351,9 @@ export default class PlayerTable extends React.Component {
                     <tr key={player.code} id={player.code} { ...bem('player', { selected: isOnMyTeam, new: !!player.new })}>
                       <td { ...bem('meta')}>
                         { player.new && <Svg markup={New} { ...bem('new-icon')} />}
+                        { player.new && <span className="sr-only">new</span> }
+                      </td>
+                      <td { ...bem('meta')}>
                         { player.code }
                       </td>
                       <td { ...bem('meta')}>
