@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Interstitial from '../../Interstitial/Interstitial';
 import Errors from '../../Errors/Errors';
+import Toggle from '../../Toggle/Toggle';
 
 export default class EditUser extends React.Component {
   static propTypes = {
@@ -11,12 +12,17 @@ export default class EditUser extends React.Component {
 
   inputs = {};
 
+  toggleAdmin = (e) => {
+    this.inputs.isAdmin = e.target.checked;
+  }
+
   update = (e) => {
     e.preventDefault();
     this.props.update({
       _id: this.inputs.id.value,
       name: this.inputs.name.value,
       email: this.inputs.email.value,
+      isAdmin: this.inputs.isAdmin,
     });
   };
 
@@ -64,6 +70,19 @@ export default class EditUser extends React.Component {
                   this.inputs.email = input;
                 }}
               />
+            </div>
+            <div>
+              <Toggle
+                checked={ user.isAdmin }
+                id={`user-admin--${user._id}`}
+                className="admin-option"
+                ref={() => {
+                  this.inputs.isAdmin = user.isAdmin;
+                }}
+                onChange={ this.toggleAdmin }
+              >
+                Is Admin?
+              </Toggle>
             </div>
             <input className="admin-btn" type="submit" value="Update User"/>
           </form>

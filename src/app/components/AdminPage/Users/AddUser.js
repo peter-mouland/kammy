@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Interstitial from '../../Interstitial/Interstitial';
 import Errors from '../../Errors/Errors';
+import Toggle from '../../Toggle/Toggle';
 
 class AddUser extends React.Component {
   static propTypes = {
@@ -15,11 +16,16 @@ class AddUser extends React.Component {
 
   inputs = {};
 
+  toggleAdmin = (e) => {
+    this.inputs.isAdmin = e.target.checked;
+  }
+
   add = (e) => {
     e.preventDefault();
     this.props.add({
       name: this.inputs.name.value,
       email: this.inputs.email.value,
+      isAdmin: this.inputs.isAdmin,
       divisionId: this.inputs.division.value,
       seasonId: this.inputs.season.value,
     });
@@ -67,6 +73,19 @@ class AddUser extends React.Component {
                   this.inputs.email = input;
                 }}
               />
+            </div>
+            <div>
+              <Toggle
+                checked={ false }
+                id={'user-admin--new'}
+                className="admin-option"
+                ref={() => {
+                  this.inputs.isAdmin = false;
+                }}
+                onChange={ this.toggleAdmin }
+              >
+                Is Admin?
+              </Toggle>
             </div>
             <p>Assign team to:</p>
             <div>

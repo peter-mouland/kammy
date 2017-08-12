@@ -93,7 +93,7 @@ export const getTeamsQuery = `
 
 export const getUsersWithTeamsQuery = `
   ${teamFragment}
-  query { getUsersWithTeams{ _id name email teams { ...teamInfo } } } 
+  query { getUsersWithTeams{ _id name email isAdmin teams { ...teamInfo } } } 
 `;
 
 export const getDivisionsQuery = `
@@ -116,14 +116,15 @@ export const addDivisionsMutation = `
 
 export const addUserMutation = `
   ${teamFragment}
-  mutation ($seasonId: String, $divisionId: String, $name: String, $email: String) { 
-    addUser(seasonId: $seasonId, divisionId: $divisionId, name: $name, email: $email){ _id name email teams { ...teamInfo } } 
+  mutation ($seasonId: String, $divisionId: String, $name: String, $email: String, $isAdmin: Boolean) { 
+    addUser(seasonId: $seasonId, divisionId: $divisionId, name: $name, email: $email, isAdmin: $isAdmin){ _id name email isAdmin teams { ...teamInfo } } 
   }
 `;
 
 export const updateUserMutation = `
-  mutation ($_id: String, $name: String, $email: String) { 
-    updateUser(_id: $_id, name: $name, email: $email){ _id name email } 
+  ${teamFragment}
+  mutation ($_id: String, $name: String, $email: String, $isAdmin: Boolean) { 
+    updateUser(_id: $_id, name: $name, email: $email, isAdmin: $isAdmin){ _id name email isAdmin teams { ...teamInfo } } 
   }
 `;
 
