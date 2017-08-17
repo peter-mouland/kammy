@@ -129,7 +129,7 @@ class SeasonAdminOptions extends React.Component {
                 .sort(fieldSorter(['division.name', 'user.name']))
                 .map((team) => {
                   const row = (
-                    <section key={team.user.name || team.user.email}>
+                    <section key={team.division.name + (team.user.name || team.user.email)}>
                       {
                         shownHeader !== team.division.name
                           && <h3>{team.division.name}</h3>
