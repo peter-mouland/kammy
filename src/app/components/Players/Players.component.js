@@ -11,6 +11,7 @@ import Interstitial from '../../components/Interstitial/Interstitial';
 import MultiToggle from '../MultiToggle/MultiToggle';
 import Toggle from '../Toggle/Toggle';
 import New from '../../../assets/new.svg';
+import fieldSorter from '../../utils/field-sorter';
 
 import './players.scss';
 
@@ -46,23 +47,6 @@ const applyFilters = ({
     (player.club.toUpperCase().includes(clubFilter.toUpperCase()));
   return nameFiltered && posFiltered && clubFiltered && hiddenFiltered && newFiltered;
 };
-
-function fieldSorter(fields) {
-  return (prevPlayer, currPlayer) => fields
-    .map((field) => {
-      let dir = 1;
-      const desc = field[0] === '-';
-      if (desc) {
-        dir = -1;
-        field = field.substring(1);
-      }
-      const attrA = (field === 'pos') ? playerPositions[prevPlayer.pos].order : prevPlayer[field];
-      const attrB = (field === 'pos') ? playerPositions[currPlayer.pos].order : currPlayer[field];
-      if (attrA > attrB) return dir;
-      return (attrA < attrB) ? -(dir) : 0;
-    })
-    .reduce((prev, curr) => prev || curr, 0);
-}
 
 function AdditionalPoints({ children: points }) {
   if (!points) {

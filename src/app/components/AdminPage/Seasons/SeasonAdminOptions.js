@@ -7,6 +7,7 @@ import Toggle from '../../Toggle/Toggle';
 import Interstitial from '../../Interstitial/Interstitial';
 import Errors from '../../Errors/Errors';
 import Players from '../../Players/Players.component';
+import fieldSorter from '../../../utils/field-sorter';
 
 const log = debug('kammy:SeasonAdminOptions');
 
@@ -125,12 +126,7 @@ class SeasonAdminOptions extends React.Component {
           <div className="admin-options" >
             <section >
               {teams
-                .sort((teamA, teamB) => {
-                  return teamA.division.name < teamB.division.name ? -1 : 1;
-                })
-                .sort((teamA, teamB) => {
-                  return teamA.user.name < teamB.user.name ? -1 : 1;
-                })
+                .sort(fieldSorter(['division.name', 'user.name']))
                 .map((team) => {
                   const row = (
                     <section key={team.user.name || team.user.email}>
