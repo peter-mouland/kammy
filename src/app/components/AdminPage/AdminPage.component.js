@@ -7,8 +7,16 @@ import Auth from '../../authentication/auth-helper';
 import Seasons from './Seasons/Seasons';
 import Users from './Users/Users';
 import Players from './Players/Players';
+import Export from './Export/Export';
 
 import './admin-page.scss';
+
+const ADMIN_ROUTES = [
+  { name: 'Seasons', path: 'seasons', Component: Seasons },
+  { name: 'Users', path: 'users', Component: Users },
+  { name: 'Players', path: 'players', Component: Players },
+  { name: 'Export Data', path: 'export', Component: Export }
+];
 
 export default class AdminPage extends React.Component {
   render() {
@@ -24,33 +32,17 @@ export default class AdminPage extends React.Component {
 
           <AdminList
             type="main-nav"
-            list={ [
-              { name: 'Seasons', path: 'seasons' },
-              { name: 'Users', path: 'users' },
-              { name: 'Players', path: 'players' }
-            ] }
+            list={ ADMIN_ROUTES }
           />
-
-          <Route
-            path={'/admin/seasons'}
-            render={({ match }) => (
-              <Seasons className="admin__panel admin__panel--seasons" match={ match } />
-            )}
-          />
-
-          <Route
-            path={'/admin/users'}
-            render={({ match }) => (
-              <Users className="admin__panel admin__panel--users" match={ match } />
-            )}
-          />
-
-          <Route
-            path={'/admin/players'}
-            render={({ match }) => (
-              <Players className="admin__panel admin__panel--players" match={ match } />
-            )}
-          />
+          {ADMIN_ROUTES.map((route) => (
+            <Route
+              key={`/admin/${route.path}`}
+              path={`/admin/${route.path}`}
+              render={({ match }) => (
+                <route.Component className={`admin__panel admin__panel--${route.path}`} match={ match } />
+              )}
+            />
+          ))}
 
           <h3>tech-debt:</h3>
           <ul>

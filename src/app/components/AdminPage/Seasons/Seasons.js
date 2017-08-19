@@ -32,7 +32,6 @@ class AdminPage extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    seasonUsers: state.seasons.seasonUsers,
     seasons: state.seasons.data,
     stats: state.stats.data,
     statsErrors: state.stats.errors,
