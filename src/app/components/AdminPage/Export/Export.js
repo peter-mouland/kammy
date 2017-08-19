@@ -6,11 +6,12 @@ import { connect } from 'react-redux';
 import { fetchTeams } from '../admin-page.actions';
 import ExportComponent from './Export.component';
 import { fetchSeasons } from '../Seasons/seasons.actions';
+import { fetchPlayers } from '../../Players/players.actions';
 
 const log = debug('kammy:admin/Seasons');
 
 class AdminPage extends React.Component {
-  static needs = [fetchSeasons, fetchTeams];
+  static needs = [fetchSeasons, fetchTeams, fetchPlayers];
 
   static contextTypes = {
     router: PropTypes.object
@@ -23,6 +24,9 @@ class AdminPage extends React.Component {
     if (!this.props.teams) {
       this.props.fetchTeams();
     }
+    if (!this.props.players) {
+      this.props.fetchPlayers();
+    }
   }
 
   render() {
@@ -33,6 +37,7 @@ class AdminPage extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    players: state.players.data,
     teams: state.teams.data,
     seasons: state.seasons.data,
   };
@@ -42,6 +47,7 @@ export default connect(
   mapStateToProps,
   {
     fetchSeasons,
-    fetchTeams
+    fetchTeams,
+    fetchPlayers
   }
 )(AdminPage);

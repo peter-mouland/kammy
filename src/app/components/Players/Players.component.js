@@ -374,7 +374,7 @@ export default class PlayerTable extends React.Component {
                           </AdditionalPoints>
                         </td>
                       ]}
-                      { (showPoints) &&
+                      { (showPoints && team) &&
                         <td key={'pos-points'} {...bem('stat')}>
                           {team.season[isOnMyTeam.teamPos]}
                         </td>

@@ -11,9 +11,10 @@ export const positionMapping = {
 export const playerPositions = {
   unknown: { label: 'Unknown', order: 0, hiddenFromManager: true },
   GK: { label: 'GK', order: 1 },
-  FB: { label: 'FB', order: 2 },
-  CB: { label: 'CB', order: 3 },
+  CB: { label: 'CB', order: 2 },
+  FB: { label: 'FB', order: 3 },
   MID: { label: 'MID', order: 4 },
   AM: { label: 'AM', order: 5 },
-  STR: { label: 'STR', order: 6 }
+  STR: { label: 'STR', order: 6 },
+  SUB: { label: 'SUB', order: 7 },
 };
