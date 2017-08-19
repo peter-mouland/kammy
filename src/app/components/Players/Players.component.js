@@ -343,10 +343,7 @@ export default class PlayerTable extends React.Component {
                         { player.code }
                       </td>
                       <td>
-                        { isOnMyTeam && isOnMyTeam.teamPos === 'sub'
-                          ? 'SUB'
-                          : this.CellEditor({ player, originalPlayerData, attribute: 'pos', editable, type: 'select' })
-                        }
+                        { this.CellEditor({ player, originalPlayerData, attribute: 'pos', editable, type: 'select' }) }
                       </td>
                       <td>
                         {this.CellEditor({ player, originalPlayerData, attribute: 'name', editable, type: 'text' })}

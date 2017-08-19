@@ -46,9 +46,9 @@ export default class ExportPage extends React.Component {
                         const curr = team[key];
                         if (!curr) return prev;
                         const thisPlayer = players.find((player) => player._id === curr._id);
+                        const pos = key.replace(/left/, '').replace('right', '').toUpperCase();
                         if (thisPlayer) {
-                          thisPlayer.pos = key.replace(/left/, '').replace('right', '').toUpperCase();
-                          prev.push(thisPlayer);
+                          prev.push({ ...thisPlayer, pos });
                         }
                         return prev;
                       }, []);
