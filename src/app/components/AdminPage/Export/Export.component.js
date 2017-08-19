@@ -20,48 +20,46 @@ export default class ExportPage extends React.Component {
 
   render() {
     const {
-      className, seasons, match, seasonUsers,
+      className, seasons, match, teams,
     } = this.props;
     const seasonPath = join(match.url, ':seasonId/');
     let shownHeader = '';
 
-    if (!seasons) {
+    if (!seasons || !teams) {
       return <Interstitial />;
     }
-
     return (
       <section { ...bem(null, null, [className])} >
         <AdminList list={ seasons } type="season" secondary />
         <Route
           path={seasonPath} render={(seasonProps) => {
             const season = selectedItem(seasonProps.match, seasons, 'seasonId');
-            const teams = seasonUsers.reduce((prev, curr) => prev.concat(curr.teams), []);
             if (!season) return null;
             return (
               <div className="admin-options" >
-                <section >
-                  {teams
-                    .sort(fieldSorter(['division.name', 'user.name']))
-                    .map((team) => {
-                      const row = (
-                        <section key={team.division.name + (team.user.name || team.user.email)}>
-                          {
-                            shownHeader !== team.division.name && <h3>{team.division.name}</h3>
-                          }
-                          <Players
-                            headerRow={team.user.name || team.user.email}
-                            hideOptions={true}
-                            team={team}
-                            type="admin"
-                            showPoints
-                          />
-                        </section>
-                      );
-                      shownHeader = team.division.name;
-                      return row;
-                    })
-                  }
-                </section>
+                {teams
+                  .sort(fieldSorter(['division.name', 'user.name']))
+                  .map((team) => {
+                    const row = ([
+                      shownHeader !== team.division.name && (
+                        <h3 key={`h-${team.division.name + (team.user.name || team.user.email)}`}>
+                          {team.division.name}
+                        </h3>
+                      ),
+                      <Players
+                        key={team.division.name + (team.user.name || team.user.email)}
+                        headerRow={team.user.name || team.user.email}
+                        hideOptions={true}
+                        team={team}
+                        type="admin"
+                        showPoints
+                        className="flex--full"
+                      />
+                    ]);
+                    shownHeader = team.division.name;
+                    return row;
+                  })
+                }
               </div>
             );
           }}/>

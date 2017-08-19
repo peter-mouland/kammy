@@ -11,6 +11,16 @@ fragment playerStatsInfo on Player {
 const teamPointsFragment = `
 fragment teamPointsInfo on Team {
  gameWeek {
+    points gk sub cbleft cbright fbleft fbright midleft midright amleft amright strleft strright
+ }
+ season {
+    points gk sub cbleft cbright fbleft fbright midleft midright amleft amright strleft strright
+ }
+}`;
+
+const divisionPointsFragment = `
+fragment divisionPointsInfo on Team {
+ gameWeek {
     points gks cb fb mid am str
  }
  gameWeekRankChange {
@@ -35,7 +45,7 @@ fragment playerInfo on Player {
 }`;
 
 const divisionFragment = `
-fragment divisionInfo on Division {
+fragment divisionInfo on Division { 
   _id name tier
 }`;
 
@@ -88,7 +98,8 @@ export const getTeamQuery = `
 
 export const getTeamsQuery = `
   ${teamFragment}
-  query { getTeams{ ...teamInfo } } 
+  ${teamPointsFragment}
+  query { getTeams{ ...teamInfo ...teamPointsInfo } } 
 `;
 
 export const getUsersWithTeamsQuery = `
@@ -98,8 +109,8 @@ export const getUsersWithTeamsQuery = `
 
 export const getDivisionsQuery = `
   ${teamFragment}
-  ${teamPointsFragment}
-  query { getDivisions{ _id name tier teams { ...teamInfo ...teamPointsInfo } } }
+  ${divisionPointsFragment}
+  query { getDivisions{ _id name tier teams { ...teamInfo ...divisionPointsInfo } } }
 `;
 
 export const addSeasonsMutation = `

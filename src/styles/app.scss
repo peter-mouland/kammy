@@ -17,6 +17,10 @@
   overflow: hidden;
 }
 
+.flex--full {
+  flex: 1 1 100%;
+}
+
 .simple-list {
   list-style: none;
   padding: 0;

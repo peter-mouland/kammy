@@ -11,7 +11,7 @@ export const saveNewTeam = (teamData) => {
   return newTeam.save();
 };
 
-export const getTeams = (search = {}) => Team.find(search).populate('user').exec();
+export const getTeams = (search = {}) => Team.find(search).exec();
 
 export const getTeam = ({ teamId }, context) => {
   if (!teamId) {

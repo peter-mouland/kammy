@@ -114,10 +114,10 @@ export const saveSeasonStats = async ({ seasonId }) => {
         [`season.${position}`]: team.season[position] + player.gameWeek.points,
         [`gameWeek.${position}`]: 0,
       });
-      allUpdates.push(Team.update(queryTeam('sub'), { $set: setTeam('sub') }));
-      allUpdates.push(Team.update(queryTeam(`${pos}`), { $set: setTeam(`${pos}`) }));
-      allUpdates.push(Team.update(queryTeam(`${pos}left`), { $set: setTeam(`${pos}left`) }));
-      allUpdates.push(Team.update(queryTeam(`${pos}right`), { $set: setTeam(`${pos}right`) }));
+      allUpdates.push(Team.update(queryTeam('sub'), { $set: setTeam('sub') }).exec());
+      allUpdates.push(Team.update(queryTeam(`${pos}`), { $set: setTeam(`${pos}`) }).exec());
+      allUpdates.push(Team.update(queryTeam(`${pos}left`), { $set: setTeam(`${pos}left`) }).exec());
+      allUpdates.push(Team.update(queryTeam(`${pos}right`), { $set: setTeam(`${pos}right`) }).exec());
     });
   });
   return Promise.all(allUpdates);

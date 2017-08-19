@@ -5,6 +5,8 @@ $odd-row-bg: #CACACA;
 $row-bg--hover: #AAA;
 
 .player-table {
+  width: 100%;
+
   tr,
   td,
   th {
@@ -40,7 +42,27 @@ $row-bg--hover: #AAA;
     fill: $error;
   }
 
-  &__meta--stat {
+  &__meta {
+    &--stat,
+    &--new {
+      text-align: center;
+      width: 45px;
+    }
+
+    &--code {
+      width: 55px;
+    }
+
+    &--pos {
+      width: 75px;
+    }
+
+    &--player {
+      width: 175px;
+    }
+  }
+
+  &__stat {
     text-align: center;
   }
 

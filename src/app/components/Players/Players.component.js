@@ -228,7 +228,7 @@ export default class PlayerTable extends React.Component {
     }
 
     return (
-      <div>
+      <div className={className}>
         {!hideOptions &&
           <div { ...bem('options') }>
             <div {...bem('option-group')}>
@@ -286,27 +286,30 @@ export default class PlayerTable extends React.Component {
             </div>
           </div>
         }
-        <table cellPadding={0} cellSpacing={0} { ...bem(null, type, className) }>
+        <table cellPadding={0} cellSpacing={0} { ...bem(null, type) }>
           <thead>
             {headerRow &&
               <tr {...bem('data-header')}>
-                <th colSpan={6} style={{ textAlign: 'left' }}>{headerRow}</th>
+                <th colSpan={7} style={{ textAlign: 'left' }}>{headerRow}</th>
               </tr>
             }
             <tr { ...bem('data-header')}>
-              <th>New</th>
-              <th>Code</th>
-              <th>Position</th>
-              <th>Player</th>
-              <th>Club</th>
+              <th{ ...bem('meta', 'new')}>New</th>
+              <th{ ...bem('meta', 'code')}>Code</th>
+              <th{ ...bem('meta', 'pos')}>Position</th>
+              <th{ ...bem('meta', 'player')}>Player</th>
+              <th{ ...bem('meta', 'club')}>Club</th>
               { showStats && statCols.map((stat) => [
-                <td key={stat}>{stat}</td>,
-                <td key={`${stat}-gw`}><sup>(gw)</sup></td>
+                <td key={stat} { ...bem('meta', 'stat')} >{stat}</td>,
+                <td key={`${stat}-gw`} { ...bem('meta', 'stat')} ><sup>(gw)</sup></td>
               ])}
               { (showStats || showPoints) && [
-                <td key={'points'}>Points</td>,
-                <td key={'points-gw'}><sup>(gw)</sup></td>
+                <td key={'points'} { ...bem('meta', 'stat')} >Points</td>,
+                <td key={'points-gw'} { ...bem('meta', 'stat')} ><sup>(gw)</sup></td>
               ] }
+              { (showPoints) &&
+                <td key={'pos-points'} { ...bem('meta', 'stat')} >Pos Points</td>
+              }
               { editable && <th>Hidden</th> }
               { selectPlayer && <th></th> }
             </tr>
@@ -330,50 +333,54 @@ export default class PlayerTable extends React.Component {
                 .map((originalPlayerData) => {
                   const player = playerUpdates[originalPlayerData._id] || originalPlayerData;
                   const isOnMyTeam = teamPlayers[player.code];
-
                   return (
                     <tr key={player.code} id={player.code} { ...bem('player', { selected: isOnMyTeam, new: !!player.new })}>
-                      <td { ...bem('meta')}>
+                      <td>
                         { player.new && <Svg markup={New} { ...bem('new-icon')} />}
                         { player.new && <span className="sr-only">new</span> }
                       </td>
-                      <td { ...bem('meta')}>
+                      <td>
                         { player.code }
                       </td>
-                      <td { ...bem('meta')}>
+                      <td>
                         { isOnMyTeam && isOnMyTeam.teamPos === 'sub'
                           ? 'SUB'
                           : this.CellEditor({ player, originalPlayerData, attribute: 'pos', editable, type: 'select' })
                         }
                       </td>
-                      <td { ...bem('meta')}>
+                      <td>
                         {this.CellEditor({ player, originalPlayerData, attribute: 'name', editable, type: 'text' })}
                       </td>
-                      <td { ...bem('meta')}>
+                      <td>
                         <small>{this.CellEditor({ player, originalPlayerData, attribute: 'club', editable, type: 'select' })}</small>
                       </td>
                       { showStats && statCols.map((stat) => [
-                        <td key={stat} {...bem('output')}>
+                        <td key={stat} {...bem('stat')}>
                           {player.season[stat]}
                         </td>,
-                        <td key={`${stat}-gw`} {...bem('gw-output')}>
+                        <td key={`${stat}-gw`} {...bem('stat')}>
                           <AdditionalPoints {...bem('additional', { highlight: extremeStat(player.gameWeek[stat]) })}>
                             {player.gameWeek[stat]}
                           </AdditionalPoints>
                         </td>
                       ])}
                       { (showStats || showPoints) && [
-                        <td key={'points'} {...bem('output')}>
+                        <td key={'points'} {...bem('stat')}>
                           {player.season.points}
                         </td>,
-                        <td key={'points-gw'} {...bem('gw-output')}>
+                        <td key={'points-gw'} {...bem('stat')}>
                           <AdditionalPoints {...bem('additional', { highlight: extremeStat(player.gameWeek.points) })}>
                             {player.gameWeek.points}
                           </AdditionalPoints>
                         </td>
                       ]}
+                      { (showPoints) &&
+                        <td key={'pos-points'} {...bem('stat')}>
+                          {team.season[isOnMyTeam.teamPos]}
+                        </td>
+                      }
                       { editable && (
-                        <td {...bem('output')}>
+                        <td >
                           <input
                             type="checkbox"
                             defaultChecked={player.isHidden}
@@ -382,7 +389,7 @@ export default class PlayerTable extends React.Component {
                         </td>
                       )}
                       { selectPlayer &&
-                      <td { ...bem('meta')} >
+                      <td >
                         <button
                           onClick={ () => selectPlayer(player) }
                           disabled={ !selectedPosition || isOnMyTeam }
