@@ -12,6 +12,35 @@ const Team = mongoose.model('Team');
 const ObjectId = mongoose.Types.ObjectId;
 const log = debug('kammy:stats.action');
 
+
+export const tmpSaveSeasonStats = async () => {
+  const allUpdates = [];
+  const players = await Player.find().exec();
+  players.forEach(async (player) => {
+    const pos = player.pos.toLowerCase();
+    const queryTeam = (position) => ({
+      [`${position}.code`]: player.code
+    });
+    const teams = await Team.find(queryTeam(pos)).exec();
+    const teamsSub = await Team.find(queryTeam('sub')).exec();
+    const teamsLeft = await Team.find(queryTeam(`${pos}left`)).exec();
+    const teamsRight = await Team.find(queryTeam(`${pos}right`)).exec();
+    const allTeams = (teams.concat(teamsSub).concat(teamsLeft).concat(teamsRight));
+
+    allTeams.forEach(() => {
+      const setTeam = (position) => ({
+        [`season.${position}`]: player.season.points
+      });
+      allUpdates.push(Team.update(queryTeam('sub'), { $set: setTeam('sub') }).exec());
+      allUpdates.push(Team.update(queryTeam(`${pos}`), { $set: setTeam(`${pos}`) }).exec());
+      allUpdates.push(Team.update(queryTeam(`${pos}left`), { $set: setTeam(`${pos}left`) }).exec());
+      allUpdates.push(Team.update(queryTeam(`${pos}right`), { $set: setTeam(`${pos}right`) }).exec());
+    });
+  });
+  return Promise.all(allUpdates);
+};
+
+
 export const getExternalStats = async ({ currentGW, source }) => {
   const dbPlayers = await getPlayers();
   const stats = {};
@@ -22,6 +51,7 @@ export const getExternalStats = async ({ currentGW, source }) => {
   const players = (Array.isArray(data))
     ? data
     : (Object.keys(data)).map((key) => mapImportToSkyFormat(data[key]));
+  // await tmpSaveSeasonStats()
   players.forEach((player) => {
     const dbPlayer = dbPlayers.find((dbPlyr) => dbPlyr.code === (player.id || player.code));
     if (!dbPlayer) {

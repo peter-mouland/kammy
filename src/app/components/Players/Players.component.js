@@ -290,7 +290,7 @@ export default class PlayerTable extends React.Component {
           <thead>
             {headerRow &&
               <tr {...bem('data-header')}>
-                <th colSpan={7} style={{ textAlign: 'left' }}>{headerRow}</th>
+                <th colSpan={8} style={{ textAlign: 'left' }}>{headerRow}</th>
               </tr>
             }
             <tr { ...bem('data-header')}>
