@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const PassportLocalStrategy = require('passport-local').Strategy;
 const dbConfig = require('../../../config/db.js');
+const config = require('../../../config/config.js');
 
 const log = debug('kammy:local-login');
 
@@ -58,7 +59,7 @@ module.exports = new PassportLocalStrategy({
             sub: user._id,
             email: user.email,
             defaultTeamId: team._id,
-            isAdmin: user.isAdmin,
+            isAdmin: user.isAdmin || config.adminEmails.includes(user.email),
             mustChangePassword: user.mustChangePassword,
             name: user.name
           };
