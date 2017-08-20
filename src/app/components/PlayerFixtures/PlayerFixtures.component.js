@@ -19,7 +19,7 @@ export default ({ player, onClose, showFixtures }) => {
       <Modal
         id={ 'loading' }
         open={ !!showFixtures }
-        className="player-fixtures"
+        className="home-or-away"
         onClose={ onClose }
       >
         <Interstitial>Loading Player Fixtures</Interstitial>
@@ -29,7 +29,7 @@ export default ({ player, onClose, showFixtures }) => {
       <Modal
         key={`${details.code}-fixtures`}
         id={`${details.code}-fixtures`}
-        title={`${details.name}, ${details.club} Fixtures`}
+        title={<span>{details.name} <small>{details.club}</small></span>}
         open={ !!showFixtures }
         onClose={ onClose }
         { ...bem() }
@@ -37,8 +37,15 @@ export default ({ player, onClose, showFixtures }) => {
         {
           details.fixtures.map((fixture, i) => (
             <div key={`${fixture.event}-${details.code}`}>
-              <strong>{i + 1}</strong>.
-              {fixture.homeTeam} {fixture.homeScore} vs {fixture.awayScore} {fixture.awayTeam}
+              <strong { ...bem('event') }>{i + 1}</strong>
+              <span {...bem('home-or-away', { home: details.club === fixture.homeTeam })}>
+                [{details.club === fixture.homeTeam ? 'H' : 'A'}]
+              </span>
+              <span { ...bem('fixture')}>
+                <span { ...bem('team', 'home')}>{fixture.homeTeam} {fixture.homeScore}</span>
+                vs
+                <span { ...bem('team', 'away')}>{fixture.awayScore} {fixture.awayTeam}</span>
+              </span>
             </div>
           ))
         }

@@ -1,0 +1,26 @@
+.player-fixtures {
+  &__event,
+  &__home-or-away {
+    display: inline-block;
+    min-width: 28px;
+  }
+
+  &__fixture {
+    display: inline-block;
+    min-width: 405px;
+  }
+
+  &__team {
+    display: inline-block;
+    width: 40%;
+    margin: 2px 8px;
+
+    &--home {
+      text-align: right;
+    }
+
+    &--away {
+      text-align: left;
+    }
+  }
+}
