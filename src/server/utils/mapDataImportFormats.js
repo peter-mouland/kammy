@@ -30,7 +30,6 @@ const map = {
 export const zeros = {
   points: 0,
   apps: 0,
-  mom: 0,
   subs: 0,
   gls: 0,
   tb: 0,
@@ -45,7 +44,6 @@ export const zeros = {
 
 export const mapStats = (stats) => ({
   apps: stats[map.STARTING_XI] || 0,
-  mom: stats[map.MAN_OF_MATCH] || 0,
   subs: stats[map.SUBS] || 0,
   gls: stats[map.GOALS] || 0,
   asts: stats[map.ASSISTS] || 0,

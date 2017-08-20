@@ -1,5 +1,5 @@
 const stats = `
- apps subs gls asts mom cs con pensv ycard rcard points
+ apps subs gls asts cs con pensv ycard rcard points
 `;
 
 const playerStatsFragment = `

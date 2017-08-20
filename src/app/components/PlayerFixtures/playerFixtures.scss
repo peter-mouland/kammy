@@ -1,3 +1,5 @@
+@import '../../../styles/base/colours';
+
 .player-fixtures {
   &__event,
   &__home-or-away {
@@ -7,7 +9,7 @@
 
   &__fixture {
     display: inline-block;
-    min-width: 405px;
+    min-width: 600px;
   }
 
   &__team {
@@ -21,6 +23,34 @@
 
     &--away {
       text-align: left;
+    }
+  }
+
+  &__stats-header {
+    padding: 0 5px;
+    min-width: 50px;
+  }
+
+  &__stats {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    text-align: center;
+    cursor: help;
+  }
+
+  &__stat {
+    &--total {
+      flex: 1 1 50%;
+      font-weight: bold;
+      font-size: 1.5em;
+    }
+
+    &--group {
+      flex: 1 1 50%;
+      display: flex;
+      flex-flow: column;
+      color: $text--light;
     }
   }
 }

@@ -10,7 +10,6 @@ const schemaString = `
     subs: Int
     gls: Int
     asts: Int
-    mom: Int
     cs: Int
     con: Int
     pensv: Int
