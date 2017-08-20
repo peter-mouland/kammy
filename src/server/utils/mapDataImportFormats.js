@@ -1,4 +1,4 @@
-const mapper = () => ({
+const map = {
   STARTING_XI: 0,
   NA: 1,
   SUBS: 2,
@@ -25,7 +25,7 @@ const mapper = () => ({
   TOTAL_SAVES: 23,
   TOTAL_SHOTS: 24,
   SKY_FF_POINTS: 25,
-});
+};
 
 export const zeros = {
   points: 0,
@@ -42,6 +42,23 @@ export const zeros = {
   con: 0,
   pensv: 0
 };
+
+export const mapStats = (stats) => ({
+  apps: stats[map.STARTING_XI] || 0,
+  mom: stats[map.MAN_OF_MATCH] || 0,
+  subs: stats[map.SUBS] || 0,
+  gls: stats[map.GOALS] || 0,
+  asts: stats[map.ASSISTS] || 0,
+  cs: stats[map.CLEAN_SHEETS] || 0,
+  con: stats[map.CONCEDED] || 0,
+  pensv: stats[map.SAVED_PENALTIES] || 0,
+  ycard: stats[map.YELLOW_CARDS] || 0,
+  rcard: stats[map.RED_CARDS] || 0,
+  tb: parseInt(stats[map.TACKLE_BONUS1], 10) + parseInt(stats[map.TACKLE_BONUS2], 10) || 0,
+  sb: parseInt(stats[map.SAVE_BONUS1], 10) + parseInt(stats[map.SAVE_BONUS2], 10) || 0,
+  points: 0
+});
+
 
 export const mapImportToSkyFormat = (player) => {
   player.id = player.code;
@@ -113,23 +130,8 @@ export const mapImportToSchema = (player) => {
 };
 
 export const mapSkyFormatToSchema = (player) => {
-  const map = mapper();
   const season = player.stats && player.stats.season;
-  const stats = {
-    apps: season[map.STARTING_XI] || 0,
-    mom: season[map.MAN_OF_MATCH] || 0,
-    subs: season[map.SUBS] || 0,
-    gls: season[map.GOALS] || 0,
-    asts: season[map.ASSISTS] || 0,
-    cs: season[map.CLEAN_SHEETS] || 0,
-    con: season[map.CONCEDED] || 0,
-    pensv: season[map.SAVED_PENALTIES] || 0,
-    ycard: season[map.YELLOW_CARDS] || 0,
-    rcard: season[map.RED_CARDS] || 0,
-    tb: parseInt(season[map.TACKLE_BONUS1], 10) + parseInt(season[map.TACKLE_BONUS2], 10) || 0,
-    sb: parseInt(season[map.SAVE_BONUS1], 10) + parseInt(season[map.SAVE_BONUS2], 10) || 0,
-    points: 0
-  };
+  const stats = mapStats(season);
   player.code = player.id;
   player.gameWeek = zeros;
   player.season = stats;

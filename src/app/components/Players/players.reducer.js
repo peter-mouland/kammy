@@ -79,6 +79,16 @@ export default function players(state = {}, action) {
         errors: action.payload.errors,
         updating: false
       };
+    case `${actions.FETCH_PLAYER_FIXTURES}_FULFILLED`:
+      return {
+        ...state,
+        playerFixtures: data ? {
+          ...state.playerFixtures,
+          [data.getPlayerFixtures.code]: data.getPlayerFixtures
+        } : null,
+        errors: action.payload.errors,
+        updating: false
+      };
     case `${actions.UPDATE_PLAYERS}_REJECTED`:
       return {
         ...state,

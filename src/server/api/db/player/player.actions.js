@@ -2,7 +2,9 @@
 import debug from 'debug';
 import mongoose from 'mongoose';
 
-import { mapImportToSchema, mapSkyFormatToSchema, zeros } from '../../../utils/mapDataImportFormats';
+import {
+  mapImportToSchema, mapSkyFormatToSchema, zeros, mapStats
+} from '../../../utils/mapDataImportFormats';
 import { json } from '../../../../app/utils/fetch';
 import config from '../../../../config/config';
 
@@ -37,6 +39,27 @@ const aggFields = {
 
 export const getPlayers = (playerDetails = {}) =>
   Player.aggregate({ $match: playerDetails }, { $project: aggFields }).exec();
+
+export const getPlayerFixtures = ({ code }) => {
+  const url = config.getFixtures(code);
+  return json
+    .get(url)
+    .then((player) => ({
+      name: `${player.sName}, ${player.fName}`,
+      code,
+      club: player.tName,
+      fixtures: player.fixtures && player.fixtures.map((fixture) => ({
+        stats: fixture.stats ? mapStats(fixture.stats) : zeros,
+        event: fixture.event,
+        date: fixture.date,
+        homeTeam: fixture.hTname,
+        awayTeam: fixture.aTname,
+        status: fixture.status,
+        awayScore: fixture.aScore,
+        homeScore: fixture.hScore
+      }))
+    }));
+};
 
 export const updatePlayers = ({ playerUpdates }) => {
   const bulkUpdate = playerUpdates.map((update) => {

@@ -12,6 +12,7 @@ import MultiToggle from '../MultiToggle/MultiToggle';
 import Toggle from '../Toggle/Toggle';
 import New from '../../../assets/new.svg';
 import fieldSorter from '../../utils/field-sorter';
+import PlayerFixtures from '../PlayerFixtures/PlayerFixtures';
 
 import './players.scss';
 
@@ -133,7 +134,7 @@ export default class PlayerTable extends React.Component {
     this.props.onChange({ playerUpdates, originalPlayers });
   }
 
-  CellEditor = ({ player, originalPlayerData, editable = false, attribute, type }) => {
+  CellEditor = ({ player, originalPlayerData, attribute, type }) => {
     const onChange = (e) => (
       this.onEdit(e.currentTarget.value, player, attribute, originalPlayerData)
     );
@@ -148,25 +149,23 @@ export default class PlayerTable extends React.Component {
         defaultValue={ player[attribute] }
         options={ this.options[attribute] }
       />;
-    return editable ? (
-      <div
-        onMouseOver={ (e) => this.showUpdater(e, player, attribute) }
-        onMouseLeave={ () => this.hideUpdater() }
-        onClick={ (e) => this.showUpdater(e, player, attribute) }
-      >
-        {
-          this.state[`show${attribute}Updater`] === player._id
-            ? <span>{Editor}</span>
-            :
-            <Highlight
-              update={ this.props.playerUpdates[player._id] }
-              player={ originalPlayerData }
-              attribute={attribute}
-              { ...bem('editable', type) }
-            />
-        }
-      </div>
-    ) : <div>{ player[attribute] }</div>;
+    return <div
+      onMouseOver={ (e) => this.showUpdater(e, player, attribute) }
+      onMouseLeave={ () => this.hideUpdater() }
+      onClick={ (e) => this.showUpdater(e, player, attribute) }
+    >
+      {
+        this.state[`show${attribute}Updater`] === player._id
+          ? <span>{Editor}</span>
+          :
+          <Highlight
+            update={ this.props.playerUpdates[player._id] }
+            player={ originalPlayerData }
+            attribute={attribute}
+            { ...bem('editable', type) }
+          />
+      }
+    </div>;
   }
 
   posFilter = (e) => {
@@ -199,20 +198,26 @@ export default class PlayerTable extends React.Component {
     });
   }
 
-  showUpdater(e, player, detail) {
+  showUpdater = (e, player, detail) => {
     this.hideUpdater();
     this.setState({
       [`show${detail}Updater`]: player._id
     });
   }
 
+  setShowFixtures = ({ e, player }) => {
+    e.preventDefault();
+    this.setState({ showFixtures: player.code });
+  }
+
   render() {
     const {
       players, errors, loading, type, className, selectPlayer, hideOptions, headerRow,
       selectedPosition, showStats, showPoints, editable, playerUpdates = {}, team,
+      playerFixtures
     } = this.props;
     const {
-      posFilter, clubFilter, nameFilter, showHidden, showOnlyNewPlayers
+      posFilter, clubFilter, nameFilter, showHidden, showOnlyNewPlayers, showFixtures
     } = this.state;
     const club = this.options.club;
     const teamPlayers = team
@@ -227,8 +232,14 @@ export default class PlayerTable extends React.Component {
       return <Errors errors={errors} />;
     }
 
+
     return (
       <div className={className}>
+        <PlayerFixtures
+          player={ playerFixtures }
+          showFixtures={ showFixtures }
+          onClose={ () => this.setState({ showFixtures: false })}
+        />
         {!hideOptions &&
           <div { ...bem('options') }>
             <div {...bem('option-group')}>
@@ -343,13 +354,25 @@ export default class PlayerTable extends React.Component {
                         { player.code }
                       </td>
                       <td>
-                        { this.CellEditor({ player, originalPlayerData, attribute: 'pos', editable, type: 'select' }) }
+                        {
+                          editable
+                            ? this.CellEditor({ player, originalPlayerData, attribute: 'pos', type: 'select' })
+                            : <div>{ player.pos }</div>
+                        }
                       </td>
                       <td>
-                        {this.CellEditor({ player, originalPlayerData, attribute: 'name', editable, type: 'text' })}
+                        {
+                          editable
+                            ? this.CellEditor({ player, originalPlayerData, attribute: 'name', type: 'text' })
+                            : <a href="#" onClick={(e) => this.setShowFixtures({ e, player })}>{ player.name }</a>
+                        }
                       </td>
                       <td>
-                        <small>{this.CellEditor({ player, originalPlayerData, attribute: 'club', editable, type: 'select' })}</small>
+                        <small>{
+                          editable
+                            ? this.CellEditor({ player, originalPlayerData, attribute: 'club', type: 'select' })
+                            : <div>{ player.club }</div>
+                        }</small>
                       </td>
                       { showStats && statCols.map((stat) => [
                         <td key={stat} {...bem('stat')}>
@@ -373,7 +396,7 @@ export default class PlayerTable extends React.Component {
                       ]}
                       { (showPoints && team) &&
                         <td key={'pos-points'} {...bem('stat')}>
-                          {team.season[isOnMyTeam.teamPos]}
+                          {isOnMyTeam && team.season[isOnMyTeam.teamPos]}
                         </td>
                       }
                       { editable && (

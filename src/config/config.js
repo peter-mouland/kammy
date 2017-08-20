@@ -24,6 +24,9 @@ setEnvDefault('GRAPHQL_URL', graphQlUrl);
 const externalStatsUrl = 'https://fantasyfootball.skysports.com/cache/json_players.json';
 setEnvDefault('EXTERNAL_STATS_URL', externalStatsUrl);
 
+const externalFixturesUrl = 'https://fantasyfootball.skysports.com/cache';
+setEnvDefault('EXTERNAL_FIXTURES_URL', externalFixturesUrl);
+
 const internalStatsUrl = `http://localhost:${config.PORT}/2016-2017`;
 setEnvDefault('INTERNAL_STATS_URL', internalStatsUrl);
 
@@ -35,6 +38,7 @@ if (!process.env.GA_KEY) { setEnvDefault('GA_KEY', 'development'); }
 if (!process.env.NODE_ENV) { setEnvDefault('NODE_ENV', 'development'); }
 
 config.adminEmails = ['nickwatts1982@hotmail.com', 'uni_nake@hotmail.com', 'oojdee@gmail.com'];
+config.getFixtures = (code) => `${config.EXTERNAL_FIXTURES_URL}/json_player_stats_${code}.json`;
 
 log(config);
 

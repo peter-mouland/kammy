@@ -1,11 +1,11 @@
+const stats = `
+ apps subs gls asts mom cs con pensv ycard rcard points
+`;
+
 const playerStatsFragment = `
 fragment playerStatsInfo on Player {
- gameWeek {
-   apps subs gls asts mom cs con pensv ycard rcard points
- }
- season {
-   apps subs gls asts mom cs con pensv ycard rcard points
- }
+ gameWeek { ${stats} }
+ season { ${stats} }
 }`;
 
 const teamPointsFragment = `
@@ -75,6 +75,16 @@ ${playerStatsFragment}
 query ($player: String) { 
   getPlayers(player: $player){ 
     ...playerInfo ...playerStatsInfo
+ }
+} 
+`;
+
+export const getPlayerFixturesQuery = `
+query ($code: Int) { 
+  getPlayerFixtures(code: $code){
+    name club code fixtures { 
+      homeTeam status date awayTeam awayScore event homeScore stats { ${stats} } 
+    }
  }
 } 
 `;

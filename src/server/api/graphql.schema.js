@@ -89,6 +89,7 @@ const schemaString = `
     season: Points
     gameWeek: Points
   }
+  
   type Team {
     _id: String
     name: String
@@ -116,6 +117,7 @@ const schemaString = `
     name: String
     tier: Int
   }
+
   type Season {
     _id: String!
     name: String
@@ -123,6 +125,18 @@ const schemaString = `
     currentGW: Int
     divisions: [Division]
   }
+
+  type Fixture {
+    event: Int
+    date: String
+    homeTeam: String
+    awayTeam: String
+    status: String
+    awayScore: Int
+    homeScore: Int
+    stats: PlayerStats
+  }
+
   type UpdatedPlayer { 
     _id: String!
     code: Int
@@ -146,6 +160,13 @@ const schemaString = `
     gameWeek: PlayerStats
     season: PlayerStats
     pointsChange: Int
+  }
+  
+  type PlayerFixtures {
+    name: String!
+    code: Int
+    club: String
+    fixtures: [Fixture]
   }
 
   type User {
@@ -239,6 +260,7 @@ const schemaString = `
     getSeasons: [Season]
     getDivisions: [Divisions]
     getPlayers(player: String): [Player]
+    getPlayerFixtures(code: Int): PlayerFixtures
     getUser(email: String, _id: String): User
     getUsersWithTeams: [UserTeams]
     getDashboard: Dashboard

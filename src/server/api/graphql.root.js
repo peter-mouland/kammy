@@ -1,6 +1,6 @@
 /* eslint-disable no-confusing-arrow */
 import { getUser, addUser, updateUser, getUsersWithTeams } from './db/user/user.actions';
-import { getPlayers, updatePlayers, importPlayers } from './db/player/player.actions';
+import { getPlayers, getPlayerFixtures, updatePlayers, importPlayers } from './db/player/player.actions';
 import { updateTeam, getTeams, getTeam, assignTeamToDivision } from './db/team/team.actions';
 import { getSeasons, getDivisions, addDivision, addSeason, updateSeason } from './db/season/season.actions';
 import { getExternalStats, saveGameWeekStats, saveSeasonStats } from './db/stats/stats.actions';
@@ -15,6 +15,7 @@ export default {
   saveGameWeekStats,
   saveSeasonStats,
   getPlayers,
+  getPlayerFixtures,
   importPlayers,
   updatePlayers,
   getSeasons,
