@@ -40,24 +40,23 @@ export const saveGameWeekStats = ({ seasonId, update }) => {
   (Object.keys(update)).forEach((key) => {
     const player = update[key];
     const pos = player.pos.toLowerCase();
-    const queryTeam = (position) => ({
-      'season._id': new ObjectId(seasonId),
-      [`${position}.code`]: player.code
-    });
-    const setTeam = (position) => ({
-      [`gameWeek.${position}`]: player.gameWeek.points
-    });
-
+    const findAndUpdate = (position) => (
+      Team.update(
+        { 'season._id': new ObjectId(seasonId), [`${position}.code`]: player.code },
+        { $set: { [`gameWeek.${position}`]: player.gameWeek.points } },
+        { multi: true }
+      )
+    );
     allUpdates.push(Player.findOneAndUpdate(
       { code: player.code },
       { $set: {
         gameWeek: player.gameWeek,
       } }
     ));
-    allUpdates.push(Team.update(queryTeam('sub'), { $set: setTeam('sub') }, { multi: true }));
-    allUpdates.push(Team.update(queryTeam(`${pos}`), { $set: setTeam(`${pos}`) }, { multi: true }));
-    allUpdates.push(Team.update(queryTeam(`${pos}left`), { $set: setTeam(`${pos}left`) }, { multi: true }));
-    allUpdates.push(Team.update(queryTeam(`${pos}right`), { $set: setTeam(`${pos}right`) }, { multi: true }));
+    allUpdates.push(findAndUpdate('sub'));
+    allUpdates.push(findAndUpdate(pos));
+    allUpdates.push(findAndUpdate(`${pos}left`));
+    allUpdates.push(findAndUpdate(`${pos}right`));
   });
   return Promise.all(allUpdates).then(() => update);
 };
@@ -103,22 +102,16 @@ export const saveSeasonStats = async ({ seasonId }) => {
       'season._id': new ObjectId(seasonId),
       [`${position}.code`]: player.code
     });
-    const teams = await Team.find(queryTeam(pos)).exec();
-    const teamsSub = await Team.find(queryTeam('sub')).exec();
-    const teamsLeft = await Team.find(queryTeam(`${pos}left`)).exec();
-    const teamsRight = await Team.find(queryTeam(`${pos}right`)).exec();
-    const allTeams = (teams.concat(teamsSub).concat(teamsLeft).concat(teamsRight));
-
-    allTeams.forEach((team) => {
-      const setTeam = (position) => ({
+    const findAndUpdate = (position) => Team.find(queryTeam(position)).exec().then((team) => (
+      Team.update(queryTeam(position), { $set: {
         [`season.${position}`]: team.season[position] + player.gameWeek.points,
         [`gameWeek.${position}`]: 0,
-      });
-      allUpdates.push(Team.update(queryTeam('sub'), { $set: setTeam('sub') }, { multi: true }).exec());
-      allUpdates.push(Team.update(queryTeam(`${pos}`), { $set: setTeam(`${pos}`) }, { multi: true }).exec());
-      allUpdates.push(Team.update(queryTeam(`${pos}left`), { $set: setTeam(`${pos}left`) }, { multi: true }).exec());
-      allUpdates.push(Team.update(queryTeam(`${pos}right`), { $set: setTeam(`${pos}right`) }, { multi: true }).exec());
-    });
+      } }, { multi: true }).exec()
+    ));
+    allUpdates.push(findAndUpdate('sub'));
+    allUpdates.push(findAndUpdate(pos));
+    allUpdates.push(findAndUpdate(`${pos}left`));
+    allUpdates.push(findAndUpdate(`${pos}right`));
   });
   return Promise.all(allUpdates);
 };
