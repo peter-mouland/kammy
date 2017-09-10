@@ -33,7 +33,7 @@ const log = bunyan.createLogger({
 });
 
 export default function (coll, method, query, doc, options) {
-  if (process.env.NODE_ENV !== 'production') {
+  if (1 === 2 && process.env.NODE_ENV !== 'production') {
     log.info({
       dbQuery: {
         coll,

@@ -54,9 +54,12 @@ export const saveGameWeekStats = ({ seasonId, update }) => {
       } }
     ));
     allUpdates.push(findAndUpdate('sub'));
-    allUpdates.push(findAndUpdate(pos));
-    allUpdates.push(findAndUpdate(`${pos}left`));
-    allUpdates.push(findAndUpdate(`${pos}right`));
+    if (pos === 'gk') {
+      allUpdates.push(findAndUpdate(pos));
+    } else {
+      allUpdates.push(findAndUpdate(`${pos}left`));
+      allUpdates.push(findAndUpdate(`${pos}right`));
+    }
   });
   return Promise.all(allUpdates).then(() => update);
 };
@@ -98,20 +101,30 @@ export const saveSeasonStats = async ({ seasonId }) => {
         'gameWeek.sb': 0,
       } }
     ));
-    const queryTeam = (position) => ({
-      'season._id': new ObjectId(seasonId),
-      [`${position}.code`]: player.code
-    });
-    const findAndUpdate = (position) => Team.find(queryTeam(position)).exec().then((team) => (
-      Team.update(queryTeam(position), { $set: {
-        [`season.${position}`]: team.season[position] + player.gameWeek.points,
-        [`gameWeek.${position}`]: 0,
-      } }, { multi: true }).exec()
-    ));
+    const findAndUpdate = (position) => (
+      Team.find({
+        'season._id': new ObjectId(seasonId),
+        [`${position}.code`]: player.code
+      }).exec().then((teams) => (
+        teams.map((team) => (
+          Team.update({
+            _id: new ObjectId(team._id),
+            'season._id': new ObjectId(seasonId),
+            [`${position}.code`]: player.code
+          }, { $set: {
+            [`season.${position}`]: team.season[position] + player.gameWeek.points,
+            [`gameWeek.${position}`]: 0,
+          } }, { multi: true }).exec()
+        ))
+      ))
+    );
     allUpdates.push(findAndUpdate('sub'));
-    allUpdates.push(findAndUpdate(pos));
-    allUpdates.push(findAndUpdate(`${pos}left`));
-    allUpdates.push(findAndUpdate(`${pos}right`));
+    if (pos === 'gk') {
+      allUpdates.push(findAndUpdate(pos));
+    } else {
+      allUpdates.push(findAndUpdate(`${pos}left`));
+      allUpdates.push(findAndUpdate(`${pos}right`));
+    }
   });
   return Promise.all(allUpdates);
 };
