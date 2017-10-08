@@ -37,7 +37,9 @@ class TeamAdminOptions extends React.Component {
     this.props.saveUpdates(updatedTeam);
   }
 
-  updatePlayer = (e, { pos, leftOrRight, team, player, pickedPlayers }) => {
+  updatePlayer = (e, {
+    pos, leftOrRight, team, player, pickedPlayers
+  }) => {
     e.preventDefault();
     const props = { pos: pos + leftOrRight, team, player };
     if (pickedPlayers.indexOf(player._id) > -1) {
@@ -51,15 +53,17 @@ class TeamAdminOptions extends React.Component {
     this.setState({ showPlayerChoice: pos, leftOrRight });
   }
 
-  getCta = ({ team, pos, side, divisionTeams }) => {
+  getCta = ({
+    team, pos, side, divisionTeams
+  }) => {
     const { updatingUserTeam } = this.props;
     const { showPlayerChoice, leftOrRight } = this.state;
     switch (true) {
-      case updatingUserTeam :
+      case updatingUserTeam:
         return (
           <Interstitial />
         );
-      case showPlayerChoice === pos && leftOrRight === side :
+      case showPlayerChoice === pos && leftOrRight === side:
         return (
           <PlayerChoice
             teams={divisionTeams}
@@ -67,11 +71,13 @@ class TeamAdminOptions extends React.Component {
             leftOrRight={ leftOrRight }
             defaultValue={ team[showPlayerChoice + leftOrRight] }
             onUpdate={ (e, player, pickedPlayers) =>
-              this.updatePlayer(e, { pos, leftOrRight: side, team, player, pickedPlayers })
+              this.updatePlayer(e, {
+               pos, leftOrRight: side, team, player, pickedPlayers
+              })
             }
           />
         );
-      default :
+      default:
         return (
           <SVG
             className="admin-icon"
@@ -131,7 +137,9 @@ class TeamAdminOptions extends React.Component {
             {(Object.keys(positions)).map((pos) => {
               const position = positions[pos];
               return position.map((side) => {
-                const Cta = this.getCta({ team, pos, side, divisionTeams });
+                const Cta = this.getCta({
+                  team, pos, side, divisionTeams
+                });
                 return (
                   <tr key={pos + side}>
                     <td>{team[pos + side].code}</td>

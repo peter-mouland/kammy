@@ -5,7 +5,9 @@ import './toggle.scss';
 
 const bem = bemHelper({ name: 'toggle' });
 
-export default ({ id, checked, children, label, className, ...props }) => (
+export default ({
+  id, checked, children, label, className, ...props
+}) => (
   <span className={className || ''}>
     <input
       { ...bem(null, 'ios') }

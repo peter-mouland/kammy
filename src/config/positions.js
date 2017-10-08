@@ -1,5 +1,7 @@
 export const positionMapping = {
-  unknown: { label: 'Unknown', order: 0, statsFields: [], hiddenFromManager: true },
+  unknown: {
+    label: 'Unknown', order: 0, statsFields: [], hiddenFromManager: true
+  },
   gks: { label: 'GK/S', order: 1, statsFields: ['gk', 'sub'] },
   cb: { label: 'CB', order: 2, statsFields: ['cbleft', 'cbright'] },
   fb: { label: 'FB', order: 3, statsFields: ['fbleft', 'fbright'] },

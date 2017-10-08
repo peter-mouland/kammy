@@ -7,7 +7,7 @@ const config = require('../../../config/config.js');
 
 const log = debug('kammy:local-login');
 
-const ObjectId = mongoose.Types.ObjectId;
+const { ObjectId } = mongoose.Types;
 const User = mongoose.model('User');
 const Team = mongoose.model('Team');
 

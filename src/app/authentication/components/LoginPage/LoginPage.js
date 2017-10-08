@@ -6,7 +6,9 @@ import Auth from '../../auth-helper';
 import LoginForm from '../LoginForm/LoginForm';
 import localStorage from '../../local-storage';
 
-const actions = { signUp: 'signUp', login: 'login', default: 'login', updatePassword: 'updatePassword' };
+const actions = {
+  signUp: 'signUp', login: 'login', default: 'login', updatePassword: 'updatePassword'
+};
 const ReferrerMessage = ({ from }) => (
   <p className="message message--warning">
     You must log in to view the page at
@@ -69,16 +71,17 @@ class LoginPage extends React.Component {
   }
 
   changeUser(event) {
-    const field = event.target.name;
-    const user = this.state.user;
-    user[field] = event.target.value;
+    const { user } = this.state;
+    user[event.target.name] = event.target.value;
 
     this.setState({ user });
   }
 
   render() {
     const { from } = this.props.location.state || {};
-    const { redirectToReferrer, errors, successMessage, user } = this.state;
+    const {
+      redirectToReferrer, errors, successMessage, user
+    } = this.state;
     const redirect = redirectToReferrer ? (<Redirect to={from || '/'}/>) : null;
     const referrerMessage = from ? <ReferrerMessage from={from} /> : null;
     const form = (

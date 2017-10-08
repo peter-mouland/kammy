@@ -35,7 +35,8 @@ $modal-md: 725px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   max-width: $modal-md;
 }
 
@@ -128,7 +129,7 @@ $modal-md: 725px;
 
 @media only screen and (min-width: 550px) {
   .modal__content {
-    min-width: auto;
+    min-width: initial;
     width: 90%;
     max-height: 90%;
     max-width: $modal-md;

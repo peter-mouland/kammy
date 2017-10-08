@@ -59,93 +59,102 @@ export const mapStats = (stats) => ({
 
 
 export const mapImportToSkyFormat = (player) => {
-  player.id = player.code;
-  player.name = player.player;
-  player.stats = {
-    season: [
-      player.apps, // 0
-      null, // 1
-      player.subs, // 2
-      player.gls, // 3
-      player.asts, // 4
-      player.ycard, // 5
-      player.rcard, // 6
-      player.cs, // 7
-      player.con, // 8
-      null, // 9
-      player.pensv, // 10
-      null, // 11
-      player.mom, // 12
-      null, // 13
-      player.tb || 0, // 14
-      player.sb || 0, // 15
-      null, // 16
-      null // 17
-    ] };
-  delete player.new;
-  delete player.player_2;
-  delete player.apps;
-  delete player.subs;
-  delete player.gls;
-  delete player.asts;
-  delete player.mom;
-  delete player.cs;
-  delete player.con;
-  delete player.pensv;
-  delete player.ycard;
-  delete player.rcard;
-  delete player.change;
-  delete player.player;
-  delete player.gw0;
-  delete player.gw1;
-  delete player.gw2;
-  return player;
+  const formattedPlayer = {
+    ...player,
+    id: player.code,
+    name: player.player,
+    stats: {
+      season: [
+        player.apps, // 0
+        null, // 1
+        player.subs, // 2
+        player.gls, // 3
+        player.asts, // 4
+        player.ycard, // 5
+        player.rcard, // 6
+        player.cs, // 7
+        player.con, // 8
+        null, // 9
+        player.pensv, // 10
+        null, // 11
+        player.mom, // 12
+        null, // 13
+        player.tb || 0, // 14
+        player.sb || 0, // 15
+        null, // 16
+        null // 17
+      ]
+    }
+  };
+  delete formattedPlayer.new;
+  delete formattedPlayer.player_2;
+  delete formattedPlayer.apps;
+  delete formattedPlayer.subs;
+  delete formattedPlayer.gls;
+  delete formattedPlayer.asts;
+  delete formattedPlayer.mom;
+  delete formattedPlayer.cs;
+  delete formattedPlayer.con;
+  delete formattedPlayer.pensv;
+  delete formattedPlayer.ycard;
+  delete formattedPlayer.rcard;
+  delete formattedPlayer.change;
+  delete formattedPlayer.player;
+  delete formattedPlayer.gw0;
+  delete formattedPlayer.gw1;
+  delete formattedPlayer.gw2;
+  return formattedPlayer;
 };
 
 export const mapImportToSchema = (player) => {
-  player.id = player.code;
-  player.name = player.player;
-  player.season = zeros;
-  player.gameWeek = zeros;
-  delete player.id;
-  delete player.new;
-  delete player.player_2;
-  delete player.apps;
-  delete player.subs;
-  delete player.gls;
-  delete player.asts;
-  delete player.mom;
-  delete player.cs;
-  delete player.con;
-  delete player.pensv;
-  delete player.ycard;
-  delete player.rcard;
-  delete player.change;
-  delete player.player;
-  delete player.gw0;
-  delete player.gw1;
-  return player;
+  const formattedPlayer = {
+    ...player,
+    id: player.code,
+    name: player.player,
+    season: zeros,
+    gameWeek: zeros,
+  };
+  delete formattedPlayer.id;
+  delete formattedPlayer.new;
+  delete formattedPlayer.player_2;
+  delete formattedPlayer.apps;
+  delete formattedPlayer.subs;
+  delete formattedPlayer.gls;
+  delete formattedPlayer.asts;
+  delete formattedPlayer.mom;
+  delete formattedPlayer.cs;
+  delete formattedPlayer.con;
+  delete formattedPlayer.pensv;
+  delete formattedPlayer.ycard;
+  delete formattedPlayer.rcard;
+  delete formattedPlayer.change;
+  delete formattedPlayer.player;
+  delete formattedPlayer.gw0;
+  delete formattedPlayer.gw1;
+  return formattedPlayer;
 };
 
 export const mapSkyFormatToSchema = (player) => {
   const season = player.stats && player.stats.season;
-  const stats = mapStats(season);
-  player.code = player.id;
-  player.gameWeek = zeros;
-  player.season = stats;
-  player.name = player.name || `${player.sName}, ${player.fName}`;
-  player.club = player.club || player.tName;
-  delete player.id;
-  delete player.stats;
-  delete player.sName;
-  delete player.fName;
-  delete player.tName;
-  delete player.tCode;
-  delete player.avail;
-  delete player.picked;
-  delete player.group; // pos
-  delete player.pts;
-  delete player.nxtfix;
-  return player;
+  const formattedPlayer = {
+    ...player,
+    code: player.id,
+    gameWeek: zeros,
+    season: mapStats(season),
+    name: player.name || `${player.sName}, ${player.fName}`,
+    club: player.club || player.tName
+  };
+  delete formattedPlayer.id;
+  delete formattedPlayer.stats;
+  delete formattedPlayer.sName;
+  delete formattedPlayer.fName;
+  delete formattedPlayer.tName;
+  delete formattedPlayer.tCode;
+  delete formattedPlayer.avail;
+  delete formattedPlayer.picked;
+  delete formattedPlayer.group; // pos
+  delete formattedPlayer.pts;
+  delete formattedPlayer.nxtfix;
+  return formattedPlayer;
 };
 

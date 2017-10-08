@@ -1,8 +1,7 @@
 function mapWebpackAssets(assetsObj) {
   const assets = { scripts: [], stylesheets: [] };
   Object.keys(assetsObj).forEach((key) => {
-    const js = assetsObj[key].js;
-    const css = assetsObj[key].css;
+    const { js, css } = assetsObj[key];
     if (js && key === 'vendor') {
       assets.scripts.unshift(js);
     } else if (js) {

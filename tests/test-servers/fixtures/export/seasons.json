@@ -1,0 +1,25 @@
+{ 
+    "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+    "name" : "2017/2018", 
+    "divisions" : [
+        {
+            "name" : "Premier League", 
+            "tier" : NumberInt(1), 
+            "_id" : ObjectId("5988d58f09841a00115c707f")
+        }, 
+        {
+            "name" : "Championship", 
+            "tier" : NumberInt(1), 
+            "_id" : ObjectId("5988d59509841a00115c7080")
+        }, 
+        {
+            "name" : "League One", 
+            "tier" : NumberInt(1), 
+            "_id" : ObjectId("5988d59b09841a00115c7081")
+        }
+    ], 
+    "currentGW" : NumberInt(2), 
+    "isLive" : false, 
+    "dateCreated" : ISODate("2017-08-06T10:52:33.758+0000"), 
+    "__v" : NumberInt(0)
+}

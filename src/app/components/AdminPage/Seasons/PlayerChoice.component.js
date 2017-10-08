@@ -54,9 +54,11 @@ export default class PlayerChoice extends React.Component {
 
 
   render() {
-    const { pos, players, onUpdate, defaultValue, teams } = this.props;
+    const { clubs } = this;
+    const {
+      pos, players, onUpdate, defaultValue, teams
+    } = this.props;
     const { clubFilter, positionFilter } = this.state;
-    const clubs = this.clubs;
     const position = positionFilter || pos;
 
     const pickedPlayers = teams.reduce((prev, team) => {

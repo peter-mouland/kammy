@@ -62,12 +62,11 @@ export const getPlayerFixtures = ({ code }) => {
 };
 
 export const updatePlayers = ({ playerUpdates }) => {
-  const bulkUpdate = playerUpdates.map((update) => {
-    update.new = false;
+  const bulkUpdate = playerUpdates.map((player) => {
+    const update = { ...player, new: false };
+    const filter = { _id: player._id };
     return {
-      updateOne: {
-        filter: { _id: update._id }, update
-      },
+      updateOne: { filter, update },
     };
   });
   return Player.bulkWrite(bulkUpdate).then(() => (playerUpdates));

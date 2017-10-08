@@ -26,7 +26,9 @@ export default class Divisions extends React.Component {
   }
 
   render() {
-    const { loading, season, divisions, seasonUsers = [], match, updatingUserTeam } = this.props;
+    const {
+      loading, season, divisions, seasonUsers = [], match, updatingUserTeam
+    } = this.props;
     const assigningUserToDivision = loading === ASSIGN_TEAM_TO_DIVISION;
 
     const division = selectedItem(match, divisions, 'divisionId');
@@ -34,9 +36,7 @@ export default class Divisions extends React.Component {
     this.divisionName = division.name;
     // todo pull this out into a reducer
     const teams = seasonUsers.reduce((prev, curr) => prev.concat(curr.teams), []);
-    const divisionTeams = teams.filter(
-      (team) => team.division._id === division._id
-    );
+    const divisionTeams = teams.filter((team) => team.division._id === division._id);
     return (
       <div
         {...bem(null, 'top', 'admin-options') }

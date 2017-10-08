@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 function storageMock() {
   const storage = {};
 
@@ -20,7 +22,6 @@ function storageMock() {
     }
   };
 }
-
 
 module.exports = (function setMock(glob) {
   if (typeof localStorage === 'undefined' || localStorage === null) {

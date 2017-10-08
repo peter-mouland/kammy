@@ -2,7 +2,7 @@ import debug from 'debug';
 import mongoose from 'mongoose';
 
 const Team = mongoose.model('Team');
-const ObjectId = mongoose.Types.ObjectId;
+const { ObjectId } = mongoose.Types;
 
 const log = debug('kammy:db/team.actions');
 

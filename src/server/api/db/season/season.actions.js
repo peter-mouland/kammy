@@ -7,7 +7,7 @@ import aggFields from './buildAggregates';
 const log = debug('kammy:db/season.actions');
 const Seasons = mongoose.model('Season');
 const Teams = mongoose.model('Team');
-const ObjectId = mongoose.Types.ObjectId;
+const { ObjectId } = mongoose.Types;
 
 export const findSeasonById = (_id) => Seasons.findById(_id).exec();
 
@@ -20,16 +20,14 @@ export const getSeasons = (search = {}) => {
 
 export const getDivisions = async () => {
   const season = await Seasons.findOne({ isLive: true }).sort({ dateCreated: -1 }).exec();
-  const divisions = season.divisions;
+  const { divisions } = season;
   const $in = divisions.map((division) => new ObjectId(division._id));
   aggFields.user = 1;
   aggFields.division = 1;
 
-  const teams = await Teams.aggregate(
-    { $match: { 'division._id': { $in } } }, { $project: aggFields }
-  ).exec();
+  const teams = await Teams.aggregate({ $match: { 'division._id': { $in } } }, { $project: aggFields }).exec();
 
-  const divisionPointsTable = divisions.map((division) => ({
+  return divisions.map((division) => ({
     tier: division.tier,
     _id: division._id,
     name: division.name,
@@ -37,7 +35,6 @@ export const getDivisions = async () => {
       team.division._id.toHexString() === division._id.toHexString()
     )))
   }));
-  return divisionPointsTable;
 };
 
 export const getLatestSeason = () => Seasons.findOne({}).sort({ dateCreated: -1 }).exec();

@@ -33,7 +33,7 @@ class AddUser extends React.Component {
 
   getDivisions = () => {
     const seasonId = this.inputs.season.value;
-    const divisions = this.props.seasons.find((season) => season._id === seasonId).divisions;
+    const { divisions } = this.props.seasons.find((season) => season._id === seasonId);
     this.setState({ divisions });
   }
 
@@ -99,8 +99,7 @@ class AddUser extends React.Component {
                 onChange={ this.getDivisions }
               >
                 {seasons.map((season) =>
-                  <option key={season._id} value={season._id}>{season.name}</option>
-                )}
+                  <option key={season._id} value={season._id}>{season.name}</option>)}
               </select>
             </div>
             <div>
@@ -113,8 +112,7 @@ class AddUser extends React.Component {
                 }}
               >
                 {divisions.map((division) =>
-                  <option key={division._id} value={division._id}>{division.name}</option>
-                )}
+                  <option key={division._id} value={division._id}>{division.name}</option>)}
               </select>
             </div>
             <input className="admin-btn" type="submit" value="Add New User"/>

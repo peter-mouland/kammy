@@ -39,7 +39,6 @@ export const text = {
 export function validateSignUpForm(payload) {
   const errors = {};
   let isFormValid = true;
-  let message = '';
 
   if (!payload || typeof payload.email !== 'string' || !isEmail(payload.email)) {
     isFormValid = false;
@@ -51,9 +50,7 @@ export function validateSignUpForm(payload) {
     errors.password = text.signUpForm.errors.password;
   }
 
-  if (!isFormValid) {
-    message = text.signUpForm.errors.message;
-  }
+  const message = (!isFormValid) ? text.signUpForm.errors.message : '';
 
   return {
     success: isFormValid,
@@ -73,16 +70,13 @@ export function validateSignUpForm(payload) {
 export function validateUpdatePassword(payload) {
   const errors = {};
   let isFormValid = true;
-  let message = '';
 
   if (!payload || payload.password.trim().length < 8) {
     isFormValid = false;
     errors.password = text.signUpForm.errors.password;
   }
 
-  if (!isFormValid) {
-    message = text.signUpForm.errors.message;
-  }
+  const message = (!isFormValid) ? text.signUpForm.errors.message : '';
 
   return {
     success: isFormValid,
@@ -94,7 +88,6 @@ export function validateUpdatePassword(payload) {
 export function validateLoginForm(payload) {
   const errors = {};
   let isFormValid = true;
-  let message = '';
 
   if (!payload || typeof payload.email !== 'string' || payload.email.trim().length === 0) {
     isFormValid = false;
@@ -106,9 +99,7 @@ export function validateLoginForm(payload) {
     errors.password = text.loginForm.errors.password;
   }
 
-  if (!isFormValid) {
-    message = text.loginForm.errors.message;
-  }
+  const message = (!isFormValid) ? text.signUpForm.errors.message : '';
 
   return {
     success: isFormValid,

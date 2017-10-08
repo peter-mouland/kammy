@@ -20,7 +20,9 @@ class AdminList extends React.Component {
   }
 
   render() {
-    const { className, list, type, path, children, secondary = false, ...props } = this.props;
+    const {
+      className, list, type, path, children, secondary = false, ...props
+    } = this.props;
     const { router: { route: { match } } } = this.context;
     return (
       <ul

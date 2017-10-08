@@ -20,14 +20,18 @@ export const updateUser = async ({ _id, ...userDetails }) => {
   return user;
 };
 
-export const addUser = ({ seasonId, divisionId, name, email, isAdmin, mustChangePassword, password = 'password123' }) => {
+export const addUser = ({
+  seasonId, divisionId, name, email, isAdmin, mustChangePassword, password = 'password123'
+}) => {
   let user;
   const getSeason = (seasonId)
     ? findSeasonById(seasonId)
     : getLatestSeason();
 
   return Promise.resolve()
-    .then(() => saveNewUser({ name, email, password, isAdmin, mustChangePassword }))
+    .then(() => saveNewUser({
+      name, email, password, isAdmin, mustChangePassword
+    }))
     .then((userInserted) => {
       user = userInserted;
       return getSeason;

@@ -1,0 +1,2949 @@
+{ 
+    "_id" : ObjectId("5988d53609841a00115c707e"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(22), 
+        "strright" : NumberInt(13), 
+        "strleft" : NumberInt(11), 
+        "amright" : NumberInt(7), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(5), 
+        "midleft" : NumberInt(7), 
+        "fbright" : NumberInt(16), 
+        "fbleft" : NumberInt(3), 
+        "cbright" : NumberInt(20), 
+        "cbleft" : NumberInt(17), 
+        "gk" : NumberInt(23), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "name" : "Nick", 
+        "_id" : ObjectId("5988d53609841a00115c707d")
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:01:42.652+0000"), 
+    "__v" : NumberInt(0), 
+    "division" : {
+        "name" : "Premier League", 
+        "_id" : ObjectId("5988d58f09841a00115c707f")
+    }, 
+    "sub" : {
+        "code" : NumberInt(3234), 
+        "club" : "Arsenal", 
+        "name" : "Ozil, Mesut", 
+        "_id" : ObjectId("5986f4e48032c8001170ecd9")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4004), 
+        "club" : "Everton", 
+        "name" : "Rooney, Wayne", 
+        "_id" : ObjectId("5986f4e48032c8001170ed6e")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4260), 
+        "club" : "Manchester City", 
+        "name" : "Jesus, Gabriel", 
+        "_id" : ObjectId("5986f4e48032c8001170eda9")
+    }, 
+    "amright" : {
+        "code" : NumberInt(3468), 
+        "club" : "Manchester United", 
+        "name" : "Mkhitaryan, Henrikh", 
+        "_id" : ObjectId("5986f4e48032c8001170ed23")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(3003), 
+        "club" : "Chelsea", 
+        "name" : "Hazard, Eden", 
+        "_id" : ObjectId("5986f4e48032c8001170ec96")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3047), 
+        "club" : "Arsenal", 
+        "name" : "Ramsey, Aaron", 
+        "_id" : ObjectId("5986f4e48032c8001170ecae")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3038), 
+        "club" : "Liverpool", 
+        "name" : "Henderson, Jordan", 
+        "_id" : ObjectId("5986f4e48032c8001170eca6")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(2324), 
+        "club" : "Manchester United", 
+        "name" : "Blind, Daley", 
+        "_id" : ObjectId("5986f4e48032c8001170ec4d")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2064), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Davies, Ben", 
+        "_id" : ObjectId("5986f4e48032c8001170ec0a")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2071), 
+        "club" : "Southampton", 
+        "name" : "Yoshida, Maya", 
+        "_id" : ObjectId("5986f4e48032c8001170ec0f")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2387), 
+        "club" : "Chelsea", 
+        "name" : "Luiz, David", 
+        "_id" : ObjectId("5986f4e48032c8001170ec6a")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1069), 
+        "club" : "Southampton", 
+        "name" : "Forster, Fraser", 
+        "_id" : ObjectId("5986f4e48032c8001170ebc7")
+    }
+}
+{ 
+    "_id" : ObjectId("5988d63c09841a00115c7083"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d58f09841a00115c707f"), 
+        "name" : "Premier League"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(5), 
+        "strright" : NumberInt(15), 
+        "strleft" : NumberInt(21), 
+        "amright" : NumberInt(7), 
+        "amleft" : NumberInt(18), 
+        "midright" : NumberInt(7), 
+        "midleft" : NumberInt(12), 
+        "fbright" : NumberInt(8), 
+        "fbleft" : NumberInt(25), 
+        "cbright" : NumberInt(-1), 
+        "cbleft" : NumberInt(11), 
+        "gk" : NumberInt(12), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "_id" : ObjectId("5988d63c09841a00115c7082"), 
+        "name" : "Olly"
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:06:04.157+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(4015), 
+        "club" : "Manchester United", 
+        "name" : "Lukaku, Romelu", 
+        "_id" : ObjectId("5986f4e48032c8001170ed74")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4294), 
+        "club" : "West Ham United", 
+        "name" : "Hernandez, Javier", 
+        "_id" : ObjectId("5986f4e58032c8001170edc8")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4019), 
+        "club" : "Bournemouth", 
+        "name" : "Defoe, Jermain", 
+        "_id" : ObjectId("5986f4e48032c8001170ed76")
+    }, 
+    "amright" : {
+        "code" : NumberInt(3393), 
+        "club" : "Chelsea", 
+        "name" : "Pedro, ", 
+        "_id" : ObjectId("5986f4e48032c8001170ed03")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(3230), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Eriksen, Christian", 
+        "_id" : ObjectId("5986f4e48032c8001170ecd7")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3054), 
+        "club" : "West Bromwich Albion", 
+        "name" : "Brunt, Chris", 
+        "_id" : ObjectId("5986f4e48032c8001170ecb1")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3288), 
+        "club" : "Liverpool", 
+        "name" : "Can, Emre", 
+        "_id" : ObjectId("5986f4e48032c8001170ece3")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(2447), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Aurier, Serge", 
+        "_id" : ObjectId("59ae7b4f3d847c0011e27d77")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2385), 
+        "club" : "Chelsea", 
+        "name" : "Alonso, Marcos", 
+        "_id" : ObjectId("5986f4e48032c8001170ec69")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2012), 
+        "club" : "West Bromwich Albion", 
+        "name" : "Evans, Jonny", 
+        "_id" : ObjectId("5986f4e48032c8001170ebef")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2144), 
+        "club" : "Manchester City", 
+        "name" : "Stones, John", 
+        "_id" : ObjectId("5986f4e48032c8001170ec1c")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1119), 
+        "club" : "Manchester City", 
+        "name" : "Moraes, Ederson", 
+        "_id" : ObjectId("5986f4e48032c8001170ebdd")
+    }
+}
+{ 
+    "_id" : ObjectId("5988d65109841a00115c7085"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d58f09841a00115c707f"), 
+        "name" : "Premier League"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(4), 
+        "strright" : NumberInt(7), 
+        "strleft" : NumberInt(5), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(9), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(1), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(10), 
+        "cbleft" : NumberInt(14), 
+        "gk" : NumberInt(13), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "_id" : ObjectId("5988d65109841a00115c7084"), 
+        "name" : "Matty"
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:06:25.719+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(1003), 
+        "club" : "Arsenal", 
+        "name" : "Cech, Petr", 
+        "_id" : ObjectId("5986f4e48032c8001170ebac")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4010), 
+        "club" : "Arsenal", 
+        "name" : "Giroud, Olivier", 
+        "_id" : ObjectId("5986f4e48032c8001170ed72")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4070), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Kane, Harry", 
+        "_id" : ObjectId("5986f4e48032c8001170ed7e")
+    }, 
+    "amright" : {
+        "code" : NumberInt(3017), 
+        "club" : "Liverpool", 
+        "name" : "Coutinho, Philippe", 
+        "_id" : ObjectId("5986f4e48032c8001170ec9d")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(3001), 
+        "club" : "Manchester United", 
+        "name" : "Mata, Juan", 
+        "_id" : ObjectId("5986f4e48032c8001170ec95")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3465), 
+        "club" : "Huddersfield Town", 
+        "name" : "Mooy, Aaron", 
+        "_id" : ObjectId("5986f4e48032c8001170ed20")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3064), 
+        "club" : "Southampton", 
+        "name" : "Davis, Steven", 
+        "_id" : ObjectId("5986f4e48032c8001170ecb6")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(2329), 
+        "club" : "Liverpool", 
+        "name" : "Robertson, Andrew", 
+        "_id" : ObjectId("5986f4e48032c8001170ec50")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2152), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Rose, Danny", 
+        "_id" : ObjectId("5986f4e48032c8001170ec1e")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2303), 
+        "club" : "Manchester City", 
+        "name" : "Otamendi, Nicolas", 
+        "_id" : ObjectId("5986f4e48032c8001170ec46")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2025), 
+        "club" : "Chelsea", 
+        "name" : "Azpilicueta, Cesar", 
+        "_id" : ObjectId("5986f4e48032c8001170ebf7")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1058), 
+        "club" : "Chelsea", 
+        "name" : "Courtois, Thibaut", 
+        "_id" : ObjectId("5986f4e48032c8001170ebc3")
+    }
+}
+{ 
+    "_id" : ObjectId("5988d66009841a00115c7087"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d58f09841a00115c707f"), 
+        "name" : "Premier League"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(12), 
+        "strright" : NumberInt(14), 
+        "strleft" : NumberInt(17), 
+        "amright" : NumberInt(8), 
+        "amleft" : NumberInt(22), 
+        "midright" : NumberInt(7), 
+        "midleft" : NumberInt(16), 
+        "fbright" : NumberInt(22), 
+        "fbleft" : NumberInt(11), 
+        "cbright" : NumberInt(8), 
+        "cbleft" : NumberInt(9), 
+        "gk" : NumberInt(17), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "_id" : ObjectId("5988d66009841a00115c7086"), 
+        "name" : "Stuart"
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:06:40.986+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(3227), 
+        "club" : "Chelsea", 
+        "name" : "Willian, ", 
+        "_id" : ObjectId("5986f4e48032c8001170ecd5")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4210), 
+        "club" : "Manchester United", 
+        "name" : "Rashford, Marcus", 
+        "_id" : ObjectId("5986f4e48032c8001170ed94")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4128), 
+        "club" : "Leicester City", 
+        "name" : "Vardy, Jamie", 
+        "_id" : ObjectId("5986f4e48032c8001170ed83")
+    }, 
+    "amright" : {
+        "code" : NumberInt(3007), 
+        "club" : "Manchester City", 
+        "name" : "Silva, David", 
+        "_id" : ObjectId("5986f4e48032c8001170ec9a")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(3334), 
+        "club" : "Liverpool", 
+        "name" : "Mane, Sadio", 
+        "_id" : ObjectId("5986f4e48032c8001170ecee")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3081), 
+        "club" : "Liverpool", 
+        "name" : "Ox-Chamberlain, Alex", 
+        "_id" : ObjectId("5986f4e48032c8001170ecbe")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3265), 
+        "club" : "Chelsea", 
+        "name" : "Fabregas, Cesc", 
+        "_id" : ObjectId("5986f4e48032c8001170ecdd")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(2281), 
+        "club" : "Manchester United", 
+        "name" : "Valencia, Antonio", 
+        "_id" : ObjectId("5986f4e48032c8001170ec3b")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2004), 
+        "club" : "Everton", 
+        "name" : "Baines, Leighton", 
+        "_id" : ObjectId("5986f4e48032c8001170ebe8")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2001), 
+        "club" : "Manchester City", 
+        "name" : "Kompany, Vincent", 
+        "_id" : ObjectId("5986f4e48032c8001170ebe7")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2282), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Alderweireld, Toby", 
+        "_id" : ObjectId("5986f4e48032c8001170ec3c")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1087), 
+        "club" : "Everton", 
+        "name" : "Pickford, Jordan", 
+        "_id" : ObjectId("5986f4e48032c8001170ebcd")
+    }
+}
+{ 
+    "_id" : ObjectId("5988d67b09841a00115c7089"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d58f09841a00115c707f"), 
+        "name" : "Premier League"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(4), 
+        "strright" : NumberInt(7), 
+        "strleft" : NumberInt(21), 
+        "amright" : NumberInt(8), 
+        "amleft" : NumberInt(4), 
+        "midright" : NumberInt(28), 
+        "midleft" : NumberInt(4), 
+        "fbright" : NumberInt(6), 
+        "fbleft" : NumberInt(5), 
+        "cbright" : NumberInt(8), 
+        "cbleft" : NumberInt(30), 
+        "gk" : NumberInt(15), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "_id" : ObjectId("5988d67a09841a00115c7088"), 
+        "name" : "Savak"
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:07:07.006+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(3576), 
+        "club" : "Watford", 
+        "name" : "Richarlison, ", 
+        "_id" : ObjectId("5994a3cf1e583e0011281505")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4291), 
+        "club" : "Huddersfield Town", 
+        "name" : "Mounie, Steve", 
+        "_id" : ObjectId("5986f4e58032c8001170edc5")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4293), 
+        "club" : "Chelsea", 
+        "name" : "Morata, Alvaro", 
+        "_id" : ObjectId("5986f4e58032c8001170edc7")
+    }, 
+    "amright" : {
+        "code" : NumberInt(3093), 
+        "club" : "Manchester City", 
+        "name" : "Sterling, Raheem", 
+        "_id" : ObjectId("5986f4e48032c8001170ecc3")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(3062), 
+        "club" : "Swansea City", 
+        "name" : "Sigurdsson, Gylfi", 
+        "_id" : ObjectId("5986f4e48032c8001170ecb5")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3481), 
+        "club" : "Manchester United", 
+        "name" : "Pogba, Paul", 
+        "_id" : ObjectId("5986f4e48032c8001170ed2c")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3461), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Dier, Eric", 
+        "_id" : ObjectId("5986f4e48032c8001170ed1e")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(3068), 
+        "club" : "Chelsea", 
+        "name" : "Moses, Victor", 
+        "_id" : ObjectId("5986f4e48032c8001170ecb9")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2020), 
+        "club" : "Manchester City", 
+        "name" : "Walker, Kyle", 
+        "_id" : ObjectId("5986f4e48032c8001170ebf3")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2306), 
+        "club" : "Southampton", 
+        "name" : "van Dijk, Virgil", 
+        "_id" : ObjectId("5986f4e48032c8001170ec48")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2325), 
+        "club" : "Manchester United", 
+        "name" : "Bailly, Eric", 
+        "_id" : ObjectId("5986f4e48032c8001170ec4e")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1038), 
+        "club" : "Stoke City", 
+        "name" : "Butland, Jack", 
+        "_id" : ObjectId("5986f4e48032c8001170ebbe")
+    }
+}
+{ 
+    "_id" : ObjectId("5988d69509841a00115c708b"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d58f09841a00115c707f"), 
+        "name" : "Premier League"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(6), 
+        "strright" : NumberInt(5), 
+        "strleft" : NumberInt(11), 
+        "amright" : NumberInt(23), 
+        "amleft" : NumberInt(9), 
+        "midright" : NumberInt(9), 
+        "midleft" : NumberInt(10), 
+        "fbright" : NumberInt(17), 
+        "fbleft" : NumberInt(1), 
+        "cbright" : NumberInt(22), 
+        "cbleft" : NumberInt(9), 
+        "gk" : NumberInt(1), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "_id" : ObjectId("5988d69409841a00115c708a"), 
+        "name" : "Tom S"
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:07:33.052+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(3277), 
+        "club" : "Leicester City", 
+        "name" : "Mahrez, Riyad", 
+        "_id" : ObjectId("5986f4e48032c8001170ece2")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4008), 
+        "club" : "Crystal Palace", 
+        "name" : "Benteke, Christian", 
+        "_id" : ObjectId("5986f4e48032c8001170ed71")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4003), 
+        "club" : "Manchester City", 
+        "name" : "Aguero, Sergio", 
+        "_id" : ObjectId("5986f4e48032c8001170ed6d")
+    }, 
+    "amright" : {
+        "code" : NumberInt(3561), 
+        "club" : "Liverpool", 
+        "name" : "Salah, Mohamed", 
+        "_id" : ObjectId("5986f4e48032c8001170ed61")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(3397), 
+        "club" : "Manchester City", 
+        "name" : "de Bruyne, Kevin", 
+        "_id" : ObjectId("5986f4e48032c8001170ed05")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3560), 
+        "club" : "Brighton", 
+        "name" : "Gross, Pascal", 
+        "_id" : ObjectId("5986f4e48032c8001170ed60")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3483), 
+        "club" : "Everton", 
+        "name" : "Gueye, Idrissa", 
+        "_id" : ObjectId("5986f4e48032c8001170ed2e")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(2097), 
+        "club" : "Southampton", 
+        "name" : "Bertrand, Ryan", 
+        "_id" : ObjectId("5986f4e48032c8001170ec16")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2269), 
+        "club" : "Arsenal", 
+        "name" : "Bellerin, Hector", 
+        "_id" : ObjectId("5986f4e48032c8001170ec34")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2326), 
+        "club" : "Liverpool", 
+        "name" : "Matip, Joel", 
+        "_id" : ObjectId("5986f4e48032c8001170ec4f")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2010), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Vertonghen, Jan", 
+        "_id" : ObjectId("5986f4e48032c8001170ebed")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1012), 
+        "club" : "West Bromwich Albion", 
+        "name" : "Foster, Ben", 
+        "_id" : ObjectId("5986f4e48032c8001170ebb2")
+    }
+}
+{ 
+    "_id" : ObjectId("5988d6b009841a00115c708d"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d58f09841a00115c707f"), 
+        "name" : "Premier League"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(9), 
+        "strright" : NumberInt(13), 
+        "strleft" : NumberInt(11), 
+        "amright" : NumberInt(5), 
+        "amleft" : NumberInt(3), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(15), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(7), 
+        "cbleft" : NumberInt(8), 
+        "gk" : NumberInt(24), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "_id" : ObjectId("5988d6b009841a00115c708c"), 
+        "name" : "Tony"
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:08:00.356+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(4214), 
+        "club" : "Bournemouth", 
+        "name" : "King, Joshua", 
+        "_id" : ObjectId("5986f4e48032c8001170ed96")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4268), 
+        "club" : "Southampton", 
+        "name" : "Gabbiadini, Manolo", 
+        "_id" : ObjectId("5986f4e48032c8001170edae")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4292), 
+        "club" : "Arsenal", 
+        "name" : "Lacazette, Alexandre", 
+        "_id" : ObjectId("5986f4e58032c8001170edc6")
+    }, 
+    "amright" : {
+        "code" : NumberInt(4195), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Heung-Min, Son", 
+        "_id" : ObjectId("5986f4e48032c8001170ed90")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(4153), 
+        "club" : "Arsenal", 
+        "name" : "Sanchez, Alexis", 
+        "_id" : ObjectId("5986f4e48032c8001170ed86")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3005), 
+        "club" : "Manchester City", 
+        "name" : "Toure, Yaya", 
+        "_id" : ObjectId("5986f4e48032c8001170ec98")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3378), 
+        "club" : "Chelsea", 
+        "name" : "Kante, N'Golo", 
+        "_id" : ObjectId("5986f4e48032c8001170ecfd")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(2055), 
+        "club" : "Liverpool", 
+        "name" : "Clyne, Nathaniel", 
+        "_id" : ObjectId("5986f4e48032c8001170ec04")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2435), 
+        "club" : "Manchester City", 
+        "name" : "Mendy, Benjamin", 
+        "_id" : ObjectId("5986f4e48032c8001170ec93")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2153), 
+        "club" : "Liverpool", 
+        "name" : "Lovren, Dejan", 
+        "_id" : ObjectId("5986f4e48032c8001170ec1f")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2018), 
+        "club" : "Manchester United", 
+        "name" : "Jones, Phil", 
+        "_id" : ObjectId("5986f4e48032c8001170ebf2")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1002), 
+        "club" : "Manchester United", 
+        "name" : "de Gea, David", 
+        "_id" : ObjectId("5986f4e48032c8001170ebab")
+    }
+}
+{ 
+    "_id" : ObjectId("5998b4fed64b3c0011d8598d"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "name" : null, 
+        "_id" : ObjectId("5998b4fed64b3c0011d8598c")
+    }, 
+    "dateCreated" : ISODate("2017-08-19T22:00:30.643+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d6c809841a00115c708f"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d58f09841a00115c707f"), 
+        "name" : "Premier League"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(9), 
+        "strright" : NumberInt(1), 
+        "strleft" : NumberInt(23), 
+        "amright" : NumberInt(6), 
+        "amleft" : NumberInt(19), 
+        "midright" : NumberInt(13), 
+        "midleft" : NumberInt(9), 
+        "fbright" : NumberInt(14), 
+        "fbleft" : NumberInt(12), 
+        "cbright" : NumberInt(11), 
+        "cbleft" : NumberInt(-2), 
+        "gk" : NumberInt(11), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "_id" : ObjectId("5988d6c809841a00115c708e"), 
+        "name" : "James"
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:08:24.462+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(3399), 
+        "club" : "West Ham United", 
+        "name" : "Antonio, Michail", 
+        "_id" : ObjectId("5986f4e48032c8001170ed06")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4187), 
+        "club" : "Leicester City", 
+        "name" : "Iheanacho, Kelechi", 
+        "_id" : ObjectId("5986f4e48032c8001170ed8d")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4270), 
+        "club" : "Liverpool", 
+        "name" : "Firmino, Roberto", 
+        "_id" : ObjectId("5986f4e48032c8001170edb0")
+    }, 
+    "amright" : {
+        "code" : NumberInt(4200), 
+        "club" : "Manchester United", 
+        "name" : "Martial, Anthony", 
+        "_id" : ObjectId("5986f4e48032c8001170ed91")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(3067), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Alli, Dele", 
+        "_id" : ObjectId("5986f4e48032c8001170ecb8")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3243), 
+        "club" : "Manchester United", 
+        "name" : "Matic, Nemanja", 
+        "_id" : ObjectId("5986f4e48032c8001170ecdb")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3478), 
+        "club" : "Liverpool", 
+        "name" : "Wijnaldum, Georginio", 
+        "_id" : ObjectId("5986f4e48032c8001170ed2a")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(2434), 
+        "club" : "Manchester City", 
+        "name" : "Danilo, ", 
+        "_id" : ObjectId("5986f4e48032c8001170ec92")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2331), 
+        "club" : "Bournemouth", 
+        "name" : "Daniels, Charlie", 
+        "_id" : ObjectId("5986f4e48032c8001170ec51")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2335), 
+        "club" : "Everton", 
+        "name" : "Keane, Michael", 
+        "_id" : ObjectId("5986f4e48032c8001170ec53")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2022), 
+        "club" : "Chelsea", 
+        "name" : "Cahill, Gary", 
+        "_id" : ObjectId("5986f4e48032c8001170ebf5")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1004), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Lloris, Hugo", 
+        "_id" : ObjectId("5986f4e48032c8001170ebad")
+    }
+}
+{ 
+    "_id" : ObjectId("5988d6e309841a00115c7091"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d59509841a00115c7080"), 
+        "name" : "Championship"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(4), 
+        "strright" : NumberInt(6), 
+        "strleft" : NumberInt(5), 
+        "amright" : NumberInt(12), 
+        "amleft" : NumberInt(22), 
+        "midright" : NumberInt(10), 
+        "midleft" : NumberInt(15), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(1), 
+        "cbright" : NumberInt(11), 
+        "cbleft" : NumberInt(9), 
+        "gk" : NumberInt(17), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "_id" : ObjectId("5988d6e309841a00115c7090"), 
+        "name" : "Phil"
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:08:51.214+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(4297), 
+        "club" : "Stoke City", 
+        "name" : "Jese, ", 
+        "_id" : ObjectId("5994a3cf1e583e001128150d")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4204), 
+        "club" : "Southampton", 
+        "name" : "Austin, Charlie", 
+        "_id" : ObjectId("5986f4e48032c8001170ed93")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4070), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Kane, Harry", 
+        "_id" : ObjectId("5986f4e48032c8001170ed7e")
+    }, 
+    "amright" : {
+        "code" : NumberInt(3227), 
+        "club" : "Chelsea", 
+        "name" : "Willian, ", 
+        "_id" : ObjectId("5986f4e48032c8001170ecd5")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(3334), 
+        "club" : "Liverpool", 
+        "name" : "Mane, Sadio", 
+        "_id" : ObjectId("5986f4e48032c8001170ecee")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3465), 
+        "club" : "Huddersfield Town", 
+        "name" : "Mooy, Aaron", 
+        "_id" : ObjectId("5986f4e48032c8001170ed20")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3243), 
+        "club" : "Manchester United", 
+        "name" : "Matic, Nemanja", 
+        "_id" : ObjectId("5986f4e48032c8001170ecdb")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(2435), 
+        "club" : "Manchester City", 
+        "name" : "Mendy, Benjamin", 
+        "_id" : ObjectId("5986f4e48032c8001170ec93")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2269), 
+        "club" : "Arsenal", 
+        "name" : "Bellerin, Hector", 
+        "_id" : ObjectId("5986f4e48032c8001170ec34")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2335), 
+        "club" : "Everton", 
+        "name" : "Keane, Michael", 
+        "_id" : ObjectId("5986f4e48032c8001170ec53")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2282), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Alderweireld, Toby", 
+        "_id" : ObjectId("5986f4e48032c8001170ec3c")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1087), 
+        "club" : "Everton", 
+        "name" : "Pickford, Jordan", 
+        "_id" : ObjectId("5986f4e48032c8001170ebcd")
+    }
+}
+{ 
+    "_id" : ObjectId("5988d6f709841a00115c7093"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d59509841a00115c7080"), 
+        "name" : "Championship"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(13), 
+        "strright" : NumberInt(13), 
+        "strleft" : NumberInt(17), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(12), 
+        "fbright" : NumberInt(1), 
+        "fbleft" : NumberInt(17), 
+        "cbright" : NumberInt(6), 
+        "cbleft" : NumberInt(-1), 
+        "gk" : NumberInt(24), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "_id" : ObjectId("5988d6f709841a00115c7092"), 
+        "name" : "Dave M"
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:09:11.962+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(4268), 
+        "club" : "Southampton", 
+        "name" : "Gabbiadini, Manolo", 
+        "_id" : ObjectId("5986f4e48032c8001170edae")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4004), 
+        "club" : "Everton", 
+        "name" : "Rooney, Wayne", 
+        "_id" : ObjectId("5986f4e48032c8001170ed6e")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4128), 
+        "club" : "Leicester City", 
+        "name" : "Vardy, Jamie", 
+        "_id" : ObjectId("5986f4e48032c8001170ed83")
+    }, 
+    "amright" : {
+        "code" : NumberInt(3017), 
+        "club" : "Liverpool", 
+        "name" : "Coutinho, Philippe", 
+        "_id" : ObjectId("5986f4e48032c8001170ec9d")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(3003), 
+        "club" : "Chelsea", 
+        "name" : "Hazard, Eden", 
+        "_id" : ObjectId("5986f4e48032c8001170ec96")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3429), 
+        "club" : "Manchester City", 
+        "name" : "Gundogan, Ilkay", 
+        "_id" : ObjectId("5986f4e48032c8001170ed13")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3045), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Dembele, Mousa", 
+        "_id" : ObjectId("5986f4e48032c8001170ecac")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(2017), 
+        "club" : "Arsenal", 
+        "name" : "Monreal, Nacho", 
+        "_id" : ObjectId("5986f4e48032c8001170ebf1")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2021), 
+        "club" : "Southampton", 
+        "name" : "Soares, Cedric", 
+        "_id" : ObjectId("5986f4e48032c8001170ebf4")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2001), 
+        "club" : "Manchester City", 
+        "name" : "Kompany, Vincent", 
+        "_id" : ObjectId("5986f4e48032c8001170ebe7")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2027), 
+        "club" : "Arsenal", 
+        "name" : "Koscielny, Laurent", 
+        "_id" : ObjectId("5986f4e48032c8001170ebf8")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1002), 
+        "club" : "Manchester United", 
+        "name" : "de Gea, David", 
+        "_id" : ObjectId("5986f4e48032c8001170ebab")
+    }
+}
+{ 
+    "_id" : ObjectId("5988d71309841a00115c7095"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d59509841a00115c7080"), 
+        "name" : "Championship"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(5), 
+        "strright" : NumberInt(1), 
+        "strleft" : NumberInt(5), 
+        "amright" : NumberInt(23), 
+        "amleft" : NumberInt(19), 
+        "midright" : NumberInt(7), 
+        "midleft" : NumberInt(7), 
+        "fbright" : NumberInt(5), 
+        "fbleft" : NumberInt(17), 
+        "cbright" : NumberInt(15), 
+        "cbleft" : NumberInt(17), 
+        "gk" : NumberInt(2), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "_id" : ObjectId("5988d71309841a00115c7094"), 
+        "name" : "Dave G"
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:09:39.280+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(3530), 
+        "club" : "Manchester City", 
+        "name" : "Silva, Bernardo", 
+        "_id" : ObjectId("5986f4e48032c8001170ed42")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4086), 
+        "club" : "Swansea City", 
+        "name" : "Bony, Wilfried", 
+        "_id" : ObjectId("5986f4e48032c8001170ed7f")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4008), 
+        "club" : "Crystal Palace", 
+        "name" : "Benteke, Christian", 
+        "_id" : ObjectId("5986f4e48032c8001170ed71")
+    }, 
+    "amright" : {
+        "code" : NumberInt(3561), 
+        "club" : "Liverpool", 
+        "name" : "Salah, Mohamed", 
+        "_id" : ObjectId("5986f4e48032c8001170ed61")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(3067), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Alli, Dele", 
+        "_id" : ObjectId("5986f4e48032c8001170ecb8")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3038), 
+        "club" : "Liverpool", 
+        "name" : "Henderson, Jordan", 
+        "_id" : ObjectId("5986f4e48032c8001170eca6")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3265), 
+        "club" : "Chelsea", 
+        "name" : "Fabregas, Cesc", 
+        "_id" : ObjectId("5986f4e48032c8001170ecdd")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(2225), 
+        "club" : "Crystal Palace", 
+        "name" : "van Aanholt, Patrick", 
+        "_id" : ObjectId("5986f4e48032c8001170ec2b")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2097), 
+        "club" : "Southampton", 
+        "name" : "Bertrand, Ryan", 
+        "_id" : ObjectId("5986f4e48032c8001170ec16")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2383), 
+        "club" : "Swansea City", 
+        "name" : "Mawson, Alfie", 
+        "_id" : ObjectId("5986f4e48032c8001170ec68")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2387), 
+        "club" : "Chelsea", 
+        "name" : "Luiz, David", 
+        "_id" : ObjectId("5986f4e48032c8001170ec6a")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1001), 
+        "club" : "West Ham United", 
+        "name" : "Hart, Joe", 
+        "_id" : ObjectId("5986f4e48032c8001170ebaa")
+    }
+}
+{ 
+    "_id" : ObjectId("5988d72e09841a00115c7097"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d59509841a00115c7080"), 
+        "name" : "Championship"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(13), 
+        "strright" : NumberInt(11), 
+        "strleft" : NumberInt(21), 
+        "amright" : NumberInt(4), 
+        "amleft" : NumberInt(5), 
+        "midright" : NumberInt(4), 
+        "midleft" : NumberInt(9), 
+        "fbright" : NumberInt(22), 
+        "fbleft" : NumberInt(8), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(9), 
+        "gk" : NumberInt(13), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "_id" : ObjectId("5988d72e09841a00115c7096"), 
+        "name" : "Jason"
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:10:06.573+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(3007), 
+        "club" : "Manchester City", 
+        "name" : "Silva, David", 
+        "_id" : ObjectId("5986f4e48032c8001170ec9a")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4003), 
+        "club" : "Manchester City", 
+        "name" : "Aguero, Sergio", 
+        "_id" : ObjectId("5986f4e48032c8001170ed6d")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4015), 
+        "club" : "Manchester United", 
+        "name" : "Lukaku, Romelu", 
+        "_id" : ObjectId("5986f4e48032c8001170ed74")
+    }, 
+    "amright" : {
+        "code" : NumberInt(3062), 
+        "club" : "Swansea City", 
+        "name" : "Sigurdsson, Gylfi", 
+        "_id" : ObjectId("5986f4e48032c8001170ecb5")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(4195), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Heung-Min, Son", 
+        "_id" : ObjectId("5986f4e48032c8001170ed90")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3272), 
+        "club" : "Chelsea", 
+        "name" : "Drinkwater, Daniel", 
+        "_id" : ObjectId("5986f4e48032c8001170ecdf")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3478), 
+        "club" : "Liverpool", 
+        "name" : "Wijnaldum, Georginio", 
+        "_id" : ObjectId("5986f4e48032c8001170ed2a")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(2281), 
+        "club" : "Manchester United", 
+        "name" : "Valencia, Antonio", 
+        "_id" : ObjectId("5986f4e48032c8001170ec3b")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2398), 
+        "club" : "Arsenal", 
+        "name" : "Kolasinac, Sead", 
+        "_id" : ObjectId("5986f4e48032c8001170ec6e")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2306), 
+        "club" : "Southampton", 
+        "name" : "van Dijk, Virgil", 
+        "_id" : ObjectId("5986f4e48032c8001170ec48")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2010), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Vertonghen, Jan", 
+        "_id" : ObjectId("5986f4e48032c8001170ebed")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1058), 
+        "club" : "Chelsea", 
+        "name" : "Courtois, Thibaut", 
+        "_id" : ObjectId("5986f4e48032c8001170ebc3")
+    }
+}
+{ 
+    "_id" : ObjectId("5988d75309841a00115c7099"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d59509841a00115c7080"), 
+        "name" : "Championship"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(8), 
+        "strright" : NumberInt(21), 
+        "strleft" : NumberInt(14), 
+        "amright" : NumberInt(7), 
+        "amleft" : NumberInt(3), 
+        "midright" : NumberInt(9), 
+        "midleft" : NumberInt(15), 
+        "fbright" : NumberInt(11), 
+        "fbleft" : NumberInt(11), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(7), 
+        "gk" : NumberInt(11), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "_id" : ObjectId("5988d75309841a00115c7098"), 
+        "name" : "Wayne"
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:10:43.790+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(3093), 
+        "club" : "Manchester City", 
+        "name" : "Sterling, Raheem", 
+        "_id" : ObjectId("5986f4e48032c8001170ecc3")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4293), 
+        "club" : "Chelsea", 
+        "name" : "Morata, Alvaro", 
+        "_id" : ObjectId("5986f4e58032c8001170edc7")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4210), 
+        "club" : "Manchester United", 
+        "name" : "Rashford, Marcus", 
+        "_id" : ObjectId("5986f4e48032c8001170ed94")
+    }, 
+    "amright" : {
+        "code" : NumberInt(3234), 
+        "club" : "Arsenal", 
+        "name" : "Ozil, Mesut", 
+        "_id" : ObjectId("5986f4e48032c8001170ecd9")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(4153), 
+        "club" : "Arsenal", 
+        "name" : "Sanchez, Alexis", 
+        "_id" : ObjectId("5986f4e48032c8001170ed86")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3589), 
+        "club" : "Swansea City", 
+        "name" : "Sanches, Renato", 
+        "_id" : ObjectId("59ae7b4f3d847c0011e27d7e")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3378), 
+        "club" : "Chelsea", 
+        "name" : "Kante, N'Golo", 
+        "_id" : ObjectId("5986f4e48032c8001170ecfd")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(2259), 
+        "club" : "Liverpool", 
+        "name" : "Moreno, Alberto", 
+        "_id" : ObjectId("5986f4e48032c8001170ec31")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2004), 
+        "club" : "Everton", 
+        "name" : "Baines, Leighton", 
+        "_id" : ObjectId("5986f4e48032c8001170ebe8")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2423), 
+        "club" : "Manchester United", 
+        "name" : "Lindelof, Victor", 
+        "_id" : ObjectId("5986f4e48032c8001170ec87")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2153), 
+        "club" : "Liverpool", 
+        "name" : "Lovren, Dejan", 
+        "_id" : ObjectId("5986f4e48032c8001170ec1f")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1004), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Lloris, Hugo", 
+        "_id" : ObjectId("5986f4e48032c8001170ebad")
+    }
+}
+{ 
+    "_id" : ObjectId("5988d76509841a00115c709b"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d59509841a00115c7080"), 
+        "name" : "Championship"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(9), 
+        "strright" : NumberInt(5), 
+        "strleft" : NumberInt(23), 
+        "amright" : NumberInt(9), 
+        "amleft" : NumberInt(13), 
+        "midright" : NumberInt(12), 
+        "midleft" : NumberInt(28), 
+        "fbright" : NumberInt(21), 
+        "fbleft" : NumberInt(25), 
+        "cbright" : NumberInt(30), 
+        "cbleft" : NumberInt(2), 
+        "gk" : NumberInt(12), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "_id" : ObjectId("5988d76509841a00115c709a"), 
+        "name" : "Tim M"
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:11:01.377+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(4268), 
+        "club" : "Southampton", 
+        "name" : "Gabbiadini, Manolo", 
+        "_id" : ObjectId("5986f4e48032c8001170edae")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4019), 
+        "club" : "Bournemouth", 
+        "name" : "Defoe, Jermain", 
+        "_id" : ObjectId("5986f4e48032c8001170ed76")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4270), 
+        "club" : "Liverpool", 
+        "name" : "Firmino, Roberto", 
+        "_id" : ObjectId("5986f4e48032c8001170edb0")
+    }, 
+    "amright" : {
+        "code" : NumberInt(3399), 
+        "club" : "West Ham United", 
+        "name" : "Antonio, Michail", 
+        "_id" : ObjectId("5986f4e48032c8001170ed06")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(3372), 
+        "club" : "West Ham United", 
+        "name" : "Lanzini, Manuel", 
+        "_id" : ObjectId("5986f4e48032c8001170ecfa")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3288), 
+        "club" : "Liverpool", 
+        "name" : "Can, Emre", 
+        "_id" : ObjectId("5986f4e48032c8001170ece3")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3481), 
+        "club" : "Manchester United", 
+        "name" : "Pogba, Paul", 
+        "_id" : ObjectId("5986f4e48032c8001170ed2c")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(2447), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Aurier, Serge", 
+        "_id" : ObjectId("59ae7b4f3d847c0011e27d77")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2385), 
+        "club" : "Chelsea", 
+        "name" : "Alonso, Marcos", 
+        "_id" : ObjectId("5986f4e48032c8001170ec69")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2325), 
+        "club" : "Manchester United", 
+        "name" : "Bailly, Eric", 
+        "_id" : ObjectId("5986f4e48032c8001170ec4e")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2012), 
+        "club" : "West Bromwich Albion", 
+        "name" : "Evans, Jonny", 
+        "_id" : ObjectId("5986f4e48032c8001170ebef")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1119), 
+        "club" : "Manchester City", 
+        "name" : "Moraes, Ederson", 
+        "_id" : ObjectId("5986f4e48032c8001170ebdd")
+    }
+}
+{ 
+    "_id" : ObjectId("5988d77509841a00115c709d"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d59509841a00115c7080"), 
+        "name" : "Championship"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(9), 
+        "strright" : NumberInt(9), 
+        "strleft" : NumberInt(11), 
+        "amright" : NumberInt(22), 
+        "amleft" : NumberInt(9), 
+        "midright" : NumberInt(5), 
+        "midleft" : NumberInt(12), 
+        "fbright" : NumberInt(6), 
+        "fbleft" : NumberInt(3), 
+        "cbright" : NumberInt(16), 
+        "cbleft" : NumberInt(14), 
+        "gk" : NumberInt(4), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "_id" : ObjectId("5988d77509841a00115c709c"), 
+        "name" : "Jezz"
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:11:17.084+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(4025), 
+        "club" : "West Bromwich Albion", 
+        "name" : "Rodriguez, Jay", 
+        "_id" : ObjectId("5986f4e48032c8001170ed78")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4214), 
+        "club" : "Bournemouth", 
+        "name" : "King, Joshua", 
+        "_id" : ObjectId("5986f4e48032c8001170ed96")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4260), 
+        "club" : "Manchester City", 
+        "name" : "Jesus, Gabriel", 
+        "_id" : ObjectId("5986f4e48032c8001170eda9")
+    }, 
+    "amright" : {
+        "code" : NumberInt(3468), 
+        "club" : "Manchester United", 
+        "name" : "Mkhitaryan, Henrikh", 
+        "_id" : ObjectId("5986f4e48032c8001170ed23")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(3397), 
+        "club" : "Manchester City", 
+        "name" : "de Bruyne, Kevin", 
+        "_id" : ObjectId("5986f4e48032c8001170ed05")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3032), 
+        "club" : "Liverpool", 
+        "name" : "Milner, James", 
+        "_id" : ObjectId("5986f4e48032c8001170eca2")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3081), 
+        "club" : "Arsenal", 
+        "name" : "Ox-Chamberlain, Alex", 
+        "_id" : ObjectId("5986f4e48032c8001170ecbe")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(3068), 
+        "club" : "Chelsea", 
+        "name" : "Moses, Victor", 
+        "_id" : ObjectId("5986f4e48032c8001170ecb9")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2205), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Trippier, Kieran", 
+        "_id" : ObjectId("5986f4e48032c8001170ec27")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2018), 
+        "club" : "Manchester United", 
+        "name" : "Jones, Phil", 
+        "_id" : ObjectId("5986f4e48032c8001170ebf2")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2025), 
+        "club" : "Chelsea", 
+        "name" : "Azpilicueta, Cesar", 
+        "_id" : ObjectId("5986f4e48032c8001170ebf7")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1003), 
+        "club" : "Arsenal", 
+        "name" : "Cech, Petr", 
+        "_id" : ObjectId("5986f4e48032c8001170ebac")
+    }
+}
+{ 
+    "_id" : ObjectId("5988d78709841a00115c709f"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d59509841a00115c7080"), 
+        "name" : "Championship"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(18), 
+        "strright" : NumberInt(15), 
+        "strleft" : NumberInt(11), 
+        "amright" : NumberInt(7), 
+        "amleft" : NumberInt(18), 
+        "midright" : NumberInt(4), 
+        "midleft" : NumberInt(7), 
+        "fbright" : NumberInt(13), 
+        "fbleft" : NumberInt(5), 
+        "cbright" : NumberInt(11), 
+        "cbleft" : NumberInt(-2), 
+        "gk" : NumberInt(23), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "_id" : ObjectId("5988d78709841a00115c709e"), 
+        "name" : "Rich"
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:11:35.901+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(4200), 
+        "club" : "Manchester United", 
+        "name" : "Martial, Anthony", 
+        "_id" : ObjectId("5986f4e48032c8001170ed91")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4294), 
+        "club" : "West Ham United", 
+        "name" : "Hernandez, Javier", 
+        "_id" : ObjectId("5986f4e58032c8001170edc8")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4292), 
+        "club" : "Arsenal", 
+        "name" : "Lacazette, Alexandre", 
+        "_id" : ObjectId("5986f4e58032c8001170edc6")
+    }, 
+    "amright" : {
+        "code" : NumberInt(3277), 
+        "club" : "Leicester City", 
+        "name" : "Mahrez, Riyad", 
+        "_id" : ObjectId("5986f4e48032c8001170ece2")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(3230), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Eriksen, Christian", 
+        "_id" : ObjectId("5986f4e48032c8001170ecd7")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3430), 
+        "club" : "Arsenal", 
+        "name" : "Xhaka, Granit", 
+        "_id" : ObjectId("5986f4e48032c8001170ed14")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3064), 
+        "club" : "Southampton", 
+        "name" : "Davis, Steven", 
+        "_id" : ObjectId("5986f4e48032c8001170ecb6")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(2283), 
+        "club" : "Watford", 
+        "name" : "Holebas, Jose", 
+        "_id" : ObjectId("5986f4e48032c8001170ec3d")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2020), 
+        "club" : "Manchester City", 
+        "name" : "Walker, Kyle", 
+        "_id" : ObjectId("5986f4e48032c8001170ebf3")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2144), 
+        "club" : "Manchester City", 
+        "name" : "Stones, John", 
+        "_id" : ObjectId("5986f4e48032c8001170ec1c")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2022), 
+        "club" : "Chelsea", 
+        "name" : "Cahill, Gary", 
+        "_id" : ObjectId("5986f4e48032c8001170ebf5")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1069), 
+        "club" : "Southampton", 
+        "name" : "Forster, Fraser", 
+        "_id" : ObjectId("5986f4e48032c8001170ebc7")
+    }
+}
+{ 
+    "_id" : ObjectId("5988d7f209841a00115c70a1"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d59b09841a00115c7081"), 
+        "name" : "League One"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(4), 
+        "strright" : NumberInt(6), 
+        "strleft" : NumberInt(5), 
+        "amright" : NumberInt(3), 
+        "amleft" : NumberInt(22), 
+        "midright" : NumberInt(12), 
+        "midleft" : NumberInt(7), 
+        "fbright" : NumberInt(5), 
+        "fbleft" : NumberInt(14), 
+        "cbright" : NumberInt(11), 
+        "cbleft" : NumberInt(-2), 
+        "gk" : NumberInt(11), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "_id" : ObjectId("5988d7f209841a00115c70a0"), 
+        "name" : "Tim dG"
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:13:22.130+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(3559), 
+        "club" : "Everton", 
+        "name" : "Klaassen, Davy", 
+        "_id" : ObjectId("5986f4e48032c8001170ed5f")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4215), 
+        "club" : "Burnley", 
+        "name" : "Vokes, Sam", 
+        "_id" : ObjectId("5986f4e48032c8001170ed97")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4070), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Kane, Harry", 
+        "_id" : ObjectId("5986f4e48032c8001170ed7e")
+    }, 
+    "amright" : {
+        "code" : NumberInt(3003), 
+        "club" : "Chelsea", 
+        "name" : "Hazard, Eden", 
+        "_id" : ObjectId("5986f4e48032c8001170ec96")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(3468), 
+        "club" : "Manchester United", 
+        "name" : "Mkhitaryan, Henrikh", 
+        "_id" : ObjectId("5986f4e48032c8001170ed23")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3288), 
+        "club" : "Liverpool", 
+        "name" : "Can, Emre", 
+        "_id" : ObjectId("5986f4e48032c8001170ece3")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3265), 
+        "club" : "Chelsea", 
+        "name" : "Fabregas, Cesc", 
+        "_id" : ObjectId("5986f4e48032c8001170ecdd")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(2225), 
+        "club" : "Crystal Palace", 
+        "name" : "van Aanholt, Patrick", 
+        "_id" : ObjectId("5986f4e48032c8001170ec2b")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2434), 
+        "club" : "Manchester City", 
+        "name" : "Danilo, ", 
+        "_id" : ObjectId("5986f4e48032c8001170ec92")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2335), 
+        "club" : "Everton", 
+        "name" : "Keane, Michael", 
+        "_id" : ObjectId("5986f4e48032c8001170ec53")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2303), 
+        "club" : "Manchester City", 
+        "name" : "Otamendi, Nicolas", 
+        "_id" : ObjectId("5986f4e48032c8001170ec46")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1004), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Lloris, Hugo", 
+        "_id" : ObjectId("5986f4e48032c8001170ebad")
+    }
+}
+{ 
+    "_id" : ObjectId("5988d80209841a00115c70a3"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d59b09841a00115c7081"), 
+        "name" : "League One"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(13), 
+        "strright" : NumberInt(13), 
+        "strleft" : NumberInt(21), 
+        "amright" : NumberInt(23), 
+        "amleft" : NumberInt(18), 
+        "midright" : NumberInt(9), 
+        "midleft" : NumberInt(4), 
+        "fbright" : NumberInt(17), 
+        "fbleft" : NumberInt(8), 
+        "cbright" : NumberInt(30), 
+        "cbleft" : NumberInt(8), 
+        "gk" : NumberInt(17), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "_id" : ObjectId("5988d80209841a00115c70a2"), 
+        "name" : "Alan"
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:13:38.337+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(3007), 
+        "club" : "Manchester City", 
+        "name" : "Silva, David", 
+        "_id" : ObjectId("5986f4e48032c8001170ec9a")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4004), 
+        "club" : "Everton", 
+        "name" : "Rooney, Wayne", 
+        "_id" : ObjectId("5986f4e48032c8001170ed6e")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4015), 
+        "club" : "Manchester United", 
+        "name" : "Lukaku, Romelu", 
+        "_id" : ObjectId("5986f4e48032c8001170ed74")
+    }, 
+    "amright" : {
+        "code" : NumberInt(3561), 
+        "club" : "Liverpool", 
+        "name" : "Salah, Mohamed", 
+        "_id" : ObjectId("5986f4e48032c8001170ed61")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(3230), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Eriksen, Christian", 
+        "_id" : ObjectId("5986f4e48032c8001170ecd7")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3081), 
+        "club" : "Arsenal", 
+        "name" : "Ox-Chamberlain, Alex", 
+        "_id" : ObjectId("5986f4e48032c8001170ecbe")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3204), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Wanyama, Victor", 
+        "_id" : ObjectId("5986f4e48032c8001170ecd1")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(2097), 
+        "club" : "Southampton", 
+        "name" : "Bertrand, Ryan", 
+        "_id" : ObjectId("5986f4e48032c8001170ec16")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2290), 
+        "club" : "West Bromwich Albion", 
+        "name" : "Nyom, Allan", 
+        "_id" : ObjectId("5986f4e48032c8001170ec42")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2325), 
+        "club" : "Manchester United", 
+        "name" : "Bailly, Eric", 
+        "_id" : ObjectId("5986f4e48032c8001170ec4e")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2001), 
+        "club" : "Manchester City", 
+        "name" : "Kompany, Vincent", 
+        "_id" : ObjectId("5986f4e48032c8001170ebe7")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1087), 
+        "club" : "Everton", 
+        "name" : "Pickford, Jordan", 
+        "_id" : ObjectId("5986f4e48032c8001170ebcd")
+    }
+}
+{ 
+    "_id" : ObjectId("5988d85f09841a00115c70a5"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d59b09841a00115c7081"), 
+        "name" : "League One"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(5), 
+        "strleft" : NumberInt(21), 
+        "amright" : NumberInt(8), 
+        "amleft" : NumberInt(19), 
+        "midright" : NumberInt(7), 
+        "midleft" : NumberInt(15), 
+        "fbright" : NumberInt(22), 
+        "fbleft" : NumberInt(15), 
+        "cbright" : NumberInt(9), 
+        "cbleft" : NumberInt(2), 
+        "gk" : NumberInt(6), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "_id" : ObjectId("5988d85f09841a00115c70a4"), 
+        "name" : "Craig"
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:15:11.697+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(4236), 
+        "club" : "Swansea City", 
+        "name" : "Llorente, Fernando", 
+        "_id" : ObjectId("5986f4e48032c8001170eda1")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4008), 
+        "club" : "Crystal Palace", 
+        "name" : "Benteke, Christian", 
+        "_id" : ObjectId("5986f4e48032c8001170ed71")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4293), 
+        "club" : "Chelsea", 
+        "name" : "Morata, Alvaro", 
+        "_id" : ObjectId("5986f4e58032c8001170edc7")
+    }, 
+    "amright" : {
+        "code" : NumberInt(3093), 
+        "club" : "Manchester City", 
+        "name" : "Sterling, Raheem", 
+        "_id" : ObjectId("5986f4e48032c8001170ecc3")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(3067), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Alli, Dele", 
+        "_id" : ObjectId("5986f4e48032c8001170ecb8")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3038), 
+        "club" : "Liverpool", 
+        "name" : "Henderson, Jordan", 
+        "_id" : ObjectId("5986f4e48032c8001170eca6")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3378), 
+        "club" : "Chelsea", 
+        "name" : "Kante, N'Golo", 
+        "_id" : ObjectId("5986f4e48032c8001170ecfd")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(2281), 
+        "club" : "Manchester United", 
+        "name" : "Valencia, Antonio", 
+        "_id" : ObjectId("5986f4e48032c8001170ec3b")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2324), 
+        "club" : "Manchester United", 
+        "name" : "Blind, Daley", 
+        "_id" : ObjectId("5986f4e48032c8001170ec4d")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2010), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Vertonghen, Jan", 
+        "_id" : ObjectId("5986f4e48032c8001170ebed")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2381), 
+        "club" : "Arsenal", 
+        "name" : "Mustafi, Shkodran", 
+        "_id" : ObjectId("5986f4e48032c8001170ec66")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1014), 
+        "club" : "Liverpool", 
+        "name" : "Mignolet, Simon", 
+        "_id" : ObjectId("5986f4e48032c8001170ebb3")
+    }
+}
+{ 
+    "_id" : ObjectId("5988d87309841a00115c70a7"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d59b09841a00115c7081"), 
+        "name" : "League One"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(1), 
+        "strright" : NumberInt(8), 
+        "strleft" : NumberInt(17), 
+        "amright" : NumberInt(7), 
+        "amleft" : NumberInt(5), 
+        "midright" : NumberInt(4), 
+        "midleft" : NumberInt(28), 
+        "fbright" : NumberInt(11), 
+        "fbleft" : NumberInt(1), 
+        "cbright" : NumberInt(11), 
+        "cbleft" : NumberInt(17), 
+        "gk" : NumberInt(24), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "_id" : ObjectId("5988d87309841a00115c70a6"), 
+        "name" : "Luke"
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:15:31.648+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(1012), 
+        "club" : "West Bromwich Albion", 
+        "name" : "Foster, Ben", 
+        "_id" : ObjectId("5986f4e48032c8001170ebb2")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4025), 
+        "club" : "West Bromwich Albion", 
+        "name" : "Rodriguez, Jay", 
+        "_id" : ObjectId("5986f4e48032c8001170ed78")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4128), 
+        "club" : "Leicester City", 
+        "name" : "Vardy, Jamie", 
+        "_id" : ObjectId("5986f4e48032c8001170ed83")
+    }, 
+    "amright" : {
+        "code" : NumberInt(3234), 
+        "club" : "Arsenal", 
+        "name" : "Ozil, Mesut", 
+        "_id" : ObjectId("5986f4e48032c8001170ecd9")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(3482), 
+        "club" : "Manchester City", 
+        "name" : "Sane, Leroy", 
+        "_id" : ObjectId("5986f4e48032c8001170ed2d")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3042), 
+        "club" : "Everton", 
+        "name" : "Schneiderlin, Morgan", 
+        "_id" : ObjectId("5986f4e48032c8001170ecaa")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3481), 
+        "club" : "Manchester United", 
+        "name" : "Pogba, Paul", 
+        "_id" : ObjectId("5986f4e48032c8001170ed2c")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(2004), 
+        "club" : "Everton", 
+        "name" : "Baines, Leighton", 
+        "_id" : ObjectId("5986f4e48032c8001170ebe8")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2269), 
+        "club" : "Arsenal", 
+        "name" : "Bellerin, Hector", 
+        "_id" : ObjectId("5986f4e48032c8001170ec34")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2144), 
+        "club" : "Manchester City", 
+        "name" : "Stones, John", 
+        "_id" : ObjectId("5986f4e48032c8001170ec1c")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2387), 
+        "club" : "Chelsea", 
+        "name" : "Luiz, David", 
+        "_id" : ObjectId("5986f4e48032c8001170ec6a")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1002), 
+        "club" : "Manchester United", 
+        "name" : "de Gea, David", 
+        "_id" : ObjectId("5986f4e48032c8001170ebab")
+    }
+}
+{ 
+    "_id" : ObjectId("5988d87f09841a00115c70a9"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d59b09841a00115c7081"), 
+        "name" : "League One"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(15), 
+        "strright" : NumberInt(5), 
+        "strleft" : NumberInt(11), 
+        "amright" : NumberInt(4), 
+        "amleft" : NumberInt(22), 
+        "midright" : NumberInt(12), 
+        "midleft" : NumberInt(15), 
+        "fbright" : NumberInt(4), 
+        "fbleft" : NumberInt(5), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(9), 
+        "gk" : NumberInt(4), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "_id" : ObjectId("5988d87f09841a00115c70a8"), 
+        "name" : "Johnny"
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:15:43.957+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(4019), 
+        "club" : "Bournemouth", 
+        "name" : "Defoe, Jermain", 
+        "_id" : ObjectId("5986f4e48032c8001170ed76")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4294), 
+        "club" : "West Ham United", 
+        "name" : "Hernandez, Javier", 
+        "_id" : ObjectId("5986f4e58032c8001170edc8")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4260), 
+        "club" : "Manchester City", 
+        "name" : "Jesus, Gabriel", 
+        "_id" : ObjectId("5986f4e48032c8001170eda9")
+    }, 
+    "amright" : {
+        "code" : NumberInt(3062), 
+        "club" : "Swansea City", 
+        "name" : "Sigurdsson, Gylfi", 
+        "_id" : ObjectId("5986f4e48032c8001170ecb5")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(3334), 
+        "club" : "Liverpool", 
+        "name" : "Mane, Sadio", 
+        "_id" : ObjectId("5986f4e48032c8001170ecee")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3045), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Dembele, Mousa", 
+        "_id" : ObjectId("5986f4e48032c8001170ecac")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3243), 
+        "club" : "Manchester United", 
+        "name" : "Matic, Nemanja", 
+        "_id" : ObjectId("5986f4e48032c8001170ecdb")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(2061), 
+        "club" : "Bournemouth", 
+        "name" : "Smith, Adam", 
+        "_id" : ObjectId("5986f4e48032c8001170ec09")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2020), 
+        "club" : "Manchester City", 
+        "name" : "Walker, Kyle", 
+        "_id" : ObjectId("5986f4e48032c8001170ebf3")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2018), 
+        "club" : "Manchester United", 
+        "name" : "Jones, Phil", 
+        "_id" : ObjectId("5986f4e48032c8001170ebf2")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2282), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Alderweireld, Toby", 
+        "_id" : ObjectId("5986f4e48032c8001170ec3c")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1003), 
+        "club" : "Arsenal", 
+        "name" : "Cech, Petr", 
+        "_id" : ObjectId("5986f4e48032c8001170ebac")
+    }
+}
+{ 
+    "_id" : ObjectId("5988d88e09841a00115c70ab"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d59b09841a00115c7081"), 
+        "name" : "League One"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(8), 
+        "strright" : NumberInt(6), 
+        "strleft" : NumberInt(11), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(9), 
+        "midright" : NumberInt(1), 
+        "midleft" : NumberInt(9), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(25), 
+        "cbright" : NumberInt(15), 
+        "cbleft" : NumberInt(-1), 
+        "gk" : NumberInt(2), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "_id" : ObjectId("5988d88e09841a00115c70aa"), 
+        "name" : "Tom F"
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:15:58.347+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(3557), 
+        "club" : "Newcastle United", 
+        "name" : "Ritchie, Matt", 
+        "_id" : ObjectId("5986f4e48032c8001170ed5d")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4268), 
+        "club" : "Southampton", 
+        "name" : "Gabbiadini, Manolo", 
+        "_id" : ObjectId("5986f4e48032c8001170edae")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4292), 
+        "club" : "Arsenal", 
+        "name" : "Lacazette, Alexandre", 
+        "_id" : ObjectId("5986f4e58032c8001170edc6")
+    }, 
+    "amright" : {
+        "code" : NumberInt(3017), 
+        "club" : "Liverpool", 
+        "name" : "Coutinho, Philippe", 
+        "_id" : ObjectId("5986f4e48032c8001170ec9d")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(3397), 
+        "club" : "Manchester City", 
+        "name" : "de Bruyne, Kevin", 
+        "_id" : ObjectId("5986f4e48032c8001170ed05")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3589), 
+        "club" : "Swansea City", 
+        "name" : "Sanches, Renato", 
+        "_id" : ObjectId("59ae7b4f3d847c0011e27d7e")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3478), 
+        "club" : "Liverpool", 
+        "name" : "Wijnaldum, Georginio", 
+        "_id" : ObjectId("5986f4e48032c8001170ed2a")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(2064), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Davies, Ben", 
+        "_id" : ObjectId("5986f4e48032c8001170ec0a")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2385), 
+        "club" : "Chelsea", 
+        "name" : "Alonso, Marcos", 
+        "_id" : ObjectId("5986f4e48032c8001170ec69")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2226), 
+        "club" : "Stoke City", 
+        "name" : "Zouma, Kurt", 
+        "_id" : ObjectId("5986f4e48032c8001170ec2c")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2027), 
+        "club" : "Arsenal", 
+        "name" : "Koscielny, Laurent", 
+        "_id" : ObjectId("5986f4e48032c8001170ebf8")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1001), 
+        "club" : "West Ham United", 
+        "name" : "Hart, Joe", 
+        "_id" : ObjectId("5986f4e48032c8001170ebaa")
+    }
+}
+{ 
+    "_id" : ObjectId("5988d8a909841a00115c70ad"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d59b09841a00115c7081"), 
+        "name" : "League One"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(23), 
+        "strright" : NumberInt(9), 
+        "strleft" : NumberInt(11), 
+        "amright" : NumberInt(5), 
+        "amleft" : NumberInt(3), 
+        "midright" : NumberInt(10), 
+        "midleft" : NumberInt(5), 
+        "fbright" : NumberInt(3), 
+        "fbleft" : NumberInt(6), 
+        "cbright" : NumberInt(7), 
+        "cbleft" : NumberInt(14), 
+        "gk" : NumberInt(12), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "_id" : ObjectId("5988d8a909841a00115c70ac"), 
+        "name" : "Ross"
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:16:25.132+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(1069), 
+        "club" : "Southampton", 
+        "name" : "Forster, Fraser", 
+        "_id" : ObjectId("5986f4e48032c8001170ebc7")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4214), 
+        "club" : "Bournemouth", 
+        "name" : "King, Joshua", 
+        "_id" : ObjectId("5986f4e48032c8001170ed96")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4003), 
+        "club" : "Manchester City", 
+        "name" : "Aguero, Sergio", 
+        "_id" : ObjectId("5986f4e48032c8001170ed6d")
+    }, 
+    "amright" : {
+        "code" : NumberInt(4195), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Heung-Min, Son", 
+        "_id" : ObjectId("5986f4e48032c8001170ed90")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(4153), 
+        "club" : "Arsenal", 
+        "name" : "Sanchez, Alexis", 
+        "_id" : ObjectId("5986f4e48032c8001170ed86")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3483), 
+        "club" : "Everton", 
+        "name" : "Gueye, Idrissa", 
+        "_id" : ObjectId("5986f4e48032c8001170ed2e")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3032), 
+        "club" : "Liverpool", 
+        "name" : "Milner, James", 
+        "_id" : ObjectId("5986f4e48032c8001170eca2")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(2205), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Trippier, Kieran", 
+        "_id" : ObjectId("5986f4e48032c8001170ec27")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(3068), 
+        "club" : "Chelsea", 
+        "name" : "Moses, Victor", 
+        "_id" : ObjectId("5986f4e48032c8001170ecb9")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2041), 
+        "club" : "Everton", 
+        "name" : "Williams, Ashley", 
+        "_id" : ObjectId("5986f4e48032c8001170ebfe")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2025), 
+        "club" : "Chelsea", 
+        "name" : "Azpilicueta, Cesar", 
+        "_id" : ObjectId("5986f4e48032c8001170ebf7")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1119), 
+        "club" : "Manchester City", 
+        "name" : "Moraes, Ederson", 
+        "_id" : ObjectId("5986f4e48032c8001170ebdd")
+    }
+}
+{ 
+    "_id" : ObjectId("5988d8b709841a00115c70af"), 
+    "gameWeek" : {
+        "sub" : NumberInt(0), 
+        "strright" : NumberInt(0), 
+        "strleft" : NumberInt(0), 
+        "amright" : NumberInt(0), 
+        "amleft" : NumberInt(0), 
+        "midright" : NumberInt(0), 
+        "midleft" : NumberInt(0), 
+        "fbright" : NumberInt(0), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(0), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(0), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "division" : {
+        "_id" : ObjectId("5988d59b09841a00115c7081"), 
+        "name" : "League One"
+    }, 
+    "season" : {
+        "_id" : ObjectId("5986f4f18032c8001170edc9"), 
+        "name" : "2017/2018", 
+        "sub" : NumberInt(5), 
+        "strright" : NumberInt(14), 
+        "strleft" : NumberInt(23), 
+        "amright" : NumberInt(12), 
+        "amleft" : NumberInt(3), 
+        "midright" : NumberInt(16), 
+        "midleft" : NumberInt(7), 
+        "fbright" : NumberInt(1), 
+        "fbleft" : NumberInt(0), 
+        "cbright" : NumberInt(5), 
+        "cbleft" : NumberInt(0), 
+        "gk" : NumberInt(13), 
+        "transfersMade" : NumberInt(0), 
+        "transfersRequested" : NumberInt(0), 
+        "points" : NumberInt(0)
+    }, 
+    "user" : {
+        "name" : "Naked", 
+        "_id" : ObjectId("5988d8b709841a00115c70ae")
+    }, 
+    "dateCreated" : ISODate("2017-08-07T21:16:39.136+0000"), 
+    "__v" : NumberInt(0), 
+    "sub" : {
+        "code" : NumberInt(3277), 
+        "club" : "Leicester City", 
+        "name" : "Mahrez, Riyad", 
+        "_id" : ObjectId("5986f4e48032c8001170ece2")
+    }, 
+    "strright" : {
+        "code" : NumberInt(4210), 
+        "club" : "Manchester United", 
+        "name" : "Rashford, Marcus", 
+        "_id" : ObjectId("5986f4e48032c8001170ed94")
+    }, 
+    "strleft" : {
+        "code" : NumberInt(4270), 
+        "club" : "Liverpool", 
+        "name" : "Firmino, Roberto", 
+        "_id" : ObjectId("5986f4e48032c8001170edb0")
+    }, 
+    "amright" : {
+        "code" : NumberInt(3310), 
+        "club" : "Southampton", 
+        "name" : "Tadic, Dusan", 
+        "_id" : ObjectId("5986f4e48032c8001170ecea")
+    }, 
+    "amleft" : {
+        "code" : NumberInt(3227), 
+        "club" : "Chelsea", 
+        "name" : "Willian, ", 
+        "_id" : ObjectId("5986f4e48032c8001170ecd5")
+    }, 
+    "midright" : {
+        "code" : NumberInt(3047), 
+        "club" : "Arsenal", 
+        "name" : "Ramsey, Aaron", 
+        "_id" : ObjectId("5986f4e48032c8001170ecae")
+    }, 
+    "midleft" : {
+        "code" : NumberInt(3461), 
+        "club" : "Tottenham Hotspur", 
+        "name" : "Dier, Eric", 
+        "_id" : ObjectId("5986f4e48032c8001170ed1e")
+    }, 
+    "fbright" : {
+        "code" : NumberInt(2017), 
+        "club" : "Arsenal", 
+        "name" : "Monreal, Nacho", 
+        "_id" : ObjectId("5986f4e48032c8001170ebf1")
+    }, 
+    "fbleft" : {
+        "code" : NumberInt(2435), 
+        "club" : "Manchester City", 
+        "name" : "Mendy, Benjamin", 
+        "_id" : ObjectId("5986f4e48032c8001170ec93")
+    }, 
+    "cbright" : {
+        "code" : NumberInt(2224), 
+        "club" : "Bournemouth", 
+        "name" : "Ake, Nathan", 
+        "_id" : ObjectId("5986f4e48032c8001170ec2a")
+    }, 
+    "cbleft" : {
+        "code" : NumberInt(2306), 
+        "club" : "Southampton", 
+        "name" : "van Dijk, Virgil", 
+        "_id" : ObjectId("5986f4e48032c8001170ec48")
+    }, 
+    "gk" : {
+        "code" : NumberInt(1058), 
+        "club" : "Chelsea", 
+        "name" : "Courtois, Thibaut", 
+        "_id" : ObjectId("5986f4e48032c8001170ebc3")
+    }
+}

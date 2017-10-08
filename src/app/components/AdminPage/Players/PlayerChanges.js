@@ -1,9 +1,10 @@
 import React from 'react';
 
 const flattenUpdates = (updates) => (Object.keys(updates)).map((_id) => {
-  delete updates[_id].gameWeek;
-  delete updates[_id].season;
-  return updates[_id];
+  const update = { ...updates };
+  delete update[_id].gameWeek;
+  delete update[_id].season;
+  return update[_id];
 });
 
 export default ({ players, updates, saveUpdates }) => (

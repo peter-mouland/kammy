@@ -8,7 +8,9 @@ import Auth from '../../auth-helper';
 
 const log = debug('kammy:RouteWithAuthCheck');
 
-const RouteWithAuthCheck = ({ component: Component, requiresAuthentication, meta, ...props }) => {
+const RouteWithAuthCheck = ({
+  component: Component, requiresAuthentication, meta, ...props
+}) => {
   const redirect = requiresAuthentication && !Auth.validateToken();
   const redirectTo = Auth.user().mustChangePassword
     ? '/change-password/'

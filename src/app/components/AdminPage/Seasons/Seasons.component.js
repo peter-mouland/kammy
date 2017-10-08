@@ -66,7 +66,7 @@ export default class AdminPage extends React.Component {
           path={seasonPath} render={(seasonProps) => {
             const season = selectedItem(seasonProps.match, seasons, 'seasonId');
             if (!season) return null;
-            const divisions = season.divisions;
+            const { divisions } = season;
             return (
               <div>
                 <SeasonAdminOptions

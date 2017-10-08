@@ -20,7 +20,7 @@ export function sendXhr(formData, url, cb) {
   xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
   xhr.responseType = 'json';
   xhr.addEventListener('load', () => {
-    const response = xhr.response;
+    const { response } = xhr;
     // JSON.parse needed for ie11.
     const jsonResponse = (typeof response === 'string') ? JSON.parse(response) : response;
     if (xhr.status === 200) {

@@ -25,6 +25,7 @@ const { window } = new JSDOM(`
 // get the window object out of the document and set globals for mocha
 global.document = window.document;
 global.window = window;
+global.HTMLElement = window.HTMLElement;
 
 // take all properties of the window object and also attach it to the mocha global object
 // from mocha-jsdom https://github.com/rstacruz/mocha-jsdom/blob/master/index.js#L80

@@ -1,5 +1,5 @@
 require('babel-polyfill');
-const hook = require('node-hook').hook;
+const { hook } = require('node-hook');
 const SvgLoader = require('svg-inline-loader');
 
 hook('.scss', () => '');
@@ -8,7 +8,7 @@ hook('.svg', (source) => {
   return `module.exports =  ${JSON.stringify(markup)}`;
 });
 
-const connect = require('./server/api/db').connect;
+const { connect } = require('./server/api/db');
 const config = require('./config/db.js');
 const getAssets = require('./server/utils/getAssets');
 require('./config/config');

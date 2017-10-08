@@ -5,7 +5,9 @@ import './multi-toggle.scss';
 
 const bem = bemHelper({ name: 'multi-toggle' });
 
-export default ({ id, checked, options = [], label, className, onChange, ...props }) => (
+export default ({
+  id, checked, options = [], label, className, onChange, ...props
+}) => (
   <span {...bem(null, null, className)} id={ id } { ...props }>
     {label && <span {...bem('label')}>{label}</span>}
     <span {...bem('group')} id={ id } { ...props }>

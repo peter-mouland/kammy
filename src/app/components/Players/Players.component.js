@@ -23,7 +23,9 @@ const extremeStat = (int) => int < -10 || int > 10;
 const statCols = ['apps', 'subs', 'gls', 'asts', 'cs', 'con', 'pensv', 'tb', 'sb', 'ycard', 'rcard'];
 
 // eslint-disable-next-line no-confusing-arrow
-const Highlight = ({ player, update = {}, attribute, className }) =>
+const Highlight = ({
+  player, update = {}, attribute, className
+}) =>
   update[attribute] && player[attribute] !== update[attribute]
     ? <em { ...bem(null, null, ['text--warning', className])}>{update[attribute]}</em>
     : <span className={ className }>{player[attribute]}</span>;
@@ -98,8 +100,7 @@ export default class PlayerTable extends React.Component {
     this.options.club = setClubs(props);
     this.options.pos = ['all'].concat(Object
       .keys(playerPositions)
-      .filter((pos) => props.editable || !playerPositions[pos].hiddenFromManager)
-    );
+      .filter((pos) => props.editable || !playerPositions[pos].hiddenFromManager));
     this.state = {
       showOnlyNewPlayers: false,
       showHidden: false,
@@ -134,7 +135,9 @@ export default class PlayerTable extends React.Component {
     this.props.onChange({ playerUpdates, originalPlayers });
   }
 
-  CellEditor = ({ player, originalPlayerData, attribute, type }) => {
+  CellEditor = ({
+    player, originalPlayerData, attribute, type
+  }) => {
     const onChange = (e) => (
       this.onEdit(e.currentTarget.value, player, attribute, originalPlayerData)
     );
@@ -219,7 +222,7 @@ export default class PlayerTable extends React.Component {
     const {
       posFilter, clubFilter, nameFilter, showHidden, showOnlyNewPlayers, showFixtures
     } = this.state;
-    const club = this.options.club;
+    const { club } = this.options;
     const teamPlayers = team
       ? (Object.keys(team))
         .reduce((prev, curr) => team[curr] &&
@@ -338,8 +341,7 @@ export default class PlayerTable extends React.Component {
                     myTeam: teamPlayers,
                     showHidden,
                     showOnlyNewPlayers
-                  })
-                )
+                  }))
                 .sort(fieldSorter(['pos', 'name']))
                 .map((originalPlayerData) => {
                   const player = playerUpdates[originalPlayerData._id] || originalPlayerData;
@@ -356,21 +358,27 @@ export default class PlayerTable extends React.Component {
                       <td>
                         {
                           editable
-                            ? this.CellEditor({ player, originalPlayerData, attribute: 'pos', type: 'select' })
+                            ? this.CellEditor({
+                               player, originalPlayerData, attribute: 'pos', type: 'select'
+                              })
                             : <div>{ player.pos }</div>
                         }
                       </td>
                       <td>
                         {
                           editable
-                            ? this.CellEditor({ player, originalPlayerData, attribute: 'name', type: 'text' })
+                            ? this.CellEditor({
+                               player, originalPlayerData, attribute: 'name', type: 'text'
+                              })
                             : <a href="#" onClick={(e) => this.setShowFixtures({ e, player })}>{ player.name }</a>
                         }
                       </td>
                       <td>
                         <small>{
                           editable
-                            ? this.CellEditor({ player, originalPlayerData, attribute: 'club', type: 'select' })
+                            ? this.CellEditor({
+                               player, originalPlayerData, attribute: 'club', type: 'select'
+                              })
                             : <div>{ player.club }</div>
                         }</small>
                       </td>

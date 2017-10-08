@@ -1,6 +1,8 @@
 import React from 'react';
 
-export default ({ onChange, defaultValue, options, warn = [], disabled = [] }) => (
+export default ({
+  onChange, defaultValue, options, warn = [], disabled = []
+}) => (
   <select onChange={onChange} defaultValue={defaultValue}>
     <option value={''}>all</option>
     {options.map((item) => (

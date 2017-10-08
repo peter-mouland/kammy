@@ -18,42 +18,40 @@ const ADMIN_ROUTES = [
   { name: 'Export Data', path: 'export', Component: Export }
 ];
 
-export default class AdminPage extends React.Component {
-  render() {
-    if (!Auth.isAdmin()) {
-      return <p>You're not admin!</p>;
-    }
-
-    return (
-      <div className="admin" id="admin-page">
-        <h1>Admin</h1>
-        <div className="admin__panels">
-          <div className="bg" />
-
-          <AdminList
-            type="main-nav"
-            list={ ADMIN_ROUTES }
-          />
-          {ADMIN_ROUTES.map((route) => (
-            <Route
-              key={`/admin/${route.path}`}
-              path={`/admin/${route.path}`}
-              render={({ match }) => (
-                <route.Component className={`admin__panel admin__panel--${route.path}`} match={ match } />
-              )}
-            />
-          ))}
-
-          <h3>tech-debt:</h3>
-          <ul>
-            <li>add <em>more</em> e2e tests</li>
-            <li>make season/division names unique</li>
-            <li>refactor links to use names rather than id</li>
-            <li>refactor arrays to objects to make easier to manipulate</li>
-            <li>refactor admin to admin/components</li>
-          </ul>
-        </div>
-      </div>
-    );
+export default () => {
+  if (!Auth.isAdmin()) {
+    return <p>You're not admin!</p>;
   }
-}
+
+  return (
+    <div className="admin" id="admin-page">
+      <h1>Admin</h1>
+      <div className="admin__panels">
+        <div className="bg" />
+
+        <AdminList
+          type="main-nav"
+          list={ ADMIN_ROUTES }
+        />
+        {ADMIN_ROUTES.map((route) => (
+          <Route
+            key={`/admin/${route.path}`}
+            path={`/admin/${route.path}`}
+            render={({ match }) => (
+              <route.Component className={`admin__panel admin__panel--${route.path}`} match={ match } />
+            )}
+          />
+        ))}
+
+        <h3>tech-debt:</h3>
+        <ul>
+          <li>add <em>more</em> e2e tests</li>
+          <li>make season/division names unique</li>
+          <li>refactor links to use names rather than id</li>
+          <li>refactor arrays to objects to make easier to manipulate</li>
+          <li>refactor admin to admin/components</li>
+        </ul>
+      </div>
+    </div>
+  );
+};

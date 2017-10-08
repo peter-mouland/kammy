@@ -9,7 +9,7 @@ import { calculatePoints } from '../../../utils/calculatePoints';
 
 const Player = mongoose.model('Player');
 const Team = mongoose.model('Team');
-const ObjectId = mongoose.Types.ObjectId;
+const { ObjectId } = mongoose.Types;
 const log = debug('kammy:stats.action');
 
 export const getExternalStats = async ({ currentGW, source }) => {
@@ -27,8 +27,8 @@ export const getExternalStats = async ({ currentGW, source }) => {
     if (!dbPlayer) {
       errors.push({ message: `not found ${player.id} ${player.sName}, ${player.fName}`, player });
     } else {
-      player.pos = dbPlayer.pos;
-      const formattedPlayer = mapSkyFormatToSchema(player);
+      const { pos } = dbPlayer;
+      const formattedPlayer = mapSkyFormatToSchema({ ...player, pos });
       stats[dbPlayer.name] = calculatePoints(formattedPlayer, dbPlayer);
     }
   });
@@ -49,9 +49,11 @@ export const saveGameWeekStats = ({ seasonId, update }) => {
     );
     allUpdates.push(Player.findOneAndUpdate(
       { code: player.code },
-      { $set: {
-        gameWeek: player.gameWeek,
-      } }
+      {
+        $set: {
+          gameWeek: player.gameWeek,
+        }
+      }
     ));
     allUpdates.push(findAndUpdate('sub'));
     if (pos === 'gk') {
@@ -64,42 +66,42 @@ export const saveGameWeekStats = ({ seasonId, update }) => {
   return Promise.all(allUpdates).then(() => update);
 };
 
-
 export const saveSeasonStats = async ({ seasonId }) => {
   const allUpdates = [];
   const players = await Player.find().exec();
   players.forEach(async (player) => {
     const pos = player.pos.toLowerCase();
-    const season = player.season;
-    const gameWeek = player.gameWeek;
+    const { season, gameWeek } = player;
     allUpdates.push(Player.findOneAndUpdate(
       { code: player.code },
-      { $set: {
-        'season.points': season.points + gameWeek.points,
-        'season.pensv': season.pensv + gameWeek.pensv,
-        'season.apps': season.apps + gameWeek.apps,
-        'season.subs': season.subs + gameWeek.subs,
-        'season.gls': season.gls + gameWeek.gls,
-        'season.asts': season.asts + gameWeek.asts,
-        'season.con': season.con + gameWeek.con,
-        'season.cs': season.cs + gameWeek.cs,
-        'season.rcard': season.rcard + gameWeek.rcard,
-        'season.ycard': season.ycard + gameWeek.ycard,
-        'season.tb': season.tb + gameWeek.tb,
-        'season.sb': season.sb + gameWeek.sb,
-        'gameWeek.points': 0,
-        'gameWeek.pensv': 0,
-        'gameWeek.apps': 0,
-        'gameWeek.subs': 0,
-        'gameWeek.gls': 0,
-        'gameWeek.asts': 0,
-        'gameWeek.con': 0,
-        'gameWeek.cs': 0,
-        'gameWeek.rcard': 0,
-        'gameWeek.ycard': 0,
-        'gameWeek.tb': 0,
-        'gameWeek.sb': 0,
-      } }
+      {
+        $set: {
+          'season.points': season.points + gameWeek.points,
+          'season.pensv': season.pensv + gameWeek.pensv,
+          'season.apps': season.apps + gameWeek.apps,
+          'season.subs': season.subs + gameWeek.subs,
+          'season.gls': season.gls + gameWeek.gls,
+          'season.asts': season.asts + gameWeek.asts,
+          'season.con': season.con + gameWeek.con,
+          'season.cs': season.cs + gameWeek.cs,
+          'season.rcard': season.rcard + gameWeek.rcard,
+          'season.ycard': season.ycard + gameWeek.ycard,
+          'season.tb': season.tb + gameWeek.tb,
+          'season.sb': season.sb + gameWeek.sb,
+          'gameWeek.points': 0,
+          'gameWeek.pensv': 0,
+          'gameWeek.apps': 0,
+          'gameWeek.subs': 0,
+          'gameWeek.gls': 0,
+          'gameWeek.asts': 0,
+          'gameWeek.con': 0,
+          'gameWeek.cs': 0,
+          'gameWeek.rcard': 0,
+          'gameWeek.ycard': 0,
+          'gameWeek.tb': 0,
+          'gameWeek.sb': 0,
+        }
+      }
     ));
     const findAndUpdate = (position) => (
       Team.find({
@@ -111,10 +113,12 @@ export const saveSeasonStats = async ({ seasonId }) => {
             _id: new ObjectId(team._id),
             'season._id': new ObjectId(seasonId),
             [`${position}.code`]: player.code
-          }, { $set: {
-            [`season.${position}`]: team.season[position] + player.gameWeek.points,
-            [`gameWeek.${position}`]: 0,
-          } }, { multi: true }).exec()
+          }, {
+            $set: {
+              [`season.${position}`]: team.season[position] + player.gameWeek.points,
+              [`gameWeek.${position}`]: 0,
+            }
+          }, { multi: true }).exec()
         ))
       ))
     );

@@ -43,8 +43,7 @@ export default class Users extends React.Component {
                     <SubLink { ...bem('text') } to={joinPaths(match.url, user._id)}>
                       { user.name || user.email }
                     </SubLink>
-                  </li>)
-                )
+                  </li>))
               }
             </ul>
           </div>

@@ -1,0 +1,349 @@
+{ 
+    "_id" : ObjectId("5988d53609841a00115c707d"), 
+    "salt" : "$2a$10$Ivpt7SFDpF5F0ufzfCv.Hu", 
+    "email" : "nickwatts1982@hotmail.com", 
+    "password" : "$2a$10$Ivpt7SFDpF5F0ufzfCv.HuFcQNIF1ZyzfCinh3j4HTjEqk1LE4tla", 
+    "teams" : [
+        ObjectId("5988d53609841a00115c707e")
+    ], 
+    "mustChangePassword" : false, 
+    "isAdmin" : true, 
+    "dateCreated" : ISODate("2017-08-07T21:01:42.507+0000"), 
+    "__v" : NumberInt(0), 
+    "name" : "Nick"
+}
+{ 
+    "_id" : ObjectId("5988d63c09841a00115c7082"), 
+    "salt" : "$2a$10$tALBICnfiZ9dgeA7bU9Ks.", 
+    "name" : "Olly", 
+    "email" : "fake1@email.com", 
+    "password" : "$2a$10$tALBICnfiZ9dgeA7bU9Ks.OXCK.bv4rnuWifiq9kGcw7zoX.fnr4O", 
+    "teams" : [
+        ObjectId("5988d63c09841a00115c7083")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-07T21:06:04.066+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d65109841a00115c7084"), 
+    "salt" : "$2a$10$kPNkMOzutMGDXFmDnm9PRe", 
+    "name" : "Matty", 
+    "email" : "fake2@email.com", 
+    "password" : "$2a$10$kPNkMOzutMGDXFmDnm9PRekk/Cn6CumxIIBTLO/rLkGrfqWjr6jiy", 
+    "teams" : [
+        ObjectId("5988d65109841a00115c7085")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-07T21:06:25.632+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d66009841a00115c7086"), 
+    "salt" : "$2a$10$xem8gd0q/Zus.2HVCCT7/u", 
+    "name" : "Stuart", 
+    "email" : "fake3@email.com", 
+    "password" : "$2a$10$xem8gd0q/Zus.2HVCCT7/uI.0MFAawfV0pwSV7N9OhYWqUQKJGLjO", 
+    "teams" : [
+        ObjectId("5988d66009841a00115c7087")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-07T21:06:40.901+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d67a09841a00115c7088"), 
+    "salt" : "$2a$10$whqLkU1B9xmRWb5HIvkEmu", 
+    "name" : "Savak", 
+    "email" : "fake4@email.com", 
+    "password" : "$2a$10$whqLkU1B9xmRWb5HIvkEmu6ywpeaMe3paJn22RXk.aTdDroFKKQtG", 
+    "teams" : [
+        ObjectId("5988d67b09841a00115c7089")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-07T21:07:06.915+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d69409841a00115c708a"), 
+    "salt" : "$2a$10$91uDKykSKwutL/.9ydNSr.", 
+    "name" : "Tom S", 
+    "email" : "fake5@email.com", 
+    "password" : "$2a$10$91uDKykSKwutL/.9ydNSr.y1OsXLgHV0HHJ87KDmU/KjdyjUus4cC", 
+    "teams" : [
+        ObjectId("5988d69509841a00115c708b")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-07T21:07:32.966+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d6b009841a00115c708c"), 
+    "salt" : "$2a$10$1i4TD16qabbi/c5KVZdM.u", 
+    "name" : "Tony", 
+    "email" : "fake6@email.com", 
+    "password" : "$2a$10$1i4TD16qabbi/c5KVZdM.uCkhiKvCvPQiHJPdO1qsSfzIcsoYdGMu", 
+    "teams" : [
+        ObjectId("5988d6b009841a00115c708d")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-07T21:08:00.259+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d6c809841a00115c708e"), 
+    "salt" : "$2a$10$ShhMLzER./xyEQi3r3h68.", 
+    "name" : "James", 
+    "email" : "fake7@email.com", 
+    "password" : "$2a$10$ShhMLzER./xyEQi3r3h68.XjtdiaU20NW/uhVWLHh9aIa.cr/gkp2", 
+    "teams" : [
+        ObjectId("5988d6c809841a00115c708f")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-07T21:08:24.335+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d6e309841a00115c7090"), 
+    "salt" : "$2a$10$Ph0CW0g3vbcAPdxie3Ft7u", 
+    "name" : "Phil", 
+    "email" : "fake8@email.com", 
+    "password" : "$2a$10$Ph0CW0g3vbcAPdxie3Ft7uBQtOsb8S285mKJfrVBeFwbqmuau0vaa", 
+    "teams" : [
+        ObjectId("5988d6e309841a00115c7091")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-07T21:08:51.126+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d6f709841a00115c7092"), 
+    "salt" : "$2a$10$Iuaqxk00L9ZXRHNHUgcvuu", 
+    "name" : "Dave M", 
+    "email" : "fake9@email.com", 
+    "password" : "$2a$10$Iuaqxk00L9ZXRHNHUgcvuupVbvHzp29fGjLIfoTxBhLq/SKWbObTi", 
+    "teams" : [
+        ObjectId("5988d6f709841a00115c7093")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-07T21:09:11.879+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d71309841a00115c7094"), 
+    "salt" : "$2a$10$e7REkftQDFjq1nyY11Q8rO", 
+    "name" : "Dave G", 
+    "email" : "fake10@email.com", 
+    "password" : "$2a$10$e7REkftQDFjq1nyY11Q8rOu2yE/co24MUbIoQPfB.NXlSWJ2CdiZO", 
+    "teams" : [
+        ObjectId("5988d71309841a00115c7095")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-07T21:09:39.196+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d72e09841a00115c7096"), 
+    "salt" : "$2a$10$3wu9/jYi5oEU0BrQP4ZiUO", 
+    "name" : "Jason", 
+    "email" : "fake11@email.com", 
+    "password" : "$2a$10$3wu9/jYi5oEU0BrQP4ZiUOCPE0C.6xPOiWZk2V9lEorjaS2WiEO3q", 
+    "teams" : [
+        ObjectId("5988d72e09841a00115c7097")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-07T21:10:06.485+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d75309841a00115c7098"), 
+    "salt" : "$2a$10$./ZyejfJdRDL5yGqH2BXw.", 
+    "name" : "Wayne", 
+    "email" : "fake12@email.com", 
+    "password" : "$2a$10$./ZyejfJdRDL5yGqH2BXw.eP2.L9pHC9Li88vPShDByYNVy0pd2U2", 
+    "teams" : [
+        ObjectId("5988d75309841a00115c7099")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-07T21:10:43.707+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d76509841a00115c709a"), 
+    "salt" : "$2a$10$Tdk3nesbR3W9PF0djd60YO", 
+    "name" : "Tim M", 
+    "email" : "fake13@email.com", 
+    "password" : "$2a$10$Tdk3nesbR3W9PF0djd60YOGMnJo4q/PGAZL2Lsbo.a9K8wQ08/j8q", 
+    "teams" : [
+        ObjectId("5988d76509841a00115c709b")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-07T21:11:01.264+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d77509841a00115c709c"), 
+    "salt" : "$2a$10$cOX8yhcGqwSKJEs94ZVL6u", 
+    "name" : "Jezz", 
+    "email" : "fake14@email.com", 
+    "password" : "$2a$10$cOX8yhcGqwSKJEs94ZVL6uUDOMrP9OAKluAGTgG1l5Q14GFh3zIZC", 
+    "teams" : [
+        ObjectId("5988d77509841a00115c709d")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-07T21:11:17.000+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d78709841a00115c709e"), 
+    "salt" : "$2a$10$Glo2d6xYjhK25XmVUKopOu", 
+    "name" : "Rich", 
+    "email" : "fake15@email.com", 
+    "password" : "$2a$10$Glo2d6xYjhK25XmVUKopOuOCjsJeRmJjyleBRQxuu8KQXvkSaBLSW", 
+    "teams" : [
+        ObjectId("5988d78709841a00115c709f")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-07T21:11:35.803+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d7f209841a00115c70a0"), 
+    "salt" : "$2a$10$uzy/qasqjaFAZqdz4pVV1O", 
+    "name" : "Tim dG", 
+    "email" : "fake16@email.com", 
+    "password" : "$2a$10$uzy/qasqjaFAZqdz4pVV1Os3Fu8Z/XxRFQaYkObEeZoKwpYVLK/1C", 
+    "teams" : [
+        ObjectId("5988d7f209841a00115c70a1")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-07T21:13:22.045+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d80209841a00115c70a2"), 
+    "salt" : "$2a$10$6FzY6c.sBAAF11tIblLG2O", 
+    "name" : "Alan", 
+    "email" : "fake17@email.com", 
+    "password" : "$2a$10$6FzY6c.sBAAF11tIblLG2OuDZ7nh0eQP43VG29U9KjaEh66oUihLq", 
+    "teams" : [
+        ObjectId("5988d80209841a00115c70a3")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-07T21:13:38.240+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d85f09841a00115c70a4"), 
+    "salt" : "$2a$10$SY/3UcDrapGxEt5/29eK9O", 
+    "name" : "Craig", 
+    "email" : "fake18@email.com", 
+    "password" : "$2a$10$SY/3UcDrapGxEt5/29eK9O5oGvlgAE.jO3PEq31HOmeFmCekdXb9q", 
+    "teams" : [
+        ObjectId("5988d85f09841a00115c70a5")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-07T21:15:11.615+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d87309841a00115c70a6"), 
+    "salt" : "$2a$10$jOxeCFDcVaXuzDU/V/eBR.", 
+    "name" : "Luke", 
+    "email" : "fake19@email.com", 
+    "password" : "$2a$10$jOxeCFDcVaXuzDU/V/eBR.y6Mu33FI0qYVvOuf1Xhh7Yy507ZBS8e", 
+    "teams" : [
+        ObjectId("5988d87309841a00115c70a7")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-07T21:15:31.548+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d87f09841a00115c70a8"), 
+    "salt" : "$2a$10$3HrI0h18S9A3vz837T4Q5O", 
+    "name" : "Johnny", 
+    "email" : "fake20@email.com", 
+    "password" : "$2a$10$3HrI0h18S9A3vz837T4Q5Od4WfAW4ZeRo0UiBD6uRvFu4HAp9zATO", 
+    "teams" : [
+        ObjectId("5988d87f09841a00115c70a9")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-07T21:15:43.868+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d88e09841a00115c70aa"), 
+    "salt" : "$2a$10$i3rJhvuQg6EjmF6ZT2dBJ.", 
+    "name" : "Tom F", 
+    "email" : "fake21@email.com", 
+    "password" : "$2a$10$i3rJhvuQg6EjmF6ZT2dBJ.vNlitV4zScj6r3sS9P1yycLROkfmcfS", 
+    "teams" : [
+        ObjectId("5988d88e09841a00115c70ab")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-07T21:15:58.263+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d8a909841a00115c70ac"), 
+    "salt" : "$2a$10$eGHETVVP64Mld1uyYPOJzu", 
+    "name" : "Ross", 
+    "email" : "fake22@email.com", 
+    "password" : "$2a$10$eGHETVVP64Mld1uyYPOJzuCdlOnSnxcKGk2HM6iZN/wuICjF5CkCa", 
+    "teams" : [
+        ObjectId("5988d8a909841a00115c70ad")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-07T21:16:25.042+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5988d8b709841a00115c70ae"), 
+    "salt" : "$2a$10$CMHKsYYTrwBJlMXrsVd1Qu", 
+    "name" : "Naked", 
+    "email" : "uni_nake@hotmail.com", 
+    "password" : "$2a$10$CMHKsYYTrwBJlMXrsVd1QujNEMZxFSI0rePLmC4z41/pe60puJ2Ay", 
+    "teams" : [
+        ObjectId("5988d8b709841a00115c70af")
+    ], 
+    "mustChangePassword" : true, 
+    "isAdmin" : true, 
+    "dateCreated" : ISODate("2017-08-07T21:16:39.045+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5998b4fed64b3c0011d8598c"), 
+    "salt" : "$2a$10$FmN2mDEslhru9zupXZJzJe", 
+    "email" : "ihfbib@gmail.com", 
+    "password" : "$2a$10$FmN2mDEslhru9zupXZJzJeRn9kN4m4CSATA4jwBbt3oEZCGt0cxN2", 
+    "teams" : [
+        ObjectId("5998b4fed64b3c0011d8598d")
+    ], 
+    "mustChangePassword" : false, 
+    "isAdmin" : false, 
+    "dateCreated" : ISODate("2017-08-19T22:00:30.511+0000"), 
+    "__v" : NumberInt(0)
+}
