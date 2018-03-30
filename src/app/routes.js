@@ -10,6 +10,7 @@ import Homepage from './components/HomePage/HomePage';
 import DivisionsPage from './components/DivisionsPage/DivisionsPage';
 import AdminPage from './components/AdminPage/AdminPage';
 import MyTeam from './components/MyTeamPage/MyTeamPage';
+import TeamsPage from './components/TeamsPage/TeamsPage';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import RulesPage from './components/RulesPage/RulesPage';
 import NotFound from './components/NotFound/NotFound';
@@ -55,6 +56,16 @@ export function getRoutesConfig() {
       label: 'Admin',
       requiresAuthentication: true,
       component: AdminPage,
+    },
+    {
+      name: 'teams',
+      path: '/teams/',
+      label: 'Teams',
+      meta: {
+        ...baseMetaData,
+        title: 'Teams',
+      },
+      component: TeamsPage,
     },
     {
       name: 'myTeam',

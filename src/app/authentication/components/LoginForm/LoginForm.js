@@ -73,6 +73,7 @@ const LoginForm = ({
         <label htmlFor="password" className="animated-label">Password</label>
         <span className="separator"> </span>
         <p className="field__error">{errors.password}</p>
+        <p>Try <em>password123</em></p>
       </div>
       <div className="field form__bottom">
         <input type="submit" className="form__action" value="Log In" />

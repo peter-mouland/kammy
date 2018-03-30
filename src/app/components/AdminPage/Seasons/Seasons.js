@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import SeasonsComponent from './Seasons.component';
-import {
-  fetchSeasons, updateSeason, addSeason, addDivision, fetchUsersWithTeams
-} from './seasons.actions';
+import { fetchSeasons, updateSeason, addSeason, addDivision, fetchUsersWithTeams } from './seasons.actions';
 import { fetchExternalStats, saveGameWeekStats, saveSeasonStats } from './stats.actions';
 
 const log = debug('kammy:admin/Seasons');

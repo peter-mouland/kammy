@@ -2,9 +2,7 @@
 import debug from 'debug';
 import mongoose from 'mongoose';
 
-import {
-  mapImportToSchema, mapSkyFormatToSchema, zeros, mapStats
-} from '../../../utils/mapDataImportFormats';
+import { mapImportToSchema, mapSkyFormatToSchema, zeros, mapStats } from '../../../utils/mapDataImportFormats';
 import { json } from '../../../../app/utils/fetch';
 import config from '../../../../config/config';
 

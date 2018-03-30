@@ -58,6 +58,7 @@ export default class MainLayout extends React.Component {
       <div {...bem(null, 'main')}>
         <nav {...bem('nav')}>
           <span {...bem('nav', 'header')}>FF</span>
+          <NamedLink to="teams" {...bem('nav-link')} />
           <NamedLink to="myTeam" {...bem('nav-link')} />
           <NamedLink to="divisions" {...bem('nav-link')} />
           <NamedLink to="rules" {...bem('nav-link')} />

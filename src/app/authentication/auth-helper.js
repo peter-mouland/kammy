@@ -2,9 +2,7 @@ import cookie from 'react-cookie';
 import debug from 'debug';
 import jwtDecode from 'jwt-decode';
 
-import {
-  validateLoginForm, validateSignUpForm, validateUpdatePassword
-} from './auth-validation';
+import { validateLoginForm, validateSignUpForm, validateUpdatePassword } from './auth-validation';
 
 const log = debug('kammy:Auth');
 

@@ -26,10 +26,12 @@
     "test:e2e-staging": "npm run nightwatch -- --env safari_osx,chrome_osx --tag staging",
     "prenightwatch": "selenium-standalone install --version=3.4.0 --drivers.chrome.version=2.30",
     "nightwatch": "nightwatch -o ./tests/e2e/tests_output -c ./tests/config/nightwatch.conf.js",
-    "mocha": "mocha --opts ./tests/config/mocha.opts "
+    "mocha": "mocha --opts ./tests/config/mocha.opts ",
+    "nuke": "rm -rf node_modules && yarn && yarn test"
   },
   "engines": {
-    "node": "^8.1.4",
+    "node": "^9.1.4",
+    "yarn": "^1.0.3",
     "npm": "^5.0.3"
   },
   "pre-commit": [

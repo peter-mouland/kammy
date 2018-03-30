@@ -35,8 +35,8 @@ $modal-md: 725px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  //-webkit-font-smoothing: antialiased;
+  //-moz-osx-font-smoothing: grayscale;
   max-width: $modal-md;
 }
 
