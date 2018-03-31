@@ -1,9 +1,9 @@
 import React from 'react';
 import bemHelper from 'react-bem-helper';
+import Interstitial from '@kammy/interstitial';
+import Errors from '@kammy/errors';
+import MultiToggle from '@kammy/multi-toggle';
 
-import Errors from '../Errors/Errors';
-import Interstitial from '../Interstitial/Interstitial';
-import MultiToggle from '../MultiToggle/MultiToggle';
 import { positionMapping } from '../../../config/positions';
 
 import './divisions-page.scss';

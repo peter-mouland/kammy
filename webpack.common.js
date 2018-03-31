@@ -53,13 +53,14 @@ module.exports = {
   ],
   resolve: {
     modules: ['node_modules', SRC],
-    extensions: ['.js', '.jsx', '.scss']
+    mainFields: ['src', 'browser', 'module', 'main'],
+    extensions: ['.js', '.jsx', '.scss'],
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
-        include: [/src/],
+        include: [/src/, /@kammy\/(.*)/],
         loader: 'babel-loader',
         options: {
           cacheDirectory: true
@@ -67,7 +68,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        include: [/src/],
+        include: [/src/, /@kammy\/(.*)/],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -79,7 +80,7 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        include: [/src/],
+        include: [/src/, /@kammy\/(.*)/],
         loader: 'svg-inline-loader',
         options: {
           removeSVGTagAttrs: false

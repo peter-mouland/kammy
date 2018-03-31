@@ -2,11 +2,11 @@ import cookie from 'react-cookie';
 import Chance from 'chance';
 import jwt from 'jsonwebtoken';
 import Redirect from 'react-router-dom/Redirect';
+import HomePage from '@kammy/home-page';
+import NotFound from '@kammy/not-found';
 
 import { React, mount, expect, shallow } from '../config/test.helper';
 import Root, { Router } from '../../src/app/Root';
-import HomePage from '../../src/app/components/HomePage/HomePage';
-import NotFound from '../../src/app/components/NotFound/NotFound';
 import LoginPage from '../../src/app/authentication/components/LoginPage/LoginPage';
 import MyTeam from '../../src/app/components/MyTeamPage/MyTeamPage';
 import users from '../test-servers/scripts/users';

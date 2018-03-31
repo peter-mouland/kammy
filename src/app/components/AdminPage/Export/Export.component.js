@@ -2,12 +2,12 @@ import React from 'react';
 import Route from 'react-router-dom/Route';
 import bemHelper from 'react-bem-helper';
 import debug from 'debug';
+import Interstitial from '@kammy/interstitial';
 
 import fieldSorter from '../../../utils/field-sorter';
 import Players from '../../Players/Players.component';
 import join from '../../../utils/joinPath';
 import selectedItem from '../../../utils/selectedItem';
-import Interstitial from '../../Interstitial/Interstitial';
 import AdminList from '../AdminList/AdminList';
 
 const bem = bemHelper({ name: 'export' });

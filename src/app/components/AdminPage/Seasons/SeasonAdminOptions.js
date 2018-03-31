@@ -2,10 +2,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import debug from 'debug';
+import Interstitial from '@kammy/interstitial';
+import Errors from '@kammy/errors';
+import Toggle from '@kammy/toggle';
 
-import Toggle from '../../Toggle/Toggle';
-import Interstitial from '../../Interstitial/Interstitial';
-import Errors from '../../Errors/Errors';
 import Players from '../../Players/Players.component';
 
 const log = debug('kammy:SeasonAdminOptions');

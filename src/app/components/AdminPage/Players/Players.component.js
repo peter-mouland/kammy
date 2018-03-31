@@ -1,8 +1,8 @@
 import React from 'react';
 import bemHelper from 'react-bem-helper';
+import Interstitial from '@kammy/interstitial';
 
 import Auth from '../../../authentication/auth-helper';
-import Interstitial from '../../Interstitial/Interstitial';
 import Players from '../../Players/Players';
 import PlayerChanges from './PlayerChanges';
 

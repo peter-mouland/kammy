@@ -4,21 +4,23 @@ import Link from 'react-router-dom/Link';
 import Switch from 'react-router-dom/Switch';
 import bemHelper from 'react-bem-helper';
 import debug from 'debug';
+import RulesPage from '@kammy/rules-page';
+import NotFound from '@kammy/not-found';
+import ProfilePage from '@kammy/profile-page';
+import Homepage from '@kammy/home-page';
+import ClassicLayout from '@kammy/classic-layout';
+import NavBar from '@kammy/nav-bar';
 
-import MainLayout from './Layouts/MainLayout';
-import Homepage from './components/HomePage/HomePage';
 import DivisionsPage from './components/DivisionsPage/DivisionsPage';
 import AdminPage from './components/AdminPage/AdminPage';
 import MyTeam from './components/MyTeamPage/MyTeamPage';
 import TeamsPage from './components/TeamsPage/TeamsPage';
-import ProfilePage from './components/ProfilePage/ProfilePage';
-import RulesPage from './components/RulesPage/RulesPage';
-import NotFound from './components/NotFound/NotFound';
 
 import ChangePassword from './authentication/components/ChangePasswordPage/ChangePasswordPage';
 import LoginPage from './authentication/components/LoginPage/LoginPage';
 import LogOut from './authentication/components/LogOut/LogOut';
 import RouteWithAuthCheck from './authentication/components/RouteWithAuthCheck/RouteWithAuthCheck';
+import Auth from './authentication/auth-helper';
 
 debug('kammy:routes');
 
@@ -143,27 +145,6 @@ export function getRoutesConfig() {
   ];
 }
 
-// test this. no failing test if getRoutesConfig instead of getRoutesConfig()
-export const findRoute = (to) => getRoutesConfig().find((rt) => rt.name === to);
-
-// test this active link and route matching
-export const NamedLink = ({
-  className, to, children, ...props
-}) => {
-  const bem = bemHelper({ name: 'link' });
-  const route = findRoute(to);
-  if (!route) throw new Error(`Route to '${to}' not found`);
-  const { path, label } = route;
-  return (
-    <Route
-      path={ path } children={({ match }) => (
-        <Link to={ path } { ...props } { ...bem(null, { active: match }, className) }>
-          { children || label }
-        </Link>
-      )} />
-  );
-};
-
 export const SubLink = ({
   className, to, children, ...props
 }) => {
@@ -180,11 +161,15 @@ export const SubLink = ({
 
 export function makeRoutes() {
   return (
-    <MainLayout>
+    <ClassicLayout
+      NavBar={(
+        <NavBar isUserAuthenticated={Auth.validateToken()} isAdmin={true} name={Auth.user().name }/>
+      )}
+    >
       <Switch>
         {getRoutesConfig().map((route) => <RouteWithAuthCheck {...route} key={ route.name } />)}
         <Route title={'Page Not Found - Fantasy Football'} component={ NotFound }/>
       </Switch>
-    </MainLayout>
+    </ClassicLayout>
   );
 }

@@ -1,6 +1,5 @@
 import { React, mount, expect } from '../../config/test.helper';
 import Root, { history } from '../../../src/app/Root';
-import { findRoute } from '../../../src/app/routes';
 
 describe('Homepage Route', function () {
 
@@ -25,7 +24,7 @@ describe('Homepage Route', function () {
     });
 
     it('Should contain a title', () => {
-      expect(document.title).to.equal(findRoute('homepage').meta.title);
+      expect(document.title).to.equal('Fantasy Football');
     });
 
     it('should have a nav', () => {

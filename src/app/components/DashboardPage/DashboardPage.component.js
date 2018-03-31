@@ -1,7 +1,7 @@
 import React from 'react';
+import Interstitial from '@kammy/interstitial';
 
-import Errors from '../Errors/Errors';
-import Interstitial from '../Interstitial/Interstitial';
+import Errors from '@kammy/errors';
 
 export default class DashboardPage extends React.Component {
   render() {

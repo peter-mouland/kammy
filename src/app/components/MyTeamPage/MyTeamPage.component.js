@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import debug from 'debug';
 import bemHelper from 'react-bem-helper';
+import Interstitial from '@kammy/interstitial';
+import Svg from '@kammy/svg';
+import Errors from '@kammy/errors';
 
 import Players from '../Players/Players';
-import Svg from '../Svg/Svg';
 import field from '../../../assets/field.svg';
-import Errors from '../../components/Errors/Errors';
-import Interstitial from '../../components/Interstitial/Interstitial';
 import { FETCH_TEAM } from './my-team.actions';
 
 import './my-team.scss';

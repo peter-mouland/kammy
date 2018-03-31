@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import Interstitial from '../../Interstitial/Interstitial';
-import Errors from '../../Errors/Errors';
-import Toggle from '../../Toggle/Toggle';
+import Interstitial from '@kammy/interstitial';
+import Errors from '@kammy/errors';
+import Toggle from '@kammy/toggle';
 
 class AddUser extends React.Component {
   static propTypes = {

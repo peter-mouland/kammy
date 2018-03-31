@@ -1,8 +1,8 @@
 import React from 'react';
+import Modal from '@kammy/modal';
+import Interstitial from '@kammy/interstitial';
+import Svg from '@kammy/svg';
 
-import Modal from '../../Modal/Modal';
-import Interstitial from '../../Interstitial/Interstitial';
-import SVG from '../../Svg/Svg';
 import PlayerChoice from '../Seasons/PlayerChoice';
 import changeIcon from '../../../../assets/change.svg';
 
@@ -79,7 +79,7 @@ class TeamAdminOptions extends React.Component {
         );
       default:
         return (
-          <SVG
+          <Svg
             className="admin-icon"
             markup={ changeIcon }
             onClick={ () => this.showPlayerChoice({ pos, leftOrRight: side }) }

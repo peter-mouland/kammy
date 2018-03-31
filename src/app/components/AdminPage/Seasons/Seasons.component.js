@@ -2,10 +2,10 @@ import React from 'react';
 import Route from 'react-router-dom/Route';
 import bemHelper from 'react-bem-helper';
 import debug from 'debug';
+import Interstitial from '@kammy/interstitial';
 
 import join from '../../../utils/joinPath';
 import selectedItem from '../../../utils/selectedItem';
-import Interstitial from '../../Interstitial/Interstitial';
 import AdminList from '../AdminList/AdminList';
 import AddSeason from './AddSeason';
 import SeasonAdminOptions from './SeasonAdminOptions';

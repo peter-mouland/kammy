@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import Selector from '../../Selector/Selector';
+import Select from '@kammy/select';
 
 export default class PlayerChoice extends React.Component {
   clubs = [];
@@ -89,18 +88,18 @@ export default class PlayerChoice extends React.Component {
     return (
       <form>
         { pos === 'sub' &&
-          <Selector
+          <Select
             onChange={ this.positionFilter }
             defaultValue={ positionFilter }
             options={ ['gk', 'fb', 'cb', 'mid', 'am', 'str'] }
           />
         }
-        <Selector
+        <Select
           onChange={ this.clubFilter }
           defaultValue={ clubFilter }
           options={ clubs }
         />
-        <Selector
+        <Select
           warn={ pickedPlayers }
           onChange={ this.selectPlayer }
           defaultValue={ defaultValue._id }
