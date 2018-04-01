@@ -6,7 +6,9 @@ import cookie from 'react-cookie';
 import matchPath from 'react-router-dom/matchPath';
 
 import configureStore from '../../app/store/configure-store';
-import { makeRoutes, getRoutesConfig } from '../../app/routes';
+import { makeRoutes } from '../../app/routes';
+import routesConfig from '../../config/routes';
+import AppConfigProvider from '../../config/Provider.jsx';
 
 function getMatch(routesArray, url) {
   return routesArray
@@ -31,21 +33,22 @@ async function getRouteData(routesArray, url, dispatch) {
 
 const Markup = ({ req, store, context }) => (
   <Provider store={store}>
-    <StaticRouter location={req.url} context={ context } >
-      {makeRoutes()}
-    </StaticRouter>
+    <AppConfigProvider>
+      <StaticRouter location={req.url} context={ context } >
+        {makeRoutes({ appConfig: { routes: routesConfig } })}
+      </StaticRouter>
+    </AppConfigProvider>
   </Provider>
 );
 
 function setRouterContext() {
-  const routesArray = getRoutesConfig();
   return async (ctx, next) => {
     const routerContext = {};
     const store = configureStore();
     cookie.plugToRequest(ctx.request, ctx.response); // essential for universal cookies
-    await getRouteData(routesArray, ctx.request.url, store.dispatch);
+    await getRouteData(routesConfig, ctx.request.url, store.dispatch);
     const markup = renderToString(Markup({ req: ctx.request, store, context: routerContext }));
-    const match = getMatch(routesArray, ctx.request.url);
+    const match = getMatch(routesConfig, ctx.request.url);
     if (routerContext.url) {
       ctx.status = 301;
       ctx.redirect(routerContext.location.pathname + routerContext.location.search);
