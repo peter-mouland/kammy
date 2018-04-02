@@ -3,7 +3,6 @@ import React from 'react';
 import bemHelper from 'react-bem-helper';
 import Route from 'react-router-dom/Route';
 
-import Auth from '../../../authentication/auth-helper';
 import { SubLink } from '../../../routes';
 import joinPaths from '../../../utils/joinPath';
 import AddUser from './AddUser';
@@ -26,10 +25,6 @@ export default class Users extends React.Component {
       className, match, loading, seasons = [], users = [], userErrors = [], updatingUser
     } = this.props;
     const addingUser = loading === ADD_USER;
-
-    if (!Auth.isAdmin()) {
-      return <p>You're not admin!</p>;
-    }
 
     return (
       <section className={ className }>

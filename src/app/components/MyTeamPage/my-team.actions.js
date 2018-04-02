@@ -1,14 +1,13 @@
 import debug from 'debug';
 
 import { fetch } from '../../utils';
-import Auth from '../../authentication/auth-helper';
 
 const log = debug('kammy:my-team.actions');
 export const FETCH_TEAM = 'FETCH_TEAM';
 export const FETCH_PLAYERS = 'FETCH_PLAYERS';
 export const UPDATE_TEAM = 'UPDATE_TEAM';
 
-export function fetchTeam({ teamId = Auth.user().defaultTeamId } = {}) {
+export function fetchTeam({ teamId }) {
   return {
     type: FETCH_TEAM,
     payload: fetch.graphQL('getTeamQuery', { teamId })

@@ -1,15 +1,14 @@
 import RulesPage from '@kammy/rules-page';
 import ProfilePage from '@kammy/profile-page';
 import Homepage from '@kammy/home-page';
+import ChangePassword from '@kammy/change-password';
+import LoginPage from '@kammy/login';
+import LogOut from '@kammy/logout';
 
 import DivisionsPage from '../app/components/DivisionsPage/DivisionsPage';
 import AdminPage from '../app/components/AdminPage/AdminPage';
 import MyTeam from '../app/components/MyTeamPage/MyTeamPage';
 import TeamsPage from '../app/components/TeamsPage/TeamsPage';
-
-import ChangePassword from '../app/authentication/components/ChangePasswordPage/ChangePasswordPage';
-import LoginPage from '../app/authentication/components/LoginPage/LoginPage';
-import LogOut from '../app/authentication/components/LogOut/LogOut';
 
 const baseMetaData = {
   title: 'Fantasy Football',

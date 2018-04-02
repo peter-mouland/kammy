@@ -8,7 +8,6 @@ import ClassicLayout from '@kammy/classic-layout';
 import NavBar from '@kammy/nav-bar';
 
 import RouteWithAuthCheck from './authentication/components/RouteWithAuthCheck/RouteWithAuthCheck';
-import Auth from './authentication/auth-helper';
 
 export const SubLink = ({
   className, to, children, ...props
@@ -24,11 +23,11 @@ export const SubLink = ({
   );
 };
 
-export function makeRoutes({ appConfig }) {
+export function makeRoutes({ appConfig, auth }) {
   return (
     <ClassicLayout
       NavBar={(
-        <NavBar isUserAuthenticated={Auth.validateToken()} isAdmin={true} name={Auth.user().name }/>
+        <NavBar isUserAuthenticated={auth.validateToken()} isAdmin={true} name={auth.user().name }/>
       )}
     >
       <Switch>

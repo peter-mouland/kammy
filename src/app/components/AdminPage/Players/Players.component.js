@@ -2,7 +2,6 @@ import React from 'react';
 import bemHelper from 'react-bem-helper';
 import Interstitial from '@kammy/interstitial';
 
-import Auth from '../../../authentication/auth-helper';
 import Players from '../../Players/Players';
 import PlayerChanges from './PlayerChanges';
 
@@ -35,10 +34,6 @@ export default class AdminPlayers extends React.Component {
   render() {
     const { importing, updating } = this.props;
     const { playerUpdates, originalPlayers } = this.state;
-
-    if (!Auth.isAdmin()) {
-      return <p>You're not admin!</p>;
-    }
 
     if (importing) {
       return <Interstitial>Importing Players...</Interstitial>;

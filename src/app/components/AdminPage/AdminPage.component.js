@@ -2,8 +2,6 @@ import React from 'react';
 import Route from 'react-router-dom/Route';
 
 import AdminList from './AdminList/AdminList';
-import Auth from '../../authentication/auth-helper';
-
 import Seasons from './Seasons/Seasons';
 import Users from './Users/Users';
 import Players from './Players/Players';
@@ -19,10 +17,6 @@ const ADMIN_ROUTES = [
 ];
 
 export default () => {
-  if (!Auth.isAdmin()) {
-    return <p>You're not admin!</p>;
-  }
-
   return (
     <div className="admin" id="admin-page">
       <h1>Admin</h1>

@@ -1,13 +1,13 @@
-import debug from 'debug';
 import mongoose from 'mongoose';
 
-import Auth from '../../app/authentication/auth-helper';
+import { Auth } from '@kammy/auth-provider';
+import { cookieToken } from '../../config/config';
 
 const User = mongoose.model('User');
-const log = debug('kammy:auth-check');
+const auth = new Auth({ cookieToken });
 
 export const validateUser = (ctx) => new Promise((resolve) => {
-  const userFromToken = Auth.validateToken(ctx);
+  const userFromToken = auth.validateToken(ctx);
   User.findById(userFromToken.sub, (err, user) => {
     ctx.context = { user };
     resolve(user);
@@ -19,4 +19,3 @@ export default function authCheck() {
     .then(validateUser)
     .then(next);
 }
-

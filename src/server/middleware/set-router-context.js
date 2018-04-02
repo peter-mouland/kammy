@@ -4,11 +4,15 @@ import StaticRouter from 'react-router-dom/StaticRouter';
 import { Provider } from 'react-redux';
 import cookie from 'react-cookie';
 import matchPath from 'react-router-dom/matchPath';
+import { Auth, AuthProvider } from '@kammy/auth-provider';
 
 import configureStore from '../../app/store/configure-store';
 import { makeRoutes } from '../../app/routes';
 import routesConfig from '../../config/routes';
+import { cookieToken } from '../../config/config';
 import AppConfigProvider from '../../config/Provider.jsx';
+
+const auth = new Auth({ cookieToken })
 
 function getMatch(routesArray, url) {
   return routesArray
@@ -34,9 +38,11 @@ async function getRouteData(routesArray, url, dispatch) {
 const Markup = ({ req, store, context }) => (
   <Provider store={store}>
     <AppConfigProvider>
-      <StaticRouter location={req.url} context={ context } >
-        {makeRoutes({ appConfig: { routes: routesConfig } })}
-      </StaticRouter>
+      <AuthProvider cookieToken={ cookieToken }>
+        <StaticRouter location={req.url} context={ context } >
+          {makeRoutes({ appConfig: { routes: routesConfig }, auth })}
+        </StaticRouter>
+      </AuthProvider>
     </AppConfigProvider>
   </Provider>
 );

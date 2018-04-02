@@ -1,11 +1,12 @@
 import axios from 'axios';
 import debug from 'debug';
+import { Auth } from '@kammy/auth-provider';
 
 import { localUrl } from '../utils';
-import { getVar } from '../../config/config';
-import Auth from '../authentication/auth-helper';
+import { getVar, cookieToken } from '../../config/config';
 
 const log = debug('kammy:fetch');
+const auth = new Auth({ cookieToken });
 
 export function checkStatus(response) {
   if (response.status < 200 || response.status >= 500) {
@@ -41,7 +42,7 @@ const delay = (ms) => ( // eslint-disable-line no-unused-vars
 );
 
 const fetchUrl = (endpoint, opts = {}) => {
-  const token = Auth.getToken();
+  const token = auth.getToken();
   const headers = Object.assign({}, opts.headers, token ? { Authorization: `Bearer ${token}` } : {});
   const url = endpoint.indexOf('//') > -1 ? endpoint : `${localUrl}${endpoint}`;
   return Promise.resolve()

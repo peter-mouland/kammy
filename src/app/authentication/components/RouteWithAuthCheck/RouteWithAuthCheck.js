@@ -1,18 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Redirect from 'react-router-dom/Redirect';
 import Route from 'react-router-dom/Route';
 import debug from 'debug';
 import DocumentMeta from 'react-document-meta';
 
-import Auth from '../../auth-helper';
-
 const log = debug('kammy:RouteWithAuthCheck');
 
 const RouteWithAuthCheck = ({
   component: Component, requiresAuthentication, meta, ...props
-}) => {
-  const redirect = requiresAuthentication && !Auth.validateToken();
-  const redirectTo = Auth.user().mustChangePassword
+}, { auth }) => {
+  const redirect = requiresAuthentication && !auth.validateToken();
+  const redirectTo = auth.user().mustChangePassword
     ? '/change-password/'
     : '/login';
   log({ redirectTo });
@@ -32,6 +31,10 @@ const RouteWithAuthCheck = ({
         </span>
       )}/>
   );
+};
+
+RouteWithAuthCheck.contextTypes = {
+  auth: PropTypes.object,
 };
 
 export default RouteWithAuthCheck;

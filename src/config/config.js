@@ -39,6 +39,7 @@ if (!process.env.NODE_ENV) { setEnvDefault('NODE_ENV', 'development'); }
 
 config.adminEmails = ['nickwatts1982@hotmail.com', 'uni_nake@hotmail.com', 'oojdee@gmail.com'];
 config.getFixtures = (code) => `${config.EXTERNAL_FIXTURES_URL}/json_player_stats_${code}.json`;
+config.cookieToken = 'kammy-token';
 
 log(config);
 

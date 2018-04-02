@@ -1,18 +1,16 @@
 import passport from 'koa-passport';
-import debug from 'debug';
+import { Auth } from '@kammy/auth-provider';
+import { validateLoginForm, validateSignUpForm } from '@kammy/login';
+import { validateUpdatePassword } from '@kammy/change-password';
 
-
-import {
-  validateLoginForm, validateSignUpForm, validateUpdatePassword,
-  validateSignUpResponse, validateLoginResponse
-} from '../../app/authentication/auth-validation';
+import { validateSignUpResponse, validateLoginResponse } from './response-validation';
 import localSignupStrategy from './passport/local-signup';
 import localLoginStrategy from './passport/local-login';
 import localUdpateStrategy from './passport/local-update';
 import { validateUser } from './auth-check-middleware';
-import Auth from '../../app/authentication/auth-helper';
+import { cookieToken } from '../../config/config';
 
-const log = debug('kammy:auth/actions');
+const auth = new Auth({ cookieToken })
 
 passport.serializeUser((user, done) => done(null, user._id));
 passport.deserializeUser(async (userId, done) => {
@@ -40,7 +38,7 @@ export const login = async (ctx, next) => {
     const res = validateLoginResponse(err, token, userData);
     ctx.status = res.status;
     ctx.response.body = res.body;
-    Auth.saveToken(token, ctx);
+    auth.saveToken(token, ctx);
   })(ctx, next);
 };
 
@@ -67,7 +65,7 @@ export const signUp = (ctx, next) => {
       const loginResponse = validateLoginResponse(loginError, token, userData);
       ctx.status = loginResponse.status;
       ctx.response.body = loginResponse.body;
-      Auth.saveToken(token, ctx);
+      auth.saveToken(token, ctx);
     })(ctx, next);
   })(ctx, next);
 };
@@ -95,7 +93,7 @@ export const updatePassword = (ctx, next) => {
       const loginResponse = validateLoginResponse(loginError, token, userData);
       ctx.status = loginResponse.status;
       ctx.response.body = loginResponse.body;
-      Auth.saveToken(token, ctx);
+      auth.saveToken(token, ctx);
     })(ctx, next);
   })(ctx, next);
 };
@@ -103,7 +101,7 @@ export const updatePassword = (ctx, next) => {
 export const logout = (ctx, next) => {
   ctx.status = 200;
   ctx.type = 'json';
-  Auth.removeToken(ctx);
+  auth.removeToken(ctx);
   ctx.response.body = { message: 'logged out' };
   next();
 };
@@ -111,7 +109,7 @@ export const logout = (ctx, next) => {
 export const authenticate = (ctx, next) => {
   ctx.status = 200;
   ctx.type = 'json';
-  Auth.saveToken(Auth.getToken(), ctx);
+  auth.saveToken(auth.getToken(), ctx);
   ctx.response.body = { message: 'authenticated' };
   next();
 };
