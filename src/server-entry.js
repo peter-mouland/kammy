@@ -1,4 +1,5 @@
 require('babel-polyfill');
+require('@kammy/node-local-storage');
 const { hook } = require('node-hook');
 const SvgLoader = require('svg-inline-loader');
 

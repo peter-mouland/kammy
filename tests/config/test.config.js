@@ -2,9 +2,9 @@ require('babel-register')({
   only: [/src/, /tests/, /config/]
 });
 require("babel-polyfill");
+require('@kammy/node-local-storage');
 const connect = require('../../src/server/api/db').connect;
 const config = require('../test-servers/db.json');
-require('../../src/app/authentication/local-storage');
 const { JSDOM } = require('jsdom');
 const hook = require('node-hook').hook;
 hook('.scss', (source, filename) => '');

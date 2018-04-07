@@ -1,18 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { renderToString } from 'react-dom/server';
 import StaticRouter from 'react-router-dom/StaticRouter';
 import { Provider } from 'react-redux';
-import cookie from 'react-cookie';
 import matchPath from 'react-router-dom/matchPath';
-import { Auth, AuthProvider } from '@kammy/auth-provider';
+import { AuthProvider } from '@kammy/auth-provider';
 
 import configureStore from '../../app/store/configure-store';
 import { makeRoutes } from '../../app/routes';
 import routesConfig from '../../config/routes';
 import { cookieToken } from '../../config/config';
 import AppConfigProvider from '../../config/Provider.jsx';
-
-const auth = new Auth({ cookieToken })
 
 function getMatch(routesArray, url) {
   return routesArray
@@ -35,12 +33,21 @@ async function getRouteData(routesArray, url, dispatch) {
   await Promise.all(needs);
 }
 
-const Markup = ({ req, store, context }) => (
+const MakeRoutesWithContext = (props, { appConfig, auth }) => (
+  makeRoutes({ appConfig, auth })
+);
+
+MakeRoutesWithContext.contextTypes = {
+  appConfig: PropTypes.object,
+  auth: PropTypes.object,
+};
+
+const Markup = ({ ctx, store, context }) => (
   <Provider store={store}>
     <AppConfigProvider>
-      <AuthProvider cookieToken={ cookieToken }>
-        <StaticRouter location={req.url} context={ context } >
-          {makeRoutes({ appConfig: { routes: routesConfig }, auth })}
+      <AuthProvider cookieToken={ cookieToken } ctx={ ctx }>
+        <StaticRouter location={ctx.request.url} context={ context } >
+          <MakeRoutesWithContext />
         </StaticRouter>
       </AuthProvider>
     </AppConfigProvider>
@@ -51,9 +58,8 @@ function setRouterContext() {
   return async (ctx, next) => {
     const routerContext = {};
     const store = configureStore();
-    cookie.plugToRequest(ctx.request, ctx.response); // essential for universal cookies
     await getRouteData(routesConfig, ctx.request.url, store.dispatch);
-    const markup = renderToString(Markup({ req: ctx.request, store, context: routerContext }));
+    const markup = renderToString(Markup({ ctx, store, context: routerContext }));
     const match = getMatch(routesConfig, ctx.request.url);
     if (routerContext.url) {
       ctx.status = 301;

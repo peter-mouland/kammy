@@ -7,7 +7,7 @@ import NotFound from '@kammy/not-found';
 import ClassicLayout from '@kammy/classic-layout';
 import NavBar from '@kammy/nav-bar';
 
-import RouteWithAuthCheck from './authentication/components/RouteWithAuthCheck/RouteWithAuthCheck';
+import PrivateRoute from '@kammy/private-route';
 
 export const SubLink = ({
   className, to, children, ...props
@@ -24,14 +24,21 @@ export const SubLink = ({
 };
 
 export function makeRoutes({ appConfig, auth }) {
+  const authenticated = !!auth.validateToken();
+  const user = auth.user();
+
   return (
     <ClassicLayout
       NavBar={(
-        <NavBar isUserAuthenticated={auth.validateToken()} isAdmin={true} name={auth.user().name }/>
+        <NavBar isUserAuthenticated={authenticated} isAdmin={user.isAdmin} name={user.name }/>
       )}
     >
       <Switch>
-        {appConfig.routes.map((route) => <RouteWithAuthCheck {...route} key={ route.name } />)}
+        {appConfig.routes.map((route) => (
+          route.requiresAuthentication
+            ? <PrivateRoute {...route} key={ route.name } />
+            : <Route {...route} key={ route.name } />
+        ))}
         <Route title={'Page Not Found - Fantasy Football'} component={ NotFound }/>
       </Switch>
     </ClassicLayout>

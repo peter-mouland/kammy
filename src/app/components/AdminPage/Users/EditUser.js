@@ -79,9 +79,8 @@ export default class EditUser extends React.Component {
                   this.inputs.isAdmin = user.isAdmin;
                 }}
                 onChange={ this.toggleAdmin }
-              >
-                Is Admin?
-              </Toggle>
+                label={'Is Admin?'}
+              />
             </div>
             <input className="admin-btn" type="submit" value="Update User"/>
           </form>

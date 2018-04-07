@@ -56,7 +56,9 @@
     "@kammy/logout": "^0.0.1",
     "@kammy/modal": "^0.0.1",
     "@kammy/multi-toggle": "^0.0.1",
+    "@kammy/node-local-storage": "^0.0.1",
     "@kammy/not-found": "^0.0.1",
+    "@kammy/private-route": "^0.0.1",
     "@kammy/profile-page": "^0.0.1",
     "@kammy/rules-page": "^0.0.1",
     "@kammy/nav-bar": "^0.0.1",
@@ -128,6 +130,7 @@
     "sass-loader": "^6.0.5",
     "style-loader": "^0.18.2",
     "svg-inline-loader": "^0.7.1",
+    "universal-cookie": "^2.1.2",
     "validator": "^8.0.0",
     "webpack": "^3.1.0",
     "webpack-visualizer-plugin": "^0.1.11",
@@ -167,7 +170,7 @@
     "sinon": "^2.3.6",
     "sinon-chai": "^2.8.0",
     "supertest": "^3.0.0",
-    "webpack-dev-server": "^2.5.1",
+    "webpack-dev-server": "2.5.1",
     "webpack-merge": "^4.1.0"
   }
 }

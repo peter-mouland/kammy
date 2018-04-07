@@ -82,9 +82,8 @@ class AddUser extends React.Component {
                   this.inputs.isAdmin = false;
                 }}
                 onChange={ this.toggleAdmin }
-              >
-                Is Admin?
-              </Toggle>
+                label={'Is Admin?'}
+              />
             </div>
             <p>Assign team to:</p>
             <div>

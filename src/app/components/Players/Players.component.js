@@ -349,7 +349,7 @@ export default class PlayerTable extends React.Component {
                   return (
                     <tr key={player.code} id={player.code} { ...bem('player', { selected: isOnMyTeam, new: !!player.new })}>
                       <td>
-                        { player.new && <Svg markup={New} { ...bem('new-icon')} />}
+                        { player.new && <Svg { ...bem('new-icon')}>{New}</Svg> }
                         { player.new && <span className="sr-only">new</span> }
                       </td>
                       <td>

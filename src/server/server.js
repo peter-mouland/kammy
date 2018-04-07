@@ -6,6 +6,7 @@ import convert from 'koa-convert';
 import passport from 'koa-passport';
 import qs from 'koa-qs';
 
+import initAuthMiddleware from './middleware/init-auth';
 import handleError from './middleware/handle-error';
 import logger from './middleware/logger';
 import responseTime from './middleware/response-time';
@@ -36,6 +37,7 @@ server.use(compress({ threshold: 2048 }));
 server.use(logger());
 server.use(headers());
 server.use(pageRenderers());
+server.use(initAuthMiddleware());
 
 export default (assets) => {
   log('createServer');

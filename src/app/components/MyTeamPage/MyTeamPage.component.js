@@ -96,7 +96,7 @@ export default class MyTeam extends React.Component {
         <h1>My Team</h1>
         <div { ...bem('panels') } >
           <section { ...bem('formation') }>
-            <Svg { ...bem('field') } markup={field} />
+            <Svg { ...bem('field') } >{field}</Svg>
             <ul { ...bem('squad') }>
               {this.squadPlayer('sub')}
               {this.squadPlayer('gk')}

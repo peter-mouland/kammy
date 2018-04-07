@@ -14,26 +14,25 @@ import AppConfigProvider from '../config/Provider.jsx';
 export const Router = isBrowser ? BrowserRouter : StaticRouter;
 const store = configureStore(window.__INITIAL_STATE__); // eslint-disable-line
 
-class Root extends React.Component {
-  render() {
-    const { appConfig, auth } = this.context;
-    return (
-      <Provider store={store}>
-        <AppConfigProvider>
-          <AuthProvider cookieToken={'kammy-token'}>
-            <Router {...this.props} >
-              {makeRoutes({ appConfig, auth })}
-            </Router>
-          </AuthProvider>
-        </AppConfigProvider>
-      </Provider>
-    );
-  }
-}
+const MakeRoutesWithContext = (props, { appConfig, auth }) => (
+  makeRoutes({ appConfig, auth })
+);
 
-Root.contextTypes = {
+MakeRoutesWithContext.contextTypes = {
   appConfig: PropTypes.object,
   auth: PropTypes.object,
 };
+
+const Root = (props) => (
+  <Provider store={store}>
+    <AppConfigProvider>
+      <AuthProvider cookieToken={'kammy-token'}>
+        <Router {...props} >
+          <MakeRoutesWithContext />
+        </Router>
+      </AuthProvider>
+    </AppConfigProvider>
+  </Provider>
+);
 
 export default Root;

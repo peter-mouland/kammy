@@ -1,5 +1,4 @@
 import passport from 'koa-passport';
-import { Auth } from '@kammy/auth-provider';
 import { validateLoginForm, validateSignUpForm } from '@kammy/login';
 import { validateUpdatePassword } from '@kammy/change-password';
 
@@ -8,9 +7,6 @@ import localSignupStrategy from './passport/local-signup';
 import localLoginStrategy from './passport/local-login';
 import localUdpateStrategy from './passport/local-update';
 import { validateUser } from './auth-check-middleware';
-import { cookieToken } from '../../config/config';
-
-const auth = new Auth({ cookieToken })
 
 passport.serializeUser((user, done) => done(null, user._id));
 passport.deserializeUser(async (userId, done) => {
@@ -38,7 +34,7 @@ export const login = async (ctx, next) => {
     const res = validateLoginResponse(err, token, userData);
     ctx.status = res.status;
     ctx.response.body = res.body;
-    auth.saveToken(token, ctx);
+    ctx.auth.saveToken(token);
   })(ctx, next);
 };
 
@@ -65,7 +61,7 @@ export const signUp = (ctx, next) => {
       const loginResponse = validateLoginResponse(loginError, token, userData);
       ctx.status = loginResponse.status;
       ctx.response.body = loginResponse.body;
-      auth.saveToken(token, ctx);
+      ctx.auth.saveToken(token);
     })(ctx, next);
   })(ctx, next);
 };
@@ -93,7 +89,7 @@ export const updatePassword = (ctx, next) => {
       const loginResponse = validateLoginResponse(loginError, token, userData);
       ctx.status = loginResponse.status;
       ctx.response.body = loginResponse.body;
-      auth.saveToken(token, ctx);
+      ctx.auth.saveToken(token);
     })(ctx, next);
   })(ctx, next);
 };
@@ -101,7 +97,7 @@ export const updatePassword = (ctx, next) => {
 export const logout = (ctx, next) => {
   ctx.status = 200;
   ctx.type = 'json';
-  auth.removeToken(ctx);
+  ctx.auth.removeToken();
   ctx.response.body = { message: 'logged out' };
   next();
 };
@@ -109,7 +105,7 @@ export const logout = (ctx, next) => {
 export const authenticate = (ctx, next) => {
   ctx.status = 200;
   ctx.type = 'json';
-  auth.saveToken(auth.getToken(), ctx);
+  ctx.auth.saveToken(ctx.auth.getToken());
   ctx.response.body = { message: 'authenticated' };
   next();
 };

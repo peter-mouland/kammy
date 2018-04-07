@@ -1,7 +1,8 @@
-import { expect, sinon } from '../../../tests/config/test.helper';
-import Auth from '../authentication/auth-helper';
+import Auth from '@kammy/auth-provider';
 import Chance from 'chance';
 import proxyquire from 'proxyquire';
+
+import { expect, sinon } from '../../../tests/config/test.helper';
 
 const chance = new Chance();
 const sandbox = sinon.sandbox.create();

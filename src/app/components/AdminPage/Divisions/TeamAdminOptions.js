@@ -81,9 +81,10 @@ class TeamAdminOptions extends React.Component {
         return (
           <Svg
             className="admin-icon"
-            markup={ changeIcon }
             onClick={ () => this.showPlayerChoice({ pos, leftOrRight: side }) }
-          />
+          >
+            { changeIcon }
+          </Svg>
         );
     }
   }

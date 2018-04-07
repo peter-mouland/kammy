@@ -56,9 +56,8 @@ class SeasonAdminOptions extends React.Component {
             id={`season-live--${season._id}`}
             className="admin-option"
             onChange={ this.toggleLive }
-          >
-            Season is Live?
-          </Toggle>
+            label={'Season is Live?'}
+          />
           <div className="admin-option">
             Current GW:
             <span className="admin-option__value">{season.currentGW}</span>
