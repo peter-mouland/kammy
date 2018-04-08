@@ -2,7 +2,6 @@ import Router from 'koa-router';
 import koaStatic from 'koa-static';
 import debug from 'debug';
 
-import setRouterContext from './middleware/set-router-context';
 import renderApp from './middleware/render-app';
 import graphQLRouter from './api/api-router';
 import authRouter from './authentication/auth-router';
@@ -28,6 +27,5 @@ export function setRoutes(assets) {
     .use(graphQLRouter.allowedMethods())
     .use(authRouter.routes())
     .use(authRouter.allowedMethods())
-    .use(setRouterContext())
     .get('/(.*)', renderApp(assets));
 }

@@ -1,23 +1,14 @@
-function mapWebpackAssets(assetsObj) {
-  const assets = { scripts: [], stylesheets: [] };
-  Object.keys(assetsObj).forEach((key) => {
-    const { js, css } = assetsObj[key];
-    if (js && key === 'vendor') {
-      assets.scripts.unshift(js);
-    } else if (js) {
-      assets.scripts.push(js);
-    }
-    if (css) assets.stylesheets.push(css);
-  });
-  return assets;
+const mapWebpackAssets = require('./mapWebpackAssets');
+
+function getAssets() {
+  const assets = (process.env.NODE_ENV === 'production')
+    ? require('../../../compiled/webpack-assets.json') // eslint-disable-line global-require
+    : {
+      app: { js: '/app.js', css: '/app.css' },
+      polyfills: { js: '/polyfills.js' },
+      vendor: { js: '/vendor.js' }
+    };
+  return mapWebpackAssets(assets);
 }
 
-module.exports = function getAssets() {
-  if (process.env.NODE_ENV === 'production') {
-    const webpackAssets = require('../../../compiled/webpack-assets.json'); // eslint-disable-line import/no-unresolved, global-require
-    return mapWebpackAssets(webpackAssets);
-  }
-  return { scripts: ['/vendor.js', '/app.js'], stylesheets: ['/app.css'] };
-};
-
-module.exports.mapWebpackAssets = mapWebpackAssets;
+module.exports = getAssets;

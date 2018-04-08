@@ -1,5 +1,7 @@
 import debug from 'debug';
 
+import Error500 from '../templates/Error500';
+
 const log = debug('kammy:handleError.js');
 
 export default function errorHandler(renderer) {
@@ -20,7 +22,7 @@ export default function errorHandler(renderer) {
 
       if (renderer) {
         ctx.type = 'html';
-        ctx.body = ctx[renderer](err);
+        ctx.body = Error500(err);
       } else if (err.status === 401 || err.status === 403) {
         ctx.status = err.status;
         ctx.body = { message: 'Protected resource, you are unauthorized', error: err };

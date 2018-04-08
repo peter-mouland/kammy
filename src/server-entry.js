@@ -1,23 +1,18 @@
 require('babel-polyfill');
 require('@kammy/node-local-storage');
-const { hook } = require('node-hook');
-const SvgLoader = require('svg-inline-loader');
-
-hook('.scss', () => '');
-hook('.svg', (source) => {
-  const markup = SvgLoader.getExtractedSVG(source, { removeSVGTagAttrs: false });
-  return `module.exports =  ${JSON.stringify(markup)}`;
-});
+require('@kammy/node-fetch');
+require('./server/utils/assets-helper');
+require('./config/config');
 
 const { connect } = require('./server/api/db');
 const config = require('./config/db.js');
-const getAssets = require('./server/utils/getAssets');
-require('./config/config');
 
 connect(config.dbUri);
 
-const assets = getAssets();
+const getAssets = require('./server/utils/getAssets');
 const createServer = require('./server/server'); //eslint-disable-line
+
+const assets = getAssets();
 const server = createServer(assets, process.env.NODE_ENV === 'development');
 
 server.listen(process.env.PORT, () => {
