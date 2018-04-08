@@ -8,10 +8,10 @@ import Errors from '@kammy/errors';
 import Toggle from '@kammy/toggle';
 import MultiToggle from '@kammy/multi-toggle';
 import Selector from '@kammy/select';
+import sortColumns from '@kammy/sort-columns';
 
 import { playerPositions } from '../../../config/positions';
 import New from '../../../assets/new.svg';
-import fieldSorter from '../../utils/field-sorter';
 import PlayerFixtures from '../PlayerFixtures/PlayerFixtures';
 
 import './players.scss';
@@ -342,7 +342,7 @@ export default class PlayerTable extends React.Component {
                     showHidden,
                     showOnlyNewPlayers
                   }))
-                .sort(fieldSorter(['pos', 'name']))
+                .sort(sortColumns(['pos', 'name'], playerPositions))
                 .map((originalPlayerData) => {
                   const player = playerUpdates[originalPlayerData._id] || originalPlayerData;
                   const isOnMyTeam = teamPlayers[player.code];

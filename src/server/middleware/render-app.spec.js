@@ -1,4 +1,3 @@
-import cookie from 'react-cookie';
 import Chance from 'chance';
 import { Route } from 'react-router-dom';
 import proxyquire from 'proxyquire';

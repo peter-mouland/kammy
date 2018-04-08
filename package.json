@@ -65,6 +65,7 @@
     "@kammy/nav-bar": "^0.0.1",
     "@kammy/node-fetch": "^0.0.1",
     "@kammy/select": "^0.0.1",
+    "@kammy/sort-columns": "^0.0.1",
     "@kammy/svg": "^0.0.1",
     "@kammy/toggle": "^0.0.1",
     "assets-webpack-plugin": "^3.5.1",

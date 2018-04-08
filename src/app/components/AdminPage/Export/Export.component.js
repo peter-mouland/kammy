@@ -1,17 +1,16 @@
 import React from 'react';
 import Route from 'react-router-dom/Route';
 import bemHelper from 'react-bem-helper';
-import debug from 'debug';
 import Interstitial from '@kammy/interstitial';
+import sortColumns from '@kammy/sort-columns';
 
-import fieldSorter from '../../../utils/field-sorter';
+import { playerPositions } from '../../../../config/positions';
 import Players from '../../Players/Players.component';
 import join from '../../../utils/joinPath';
 import selectedItem from '../../../utils/selectedItem';
 import AdminList from '../AdminList/AdminList';
 
 const bem = bemHelper({ name: 'export' });
-const log = debug('kammy:Export.component');
 
 export default class ExportPage extends React.Component {
   fetchExternalStats = (season, source) => {
@@ -38,7 +37,7 @@ export default class ExportPage extends React.Component {
             return (
               <div className="admin-options" >
                 {teams
-                  .sort(fieldSorter(['division.name', 'user.name']))
+                  .sort(sortColumns(['division.name', 'user.name'], playerPositions))
                   .map((team) => {
                     const teamPlayers = (Object
                       .keys(team))
