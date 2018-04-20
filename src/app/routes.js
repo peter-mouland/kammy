@@ -3,11 +3,11 @@ import Route from 'react-router-dom/Route';
 import Link from 'react-router-dom/Link';
 import Switch from 'react-router-dom/Switch';
 import bemHelper from 'react-bem-helper';
-import NotFound from '@kammy/not-found';
-import ClassicLayout from '@kammy/classic-layout';
-import NavBar from '@kammy/nav-bar';
+import NotFound from '@kammy-ui/not-found';
+import ClassicLayout from '@kammy-ui/classic-layout';
+import NavBar from '@kammy-ui/nav-bar';
 
-import PrivateRoute from '@kammy/private-route';
+import PrivateRoute from '@kammy-ui/private-route';
 
 export const SubLink = ({
   className, to, children, ...props

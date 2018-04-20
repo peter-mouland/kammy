@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import debug from 'debug';
 import bemHelper from 'react-bem-helper';
-import Interstitial from '@kammy/interstitial';
-import Svg from '@kammy/svg';
-import Errors from '@kammy/errors';
+import Interstitial from '@kammy-ui/interstitial';
+import Svg from '@kammy-ui/svg';
+import Errors from '@kammy-ui/errors';
 
 import Players from '../Players/Players';
 import field from '../../../assets/field.svg';

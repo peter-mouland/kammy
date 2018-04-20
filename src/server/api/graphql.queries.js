@@ -92,9 +92,6 @@ query ($code: Int) {
 export const getExternalStatsQuery = `
   query ($currentGW: Int, $source: String) { getExternalStats(currentGW: $currentGW, source: $source){ stats } } 
 `;
-export const getDashboardQuery = `
-  query { getDashboard{ message } } 
-`;
 
 export const getSeasonsQuery = `
   ${seasonFragment}

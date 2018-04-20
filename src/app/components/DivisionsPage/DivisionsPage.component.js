@@ -1,8 +1,8 @@
 import React from 'react';
 import bemHelper from 'react-bem-helper';
-import Interstitial from '@kammy/interstitial';
-import Errors from '@kammy/errors';
-import MultiToggle from '@kammy/multi-toggle';
+import Interstitial from '@kammy-ui/interstitial';
+import Errors from '@kammy-ui/errors';
+import MultiToggle from '@kammy-ui/multi-toggle';
 
 import { positionMapping } from '../../../config/positions';
 

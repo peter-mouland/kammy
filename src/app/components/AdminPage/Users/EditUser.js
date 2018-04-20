@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Interstitial from '@kammy/interstitial';
-import Errors from '@kammy/errors';
-import Toggle from '@kammy/toggle';
+import Interstitial from '@kammy-ui/interstitial';
+import Errors from '@kammy-ui/errors';
+import Toggle from '@kammy-ui/toggle';
 
 export default class EditUser extends React.Component {
   static propTypes = {

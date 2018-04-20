@@ -175,10 +175,6 @@ const schemaString = `
     isAdmin: Boolean
     mustChangePassword: Boolean
   }
-  
-  type Dashboard {
-    message: String!
-  }
 
   type UserTeams {
     _id: String!
@@ -262,7 +258,6 @@ const schemaString = `
     getPlayerFixtures(code: Int): PlayerFixtures
     getUser(email: String, _id: String): User
     getUsersWithTeams: [UserTeams]
-    getDashboard: Dashboard
   }
   
   type Mutation {

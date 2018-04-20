@@ -2,7 +2,7 @@ import React from 'react';
 import Route from 'react-router-dom/Route';
 import bemHelper from 'react-bem-helper';
 import debug from 'debug';
-import Interstitial from '@kammy/interstitial';
+import Interstitial from '@kammy-ui/interstitial';
 
 import fieldSorter from '../../../utils/field-sorter';
 import Players from '../../Players/Players.component';

@@ -5,10 +5,6 @@ import { updateTeam, getTeams, getTeam, assignTeamToDivision } from './db/team/t
 import { getSeasons, getDivisions, addDivision, addSeason, updateSeason } from './db/season/season.actions';
 import { getExternalStats, saveGameWeekStats, saveSeasonStats } from './db/stats/stats.actions';
 
-const getDashboard = (args, context) => (context.user)
-  ? ({ message: "You're authorized to see this secret message." })
-  : ({ message: 'default message' });
-
 // The root provides the top-level API endpoints
 export default {
   getExternalStats,
@@ -31,5 +27,4 @@ export default {
   getUser,
   addUser,
   updateUser,
-  getDashboard,
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import bemHelper from 'react-bem-helper';
 
-import Interstitial from '@kammy/interstitial';
+import Interstitial from '@kammy-ui/interstitial';
 
 const bem = bemHelper({ name: 'admin-list' });
 

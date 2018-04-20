@@ -1,6 +1,6 @@
 import passport from 'koa-passport';
-import { validateLoginForm, validateSignUpForm } from '@kammy/login';
-import { validateUpdatePassword } from '@kammy/change-password';
+import { validateLoginForm, validateSignUpForm } from '@kammy-ui/login';
+import { validateUpdatePassword } from '@kammy-ui/change-password';
 
 import { validateSignUpResponse, validateLoginResponse } from './response-validation';
 import localSignupStrategy from './passport/local-signup';

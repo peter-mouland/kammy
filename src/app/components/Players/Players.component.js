@@ -2,17 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import debug from 'debug';
 import bemHelper from 'react-bem-helper';
-import Interstitial from '@kammy/interstitial';
-import Svg from '@kammy/svg';
-import Errors from '@kammy/errors';
-import Toggle from '@kammy/toggle';
-import MultiToggle from '@kammy/multi-toggle';
-import Selector from '@kammy/select';
+import Interstitial from '@kammy-ui/interstitial';
+import Svg from '@kammy-ui/svg';
+import Errors from '@kammy-ui/errors';
+import Toggle from '@kammy-ui/toggle';
+import MultiToggle from '@kammy-ui/multi-toggle';
+import Selector from '@kammy-ui/select';
 
 import { playerPositions } from '../../../config/positions';
 import New from '../../../assets/new.svg';
 import fieldSorter from '../../utils/field-sorter';
-import PlayerFixtures from '../PlayerFixtures/PlayerFixtures';
 
 import './players.scss';
 
@@ -217,7 +216,6 @@ export default class PlayerTable extends React.Component {
     const {
       players, errors, loading, type, className, selectPlayer, hideOptions, headerRow,
       selectedPosition, showStats, showPoints, editable, playerUpdates = {}, team,
-      playerFixtures
     } = this.props;
     const {
       posFilter, clubFilter, nameFilter, showHidden, showOnlyNewPlayers, showFixtures
@@ -238,11 +236,6 @@ export default class PlayerTable extends React.Component {
 
     return (
       <div className={className}>
-        <PlayerFixtures
-          player={ playerFixtures }
-          showFixtures={ showFixtures }
-          onClose={ () => this.setState({ showFixtures: false })}
-        />
         {!hideOptions &&
           <div { ...bem('options') }>
             <div {...bem('option-group')}>

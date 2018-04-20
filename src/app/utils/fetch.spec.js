@@ -1,4 +1,4 @@
-import Auth from '@kammy/auth-provider';
+import Auth from '@kammy-ui/auth-provider';
 import Chance from 'chance';
 import proxyquire from 'proxyquire';
 

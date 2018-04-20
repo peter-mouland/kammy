@@ -1,6 +1,6 @@
 require('babel-polyfill');
-require('@kammy/node-local-storage');
-require('@kammy/node-fetch');
+require('@kammy-ui/node-local-storage');
+require('@kammy-ui/node-fetch');
 require('./server/utils/assets-helper');
 require('./config/config');
 

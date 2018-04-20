@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Select from '@kammy/select';
+import Select from '@kammy-ui/select';
 
 export default class PlayerChoice extends React.Component {
   clubs = [];

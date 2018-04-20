@@ -7,7 +7,6 @@ import stats from './AdminPage/Seasons/stats.reducer';
 import users from './AdminPage/Users/users.reducer';
 import teams from './AdminPage/teams.reducer';
 import myTeam from './MyTeamPage/my-team.reducer';
-import dashboard from './DashboardPage/dashboard.reducer';
 import divisions from './DivisionsPage/divisions.reducer';
 import players from './Players/players.reducer';
 
@@ -51,7 +50,6 @@ export default combineReducers({
   stats,
   myTeam,
   players,
-  dashboard,
   divisions,
   routing
 });
