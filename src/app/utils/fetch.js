@@ -1,6 +1,6 @@
 import axios from 'axios';
 import debug from 'debug';
-import { Auth } from '@kammy/auth-provider';
+import { Auth } from '@kammy-ui/auth-provider';
 
 import { localUrl } from '../utils';
 import { getVar, cookieToken } from '../../config/config';

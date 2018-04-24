@@ -1,7 +1,7 @@
 import React from 'react';
-import Modal from '@kammy/modal';
-import Interstitial from '@kammy/interstitial';
-import Svg from '@kammy/svg';
+import Modal from '@kammy-ui/modal';
+import Interstitial from '@kammy-ui/interstitial';
+import Svg from '@kammy-ui/svg';
 
 import PlayerChoice from '../Seasons/PlayerChoice';
 import changeIcon from '../../../../assets/change.svg';

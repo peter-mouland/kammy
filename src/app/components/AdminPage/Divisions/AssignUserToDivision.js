@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Interstitial from '@kammy/interstitial';
+import Interstitial from '@kammy-ui/interstitial';
 
 class AssignUserToDivision extends React.Component {
   static propTypes = {

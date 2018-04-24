@@ -2,8 +2,8 @@ import cookie from 'react-cookie';
 import Chance from 'chance';
 import jwt from 'jsonwebtoken';
 import Redirect from 'react-router-dom/Redirect';
-import HomePage from '@kammy/home-page';
-import NotFound from '@kammy/not-found';
+import HomePage from '@kammy-ui/home-page';
+import NotFound from '@kammy-ui/not-found';
 
 import { React, mount, expect, shallow } from '../config/test.helper';
 import Root, { Router } from '../../src/app/Root';

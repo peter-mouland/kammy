@@ -2,9 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import debug from 'debug';
-import Interstitial from '@kammy/interstitial';
-import Errors from '@kammy/errors';
-import Toggle from '@kammy/toggle';
+import Interstitial from '@kammy-ui/interstitial';
+import Errors from '@kammy-ui/errors';
+import Toggle from '@kammy-ui/toggle';
 
 import Players from '../../Players/Players.component';
 

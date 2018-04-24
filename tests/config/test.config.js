@@ -2,7 +2,7 @@ require('babel-register')({
   only: [/src/, /tests/, /config/]
 });
 require("babel-polyfill");
-require('@kammy/node-local-storage');
+require('@kammy-ui/node-local-storage');
 const connect = require('../../src/server/api/db').connect;
 const config = require('../test-servers/db.json');
 const { JSDOM } = require('jsdom');

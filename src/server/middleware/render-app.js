@@ -4,7 +4,7 @@ import { renderToString } from 'react-dom/server';
 import StaticRouter from 'react-router-dom/StaticRouter';
 import { Provider } from 'react-redux';
 import matchPath from 'react-router-dom/matchPath';
-import { AuthProvider } from '@kammy/auth-provider';
+import { AuthProvider } from '@kammy-ui/auth-provider';
 
 import render from '../utils/render';
 import configureStore from '../../app/store/configure-store';

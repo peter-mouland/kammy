@@ -6,7 +6,7 @@ import convert from 'koa-convert';
 import passport from 'koa-passport';
 import qs from 'koa-qs';
 
-import { koaAuthMiddleware } from '@kammy/auth-provider';
+import { koaAuthMiddleware } from '@kammy-ui/auth-provider';
 
 import handleError from './middleware/handle-error';
 import logger from './middleware/logger';

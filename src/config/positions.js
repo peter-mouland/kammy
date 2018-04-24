@@ -1,4 +1,4 @@
-export const positionMapping = {
+module.exports.positionMapping = {
   unknown: {
     label: 'Unknown', order: 0, statsFields: [], hiddenFromManager: true
   },
@@ -10,7 +10,7 @@ export const positionMapping = {
   str: { label: 'FWD', order: 6, statsFields: ['strleft', 'strright'] },
 };
 
-export const playerPositions = {
+module.exports.playerPositions = {
   unknown: { label: 'Unknown', order: 0, hiddenFromManager: true },
   GK: { label: 'GK', order: 1 },
   CB: { label: 'CB', order: 2 },

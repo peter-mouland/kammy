@@ -1,6 +1,6 @@
 import React from 'react';
 import bemHelper from 'react-bem-helper';
-import Interstitial from '@kammy/interstitial';
+import Interstitial from '@kammy-ui/interstitial';
 
 import Players from '../../Players/Players';
 import PlayerChanges from './PlayerChanges';

@@ -1,9 +1,9 @@
-import RulesPage from '@kammy/rules-page';
-import ProfilePage from '@kammy/profile-page';
-import Homepage from '@kammy/home-page';
-import ChangePassword from '@kammy/change-password';
-import LoginPage from '@kammy/login';
-import LogOut from '@kammy/logout';
+import RulesPage from '@kammy-ui/rules-page';
+import ProfilePage from '@kammy-ui/profile-page';
+import Homepage from '@kammy-ui/home-page';
+import ChangePassword from '@kammy-ui/change-password';
+import LoginPage from '@kammy-ui/login';
+import LogOut from '@kammy-ui/logout';
 
 import DivisionsPage from '../app/components/DivisionsPage/DivisionsPage';
 import AdminPage from '../app/components/AdminPage/AdminPage';

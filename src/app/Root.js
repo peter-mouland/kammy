@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import BrowserRouter from 'react-router-dom/BrowserRouter';
 import StaticRouter from 'react-router-dom/StaticRouter';
-import { AuthProvider } from '@kammy/auth-provider';
+import { AuthProvider } from '@kammy-ui/auth-provider';
 
 import { makeRoutes } from './routes';
 import configureStore from './store/configure-store';

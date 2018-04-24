@@ -2,17 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import debug from 'debug';
 import bemHelper from 'react-bem-helper';
-import Interstitial from '@kammy/interstitial';
-import Svg from '@kammy/svg';
-import Errors from '@kammy/errors';
+import Interstitial from '@kammy-ui/interstitial';
+import Svg from '@kammy-ui/svg';
+import Errors from '@kammy-ui/errors';
+import PlayersTable from '@kammy-ui/players-table';
 
-import Players from '../Players/Players';
+// import Players from '../Players/Players';
 import field from '../../../assets/field.svg';
 import { FETCH_TEAM } from './my-team.actions';
 
 import './my-team.scss';
 
 const bem = bemHelper({ name: 'my-team' });
+const visibleColumns = ['apps', 'subs', 'gls', 'asts', 'cs', 'con', 'pensv', 'tb', 'sb', 'ycard', 'rcard', 'points'];
+const positions = ['GK', 'CB', 'FB', 'MID', 'AM', 'STR', 'SUB'];
+
 debug('kammy:myteam.component');
 
 export default class MyTeam extends React.Component {
@@ -81,7 +85,6 @@ export default class MyTeam extends React.Component {
 
   render() {
     const { loading, errors, team } = this.props;
-    const { selectedPosition } = this.state;
 
     if (team === null) {
       return <Errors errors={[{ message: 'no team found, do you need to log in again?' }]} />;
@@ -114,12 +117,9 @@ export default class MyTeam extends React.Component {
             <button onClick={ this.saveTeam }>Save Team</button>
           </section>
           <section { ...bem('player-selection') }>
-            <Players
-              type="my-team"
-              team={ team }
-              showPoints
-              selectedPosition={ selectedPosition }
-              selectPlayer={ this.selectPlayer }
+            <PlayersTable
+              visibleColumns={ visibleColumns }
+              positions={ positions }
             />
           </section>
         </div>

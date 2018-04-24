@@ -1,34 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import debug from 'debug';
 import bemHelper from 'react-bem-helper';
-import Interstitial from '@kammy/interstitial';
-import Svg from '@kammy/svg';
-import Errors from '@kammy/errors';
-import Toggle from '@kammy/toggle';
-import MultiToggle from '@kammy/multi-toggle';
-import Selector from '@kammy/select';
-import sortColumns from '@kammy/sort-columns';
+import Interstitial from '@kammy-ui/interstitial';
+import Svg from '@kammy-ui/svg';
+import Errors from '@kammy-ui/errors';
+import Toggle from '@kammy-ui/toggle';
+import MultiToggle from '@kammy-ui/multi-toggle';
+import Selector from '@kammy-ui/select';
+import sortColumns from '@kammy-ui/sort-columns';
+// import ClubFixtures from '@kammy-ui/club-fixtures';
 
 import { playerPositions } from '../../../config/positions';
 import New from '../../../assets/new.svg';
-import PlayerFixtures from '../PlayerFixtures/PlayerFixtures';
 
 import './players.scss';
 
 const bem = bemHelper({ name: 'player-table' });
-const log = debug('kammy:players.component');
 
 const extremeStat = (int) => int < -10 || int > 10;
 const statCols = ['apps', 'subs', 'gls', 'asts', 'cs', 'con', 'pensv', 'tb', 'sb', 'ycard', 'rcard'];
 
-// eslint-disable-next-line no-confusing-arrow
 const Highlight = ({
   player, update = {}, attribute, className
-}) =>
+}) => (
   update[attribute] && player[attribute] !== update[attribute]
     ? <em { ...bem(null, null, ['text--warning', className])}>{update[attribute]}</em>
-    : <span className={ className }>{player[attribute]}</span>;
+    : <span className={ className }>{player[attribute]}</span>
+);
 
 const setClubs = ({ players = [], team }) => {
   const clubs = new Set();
@@ -217,10 +215,9 @@ export default class PlayerTable extends React.Component {
     const {
       players, errors, loading, type, className, selectPlayer, hideOptions, headerRow,
       selectedPosition, showStats, showPoints, editable, playerUpdates = {}, team,
-      playerFixtures
     } = this.props;
     const {
-      posFilter, clubFilter, nameFilter, showHidden, showOnlyNewPlayers, showFixtures
+      posFilter, clubFilter, nameFilter, showHidden, showOnlyNewPlayers
     } = this.state;
     const { club } = this.options;
     const teamPlayers = team
@@ -238,11 +235,6 @@ export default class PlayerTable extends React.Component {
 
     return (
       <div className={className}>
-        <PlayerFixtures
-          player={ playerFixtures }
-          showFixtures={ showFixtures }
-          onClose={ () => this.setState({ showFixtures: false })}
-        />
         {!hideOptions &&
           <div { ...bem('options') }>
             <div {...bem('option-group')}>

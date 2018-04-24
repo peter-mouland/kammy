@@ -1,8 +1,8 @@
 import React from 'react';
 import Route from 'react-router-dom/Route';
 import bemHelper from 'react-bem-helper';
-import Interstitial from '@kammy/interstitial';
-import sortColumns from '@kammy/sort-columns';
+import Interstitial from '@kammy-ui/interstitial';
+import sortColumns from '@kammy-ui/sort-columns';
 
 import { playerPositions } from '../../../../config/positions';
 import Players from '../../Players/Players.component';

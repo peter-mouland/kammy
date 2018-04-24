@@ -12,6 +12,8 @@ const schemaString = `
     asts: Int
     cs: Int
     con: Int
+    sb: Int
+    tb: Int
     pensv: Int
     ycard: Int
     rcard: Int

@@ -1,10 +1,6 @@
-import debug from 'debug';
-
 import * as actions from './players.actions';
 
-const log = debug('kammy:reducers/players');
-
-function removeNulls(obj) { // remove null's
+function removeNulls(obj) {
   const newObj = {};
   Object.keys(obj).forEach((key) => {
     const val = obj[key];
