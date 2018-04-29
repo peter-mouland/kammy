@@ -52,16 +52,11 @@ const applyFilters = ({
 };
 
 function AdditionalPoints({ children: points }) {
-  if (!points) {
-    return null;
-  }
   return (
     <sup { ...bem('additional-point')}>
-      {
-        points > 0
-          ? <span className="text--success">{points}</span>
-          : <span className="text--error">{points}</span>
-      }
+      {!points && <span className="text--neutral">0</span>}
+      {points > 0 && <span className="text--success">{points}</span>}
+      {points < 0 && <span className="text--error">{points}</span>}
     </sup>
   );
 }
@@ -388,7 +383,7 @@ export default class PlayerTable extends React.Component {
                         </td>,
                         <td key={`${stat}-gw`} {...bem('stat')}>
                           <AdditionalPoints {...bem('additional', { highlight: extremeStat(player.gameWeek[stat]) })}>
-                            {player.gameWeek[stat]}
+                            {player.gameWeek[stat] || 0}
                           </AdditionalPoints>
                         </td>
                       ])}
@@ -398,7 +393,7 @@ export default class PlayerTable extends React.Component {
                         </td>,
                         <td key={'points-gw'} {...bem('stat')}>
                           <AdditionalPoints {...bem('additional', { highlight: extremeStat(player.gameWeek.points) })}>
-                            {player.gameWeek.points}
+                            {player.gameWeek.points || 0}
                           </AdditionalPoints>
                         </td>
                       ]}
